@@ -1,0 +1,319 @@
+source_file,task_id,prompt,code,test_imports,test_list,function_signature,GENERATED_CODE,STATUS
+Benchmark Questions Verification V2.ipynb,788,Write a function to create a new tuple from the given string and list.,"def new_tuple(test_list, test_str):
+  return tuple(test_list + [test_str])",[],"['assert new_tuple([""WEB"", ""is""], ""best"") == (\'WEB\', \'is\', \'best\')'
+ 'assert new_tuple([""We"", ""are""], ""Developers"") == (\'We\', \'are\', \'Developers\')'
+ 'assert new_tuple([""Part"", ""is""], ""Wrong"") == (\'Part\', \'is\', \'Wrong\')']","def new_tuple(test_list, test_str):","def new_tuple(test_list, test_str):
+    # Create a new tuple by combining the elements of the list and the string
+    result = tuple(test_list) + (test_str,)
+    return result
+
+# Example usage:
+test_list = [1, 2, 3]
+test_str = ""abc""
+print(new_tuple(test_list, test_str))  # Output: (1, 2, 3, 'abc')",Passed
+Benchmark Questions Verification V2.ipynb,790,Write a python function to check whether every even index contains even numbers of a given list.,"def even_position(nums):
+	return all(nums[i]%2==i%2 for i in range(len(nums)))",[],"['assert even_position([3,2,1]) == False'
+ 'assert even_position([1,2,3]) == False'
+ 'assert even_position([2,1,4]) == True']",def even_position(nums):,"def even_position(nums):
+    for i in range(0, len(nums), 2):
+        if nums[i] % 2 != 0:
+            return False
+    return True",Passed
+Benchmark Questions Verification V2.ipynb,791,Write a function to remove tuples from the given tuple.,"def remove_nested(test_tup):
+  res = tuple()
+  for count, ele in enumerate(test_tup):
+    if not isinstance(ele, tuple):
+      res = res + (ele, )
+  return (res) ",[],"['assert remove_nested((1, 5, 7, (4, 6), 10)) == (1, 5, 7, 10)'
+ 'assert remove_nested((2, 6, 8, (5, 7), 11)) == (2, 6, 8, 11)'
+ 'assert remove_nested((3, 7, 9, (6, 8), 12)) == (3, 7, 9, 12)'
+ 'assert remove_nested((3, 7, 9, (6, 8), (5,12), 12)) == (3, 7, 9, 12)']",def remove_nested(test_tup):,"def remove_nested(test_tup):
+    # Initialize an empty list to store non-nested tuples
+    result = []
+    
+    # Iterate over each element in the input tuple
+    for item in test_tup:
+        # Check if the item is a tuple
+        if isinstance(item, tuple):
+            # If it's a nested tuple, recursively call the function
+            result.extend(remove_nested(item))
+        else:
+            # If it's not a tuple, add it to the result list
+            result.append(item)
+    
+    return tuple(result)
+
+# Example usage:
+test_tup = (1, (2, 3), (4, (5, 6)), 7, (8, 9, (10, 11)))
+print(remove_nested(test_tup))  # Output: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)",Passed
+Benchmark Questions Verification V2.ipynb,792,Write a python function to count the number of lists in a given number of lists.,"def count_list(input_list): 
+    return len(input_list)",[],"['assert count_list([[1, 3], [5, 7], [9, 11], [13, 15, 17]]) == 4'
+ 'assert count_list([[1,2],[2,3],[4,5]]) == 3'
+ 'assert count_list([[1,0],[2,0]]) == 2']",def count_list(input_list):,"def count_list(input_list):
+    return len(input_list)",Passed
+Benchmark Questions Verification V2.ipynb,793,Write a python function to find the last position of an element in a sorted array.,"def last(arr,x):
+    n = len(arr)
+    low = 0
+    high = n - 1
+    res = -1  
+    while (low <= high):
+        mid = (low + high) // 2 
+        if arr[mid] > x:
+            high = mid - 1
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            res = mid
+            low = mid + 1
+    return res",[],"['assert last([1,2,3],1) == 0' 'assert last([1,1,1,2,3,4],1) == 2'
+ 'assert last([2,3,2,3,6,8,9],3) == 3']","def last(arr,x):","def last(arr, x):
+    left, right = 0, len(arr) - 1
+    result = -1
+    
+    while left <= right:
+        mid = left + (right - left) // 2
+        
+        if arr[mid] == x:
+            result = mid
+            left = mid + 1  # Move left to find the last occurrence
+        elif arr[mid] < x:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return result",Passed
+Benchmark Questions Verification V2.ipynb,794,"Write a function that matches a string that has an 'a' followed by anything, ending in 'b'.","import re
+def text_starta_endb(text):
+        patterns = 'a.*?b$'
+        return re.search(patterns,  text)",[],"['assert text_starta_endb(""aabbbb"")'
+ 'assert not text_starta_endb(""aabAbbbc"")'
+ 'assert not text_starta_endb(""accddbbjjj"")']",def text_starta_endb(text):,"import re
+
+def text_starta_endb(text):
+    # Use regular expression to match the pattern
+    return bool(re.search(r'^a.*b$', text))
+
+# Test the function
+print(text_starta_endb(""abc""))  # False
+print(text_starta_endb(""ab""))   # True
+print(text_starta_endb(""aabb""))  # True
+print(text_starta_endb(""baba""))  # False",Passed
+Benchmark Questions Verification V2.ipynb,796,Write function to find the sum of all items in the given dictionary.,"def return_sum(dict):
+  sum = 0
+  for i in dict.values():
+    sum = sum + i
+  return sum",[],"[""assert return_sum({'a': 100, 'b':200, 'c':300}) == 600""
+ ""assert return_sum({'a': 25, 'b':18, 'c':45}) == 88""
+ ""assert return_sum({'a': 36, 'b':39, 'c':49}) == 124""]",def return_sum(dict):,"def return_sum(dict):
+    return sum(dict.values())",Passed
+Benchmark Questions Verification V2.ipynb,797,Write a python function to find the sum of all odd natural numbers within the range l and r.,"def sum_odd(n): 
+    terms = (n + 1)//2
+    sum1 = terms * terms 
+    return sum1  
+def sum_in_range(l,r): 
+    return sum_odd(r) - sum_odd(l - 1)",[],"['assert sum_in_range(2,5) == 8' 'assert sum_in_range(5,7) == 12'
+ 'assert sum_in_range(7,13) == 40']",def sum_odd(n):,"def sum_odd(n):
+    return sum(i for i in range(1, n+1) if i % 2 != 0)",Passed
+Benchmark Questions Verification V2.ipynb,798,Write a python function to find the sum of an array.,"def _sum(arr):  
+    sum=0
+    for i in arr: 
+        sum = sum + i      
+    return(sum)  ",[],"['assert _sum([1, 2, 3]) == 6' 'assert _sum([15, 12, 13, 10]) == 50'
+ 'assert _sum([0, 1, 2]) == 3']",def _sum(arr):,"def _sum(arr):
+    return sum(arr)",Passed
+Benchmark Questions Verification V2.ipynb,799,Write a function to that rotate left bits by d bits a given number. We assume that the number is 32 bit.,"def left_rotate(n,d):   
+    INT_BITS = 32
+    return (n << d)|(n >> (INT_BITS - d))  ",[],"['assert left_rotate(16,2) == 64' 'assert left_rotate(10,2) == 40'
+ 'assert left_rotate(99,3) == 792' 'assert left_rotate(99,3) == 792'
+ 'assert left_rotate(0b0001,3) == 0b1000'
+ 'assert left_rotate(0b0101,3) == 0b101000'
+ 'assert left_rotate(0b11101,3) == 0b11101000']","def left_rotate(n,d):","def left_rotate(n, d):
+    # Ensure d is within the range of 0 to 31
+    d = d % 32
+    
+    # Perform the left rotation
+    return (n << d) | (n >> (32 - d))",Passed
+Benchmark Questions Verification V2.ipynb,800,Write a function to remove all whitespaces from a string.,"import re
+def remove_all_spaces(text):
+ return (re.sub(r'\s+', '',text))",[],"[""assert remove_all_spaces('python  program')==('pythonprogram')""
+ ""assert remove_all_spaces('python   programming    language')==('pythonprogramminglanguage')""
+ ""assert remove_all_spaces('python                     program')==('pythonprogram')""
+ ""assert remove_all_spaces('   python                     program')=='pythonprogram'""]",def remove_all_spaces(text):,"def remove_all_spaces(text):
+    return text.replace("" "", """")",Passed
+Benchmark Questions Verification V2.ipynb,801,Write a python function to count the number of equal numbers from three given integers.,"def test_three_equal(x,y,z):
+  result = set([x,y,z])
+  if len(result)==3:
+    return 0
+  else:
+    return 4-len(result)",[],"['assert test_three_equal(1,1,1) == 3'
+ 'assert test_three_equal(-1,-2,-3) == 0'
+ 'assert test_three_equal(1,2,2) == 2']","def test_three_equal(x,y,z):","def test_three_equal(x, y, z):
+    # Check if all three numbers are equal
+    if x == y == z:
+        return 3
+    else:
+        return 0
+
+# Example usage:
+print(test_three_equal(5, 5, 5))  # Output: 3
+print(test_three_equal(1, 2, 3))  # Output: 0",Passed
+Benchmark Questions Verification V2.ipynb,802,Write a python function to count the number of rotations required to generate a sorted array. https://www.geeksforgeeks.org/count-of-rotations-required-to-generate-a-sorted-array/,"def count_rotation(arr):   
+    for i in range (1,len(arr)): 
+        if (arr[i] < arr[i - 1]): 
+            return i  
+    return 0",[],"['assert count_rotation([3,2,1]) == 1'
+ 'assert count_rotation([4,5,1,2,3]) == 2'
+ 'assert count_rotation([7,8,9,1,2,3]) == 3'
+ 'assert count_rotation([1,2,3]) == 0'
+ 'assert count_rotation([1,3,2]) == 2']",def count_rotation(arr):,"def count_rotation(arr):
+    n = len(arr)
+    for i in range(n):
+        if arr[i] > arr[(i + 1) % n]:
+            return i + 1
+    return 0
+
+# Example usage:
+arr = [4, 5, 6, 7, 0, 1, 2]
+print(count_rotation(arr))  # Output: 3",Passed
+Benchmark Questions Verification V2.ipynb,803,Write a function to check whether the given number is a perfect square or not. https://www.geeksforgeeks.org/check-if-given-number-is-perfect-square-in-cpp/,"def is_perfect_square(n) :
+    i = 1
+    while (i * i<= n):
+        if ((n % i == 0) and (n / i == i)):
+            return True     
+        i = i + 1
+    return False",[],"['assert not is_perfect_square(10)' 'assert is_perfect_square(36)'
+ 'assert not is_perfect_square(14)' 'assert is_perfect_square(14*14)'
+ 'assert not is_perfect_square(125)' 'assert is_perfect_square(125*125)']",def is_perfect_square(n) :,"import math
+
+def is_perfect_square(n):
+    if n < 0:
+        return False
+    root = math.isqrt(n)
+    return root * root == n
+
+# Test cases
+print(is_perfect_square(16))  # True
+print(is_perfect_square(14))  # False
+print(is_perfect_square(0))   # True
+print(is_perfect_square(25))  # True
+print(is_perfect_square(-4))  # False",Passed
+Benchmark Questions Verification V2.ipynb,804,Write a function to check whether the product of numbers in a list is even or not.,"def is_product_even(arr): 
+    for i in range(len(arr)): 
+        if (arr[i] & 1) == 0: 
+            return True
+    return False",[],"['assert is_product_even([1,2,3])' 'assert is_product_even([1,2,1,4])'
+ 'assert not is_product_even([1,1])']",def is_product_even(arr):,"def is_product_even(arr):
+    # Initialize the product to 1 (since 1 is even)
+    product = 1
+    
+    # Iterate through each number in the array
+    for num in arr:
+        # Multiply the product by the current number
+        product *= num
+        
+        # If the product becomes even, return True
+        if product % 2 == 0:
+            return True
+    
+    # If no even number was found, return False
+    return False",Passed
+Benchmark Questions Verification V2.ipynb,805,Write a function that returns the list in a list of lists whose sum of elements is the highest.,"def max_sum_list(lists):
+ return max(lists, key=sum)",[],"['assert max_sum_list([[1,2,3], [4,5,6], [10,11,12], [7,8,9]])==[10, 11, 12]'
+ 'assert max_sum_list([[3,2,1], [6,5,4], [12,11,10]])==[12,11,10]'
+ 'assert max_sum_list([[2,3,1]])==[2,3,1]']",def max_sum_list(lists):,"def max_sum_list(lists):
+    # Initialize variables to keep track of the maximum sum and the corresponding list
+    max_sum = float('-inf')
+    max_list = []
+
+    # Iterate over each list in the input list of lists
+    for lst in lists:
+        # Calculate the sum of the current list
+        current_sum = sum(lst)
+        
+        # Check if the current list's sum is greater than the maximum sum found so far
+        if current_sum > max_sum:
+            # Update the maximum sum and the corresponding list
+            max_sum = current_sum
+            max_list = lst
+
+    # Return the list with the highest sum
+    return max_list",Passed
+Benchmark Questions Verification V2.ipynb,806,Write a function to find maximum run of uppercase characters in the given string.,"def max_run_uppercase(test_str):
+  cnt = 0
+  res = 0
+  for idx in range(0, len(test_str)):
+    if test_str[idx].isupper():
+      cnt += 1
+    else:
+      res = cnt
+      cnt = 0
+  if test_str[len(test_str) - 1].isupper():
+    res = cnt
+  return (res)",[],"[""assert max_run_uppercase('GeMKSForGERksISBESt') == 5""
+ ""assert max_run_uppercase('PrECIOusMOVemENTSYT') == 6""
+ ""assert max_run_uppercase('GooGLEFluTTER') == 4""]",def max_run_uppercase(test_str):,"def max_run_uppercase(test_str):
+    # Initialize variables to track the maximum length and current run length
+    max_len = 0
+    curr_len = 0
+    
+    # Iterate through each character in the string
+    for char in test_str:
+        # Check if the character is uppercase
+        if char.isupper():
+            # Increment the current run length
+            curr_len += 1
+            # Update the maximum length if the current run is longer
+            max_len = max(max_len, curr_len)
+        else:
+            # Reset the current run length if the character is not uppercase
+            curr_len = 0
+    
+    return max_len
+
+# Example usage:
+print(max_run_uppercase(""HelloWorld""))  # Output: 5
+print(max_run_uppercase(""helloWorld""))  # Output: 0
+print(max_run_uppercase(""HELLO""))      # Output: 5
+print(max_run_uppercase(""hELLO""))      # Output: 2",Passed
+Benchmark Questions Verification V2.ipynb,807,Write a python function to find the first odd number in a given list of numbers.,"def first_odd(nums):
+  first_odd = next((el for el in nums if el%2!=0),-1)
+  return first_odd",[],"['assert first_odd([1,3,5]) == 1' 'assert first_odd([2,4,1,3]) == 1'
+ 'assert first_odd ([8,9,1]) == 9']",def first_odd(nums):,"def first_odd(nums):
+    for num in nums:
+        if num % 2 != 0:
+            return num
+    return None",Passed
+Benchmark Questions Verification V2.ipynb,808,Write a function to check if the given tuples contain the k or not.,"def check_K(test_tup, K):
+  res = False
+  for ele in test_tup:
+    if ele == K:
+      res = True
+      break
+  return res ",[],"['assert check_K((10, 4, 5, 6, 8), 6) == True'
+ 'assert check_K((1, 2, 3, 4, 5, 6), 7) == False'
+ 'assert check_K((7, 8, 9, 44, 11, 12), 11) == True']","def check_K(test_tup, K):","def check_K(test_tup, K):
+    # Check if K is in any of the tuples
+    return any(K in tup for tup in test_tup)
+
+# Example usage:
+test_tup = [(1, 2), (3, 4), (5, 6)]
+K = 3
+print(check_K(test_tup, K))  # Output: True
+
+K = 7
+print(check_K(test_tup, K))  # Output: False",Passed
+Benchmark Questions Verification V2.ipynb,809,Write a function to check if each element of second tuple is smaller than its corresponding element in the first tuple.,"def check_smaller(test_tup1, test_tup2):
+  return all(x > y for x, y in zip(test_tup1, test_tup2))",[],"['assert check_smaller((1, 2, 3), (2, 3, 4)) == False'
+ 'assert check_smaller((4, 5, 6), (3, 4, 5)) == True'
+ 'assert check_smaller((11, 12, 13), (10, 11, 12)) == True']","def check_smaller(test_tup1, test_tup2):","def check_smaller(test_tup1, test_tup2):
+    # Check if all elements of test_tup2 are smaller than their corresponding elements in test_tup1
+    return all(x < y for x, y in zip(test_tup1, test_tup2))
+
+# Example usage:
+test_tup1 = (1, 2, 3)
+test_tup2 = (0, 1, 2)
+print(check_smaller(test_tup1, test_tup2))  # Output: True
+
+test_tup1 = (5, 4, 3)
+test_tup2 = (6, 5, 4)
+print(check_smaller(test_tup1, test_tup2))  # Output: False",Passed

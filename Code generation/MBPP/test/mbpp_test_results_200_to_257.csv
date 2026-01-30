@@ -1,0 +1,914 @@
+source_file,task_id,prompt,code,test_imports,test_list,function_signature,GENERATED_CODE,STATUS
+charlessutton@: Benchmark Questions Verification V2.ipynb,418,Write a python function to find the element of a list having maximum length.,"def Find_Max(lst): 
+    maxList = max((x) for x in lst) 
+    return maxList",[],"[""assert Find_Max([['A'],['A','B'],['A','B','C']]) == ['A','B','C']""
+ 'assert Find_Max([[1],[1,2],[1,2,3]]) == [1,2,3]'
+ 'assert Find_Max([[1,1],[1,2,3],[1,5,6,1]]) == [1,5,6,1]']",def Find_Max(lst):,"def Find_Max(lst):
+    if not lst:
+        return None  # Return None if the list is empty
+
+    max_length = 0
+    max_element = None
+
+    for element in lst:
+        if len(element) > max_length:
+            max_length = len(element)
+            max_element = element
+
+    return max_element",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,419,Write a function to round every number of a given list of numbers and print the total sum multiplied by the length of the list.,"def round_and_sum(list1):
+  lenght=len(list1)
+  round_and_sum=sum(list(map(round,list1))* lenght)
+  return round_and_sum",[],"['assert round_and_sum([22.4, 4.0, -16.22, -9.10, 11.00, -12.22, 14.20, -5.20, 17.50])==243'
+ 'assert round_and_sum([5,2,9,24.3,29])==345'
+ 'assert round_and_sum([25.0,56.7,89.2])==513']",def round_and_sum(list1):,"def round_and_sum(list1):
+    # Round each number in the list
+    rounded_list = [round(num) for num in list1]
+    
+    # Calculate the sum of the rounded numbers
+    total_sum = sum(rounded_list)
+    
+    # Multiply the sum by the length of the list
+    result = total_sum * len(list1)
+    
+    # Print the result
+    print(result)
+
+# Example usage:
+round_and_sum([1.2, 2.5, 3.7, 4.1])",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,420,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n): 
+    sum = 0
+    for i in range(1,n + 1): 
+        sum += (2*i)*(2*i)*(2*i) 
+    return sum",[],"['assert cube_Sum(2) == 72' 'assert cube_Sum(3) == 288'
+ 'assert cube_Sum(4) == 800']",def cube_Sum(n):,"def cube_Sum(n):
+    # Calculate the cube sum of the first n even natural numbers
+    return sum((2 * i) ** 3 for i in range(1, n + 1))
+
+# Example usage:
+print(cube_Sum(3))  # Output: 72",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,421,Write a function to concatenate each element of tuple by the delimiter.,"def concatenate_tuple(test_tup):
+    delim = ""-""
+    res = ''.join([str(ele) + delim for ele in test_tup])
+    res = res[ : len(res) - len(delim)]
+    return (str(res)) ",[],"['assert concatenate_tuple((""ID"", ""is"", 4, ""UTS"") ) == \'ID-is-4-UTS\''
+ 'assert concatenate_tuple((""QWE"", ""is"", 4, ""RTY"") ) == \'QWE-is-4-RTY\''
+ 'assert concatenate_tuple((""ZEN"", ""is"", 4, ""OP"") ) == \'ZEN-is-4-OP\'']",def concatenate_tuple(test_tup):,"def concatenate_tuple(test_tup):
+    # Initialize an empty string to hold the concatenated result
+    result = """"
+    
+    # Iterate over each element in the tuple
+    for element in test_tup:
+        # Concatenate the current element to the result string
+        result += str(element)
+    
+    return result
+
+# Example usage:
+test_tup = (1, 2, 3, 4)
+print(concatenate_tuple(test_tup))  # Output: ""1234""",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,422,Write a python function to find the average of cubes of first n natural numbers.,"def find_Average_Of_Cube(n):  
+    sum = 0
+    for i in range(1, n + 1): 
+        sum += i * i * i  
+    return round(sum / n, 6) ",[],"['assert find_Average_Of_Cube(2) == 4.5'
+ 'assert find_Average_Of_Cube(3) == 12'
+ 'assert find_Average_Of_Cube(1) == 1']",def find_Average_Of_Cube(n):,"def find_Average_Of_Cube(n):
+    # Calculate the sum of cubes of first n natural numbers
+    total_sum = sum(i**3 for i in range(1, n+1))
+    
+    # Calculate the average by dividing the total sum by n
+    average = total_sum / n
+    
+    return average
+
+# Example usage:
+n = 5
+print(find_Average_Of_Cube(n))  # Output: 12.666666666666668",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,424,Write a function to extract only the rear index element of each string in the given tuple.,"def extract_rear(test_tuple):
+  res = list(sub[len(sub) - 1] for sub in test_tuple)
+  return (res) ",[],"[""assert extract_rear(('Mers', 'for', 'Vers') ) == ['s', 'r', 's']""
+ ""assert extract_rear(('Avenge', 'for', 'People') ) == ['e', 'r', 'e']""
+ ""assert extract_rear(('Gotta', 'get', 'go') ) == ['a', 't', 'o']""]",def extract_rear(test_tuple):,"def extract_rear(test_tuple):
+    # Extracting the last character from each string in the tuple
+    result = tuple(s[-1] for s in test_tuple)
+    return result
+
+# Example usage:
+test_tuple = (""apple"", ""banana"", ""cherry"")
+print(extract_rear(test_tuple))  # Output: ('e', 'a', 'y')",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,425,Write a function to count the number of sublists containing a particular element.,"def count_element_in_list(list1, x): 
+    ctr = 0
+    for i in range(len(list1)): 
+        if x in list1[i]: 
+            ctr+= 1          
+    return ctr",[],"['assert count_element_in_list([[1, 3], [5, 7], [1, 11], [1, 15, 7]],1)==3'
+ ""assert count_element_in_list([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'A')==3""
+ ""assert count_element_in_list([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'E')==1""]","def count_element_in_list(list1, x):","def count_element_in_list(list1, x):
+    count = 0
+    for sublist in list1:
+        if x in sublist:
+            count += 1
+    return count
+
+# Example usage:
+list1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 2, 3]]
+x = 3
+print(count_element_in_list(list1, x))  # Output: 3",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,426,Write a function to filter odd numbers.,"def filter_oddnumbers(nums):
+ odd_nums = list(filter(lambda x: x%2 != 0, nums))
+ return odd_nums",[],"['assert filter_oddnumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1,3,5,7,9]'
+ 'assert filter_oddnumbers([10,20,45,67,84,93])==[45,67,93]'
+ 'assert filter_oddnumbers([5,7,9,8,6,4,3])==[5,7,9,3]']",def filter_oddnumbers(nums):,"def filter_oddnumbers(nums):
+    return [num for num in nums if num % 2 != 0]",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,427,Write a function to convert a date of yyyy-mm-dd format to dd-mm-yyyy format.,"import re
+def change_date_format(dt):
+        return re.sub(r'(\d{4})-(\d{1,2})-(\d{1,2})', '\\3-\\2-\\1', dt)",[],"['assert change_date_format(""2026-01-02"") == \'02-01-2026\''
+ 'assert change_date_format(""2020-11-13"") == \'13-11-2020\''
+ 'assert change_date_format(""2021-04-26"") == \'26-04-2021\'']",def change_date_format(dt):,"from datetime import datetime
+
+def change_date_format(dt):
+    # Parse the input string into a datetime object
+    date_obj = datetime.strptime(dt, '%Y-%m-%d')
+    
+    # Format the datetime object into the desired string format
+    formatted_date = date_obj.strftime('%d-%m-%Y')
+    
+    return formatted_date
+
+# Example usage:
+print(change_date_format('2023-10-05'))  # Output: '05-10-2023'",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,428,Write a function to sort the given array by using shell sort.,"def shell_sort(my_list):
+    gap = len(my_list) // 2
+    while gap > 0:
+        for i in range(gap, len(my_list)):
+            current_item = my_list[i]
+            j = i
+            while j >= gap and my_list[j - gap] > current_item:
+                my_list[j] = my_list[j - gap]
+                j -= gap
+            my_list[j] = current_item
+        gap //= 2
+
+    return my_list",[],"['assert shell_sort([12, 23, 4, 5, 3, 2, 12, 81, 56, 95]) == [2, 3, 4, 5, 12, 12, 23, 56, 81, 95]'
+ 'assert shell_sort([24, 22, 39, 34, 87, 73, 68]) == [22, 24, 34, 39, 68, 73, 87]'
+ 'assert shell_sort([32, 30, 16, 96, 82, 83, 74]) == [16, 30, 32, 74, 82, 83, 96]']",def shell_sort(my_list):,"def shell_sort(my_list):
+    n = len(my_list)
+    gap = n // 2
+
+    # Start with a big gap, then reduce the gap
+    while gap > 0:
+        for i in range(gap, n):
+            temp = my_list[i]
+            j = i
+            # Shift earlier gap-sorted elements up until the correct location for my_list[i] is found
+            while j >= gap and my_list[j - gap] > temp:
+                my_list[j] = my_list[j - gap]
+                j -= gap
+            # Put temp (the original my_list[i]) in its correct location
+            my_list[j] = temp
+        gap //= 2
+
+    return my_list",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,429,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(test_tup1, test_tup2):
+  res = tuple(ele1 & ele2 for ele1, ele2 in zip(test_tup1, test_tup2))
+  return (res) ",[],"['assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)'
+ 'assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)'
+ 'assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)']","def and_tuples(test_tup1, test_tup2):","def and_tuples(test_tup1, test_tup2):
+    # Extracting elementwise and tuples from the given two tuples
+    result = tuple(a & b for a, b in zip(test_tup1, test_tup2))
+    return result
+
+# Example usage:
+test_tup1 = (1, 2, 3)
+test_tup2 = (4, 5, 6)
+print(and_tuples(test_tup1, test_tup2))  # Output: (0, 0, 0)",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,430,Write a function to find the directrix of a parabola.,"def parabola_directrix(a, b, c): 
+  directrix=((int)(c - ((b * b) + 1) * 4 * a ))
+  return directrix",[],"['assert parabola_directrix(5,3,2)==-198'
+ 'assert parabola_directrix(9,8,4)==-2336'
+ 'assert parabola_directrix(2,4,6)==-130']","def parabola_directrix(a, b, c):","import math
+
+def parabola_directrix(a, b, c):
+    # The directrix of a parabola given by ax^2 + bx + c = 0 is y = -1/(4a) * (b^2 - 4ac)
+    return -1 / (4 * a) * (b ** 2 - 4 * a * c)
+
+# Example usage:
+# a = 1, b = 0, c = -1
+# The parabola is x^2 = -1, which has a directrix at y = 0
+print(parabola_directrix(1, 0, -1))  # Output: 0.0",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,431,Write a function that takes two lists and returns true if they have at least one common element.,"def common_element(list1, list2):
+     result = False
+     for x in list1:
+         for y in list2:
+             if x == y:
+                 result = True
+                 return result",[],"['assert common_element([1,2,3,4,5], [5,6,7,8,9])==True'
+ 'assert common_element([1,2,3,4,5], [6,7,8,9])==None'
+ ""assert common_element(['a','b','c'], ['d','b','e'])==True""]","def common_element(list1, list2):","def common_element(list1, list2):
+    return any(item in list1 for item in list2)",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,432,Write a function to find the median length of a trapezium.,"def median_trapezium(base1,base2,height):
+ median = 0.5 * (base1+ base2)
+ return median",[],"['assert median_trapezium(15,25,35)==20'
+ 'assert median_trapezium(10,20,30)==15'
+ 'assert median_trapezium(6,9,4)==7.5']","def median_trapezium(base1,base2,height):","import math
+
+def median_trapezium(base1, base2, height):
+    # Calculate the median length using the formula: (base1 + base2) / 2
+    median_length = (base1 + base2) / 2
+    return median_length
+
+# Example usage:
+# median_length = median_trapezium(5, 7, 4)
+# print(median_length)  # Output: 6.0",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,433,Write a function to check whether the entered number is greater than the elements of the given array.,"def check_greater(arr, number):
+  arr.sort()
+  return number > arr[-1]",[],"['assert check_greater([1, 2, 3, 4, 5], 4) == False'
+ 'assert check_greater([2, 3, 4, 5, 6], 8) == True'
+ 'assert check_greater([9, 7, 4, 8, 6, 1], 11) == True']","def check_greater(arr, number):","def check_greater(arr, number):
+    # Check if the number is greater than all elements in the array
+    return all(number > x for x in arr)",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,434,Write a function that matches a string that has an a followed by one or more b's.,"import re
+def text_match_one(text):
+        patterns = 'ab+?'
+        if re.search(patterns,  text):
+                return True
+        else:
+                return False
+",[],"['assert text_match_one(""ac"")==False' 'assert text_match_one(""dc"")==False'
+ 'assert text_match_one(""abba"")==True']",def text_match_one(text):,"import re
+
+def text_match_one(text):
+    # Use regular expression to find a string that starts with 'a' followed by one or more 'b's
+    pattern = r'^a+b$'
+    if re.search(pattern, text):
+        return True
+    else:
+        return False",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,435,Write a python function to find the last digit of a given number.,"def last_Digit(n) :
+    return (n % 10) ",[],"['assert last_Digit(123) == 3' 'assert last_Digit(25) == 5'
+ 'assert last_Digit(30) == 0']",def last_Digit(n) :,"def last_Digit(n):
+    return n % 10",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,436,Write a python function to return the negative numbers in a list.,"def neg_nos(list1):
+  out = []
+  for num in list1: 
+    if num < 0: 
+      out.append(num)
+  return out ",[],"['assert neg_nos([-1,4,5,-6]) == [-1,-6]'
+ 'assert neg_nos([-1,-2,3,4]) == [-1,-2]'
+ 'assert neg_nos([-7,-6,8,9]) == [-7,-6]']",def neg_nos(list1):,"def neg_nos(list1):
+    return [num for num in list1 if num < 0]",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,437,Write a function to remove odd characters in a string.,"def remove_odd(str1):
+ str2 = ''
+ for i in range(1, len(str1) + 1):
+    if(i % 2 == 0):
+        str2 = str2 + str1[i - 1]
+ return str2",[],"['assert remove_odd(""python"")==(""yhn"")'
+ 'assert remove_odd(""program"")==(""rga"")'
+ 'assert remove_odd(""language"")==(""agae"")']",def remove_odd(str1):,"def remove_odd(str1):
+    return ''.join([char for char in str1 if char.isalpha()])
+
+# Example usage:
+print(remove_odd(""Hello World!""))  # Output: ""Hlo ol!""",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,438,Write a function to count bidirectional tuple pairs.,"def count_bidirectional(test_list):
+  res = 0
+  for idx in range(0, len(test_list)):
+    for iidx in range(idx + 1, len(test_list)):
+      if test_list[iidx][0] == test_list[idx][1] and test_list[idx][1] == test_list[iidx][0]:
+        res += 1
+  return res",[],"['assert count_bidirectional([(5, 6), (1, 2), (6, 5), (9, 1), (6, 5), (2, 1)] ) == 3'
+ 'assert count_bidirectional([(5, 6), (1, 3), (6, 5), (9, 1), (6, 5), (2, 1)] ) == 2'
+ 'assert count_bidirectional([(5, 6), (1, 2), (6, 5), (9, 2), (6, 5), (2, 1)] ) == 4']",def count_bidirectional(test_list):,"def count_bidirectional(test_list):
+    # Initialize the count of bidirectional tuples
+    count = 0
+    
+    # Iterate over each tuple in the list
+    for tup in test_list:
+        # Check if the tuple is bidirectional (i.e., the first element is the reverse of the second)
+        if tup[0] == tup[1][::-1]:
+            count += 1
+    
+    return count
+
+# Example usage:
+test_list = [(""abc"", ""cba""), (""hello"", ""olleh""), (""world"", ""dlrow""), (""python"", ""nohtyp"")]
+print(count_bidirectional(test_list))  # Output: 3",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,439,Write a function to join a list of multiple integers into a single integer.,"def multiple_to_single(L):
+  x = int("""".join(map(str, L)))
+  return x",[],"['assert multiple_to_single([11, 33, 50])==113350'
+ 'assert multiple_to_single([-1,2,3,4,5,6])==-123456'
+ 'assert multiple_to_single([10,15,20,25])==10152025']",def multiple_to_single(L):,"def multiple_to_single(L):
+    # Convert each integer in the list to a string, join them together, and then convert back to an integer
+    return int(''.join(map(str, L)))
+
+# Example usage:
+L = [123, 456, 789]
+result = multiple_to_single(L)
+print(result)  # Output: 123456789",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,440,Write a function to find the first adverb and their positions in a given sentence.,"import re
+def find_adverb_position(text):
+ for m in re.finditer(r""\w+ly"", text):
+    return (m.start(), m.end(), m.group(0))",[],"['assert find_adverb_position(""clearly!! we can see the sky"")==(0, 7, \'clearly\')'
+ 'assert find_adverb_position(""seriously!! there are many roses"")==(0, 9, \'seriously\')'
+ 'assert find_adverb_position(""unfortunately!! sita is going to home"")==(0, 13, \'unfortunately\')']",def find_adverb_position(text):,"import re
+
+def find_adverb_position(text):
+    # Regular expression to match adverbs ending with 'ly'
+    adverb_pattern = r'\b\w+ly\b'
+    
+    # Find all matches of the adverb pattern in the text
+    matches = re.findall(adverb_pattern, text)
+    
+    # Create a list of tuples containing the adverb and its position
+    adverb_positions = [(match, text.index(match)) for match in matches]
+    
+    return adverb_positions
+
+# Example usage:
+text = ""She quickly ran away from the danger.""
+print(find_adverb_position(text))",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,441,Write a function to find the surface area of a cube of a given size.,"def surfacearea_cube(l):
+  surfacearea= 6*l*l
+  return surfacearea",[],"['assert surfacearea_cube(5)==150' 'assert surfacearea_cube(3)==54'
+ 'assert surfacearea_cube(10)==600']",def surfacearea_cube(l):,"def surfacearea_cube(l):
+    # The surface area of a cube is 6 times the area of one face
+    return 6 * l ** 2",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,442,Write a function to find the ration of positive numbers in an array of integers.,"from array import array
+def positive_count(nums):
+    n = len(nums)
+    n1 = 0
+    for x in nums:
+        if x > 0:
+            n1 += 1
+        else:
+          None
+    return round(n1/n,2)",[],"['assert positive_count([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8])==0.54'
+ 'assert positive_count([2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8])==0.69'
+ 'assert positive_count([2, 4, -6, -9, 11, -12, 14, -5, 17])==0.56']",def positive_count(nums):,"def positive_count(nums):
+    # Initialize a counter for positive numbers
+    positive_count = 0
+    
+    # Iterate through each number in the array
+    for num in nums:
+        # Check if the number is positive
+        if num > 0:
+            # Increment the counter if the number is positive
+            positive_count += 1
+    
+    # Return the total count of positive numbers
+    return positive_count",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,443,Write a python function to find the largest negative number from the given list.,"def largest_neg(list1): 
+    max = list1[0] 
+    for x in list1: 
+        if x < max : 
+             max = x  
+    return max",[],"['assert largest_neg([1,2,3,-4,-6]) == -6'
+ 'assert largest_neg([1,2,3,-8,-9]) == -9'
+ 'assert largest_neg([1,2,3,4,-1]) == -1']",def largest_neg(list1):,"def largest_neg(list1):
+    # Initialize the largest_neg variable to None
+    largest_neg = None
+    
+    # Iterate through each element in the list
+    for num in list1:
+        # Check if the current number is negative and either largest_neg is None or the current number is greater than largest_neg
+        if num < 0 and (largest_neg is None or num > largest_neg):
+            largest_neg = num
+    
+    # Return the largest_neg found, or None if no negative numbers were found
+    return largest_neg",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,444,Write a function to trim each tuple by k in the given tuple list.,"def trim_tuple(test_list, K):
+  res = []
+  for ele in test_list:
+    N = len(ele)
+    res.append(tuple(list(ele)[K: N - K]))
+  return (str(res)) ",[],"[""assert trim_tuple([(5, 3, 2, 1, 4), (3, 4, 9, 2, 1),(9, 1, 2, 3, 5), (4, 8, 2, 1, 7)], 2) == '[(2,), (9,), (2,), (2,)]'""
+ ""assert trim_tuple([(5, 3, 2, 1, 4), (3, 4, 9, 2, 1), (9, 1, 2, 3, 5), (4, 8, 2, 1, 7)], 1) == '[(3, 2, 1), (4, 9, 2), (1, 2, 3), (8, 2, 1)]'""
+ ""assert trim_tuple([(7, 8, 4, 9), (11, 8, 12, 4),(4, 1, 7, 8), (3, 6, 9, 7)], 1) == '[(8, 4), (8, 12), (1, 7), (6, 9)]'""]","def trim_tuple(test_list, K):","def trim_tuple(test_list, K):
+    # Use list comprehension to create a new list of tuples with elements trimmed by K
+    res = [tuple(ele[:K] + ele[K+1:]) for ele in test_list]
+    return res
+
+# Example usage:
+test_list = [(1, 2, 3), (4, 5, 6, 7), (8, 9)]
+K = 2
+print(trim_tuple(test_list, K))  # Output: [(1, 3), (4, 6, 7), (8, 9)]",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,445,Write a function to perform index wise multiplication of tuple elements in the given two tuples.,"def index_multiplication(test_tup1, test_tup2):
+  res = tuple(tuple(a * b for a, b in zip(tup1, tup2))
+   for tup1, tup2 in zip(test_tup1, test_tup2))
+  return (res) ",[],"['assert index_multiplication(((1, 3), (4, 5), (2, 9), (1, 10)),((6, 7), (3, 9), (1, 1), (7, 3)) ) == ((6, 21), (12, 45), (2, 9), (7, 30))'
+ 'assert index_multiplication(((2, 4), (5, 6), (3, 10), (2, 11)),((7, 8), (4, 10), (2, 2), (8, 4)) ) == ((14, 32), (20, 60), (6, 20), (16, 44))'
+ 'assert index_multiplication(((3, 5), (6, 7), (4, 11), (3, 12)),((8, 9), (5, 11), (3, 3), (9, 5)) ) == ((24, 45), (30, 77), (12, 33), (27, 60))']","def index_multiplication(test_tup1, test_tup2):","def index_multiplication(test_tup1, test_tup2):
+    # Initialize an empty list to store the result
+    res = []
+    
+    # Iterate over the range of the length of the tuples
+    for i in range(len(test_tup1)):
+        # Multiply corresponding elements from both tuples
+        res.append(test_tup1[i] * test_tup2[i])
+    
+    # Convert the list to a tuple and return
+    return tuple(res)
+
+# Example usage:
+test_tup1 = (1, 3, 5)
+test_tup2 = (2, 4, 6)
+print(index_multiplication(test_tup1, test_tup2))  # Output: (2, 12, 30)",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,446,Write a python function to count the occurence of all elements of list in a tuple.,"from collections import Counter 
+def count_Occurrence(tup, lst): 
+    count = 0
+    for item in tup: 
+        if item in lst: 
+            count+= 1 
+    return count  ",[],"[""assert count_Occurrence(('a', 'a', 'c', 'b', 'd'),['a', 'b'] ) == 3""
+ 'assert count_Occurrence((1, 2, 3, 1, 4, 6, 7, 1, 4),[1, 4, 7]) == 6'
+ 'assert count_Occurrence((1,2,3,4,5,6),[1,2]) == 2']","def count_Occurrence(tup, lst):","def count_Occurrence(tup, lst):
+    # Create a dictionary to store the count of each element in the list
+    count_dict = {}
+    
+    # Iterate over each element in the list
+    for element in lst:
+        # If the element is already in the dictionary, increment its count
+        if element in count_dict:
+            count_dict[element] += 1
+        # Otherwise, add the element to the dictionary with a count of 1
+        else:
+            count_dict[element] = 1
+    
+    # Create a new tuple to store the results
+    result_tuple = ()
+    
+    # Iterate over each element in the tuple
+    for element in tup:
+        # If the element is in the dictionary, add its count to the result tuple
+        if element in count_dict:
+            result_tuple += (count_dict[element],)
+        # Otherwise, add 0 to the result tuple
+        else:
+            result_tuple += (0,)
+    
+    return result_tuple
+
+# Example usage:
+tup = (1, 2, 3, 4, 5)
+lst = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+print(count_Occurrence(tup, lst))  # Output: (1, 2, 3, 4, 5)",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,447,Write a function to find cubes of individual elements in a list.,"def cube_nums(nums):
+ cube_nums = list(map(lambda x: x ** 3, nums))
+ return cube_nums",[],"['assert cube_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]'
+ 'assert cube_nums([10,20,30])==([1000, 8000, 27000])'
+ 'assert cube_nums([12,15])==([1728, 3375])']",def cube_nums(nums):,"def cube_nums(nums):
+    return [num ** 3 for num in nums]",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,448,Write a function to calculate the sum of perrin numbers.,"def cal_sum(n): 
+	a = 3
+	b = 0
+	c = 2
+	if (n == 0): 
+		return 3
+	if (n == 1): 
+		return 3
+	if (n == 2): 
+		return 5
+	sum = 5
+	while (n > 2): 
+		d = a + b 
+		sum = sum + d 
+		a = b 
+		b = c 
+		c = d 
+		n = n-1
+	return sum",[],"['assert cal_sum(9) == 49' 'assert cal_sum(10) == 66'
+ 'assert cal_sum(11) == 88']",def cal_sum(n):,"def cal_sum(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 3
+    elif n == 2:
+        return 5
+
+    # Initialize the first three Perrin numbers
+    p0, p1, p2 = 3, 5, 8
+
+    # Calculate the sum of the first n Perrin numbers
+    total_sum = p0 + p1 + p2
+    for i in range(3, n):
+        next_perrin = p0 + p1
+        total_sum += next_perrin
+        p0, p1, p2 = p1, p2, next_perrin
+
+    return total_sum",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,450,Write a function to extract specified size of strings from a given list of string values.,"def extract_string(str, l):
+    result = [e for e in str if len(e) == l] 
+    return result",[],"[""assert extract_string(['Python', 'list', 'exercises', 'practice', 'solution'] ,8)==['practice', 'solution']""
+ ""assert extract_string(['Python', 'list', 'exercises', 'practice', 'solution'] ,6)==['Python']""
+ ""assert extract_string(['Python', 'list', 'exercises', 'practice', 'solution'] ,9)==['exercises']""]","def extract_string(str, l):","def extract_string(str, l):
+    # Check if the input list is empty or if l is not a positive integer
+    if not str or l <= 0:
+        return []
+    
+    # Initialize an empty list to store the extracted strings
+    extracted_strings = []
+    
+    # Iterate over the input list in steps of l
+    for i in range(0, len(str), l):
+        # Append the substring of length l starting at index i to the extracted_strings list
+        extracted_strings.append(str[i:i+l])
+    
+    return extracted_strings
+
+# Example usage:
+# print(extract_string(""HelloWorld"", 3))  # Output: ['Hel', 'loW', 'orld']
+# print(extract_string(""PythonProgramming"", 5))  # Output: ['Pytho', 'gramm', 'ing']",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,451,Write a function to remove all whitespaces from the given string.,"import re
+def remove_whitespaces(text1):
+  return (re.sub(r'\s+', '',text1))",[],"[""assert remove_whitespaces(' Google    Flutter ') == 'GoogleFlutter'""
+ ""assert remove_whitespaces(' Google    Dart ') == 'GoogleDart'""
+ ""assert remove_whitespaces(' iOS    Swift ') == 'iOSSwift'""]",def remove_whitespaces(text1):,"def remove_whitespaces(text1):
+    return text1.replace("" "", """")",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,452,Write a function that gives loss amount on a sale if the given amount has loss else return 0.,"def loss_amount(actual_cost,sale_amount): 
+  if(sale_amount > actual_cost):
+    amount = sale_amount - actual_cost
+    return amount
+  else:
+    return 0",[],"['assert loss_amount(1500,1200)==0' 'assert loss_amount(100,200)==100'
+ 'assert loss_amount(2000,5000)==3000']","def loss_amount(actual_cost,sale_amount):","def loss_amount(actual_cost, sale_amount):
+    if actual_cost > sale_amount:
+        return actual_cost - sale_amount
+    else:
+        return 0",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,453,Write a python function to find the sum of even factors of a number.,"import math 
+def sumofFactors(n) : 
+    if (n % 2 != 0) : 
+        return 0
+    res = 1
+    for i in range(2, (int)(math.sqrt(n)) + 1) :    
+        count = 0
+        curr_sum = 1
+        curr_term = 1
+        while (n % i == 0) : 
+            count= count + 1
+            n = n // i 
+            if (i == 2 and count == 1) : 
+                curr_sum = 0
+            curr_term = curr_term * i 
+            curr_sum = curr_sum + curr_term 
+        res = res * curr_sum  
+    if (n >= 2) : 
+        res = res * (1 + n) 
+    return res",[],"['assert sumofFactors(18) == 26' 'assert sumofFactors(30) == 48'
+ 'assert sumofFactors(6) == 8']",def sumofFactors(n) :,"def sumofFactors(n) :
+    # Initialize sum of factors
+    sum_factors = 0
+    
+    # Iterate over all possible factors from 1 to n
+    for i in range(1, n + 1):
+        # Check if i is a factor of n
+        if n % i == 0:
+            # Check if the factor is even
+            if i % 2 == 0:
+                # Add the even factor to the sum
+                sum_factors += i
+                
+    return sum_factors
+
+# Example usage:
+print(sumofFactors(10))  # Output: 18 (2 + 4 + 6)",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,454,Write a function that matches a word containing 'z'.,"import re
+def text_match_wordz(text):
+        patterns = '\w*z.\w*'
+        if re.search(patterns,  text):
+                return True
+        else:
+                return False",[],"['assert text_match_wordz(""pythonz."")==True'
+ 'assert text_match_wordz(""xyz."")==True'
+ 'assert text_match_wordz(""  lang  ."")==False']",def text_match_wordz(text):,"import re
+
+def text_match_wordz(text):
+    # Use regular expression to find words containing 'z'
+    pattern = r'\b\w*z\w*\b'
+    match = re.search(pattern, text)
+    if match:
+        return True
+    else:
+        return False",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,455,Write a function to check whether the given month number contains 31 days or not.,"def check_monthnumb_number(monthnum2):
+  if(monthnum2==1 or monthnum2==3 or monthnum2==5 or monthnum2==7 or monthnum2==8 or monthnum2==10 or monthnum2==12):
+    return True
+  else:
+    return False",[],"['assert check_monthnumb_number(5)==True'
+ 'assert check_monthnumb_number(2)==False'
+ 'assert check_monthnumb_number(6)==False']",def check_monthnumb_number(monthnum2):,"def check_monthnumb_number(monthnum2):
+    # List of months with 31 days
+    months_with_31_days = [1, 3, 5, 7, 8, 10, 12]
+    
+    # Check if the given month number is in the list of months with 31 days
+    if monthnum2 in months_with_31_days:
+        return True
+    else:
+        return False
+
+# Example usage:
+print(check_monthnumb_number(1))  # Output: True
+print(check_monthnumb_number(4))  # Output: False",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,456,Write a function to reverse each string in a given list of string values.,"def reverse_string_list(stringlist):
+    result = [x[::-1] for x in stringlist]
+    return result",[],"[""assert reverse_string_list(['Red', 'Green', 'Blue', 'White', 'Black'])==['deR', 'neerG', 'eulB', 'etihW', 'kcalB']""
+ ""assert reverse_string_list(['john','amal','joel','george'])==['nhoj','lama','leoj','egroeg']""
+ ""assert reverse_string_list(['jack','john','mary'])==['kcaj','nhoj','yram']""]",def reverse_string_list(stringlist):,"def reverse_string_list(stringlist):
+    return [s[::-1] for s in stringlist]",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,457,Write a python function to find the sublist having minimum length.,"def Find_Min(lst): 
+    return min(lst, key=len) ",[],"['assert Find_Min([[1],[1,2],[1,2,3]]) == [1]'
+ 'assert Find_Min([[1,1],[1,1,1],[1,2,7,8]]) == [1,1]'
+ ""assert Find_Min([['x'],['x','y'],['x','y','z']]) == ['x']""]",def Find_Min(lst):,"def Find_Min(lst):
+    if not lst:
+        return None  # Return None if the list is empty
+
+    min_length = float('inf')
+    min_sublist = None
+
+    for sublist in lst:
+        if len(sublist) < min_length:
+            min_length = len(sublist)
+            min_sublist = sublist
+
+    return min_sublist",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,458,Write a function to find the area of a rectangle.,"def rectangle_area(l,b):
+  area=l*b
+  return area",[],"['assert rectangle_area(10,20)==200' 'assert rectangle_area(10,5)==50'
+ 'assert rectangle_area(4,2)==8']","def rectangle_area(l,b):","def rectangle_area(l, b):
+    return l * b",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,459,Write a function to remove uppercase substrings from a given string.,"import re
+def remove_uppercase(str1):
+  return re.sub('[A-Z]', '', str1)",[],"[""assert remove_uppercase('cAstyoUrFavoRitETVshoWs') == 'cstyoravoitshos'""
+ ""assert remove_uppercase('wAtchTheinTernEtrAdIo') == 'wtchheinerntrdo'""
+ ""assert remove_uppercase('VoicESeaRchAndreComMendaTionS') == 'oiceachndreomendaion'""]",def remove_uppercase(str1):,"def remove_uppercase(str1):
+    return ''.join([char for char in str1 if not char.isupper()])",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,460,Write a python function to get the first element of each sublist.,"def Extract(lst): 
+    return [item[0] for item in lst] ",[],"['assert Extract([[1, 2], [3, 4, 5], [6, 7, 8, 9]]) == [1, 3, 6]'
+ 'assert Extract([[1,2,3],[4, 5]]) == [1,4]'
+ 'assert Extract([[9,8,1],[1,2]]) == [9,1]']",def Extract(lst):,"def Extract(lst):
+    return [sublist[0] for sublist in lst]",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,461,Write a python function to count the upper case characters in a given string.,"def upper_ctr(str):
+    upper_ctr = 0
+    for i in range(len(str)):
+          if str[i] >= 'A' and str[i] <= 'Z': upper_ctr += 1
+          return upper_ctr",[],"[""assert upper_ctr('PYthon') == 1"" ""assert upper_ctr('BigData') == 1""
+ ""assert upper_ctr('program') == 0""]",def upper_ctr(str):,"def upper_ctr(str):
+    return sum(1 for char in str if char.isupper())",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,462,Write a function to find all possible combinations of the elements of a given list.,"def combinations_list(list1):
+    if len(list1) == 0:
+        return [[]]
+    result = []
+    for el in combinations_list(list1[1:]):
+        result += [el, el+[list1[0]]]
+    return result",[],"[""assert combinations_list(['orange', 'red', 'green', 'blue'])==[[], ['orange'], ['red'], ['red', 'orange'], ['green'], ['green', 'orange'], ['green', 'red'], ['green', 'red', 'orange'], ['blue'], ['blue', 'orange'], ['blue', 'red'], ['blue', 'red', 'orange'], ['blue', 'green'], ['blue', 'green', 'orange'], ['blue', 'green', 'red'], ['blue', 'green', 'red', 'orange']]""
+ ""assert combinations_list(['red', 'green', 'blue', 'white', 'black', 'orange'])==[[], ['red'], ['green'], ['green', 'red'], ['blue'], ['blue', 'red'], ['blue', 'green'], ['blue', 'green', 'red'], ['white'], ['white', 'red'], ['white', 'green'], ['white', 'green', 'red'], ['white', 'blue'], ['white', 'blue', 'red'], ['white', 'blue', 'green'], ['white', 'blue', 'green', 'red'], ['black'], ['black', 'red'], ['black', 'green'], ['black', 'green', 'red'], ['black', 'blue'], ['black', 'blue', 'red'], ['black', 'blue', 'green'], ['black', 'blue', 'green', 'red'], ['black', 'white'], ['black', 'white', 'red'], ['black', 'white', 'green'], ['black', 'white', 'green', 'red'], ['black', 'white', 'blue'], ['black', 'white', 'blue', 'red'], ['black', 'white', 'blue', 'green'], ['black', 'white', 'blue', 'green', 'red'], ['orange'], ['orange', 'red'], ['orange', 'green'], ['orange', 'green', 'red'], ['orange', 'blue'], ['orange', 'blue', 'red'], ['orange', 'blue', 'green'], ['orange', 'blue', 'green', 'red'], ['orange', 'white'], ['orange', 'white', 'red'], ['orange', 'white', 'green'], ['orange', 'white', 'green', 'red'], ['orange', 'white', 'blue'], ['orange', 'white', 'blue', 'red'], ['orange', 'white', 'blue', 'green'], ['orange', 'white', 'blue', 'green', 'red'], ['orange', 'black'], ['orange', 'black', 'red'], ['orange', 'black', 'green'], ['orange', 'black', 'green', 'red'], ['orange', 'black', 'blue'], ['orange', 'black', 'blue', 'red'], ['orange', 'black', 'blue', 'green'], ['orange', 'black', 'blue', 'green', 'red'], ['orange', 'black', 'white'], ['orange', 'black', 'white', 'red'], ['orange', 'black', 'white', 'green'], ['orange', 'black', 'white', 'green', 'red'], ['orange', 'black', 'white', 'blue'], ['orange', 'black', 'white', 'blue', 'red'], ['orange', 'black', 'white', 'blue', 'green'], ['orange', 'black', 'white', 'blue', 'green', 'red']]""
+ ""assert combinations_list(['red', 'green', 'black', 'orange'])==[[], ['red'], ['green'], ['green', 'red'], ['black'], ['black', 'red'], ['black', 'green'], ['black', 'green', 'red'], ['orange'], ['orange', 'red'], ['orange', 'green'], ['orange', 'green', 'red'], ['orange', 'black'], ['orange', 'black', 'red'], ['orange', 'black', 'green'], ['orange', 'black', 'green', 'red']]""]",def combinations_list(list1):,"from itertools import combinations
+
+def combinations_list(list1):
+    result = []
+    for r in range(1, len(list1) + 1):
+        result.extend(combinations(list1, r))
+    return result
+
+# Example usage:
+print(combinations_list([1, 2, 3]))",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,463,Write a function to find the maximum product subarray of the given array.,"def max_subarray_product(arr):
+	n = len(arr)
+	max_ending_here = 1
+	min_ending_here = 1
+	max_so_far = 0
+	flag = 0
+	for i in range(0, n):
+		if arr[i] > 0:
+			max_ending_here = max_ending_here * arr[i]
+			min_ending_here = min (min_ending_here * arr[i], 1)
+			flag = 1
+		elif arr[i] == 0:
+			max_ending_here = 1
+			min_ending_here = 1
+		else:
+			temp = max_ending_here
+			max_ending_here = max (min_ending_here * arr[i], 1)
+			min_ending_here = temp * arr[i]
+		if (max_so_far < max_ending_here):
+			max_so_far = max_ending_here
+	if flag == 0 and max_so_far == 0:
+		return 0
+	return max_so_far",[],"['assert max_subarray_product([1, -2, -3, 0, 7, -8, -2]) == 112'
+ 'assert max_subarray_product([6, -3, -10, 0, 2]) == 180'
+ 'assert max_subarray_product([-2, -40, 0, -2, -3]) == 80']",def max_subarray_product(arr):,"def max_subarray_product(arr):
+    if not arr:
+        return 0
+
+    max_product = min_product = result = arr[0]
+
+    for num in arr[1:]:
+        if num < 0:
+            max_product, min_product = min_product, max_product
+
+        max_product = max(num, max_product * num)
+        min_product = min(num, min_product * num)
+
+        result = max(result, max_product)
+
+    return result",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,464,Write a function to check if all values are same in a dictionary.,"def check_value(dict, n):
+    result = all(x == n for x in dict.values()) 
+    return result",[],"[""assert check_value({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12},10)==False""
+ ""assert check_value({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12},12)==True""
+ ""assert check_value({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12},5)==False""]","def check_value(dict, n):","def check_value(dict, n):
+    # Check if the dictionary is empty
+    if not dict:
+        return True
+    
+    # Get the first value from the dictionary
+    first_value = next(iter(dict.values()))
+    
+    # Compare each value in the dictionary with the first value
+    for value in dict.values():
+        if value != first_value:
+            return False
+    
+    return True",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,465,Write a function to drop empty items from a given dictionary.,"def drop_empty(dict1):
+  dict1 = {key:value for (key, value) in dict1.items() if value is not None}
+  return dict1",[],"[""assert drop_empty({'c1': 'Red', 'c2': 'Green', 'c3':None})=={'c1': 'Red', 'c2': 'Green'}""
+ ""assert drop_empty({'c1': 'Red', 'c2': None, 'c3':None})=={'c1': 'Red'}""
+ ""assert drop_empty({'c1': None, 'c2': 'Green', 'c3':None})=={ 'c2': 'Green'}""]",def drop_empty(dict1):,"def drop_empty(dict1):
+    return {k: v for k, v in dict1.items() if v}",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,468,Write a function to find the maximum product formed by multiplying numbers of an increasing subsequence of that array.,"def max_product(arr):   
+  n = len(arr)
+  mpis = arr[:]
+  for i in range(n): 
+    current_prod = arr[i]
+    j = i + 1
+    while j < n:
+      if arr[j-1] > arr[j]: 
+        break
+      current_prod *= arr[j]
+      if current_prod > mpis[j]:
+        mpis[j] = current_prod 
+      j = j + 1
+  return max(mpis)",[],"['assert max_product([3, 100, 4, 5, 150, 6]) == 3000'
+ 'assert max_product([4, 42, 55, 68, 80]) == 50265600'
+ 'assert max_product([10, 22, 9, 33, 21, 50, 41, 60]) == 2460']",def max_product(arr):,"from functools import reduce
+
+def max_product(arr):
+    if not arr:
+        return 0
+    
+    # Initialize two arrays to store the maximum product ending at each index
+    max_ending_here = [0] * len(arr)
+    max_so_far = [0] * len(arr)
+    
+    # Base case: the maximum product ending at the first element is the element itself
+    max_ending_here[0] = arr[0]
+    max_so_far[0] = arr[0]
+    
+    # Fill the max_ending_here and max_so_far arrays
+    for i in range(1, len(arr)):
+        # If the current element is positive, it can extend the existing subsequence
+        if arr[i] > 0:
+            max_ending_here[i] = max(arr[i], max_ending_here[i - 1] * arr[i])
+            max_so_far[i] = max(max_so_far[i - 1] * arr[i], max_ending_here[i])
+        else:
+            # If the current element is negative, it can start a new subsequence
+            max_ending_here[i] = max(arr[i], max_so_far[i - 1] * arr[i])
+            max_so_far[i] = max(max_ending_here[i], arr[i])
+    
+    # The result is the maximum value in the max_so_far array
+    return max_so_far[-1]
+
+# Example usage:
+arr = [-2, 3, -4]
+print(max_product(arr))  # Output: 24",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,470,Write a function to find the pairwise addition of the neighboring elements of the given tuple.,"def add_pairwise(test_tup):
+  res = tuple(i + j for i, j in zip(test_tup, test_tup[1:]))
+  return (res) ",[],"['assert add_pairwise((1, 5, 7, 8, 10)) == (6, 12, 15, 18)'
+ 'assert add_pairwise((2, 6, 8, 9, 11)) == (8, 14, 17, 20)'
+ 'assert add_pairwise((3, 7, 9, 10, 12)) == (10, 16, 19, 22)']",def add_pairwise(test_tup):,"def add_pairwise(test_tup):
+    # Initialize an empty list to store the results
+    res = []
+    
+    # Iterate through the tuple, stopping one element before the last
+    for i in range(len(test_tup) - 1):
+        # Add the current element and the next element to the result list
+        res.append(test_tup[i] + test_tup[i + 1])
+    
+    return res
+
+# Example usage:
+test_tup = (1, 2, 3, 4, 5)
+print(add_pairwise(test_tup))  # Output: [3, 5, 7, 9]",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,471,Write a python function to find the product of the array multiplication modulo n.,"def find_remainder(arr, n): 
+    mul = 1
+    for i in range(len(arr)):  
+        mul = (mul * (arr[i] % n)) % n 
+    return mul % n ",[],"['assert find_remainder([ 100, 10, 5, 25, 35, 14 ],11) ==9'
+ 'assert find_remainder([1,1,1],1) == 0'
+ 'assert find_remainder([1,2,1],2) == 0']","def find_remainder(arr, n):","def find_remainder(arr, n):
+    # Initialize the result to 1 (multiplicative identity)
+    result = 1
+    
+    # Iterate through each element in the array
+    for num in arr:
+        # Multiply the current result by the number modulo n
+        result = (result * num) % n
+    
+    # Return the final result
+    return result",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,472,Write a python function to check whether the given list contains consecutive numbers or not.,"def check_Consecutive(l): 
+    return sorted(l) == list(range(min(l),max(l)+1)) ",[],"['assert check_Consecutive([1,2,3,4,5]) == True'
+ 'assert check_Consecutive([1,2,3,5,6]) == False'
+ 'assert check_Consecutive([1,2,1]) == False']",def check_Consecutive(l):,"def check_Consecutive(l):
+    if len(l) == 0:
+        return False
+    
+    l.sort()
+    
+    for i in range(1, len(l)):
+        if l[i] != l[i - 1] + 1:
+            return False
+    
+    return True",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,473,Write a function to find the tuple intersection of elements in the given tuple list irrespective of their order.,"def tuple_intersection(test_list1, test_list2):
+  res = set([tuple(sorted(ele)) for ele in test_list1]) & set([tuple(sorted(ele)) for ele in test_list2])
+  return (res)",[],"['assert tuple_intersection([(3, 4), (5, 6), (9, 10), (4, 5)] , [(5, 4), (3, 4), (6, 5), (9, 11)]) == {(4, 5), (3, 4), (5, 6)}'
+ 'assert tuple_intersection([(4, 1), (7, 4), (11, 13), (17, 14)] , [(1, 4), (7, 4), (16, 12), (10, 13)]) == {(4, 7), (1, 4)}'
+ 'assert tuple_intersection([(2, 1), (3, 2), (1, 3), (1, 4)] , [(11, 2), (2, 3), (6, 2), (1, 3)]) == {(1, 3), (2, 3)}']","def tuple_intersection(test_list1, test_list2):","def tuple_intersection(test_list1, test_list2):
+    # Convert each tuple in the lists to a set to remove duplicates and allow set operations
+    set1 = set(test_list1)
+    set2 = set(test_list2)
+    
+    # Find the intersection of the two sets
+    intersection_set = set1.intersection(set2)
+    
+    # Convert the resulting set back to a list of tuples
+    result = [tuple(item) for item in intersection_set]
+    
+    return result
+
+# Example usage:
+test_list1 = [(4, 5), (6, 7), (8, 9)]
+test_list2 = [(3, 4), (6, 7), (10, 11)]
+print(tuple_intersection(test_list1, test_list2))  # Output: [(4, 5), (6, 7)]",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,474,Write a function to replace characters in a string.,"def replace_char(str1,ch,newch):
+ str2 = str1.replace(ch, newch)
+ return str2",[],"['assert replace_char(""polygon"",\'y\',\'l\')==(""pollgon"")'
+ 'assert replace_char(""character"",\'c\',\'a\')==(""aharaater"")'
+ 'assert replace_char(""python"",\'l\',\'a\')==(""python"")']","def replace_char(str1,ch,newch):","def replace_char(str1, ch, newch):
+    return str1.replace(ch, newch)",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,475,Write a function to sort a dictionary by value.,"from collections import Counter
+def sort_counter(dict1):
+ x = Counter(dict1)
+ sort_counter=x.most_common()
+ return sort_counter",[],"[""assert sort_counter({'Math':81, 'Physics':83, 'Chemistry':87})==[('Chemistry', 87), ('Physics', 83), ('Math', 81)]""
+ ""assert sort_counter({'Math':400, 'Physics':300, 'Chemistry':250})==[('Math', 400), ('Physics', 300), ('Chemistry', 250)]""
+ ""assert sort_counter({'Math':900, 'Physics':1000, 'Chemistry':1250})==[('Chemistry', 1250), ('Physics', 1000), ('Math', 900)]""]",def sort_counter(dict1):,"def sort_counter(dict1):
+    # Sort the dictionary by values in descending order
+    sorted_dict = dict(sorted(dict1.items(), key=lambda item: item[1], reverse=True))
+    return sorted_dict
+
+# Example usage:
+example_dict = {'apple': 3, 'banana': 1, 'cherry': 2}
+sorted_example_dict = sort_counter(example_dict)
+print(sorted_example_dict)  # Output: {'apple': 3, 'cherry': 2, 'banana': 1}",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,476,Write a python function to find the sum of the largest and smallest value in a given array.,"def big_sum(nums):
+      sum= max(nums)+min(nums)
+      return sum",[],"['assert big_sum([1,2,3]) == 4' 'assert big_sum([-1,2,3,4]) == 3'
+ 'assert big_sum([2,3,6]) == 8']",def big_sum(nums):,"def big_sum(nums):
+    if not nums:
+        return 0
+    min_val = min(nums)
+    max_val = max(nums)
+    return min_val + max_val
+
+# Example usage:
+print(big_sum([1, 2, 3, 4, 5]))  # Output: 6
+print(big_sum([-10, -20, -30, -40, -50]))  # Output: -60
+print(big_sum([100]))  # Output: 200
+print(big_sum([]))  # Output: 0",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,477,Write a python function to convert the given string to lower case.,"def is_lower(string):
+  return (string.lower())",[],"['assert is_lower(""InValid"") == ""invalid""'
+ 'assert is_lower(""TruE"") == ""true""'
+ 'assert is_lower(""SenTenCE"") == ""sentence""']",def is_lower(string):,"def is_lower(string):
+    return string.islower()",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,478,Write a function to remove lowercase substrings from a given string.,"import re
+def remove_lowercase(str1):
+ return re.sub('[a-z]', '', str1)",[],"['assert remove_lowercase(""PYTHon"")==(\'PYTH\')'
+ 'assert remove_lowercase(""FInD"")==(\'FID\')'
+ 'assert remove_lowercase(""STRinG"")==(\'STRG\')']",def remove_lowercase(str1):,"def remove_lowercase(str1):
+    return ''.join([char for char in str1 if not char.islower()])",Passed
+charlessutton@: Benchmark Questions Verification V2.ipynb,479,Write a python function to find the first digit of a given number.,"def first_Digit(n) :  
+    while n >= 10:  
+        n = n / 10 
+    return int(n) ",[],"['assert first_Digit(123) == 1' 'assert first_Digit(456) == 4'
+ 'assert first_Digit(12) == 1']",def first_Digit(n) :,"def first_Digit(n):
+    # Convert the number to a string to easily access the first character
+    n_str = str(n)
+    # Return the first character as an integer
+    return int(n_str[0])
+
+# Example usage:
+print(first_Digit(12345))  # Output: 1
+print(first_Digit(-98765)) # Output: 9",Failed: ValueError: invalid literal for int() with base 10: '-'
