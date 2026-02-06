@@ -1,0 +1,164 @@
+{"dataset": "HumanEval", "task_id": "HumanEval/0", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/1", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/2", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/3", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/4", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "mean_absolute_deviation", "start_line": 4, "end_line": 18}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/5", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "intersperse", "start_line": 3, "end_line": 18}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/6", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/7", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/8", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "sum_product", "start_line": 3, "end_line": 19}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/9", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "rolling_max", "start_line": 3, "end_line": 19}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/10", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "make_palindrome", "start_line": 8, "end_line": 30}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/11", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/12", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "longest", "start_line": 3, "end_line": 21}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/13", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/14", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/15", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/16", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/17", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/18", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/19", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/20", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "find_closest_elements", "start_line": 3, "end_line": 28}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/21", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "rescale_to_unit", "start_line": 3, "end_line": 20}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/22", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/23", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/24", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "largest_divisor", "start_line": 4, "end_line": 11}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/25", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/26", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/27", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/28", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/29", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/30", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/31", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_prime", "start_line": 3, "end_line": 16}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/32", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "find_zero", "start_line": 10, "end_line": 37}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/33", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/34", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/35", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/36", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/37", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/38", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/39", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 2, "cfg_details": [{"type": "missing_return", "function": "prime_fib", "start_line": 3, "end_line": 15}, {"type": "missing_return", "function": "fibonacci_generator", "start_line": 4, "end_line": 8}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/40", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/41", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/42", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/43", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/44", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "change_base", "start_line": 1, "end_line": 23}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/45", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/46", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/47", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/48", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/49", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/100", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "check_solution", "start_line": 29, "end_line": 34}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/101", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/102", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "choose_num", "start_line": 1, "end_line": 20}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/103", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "rounded_avg", "start_line": 1, "end_line": 7}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/104", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/105", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/106", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/107", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/108", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/109", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "move_one_ball", "start_line": 3, "end_line": 15}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/110", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/111", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "histogram", "start_line": 3, "end_line": 27}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/112", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/113", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/114", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "minSubArraySum", "start_line": 3, "end_line": 13}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/115", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/116", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/117", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/118", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/119", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "match_parens", "start_line": 3, "end_line": 31}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/120", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/121", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/122", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/123", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/124", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "valid_date", "start_line": 3, "end_line": 32}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/125", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/126", "cfg_analyzed": false, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/127", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "intersection", "start_line": 3, "end_line": 19}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/128", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "prod_signs", "start_line": 1, "end_line": 14}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/129", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/130", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/131", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/132", "cfg_analyzed": false, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/133", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/134", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/135", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/136", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/137", "cfg_analyzed": false, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/138", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_equal_to_sum_even", "start_line": 1, "end_line": 6}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/139", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/140", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/141", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/142", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/143", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_prime", "start_line": 4, "end_line": 10}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/144", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/145", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/146", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/147", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/148", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "bf", "start_line": 1, "end_line": 18}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/149", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/150", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "x_or_y", "start_line": 3, "end_line": 17}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/151", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "double_the_difference", "start_line": 1, "end_line": 21}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/152", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/153", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/154", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "cycpattern_check", "start_line": 1, "end_line": 15}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/155", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/156", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/157", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/158", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/159", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/160", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/161", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "solve", "start_line": 1, "end_line": 16}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/162", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "string_to_md5", "start_line": 3, "end_line": 12}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/163", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "generate_integers", "start_line": 1, "end_line": 24}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/50", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/51", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/52", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/53", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/54", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/55", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/56", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/57", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/58", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/59", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 2, "cfg_details": [{"type": "missing_return", "function": "largest_prime_factor", "start_line": 3, "end_line": 35}, {"type": "missing_return", "function": "is_prime", "start_line": 10, "end_line": 16}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/60", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/61", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/62", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/63", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/64", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "vowels_count", "start_line": 1, "end_line": 17}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/65", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "circular_shift", "start_line": 1, "end_line": 19}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/66", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/67", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "fruit_distribution", "start_line": 3, "end_line": 14}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/68", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "pluck", "start_line": 1, "end_line": 16}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/69", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/70", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/71", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "triangle_area", "start_line": 3, "end_line": 25}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/72", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "will_it_fly", "start_line": 1, "end_line": 13}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/73", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/74", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/75", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_multiply_prime", "start_line": 3, "end_line": 24}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/76", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_simple_power", "start_line": 3, "end_line": 9}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/77", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "iscube", "start_line": 3, "end_line": 19}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/78", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/79", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "decimal_to_binary", "start_line": 1, "end_line": 22}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/80", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_happy", "start_line": 1, "end_line": 20}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/81", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/82", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_prime", "start_line": 2, "end_line": 14}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/83", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/84", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/85", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/86", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/87", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/88", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "sort_array", "start_line": 1, "end_line": 25}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/89", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "rotate_char", "start_line": 2, "end_line": 6}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/90", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "next_smallest", "start_line": 1, "end_line": 23}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/91", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/92", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "any_int", "start_line": 1, "end_line": 7}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/93", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/94", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/95", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "check_dict_case", "start_line": 1, "end_line": 8}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/96", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_prime", "start_line": 2, "end_line": 8}]}
+{"dataset": "HumanEval", "task_id": "HumanEval/97", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/98", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "HumanEval", "task_id": "HumanEval/99", "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}

@@ -1,0 +1,327 @@
+{"dataset": "MBPP", "task_id": 602, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 603, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 604, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 605, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "prime_num", "start_line": 1, "end_line": 13}]}
+{"dataset": "MBPP", "task_id": 606, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 607, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 608, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "bell_Number", "start_line": 1, "end_line": 17}]}
+{"dataset": "MBPP", "task_id": 610, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "remove_kth_element", "start_line": 1, "end_line": 7}]}
+{"dataset": "MBPP", "task_id": 611, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "max_of_nth", "start_line": 1, "end_line": 14}]}
+{"dataset": "MBPP", "task_id": 612, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 614, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 615, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 616, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 617, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 618, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "div_list", "start_line": 1, "end_line": 9}]}
+{"dataset": "MBPP", "task_id": 619, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 620, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 622, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 623, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 624, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 625, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "swap_List", "start_line": 1, "end_line": 9}]}
+{"dataset": "MBPP", "task_id": 626, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 627, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "find_First_Missing", "start_line": 1, "end_line": 16}]}
+{"dataset": "MBPP", "task_id": 628, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 629, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 630, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 631, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 632, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "move_zero", "start_line": 1, "end_line": 13}]}
+{"dataset": "MBPP", "task_id": 633, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 635, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "heapify", "start_line": 2, "end_line": 20}]}
+{"dataset": "MBPP", "task_id": 637, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 638, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 639, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 640, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 641, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 643, "cfg_analyzed": false, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 644, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 720, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 721, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 722, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 723, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 724, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 725, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 726, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 728, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "sum_list", "start_line": 1, "end_line": 7}]}
+{"dataset": "MBPP", "task_id": 730, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "consecutive_duplicates", "start_line": 1, "end_line": 10}]}
+{"dataset": "MBPP", "task_id": 731, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 732, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 733, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 734, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 788, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 790, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 791, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 792, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 793, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 794, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 796, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 797, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 798, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 799, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 800, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 801, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 802, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 803, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_perfect_square", "start_line": 3, "end_line": 7}]}
+{"dataset": "MBPP", "task_id": 804, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 805, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 806, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 807, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 808, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 809, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 735, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 736, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 737, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 738, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 739, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "find_Index", "start_line": 3, "end_line": 23}]}
+{"dataset": "MBPP", "task_id": 740, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "tuple_to_dict", "start_line": 1, "end_line": 9}]}
+{"dataset": "MBPP", "task_id": 741, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "all_Characters_Same", "start_line": 1, "end_line": 8}]}
+{"dataset": "MBPP", "task_id": 742, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 743, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 744, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 745, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_divisible_by_digits", "start_line": 2, "end_line": 9}]}
+{"dataset": "MBPP", "task_id": 746, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 747, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 748, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 749, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 750, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 751, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "check_min_heap_helper", "start_line": 1, "end_line": 13}]}
+{"dataset": "MBPP", "task_id": 752, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 753, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 754, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 755, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "second_smallest", "start_line": 1, "end_line": 18}]}
+{"dataset": "MBPP", "task_id": 756, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 757, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 758, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 759, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 760, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 762, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 763, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 764, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 765, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_polite", "start_line": 1, "end_line": 11}]}
+{"dataset": "MBPP", "task_id": 766, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 767, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "get_pairs_count", "start_line": 1, "end_line": 26}]}
+{"dataset": "MBPP", "task_id": 769, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 770, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 771, "cfg_analyzed": false, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 772, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 773, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "occurance_substring", "start_line": 1, "end_line": 24}]}
+{"dataset": "MBPP", "task_id": 775, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 776, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 777, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 778, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "pack_consecutive_duplicates", "start_line": 1, "end_line": 18}]}
+{"dataset": "MBPP", "task_id": 779, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 780, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 781, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 782, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 783, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 784, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 785, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 786, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 787, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 11, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "remove_Occ", "start_line": 1, "end_line": 18}]}
+{"dataset": "MBPP", "task_id": 12, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 14, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 16, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 17, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 18, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 19, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 20, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_woodall", "start_line": 1, "end_line": 12}]}
+{"dataset": "MBPP", "task_id": 56, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 57, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 58, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 59, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_octagonal", "start_line": 1, "end_line": 29}]}
+{"dataset": "MBPP", "task_id": 61, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 62, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "smallest_num", "start_line": 1, "end_line": 4}]}
+{"dataset": "MBPP", "task_id": 63, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 64, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 65, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 66, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 67, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 68, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 69, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_sublist", "start_line": 1, "end_line": 13}]}
+{"dataset": "MBPP", "task_id": 70, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "find_equal_tuple", "start_line": 1, "end_line": 14}]}
+{"dataset": "MBPP", "task_id": 71, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 72, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 74, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_samepatterns", "start_line": 1, "end_line": 13}]}
+{"dataset": "MBPP", "task_id": 75, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 77, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 79, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 80, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 82, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 83, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 84, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "sequence", "start_line": 1, "end_line": 12}]}
+{"dataset": "MBPP", "task_id": 85, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 86, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 87, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 88, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 89, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "closest_num", "start_line": 1, "end_line": 10}]}
+{"dataset": "MBPP", "task_id": 90, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "len_log", "start_line": 1, "end_line": 8}]}
+{"dataset": "MBPP", "task_id": 91, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 92, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_undulating", "start_line": 1, "end_line": 26}]}
+{"dataset": "MBPP", "task_id": 93, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 94, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 95, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "Find_Min_Length", "start_line": 1, "end_line": 10}]}
+{"dataset": "MBPP", "task_id": 96, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 97, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 98, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "multiply_num", "start_line": 1, "end_line": 7}]}
+{"dataset": "MBPP", "task_id": 99, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "decimal_to_binary", "start_line": 1, "end_line": 9}]}
+{"dataset": "MBPP", "task_id": 100, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "next_smallest_palindrome", "start_line": 1, "end_line": 14}]}
+{"dataset": "MBPP", "task_id": 101, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "kth_element", "start_line": 1, "end_line": 7}]}
+{"dataset": "MBPP", "task_id": 102, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 227, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 228, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 229, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 230, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 232, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 233, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 234, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 235, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 237, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 238, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 239, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 240, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "replace_list", "start_line": 1, "end_line": 4}]}
+{"dataset": "MBPP", "task_id": 242, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 244, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "next_Perfect_Square", "start_line": 3, "end_line": 12}]}
+{"dataset": "MBPP", "task_id": 245, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 246, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "babylonian_squareroot", "start_line": 1, "end_line": 25}]}
+{"dataset": "MBPP", "task_id": 247, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 248, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 249, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 250, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 251, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 252, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 253, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 255, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 256, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 2, "cfg_details": [{"type": "missing_return", "function": "count_Primes_nums", "start_line": 1, "end_line": 18}, {"type": "missing_return", "function": "is_prime", "start_line": 5, "end_line": 11}]}
+{"dataset": "MBPP", "task_id": 257, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 259, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 260, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "newman_prime", "start_line": 3, "end_line": 11}]}
+{"dataset": "MBPP", "task_id": 261, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "division_elements", "start_line": 1, "end_line": 9}]}
+{"dataset": "MBPP", "task_id": 262, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "split_two_parts", "start_line": 1, "end_line": 10}]}
+{"dataset": "MBPP", "task_id": 264, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 265, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 266, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 267, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 268, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 269, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 270, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 271, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 272, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 273, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 274, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 276, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 277, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 278, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 279, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 280, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 281, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 282, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "sub_list", "start_line": 1, "end_line": 9}]}
+{"dataset": "MBPP", "task_id": 283, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 284, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 418, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "Find_Max", "start_line": 1, "end_line": 13}]}
+{"dataset": "MBPP", "task_id": 419, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "round_and_sum", "start_line": 1, "end_line": 12}]}
+{"dataset": "MBPP", "task_id": 420, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 421, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 422, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 424, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 425, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 426, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 427, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 428, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 429, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 430, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 431, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 432, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 433, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 434, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 435, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 436, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 437, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 438, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 439, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 440, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 441, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 442, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 443, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 444, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 445, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 446, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 447, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 448, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 450, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "extract_string", "start_line": 1, "end_line": 14}]}
+{"dataset": "MBPP", "task_id": 451, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 452, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 453, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 454, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 455, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 456, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 457, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "Find_Min", "start_line": 1, "end_line": 13}]}
+{"dataset": "MBPP", "task_id": 458, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 459, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 460, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 461, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 462, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 463, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "max_subarray_product", "start_line": 1, "end_line": 16}]}
+{"dataset": "MBPP", "task_id": 464, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "check_value", "start_line": 1, "end_line": 14}]}
+{"dataset": "MBPP", "task_id": 465, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 468, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "max_product", "start_line": 3, "end_line": 27}]}
+{"dataset": "MBPP", "task_id": 470, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 471, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 472, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "check_Consecutive", "start_line": 1, "end_line": 11}]}
+{"dataset": "MBPP", "task_id": 473, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 474, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 475, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 476, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "big_sum", "start_line": 1, "end_line": 6}]}
+{"dataset": "MBPP", "task_id": 477, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 478, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 479, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 103, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "eulerian_num", "start_line": 1, "end_line": 21}]}
+{"dataset": "MBPP", "task_id": 104, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 105, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 106, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 108, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 109, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 111, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 113, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "check_integer", "start_line": 1, "end_line": 6}]}
+{"dataset": "MBPP", "task_id": 115, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 116, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 117, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 118, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 119, "cfg_analyzed": false, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 120, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 123, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 124, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 125, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 126, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 127, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 128, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 129, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "magic_square_test", "start_line": 1, "end_line": 18}]}
+{"dataset": "MBPP", "task_id": 130, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 131, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 132, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 133, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 135, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 137, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 138, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "is_Sum_Of_Powers_Of_Two", "start_line": 1, "end_line": 13}]}
+{"dataset": "MBPP", "task_id": 139, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 140, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 141, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 142, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 143, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 145, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "max_Abs_Diff", "start_line": 1, "end_line": 12}]}
+{"dataset": "MBPP", "task_id": 160, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 2, "cfg_details": [{"type": "missing_return", "function": "find_solution", "start_line": 3, "end_line": 25}, {"type": "missing_return", "function": "extended_gcd", "start_line": 9, "end_line": 15}]}
+{"dataset": "MBPP", "task_id": 161, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 162, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 163, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 164, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 165, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 166, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 167, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "next_power_of_2", "start_line": 1, "end_line": 7}]}
+{"dataset": "MBPP", "task_id": 168, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 170, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "sum_range_list", "start_line": 1, "end_line": 9}]}
+{"dataset": "MBPP", "task_id": 171, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 172, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 222, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 1, "cfg_details": [{"type": "missing_return", "function": "check_type", "start_line": 1, "end_line": 14}]}
+{"dataset": "MBPP", "task_id": 223, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 224, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
+{"dataset": "MBPP", "task_id": 226, "cfg_analyzed": true, "unreachable_code": 0, "missing_return": 0, "cfg_details": []}
