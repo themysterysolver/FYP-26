@@ -106,6 +106,7 @@ def visualize():
             )
 
         plt.tight_layout()
+        plt.savefig(f"{title.replace(' ', '_')}.png", dpi=300)
         plt.show()
 
     plot_error_distribution(ds1k, "DS-1000 Failure Type Distribution")
