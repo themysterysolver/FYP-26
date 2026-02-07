@@ -43,6 +43,13 @@ class StructuralViolationVisitor(ast.NodeVisitor):
         self.in_function = 0
         self.in_loop = 0
 
+    '''
+    generic_visit(node)
+        This visitor calls visit() on all children of the node.
+
+        Note that child nodes of nodes that have a custom visitor 
+        method won’t be visited unless the visitor calls generic_visit() or visits them itself.
+    '''
     def _record(self, error_type, node):
         start = getattr(node, "lineno", None)
         end = getattr(node, "end_lineno", start)
@@ -91,7 +98,6 @@ def analyze_ast(code: str):
     '''
     here we analyse ast,
     we record syntax or indentation error which is caught first.
-
     '''
     result = {
         "ast_parsed": False,
@@ -106,9 +112,14 @@ def analyze_ast(code: str):
 
     try:
         tree = ast.parse(code)
-        result["ast_parsed"] = True
+        result["ast_parsed"] = True #if parsed! if this is False we won't move with next stages of HC framework
 
         visitor = StructuralViolationVisitor()
+        '''
+        visit(node)
+            Visit a node. The default implementation calls the method called self.visit_classname where 
+            classname is the name of the node class, or generic_visit() if that method doesn’t exist.
+        '''
         visitor.visit(tree)
 
         if visitor.errors:
@@ -118,7 +129,7 @@ def analyze_ast(code: str):
     except IndentationError as e:
         result["indentation_error"] = 1
         result["error_type"] = "IndentationError"
-        result["line"] = e.lineno
+        result["line"] = e.lineno #property of AST
         result["message"] = str(e)
 
     except SyntaxError as e:
@@ -131,20 +142,19 @@ def analyze_ast(code: str):
 
 
 def run_ast_pipeline():
-    for dataset, cfg in DATASETS.items():
+    for dataset, dfp in DATASETS.items():
         print(f"Processing {dataset}...")
 
-        df = pd.read_csv(cfg["path"])
-        out = open(cfg["output"], "w", encoding="utf-8")
+        df = pd.read_csv(dfp["path"])
+        out = open(dfp["output"], "w", encoding="utf-8")
 
         for idx, row in df.iterrows():
-            code = str(row.get(cfg["code_column"], ""))
+            code = str(row.get(dfp["code_column"], ""))
 
-            # Prefer task_id if available
-            if cfg["task_id_column"]:
-                sample_id = row.get(cfg["task_id_column"])
+            if dfp["task_id_column"]:
+                sample_id = row.get(dfp["task_id_column"])
             else:
-                sample_id = idx   # fallback for DS1000
+                sample_id = idx   # saving DS1K
 
             ast_result = analyze_ast(code)
 
@@ -157,7 +167,7 @@ def run_ast_pipeline():
             out.write(json.dumps(record) + "\n")
 
         out.close()
-        print(f"Saved → {cfg['output']}")
+        print(f"Saved → {dfp['output']}")
 
     print("AST analysis completed for all datasets.")
 
