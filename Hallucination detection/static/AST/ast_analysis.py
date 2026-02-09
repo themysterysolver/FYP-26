@@ -35,7 +35,7 @@ OUTPUT_CSV = "ast_summary.csv"
 #print(DATASETS)
 # we will use jsonl over json
 
-#inheriting from ast.NodeVisitor
+#inheriting from ast.NodeVisitor class
 #https://docs.python.org/3/library/ast.html#ast.NodeVisitor.generic_visit
 class StructuralViolationVisitor(ast.NodeVisitor):
     def __init__(self):

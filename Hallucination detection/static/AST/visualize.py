@@ -33,4 +33,5 @@ for bar in bars:
     )
 
 plt.tight_layout()
+plt.savefig(f"AST.png", dpi=300)
 plt.show()
