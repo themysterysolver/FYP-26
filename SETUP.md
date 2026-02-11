@@ -48,3 +48,12 @@ Or from the `LIB_API` folder:
 cd "Hallucination detection/static/LIB_API"
 python proof_of_concept/proof_multi_error.py
 ```
+
+## 5. Run Dynamic Hallucination detection
+
+From project root with venv activated:
+```bash
+python "Hallucination detection/dynamic/dynamic_detection.py"
+```
+
+This runs the dynamic detection pipeline on generated code (MBPP, HumanEval, DS1000), writes JSONL per dataset and an optional summary CSV under `Hallucination detection/dynamic/`. See `Hallucination detection/dynamic/README.md` and `PLAN.md` there for details.
