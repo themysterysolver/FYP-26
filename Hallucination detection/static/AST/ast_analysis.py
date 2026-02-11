@@ -12,7 +12,7 @@ DATASETS = {
     "DS1000": {
         "path": os.path.join(BASE_DIR, "ds1k_gen.csv"),
         "code_column": "full_code",
-        "task_id_column": None,
+        "task_id_column": "task_id",
         "output": "ast_ds1000.jsonl"
     },
     "HumanEval": {
@@ -142,6 +142,8 @@ def analyze_ast(code: str):
 
 
 def run_ast_pipeline():
+    all_records = []   
+
     for dataset, dfp in DATASETS.items():
         print(f"Processing {dataset}...")
 
@@ -151,10 +153,7 @@ def run_ast_pipeline():
         for idx, row in df.iterrows():
             code = str(row.get(dfp["code_column"], ""))
 
-            if dfp["task_id_column"]:
-                sample_id = row.get(dfp["task_id_column"])
-            else:
-                sample_id = idx   # saving DS1K
+            sample_id = row.get("task_id")
 
             ast_result = analyze_ast(code)
 
@@ -166,10 +165,17 @@ def run_ast_pipeline():
 
             out.write(json.dumps(record) + "\n")
 
+            all_records.append(record)
+
         out.close()
         print(f"Saved → {dfp['output']}")
 
+    summary_df = pd.DataFrame(all_records)
+    summary_df.to_csv(OUTPUT_CSV, index=False)
+
+    print(f"Full AST results saved → {OUTPUT_CSV}")
     print("AST analysis completed for all datasets.")
 
+    
 if __name__ == "__main__":
     run_ast_pipeline()

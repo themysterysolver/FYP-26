@@ -12,7 +12,7 @@ DATASETS = {
     "DS1000": {
         "path": os.path.join(BASE_DIR, "ds1k_gen.csv"),
         "code_column": "full_code",
-        "task_id_column": None,
+        "task_id_column": "task_id",
         "output": "ast_ds1000.jsonl"
     },
     "HumanEval": {
