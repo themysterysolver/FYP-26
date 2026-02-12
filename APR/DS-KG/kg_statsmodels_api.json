@@ -1,0 +1,5489 @@
+{
+  "library": "statsmodels.api",
+  "version": "runtime",
+  "modules": {
+    "cov_struct": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "datasets": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "distributions": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "duration": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "emplike": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "families": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "formula": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "gam": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "genmod": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "graphics": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "iolib": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "multivariate": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "nonparametric": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "regression": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "robust": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "stats": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "tools": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    },
+    "tsa": {
+      "node_type": "module",
+      "parent": "statsmodels.api"
+    }
+  },
+  "classes": {
+    "BayesGaussMI": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "update",
+        "update_cov",
+        "update_data",
+        "update_mean"
+      ],
+      "attributes": [],
+      "description": "Bayesian Imputation using a Gaussian model."
+    },
+    "BinomialBayesMixedGLM": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_elbo_common",
+        "_elbo_grad_common",
+        "_get_init_kwds",
+        "_get_start",
+        "_handle_data",
+        "_lp_stats",
+        "_unpack",
+        "fit",
+        "fit_map",
+        "fit_vb",
+        "from_formula",
+        "logposterior",
+        "logposterior_grad",
+        "predict",
+        "vb_elbo",
+        "vb_elbo_base",
+        "vb_elbo_grad",
+        "vb_elbo_grad_base"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names",
+        "rng",
+        "verbose"
+      ],
+      "description": "Generalized Linear Mixed Model with Bayesian estimation"
+    },
+    "ConditionalLogit": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_denom",
+        "_denom_grad",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "loglike_grp",
+        "predict",
+        "score",
+        "score_grp"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Fit a conditional logistic regression model to grouped data."
+    },
+    "ConditionalMNLogit": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "score"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Fit a conditional multinomial logit model to grouped data."
+    },
+    "ConditionalPoisson": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "score"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Fit a conditional Poisson regression model to grouped data."
+    },
+    "Factor": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_ml",
+        "_fit_ml_em",
+        "_fit_pa",
+        "_get_init_kwds",
+        "_handle_data",
+        "_pack",
+        "_rotate",
+        "_unpack",
+        "fit",
+        "from_formula",
+        "loglike",
+        "predict",
+        "score"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Factor analysis"
+    },
+    "GEE": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_bc_covmat",
+        "_check_inputs",
+        "_check_kwargs",
+        "_covmat",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_estimate_x2_scale",
+        "_fit_collinear",
+        "_fit_gradient",
+        "_fit_irls",
+        "_fit_ridge",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_constraint",
+        "_handle_data",
+        "_regularized_covmat",
+        "_setup_binomial",
+        "_starting_params",
+        "_update_assoc",
+        "_update_history",
+        "_update_mean_params",
+        "_update_regularized",
+        "cluster_list",
+        "compare_score_test",
+        "estimate_scale",
+        "estimate_tweedie_power",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglike_mu",
+        "mean_deriv",
+        "mean_deriv_exog",
+        "predict",
+        "qic",
+        "score",
+        "score_factor",
+        "score_obs",
+        "score_test",
+        "update_cached_means"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "cached_means",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Marginal Regression Model using Generalized Estimating Equations."
+    },
+    "GLM": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_estimate_x2_scale",
+        "_fit_collinear",
+        "_fit_gradient",
+        "_fit_irls",
+        "_fit_ridge",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "_setup_binomial",
+        "_update_history",
+        "estimate_scale",
+        "estimate_tweedie_power",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglike_mu",
+        "predict",
+        "score",
+        "score_factor",
+        "score_obs",
+        "score_test"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Generalized Linear Models"
+    },
+    "GLMGam": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_alpha",
+        "_check_inputs",
+        "_check_kwargs",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_estimate_x2_scale",
+        "_fit_collinear",
+        "_fit_gradient",
+        "_fit_irls",
+        "_fit_pirls",
+        "_fit_ridge",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "_handle_scale",
+        "_results_class",
+        "_results_class_wrapper",
+        "_setup_binomial",
+        "_update_history",
+        "estimate_scale",
+        "estimate_tweedie_power",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "hessian_numdiff",
+        "information",
+        "initialize",
+        "loglike",
+        "loglike_mu",
+        "loglikeobs",
+        "predict",
+        "score",
+        "score_factor",
+        "score_numdiff",
+        "score_obs",
+        "score_test",
+        "select_penweight",
+        "select_penweight_kfold"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Generalized Additive Models (GAM)"
+    },
+    "GLS": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "score",
+        "whiten"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "df_model",
+        "df_resid",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Generalized Least Squares"
+    },
+    "GLSAR": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "iterative_fit",
+        "loglike",
+        "predict",
+        "score",
+        "whiten"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "df_model",
+        "df_resid",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Generalized Least Squares with AR covariance structure"
+    },
+    "GeneralizedPoisson": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_estimate_dispersion",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_exogs",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_get_start_params_null",
+        "_handle_data",
+        "_prob_nonzero",
+        "_score_p",
+        "_var",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_factor",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Generalized Poisson Model"
+    },
+    "HurdleCountModel": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_handle_data",
+        "_initialize",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "pdf",
+        "predict",
+        "score"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Hurdle model for count data"
+    },
+    "Logit": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_factor",
+        "score_obs"
+      ],
+      "attributes": [
+        "_continuous_ok",
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names",
+        "family",
+        "link"
+      ],
+      "description": "Logit Model"
+    },
+    "MANOVA": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_get_init_kwds",
+        "_handle_data",
+        "fit",
+        "from_formula",
+        "mv_test",
+        "predict"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Multivariate Analysis of Variance"
+    },
+    "MI": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_combine",
+        "fit"
+      ],
+      "attributes": [],
+      "description": "MI performs multiple imputation using a provided imputer object."
+    },
+    "MICE": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "combine",
+        "fit",
+        "next_sample"
+      ],
+      "attributes": [],
+      "description": "Multiple Imputation with Chained Equations."
+    },
+    "MICEData": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_boot_kwds",
+        "_get_predicted",
+        "_initial_imputation",
+        "_perturb_bootstrap",
+        "_perturb_gaussian",
+        "_process_kwds",
+        "_split_indices",
+        "_store_changes",
+        "get_fitting_data",
+        "get_split_data",
+        "impute",
+        "impute_pmm",
+        "next_sample",
+        "perturb_params",
+        "plot_bivariate",
+        "plot_fit_obs",
+        "plot_imputed_hist",
+        "plot_missing_pattern",
+        "set_imputer",
+        "update",
+        "update_all"
+      ],
+      "attributes": [],
+      "description": "Wrap a data set to allow missing data handling with MICE."
+    },
+    "MNLogit": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "loglike_and_score",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_obs"
+      ],
+      "attributes": [
+        "_continuous_ok",
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Multinomial Logit Model"
+    },
+    "MixedLM": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_augment_exog",
+        "_check_kwargs",
+        "_expand_vcomp",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_gen_dV_dPar",
+        "_get_init_kwds",
+        "_handle_data",
+        "_make_param_names",
+        "_reparam",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "get_fe_params",
+        "get_scale",
+        "group_list",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "score",
+        "score_full",
+        "score_sqrt"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Linear Mixed Effects Model"
+    },
+    "NegativeBinomial": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_estimate_dispersion",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_get_start_params_null",
+        "_handle_data",
+        "_hessian_geom",
+        "_hessian_nb1",
+        "_hessian_nb2",
+        "_initialize",
+        "_ll_geometric",
+        "_ll_nb1",
+        "_ll_nb2",
+        "_ll_nbin",
+        "_score_geom",
+        "_score_nb1",
+        "_score_nbin",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "pdf",
+        "predict",
+        "score",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Negative Binomial Model"
+    },
+    "NegativeBinomialP": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_estimate_dispersion",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_exogs",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_get_start_params_null",
+        "_handle_data",
+        "_prob_nonzero",
+        "_var",
+        "cdf",
+        "convert_params",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_factor",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Generalized Negative Binomial (NB-P) Model"
+    },
+    "NominalGEE": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_bc_covmat",
+        "_check_inputs",
+        "_check_kwargs",
+        "_covmat",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_estimate_x2_scale",
+        "_fit_collinear",
+        "_fit_gradient",
+        "_fit_irls",
+        "_fit_ridge",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_constraint",
+        "_handle_data",
+        "_regularized_covmat",
+        "_setup_binomial",
+        "_starting_params",
+        "_update_assoc",
+        "_update_history",
+        "_update_mean_params",
+        "_update_regularized",
+        "cluster_list",
+        "compare_score_test",
+        "estimate_scale",
+        "estimate_tweedie_power",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglike_mu",
+        "mean_deriv",
+        "mean_deriv_exog",
+        "predict",
+        "qic",
+        "score",
+        "score_factor",
+        "score_obs",
+        "score_test",
+        "setup_nominal",
+        "update_cached_means"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "cached_means",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Nominal Response Marginal Regression Model using GEE."
+    },
+    "OLS": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_collinear",
+        "_fit_ridge",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "_setup_score_hess",
+        "_sqrt_lasso",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "score",
+        "whiten"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "df_model",
+        "df_resid",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Ordinary Least Squares"
+    },
+    "OrdinalGEE": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_bc_covmat",
+        "_check_inputs",
+        "_check_kwargs",
+        "_covmat",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_estimate_x2_scale",
+        "_fit_collinear",
+        "_fit_gradient",
+        "_fit_irls",
+        "_fit_ridge",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_constraint",
+        "_handle_data",
+        "_regularized_covmat",
+        "_setup_binomial",
+        "_starting_params",
+        "_update_assoc",
+        "_update_history",
+        "_update_mean_params",
+        "_update_regularized",
+        "cluster_list",
+        "compare_score_test",
+        "estimate_scale",
+        "estimate_tweedie_power",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglike_mu",
+        "mean_deriv",
+        "mean_deriv_exog",
+        "predict",
+        "qic",
+        "score",
+        "score_factor",
+        "score_obs",
+        "score_test",
+        "setup_ordinal",
+        "update_cached_means"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "cached_means",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Ordinal Response Marginal Regression Model using GEE"
+    },
+    "PCA": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_adjust_missing",
+        "_compute_eig",
+        "_compute_gls_weights",
+        "_compute_pca_from_eig",
+        "_compute_rsquare_and_ic",
+        "_compute_using_eig",
+        "_compute_using_nipals",
+        "_compute_using_svd",
+        "_fill_missing_em",
+        "_pca",
+        "_prepare_data",
+        "_to_pandas",
+        "plot_rsquare",
+        "plot_scree",
+        "project"
+      ],
+      "attributes": [],
+      "description": "Principal Component Analysis"
+    },
+    "PHReg": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "baseline_cumulative_hazard",
+        "baseline_cumulative_hazard_function",
+        "breslow_gradient",
+        "breslow_hessian",
+        "breslow_loglike",
+        "efron_gradient",
+        "efron_hessian",
+        "efron_loglike",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "robust_covariance",
+        "score",
+        "score_residuals",
+        "weighted_covariate_averages"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Cox Proportional Hazards Regression Model"
+    },
+    "Poisson": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_get_start_params_null",
+        "_handle_data",
+        "_prob_nonzero",
+        "_var",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_factor",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names",
+        "family"
+      ],
+      "description": "Poisson Model"
+    },
+    "PoissonBayesMixedGLM": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_elbo_common",
+        "_elbo_grad_common",
+        "_get_init_kwds",
+        "_get_start",
+        "_handle_data",
+        "_lp_stats",
+        "_unpack",
+        "fit",
+        "fit_map",
+        "fit_vb",
+        "from_formula",
+        "logposterior",
+        "logposterior_grad",
+        "predict",
+        "vb_elbo",
+        "vb_elbo_base",
+        "vb_elbo_grad",
+        "vb_elbo_grad_base"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names",
+        "rng",
+        "verbose"
+      ],
+      "description": "Generalized Linear Mixed Model with Bayesian estimation"
+    },
+    "ProbPlot": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "ppplot",
+        "probplot",
+        "qqplot"
+      ],
+      "attributes": [
+        "sample_percentiles",
+        "sample_quantiles",
+        "sorted_data",
+        "theoretical_percentiles",
+        "theoretical_quantiles"
+      ],
+      "description": "Q-Q and P-P Probability Plots"
+    },
+    "Probit": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_constrained",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_factor",
+        "score_obs"
+      ],
+      "attributes": [
+        "_continuous_ok",
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names",
+        "link"
+      ],
+      "description": "Probit Model"
+    },
+    "QuantReg": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "fit",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "score",
+        "whiten"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "df_model",
+        "df_resid",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Quantile Regression"
+    },
+    "RLM": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_estimate_scale",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "_initialize",
+        "_update_history",
+        "deviance",
+        "fit",
+        "from_formula",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "score"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Robust Linear Model"
+    },
+    "RecursiveLS": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_clone_from_init_kwds",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_forecasts_error_partial_derivatives",
+        "_get_exog_names",
+        "_get_extension_time_varying_matrices",
+        "_get_index_label_loc",
+        "_get_index_loc",
+        "_get_index_with_final_state",
+        "_get_init_kwds",
+        "_get_prediction_index",
+        "_handle_data",
+        "_hessian_complex_step",
+        "_hessian_finite_difference",
+        "_hessian_oim",
+        "_hessian_opg",
+        "_init_dates",
+        "_score_complex_step",
+        "_score_finite_difference",
+        "_score_harvey",
+        "_score_obs_harvey",
+        "_set_exog_names",
+        "_validate_can_fix_params",
+        "_validate_out_of_sample_exog",
+        "_wrap_results",
+        "clone",
+        "filter",
+        "fit",
+        "fit_constrained",
+        "fix_params",
+        "from_formula",
+        "handle_params",
+        "hessian",
+        "impulse_responses",
+        "information",
+        "initialize",
+        "initialize_approximate_diffuse",
+        "initialize_known",
+        "initialize_statespace",
+        "initialize_stationary",
+        "loglike",
+        "loglikeobs",
+        "observed_information_matrix",
+        "opg_information_matrix",
+        "predict",
+        "prepare_data",
+        "score",
+        "score_obs",
+        "set_conserve_memory",
+        "set_filter_method",
+        "set_inversion_method",
+        "set_smoother_output",
+        "set_stability_method",
+        "simulate",
+        "simulation_smoother",
+        "smooth",
+        "transform_jacobian",
+        "transform_params",
+        "untransform_params",
+        "update"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_hessian_param_defaults",
+        "_hessian_param_names",
+        "_kwargs_allowed",
+        "_loglike_param_defaults",
+        "_loglike_param_names",
+        "_res_classes",
+        "_score_param_defaults",
+        "_score_param_names",
+        "endog_names",
+        "exog_names",
+        "initial_variance",
+        "initialization",
+        "loglikelihood_burn",
+        "param_names",
+        "start_params",
+        "state_names",
+        "tolerance"
+      ],
+      "description": "Recursive least squares"
+    },
+    "SurvfuncRight": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "plot",
+        "quantile",
+        "quantile_ci",
+        "simultaneous_cb",
+        "summary"
+      ],
+      "attributes": [],
+      "description": "Estimation and inference for a survival function."
+    },
+    "TruncatedLFNegativeBinomialP": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_handle_data",
+        "_predict_mom_trunc0",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Truncated Generalized Negative Binomial model for count data"
+    },
+    "TruncatedLFPoisson": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_handle_data",
+        "_predict_mom_trunc0",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Truncated Poisson model for count data"
+    },
+    "WLS": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_kwargs",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_init_kwds",
+        "_handle_data",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "hessian_factor",
+        "information",
+        "initialize",
+        "loglike",
+        "predict",
+        "score",
+        "whiten"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "df_model",
+        "df_resid",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Weighted Least Squares"
+    },
+    "ZeroInflatedGeneralizedPoisson": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_exogs",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_get_start_params",
+        "_handle_data",
+        "_hessian_logit",
+        "_hessian_main",
+        "_hessian_probit",
+        "_predict_prob",
+        "_predict_var",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Zero Inflated Generalized Poisson Model"
+    },
+    "ZeroInflatedNegativeBinomialP": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_exogs",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_get_start_params",
+        "_handle_data",
+        "_hessian_logit",
+        "_hessian_main",
+        "_hessian_probit",
+        "_predict_prob",
+        "_predict_var",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Zero Inflated Generalized Negative Binomial Model"
+    },
+    "ZeroInflatedPoisson": {
+      "node_type": "class",
+      "module": "statsmodels.api",
+      "methods": [
+        "_check_inputs",
+        "_check_kwargs",
+        "_check_perfect_pred",
+        "_deriv_mean_dparams",
+        "_deriv_score_obs_dendog",
+        "_derivative_exog",
+        "_derivative_exog_helper",
+        "_derivative_predict",
+        "_fit_collinear",
+        "_fit_zeros",
+        "_get_exogs",
+        "_get_init_kwds",
+        "_get_predict_arrays",
+        "_get_start_params",
+        "_handle_data",
+        "_hessian_logit",
+        "_hessian_main",
+        "_hessian_probit",
+        "_predict_prob",
+        "_predict_var",
+        "cdf",
+        "cov_params_func_l1",
+        "fit",
+        "fit_regularized",
+        "from_formula",
+        "get_distribution",
+        "hessian",
+        "information",
+        "initialize",
+        "loglike",
+        "loglikeobs",
+        "pdf",
+        "predict",
+        "score",
+        "score_obs"
+      ],
+      "attributes": [
+        "_formula_max_endog",
+        "_kwargs_allowed",
+        "endog_names",
+        "exog_names"
+      ],
+      "description": "Poisson Zero Inflated Model"
+    }
+  },
+  "functions": {
+    "add_constant": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [
+          "data"
+        ],
+        "optional": [
+          "prepend",
+          "has_constant"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Add a column of ones to an array.",
+      "example": ""
+    },
+    "categorical": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [
+          "data"
+        ],
+        "optional": [
+          "col",
+          "dictnames",
+          "drop"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Construct a dummy matrix from categorical variables",
+      "example": ""
+    },
+    "load": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [
+          "fname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Load a previously saved object",
+      "example": ""
+    },
+    "load_pickle": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [
+          "fname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Load a previously saved object",
+      "example": ""
+    },
+    "qqline": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [
+          "ax",
+          "line",
+          "lineoptions"
+        ],
+        "optional": [
+          "x",
+          "y",
+          "dist",
+          "fmt"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Plot a reference line for a qqplot.",
+      "example": ""
+    },
+    "qqplot": {
+      "node_type": "method",
+      "belongs_to": "ProbPlot",
+      "parameters": {
+        "required": [
+          "self",
+          "plotkwargs"
+        ],
+        "optional": [
+          "xlabel",
+          "ylabel",
+          "line",
+          "other",
+          "ax",
+          "swap"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Plot of the quantiles of x versus the quantiles/ppf of a distribution.",
+      "example": ""
+    },
+    "qqplot_2samples": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [
+          "data1",
+          "data2"
+        ],
+        "optional": [
+          "xlabel",
+          "ylabel",
+          "line",
+          "ax"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Q-Q Plot of two samples' quantiles.",
+      "example": ""
+    },
+    "show_versions": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [],
+        "optional": [
+          "show_dirs"
+        ]
+      },
+      "returns": "unknown",
+      "description": "List the versions of statsmodels and any installed dependencies",
+      "example": ""
+    },
+    "test": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [],
+        "optional": [
+          "extra_args",
+          "exit"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Run the test suite",
+      "example": ""
+    },
+    "webdoc": {
+      "node_type": "function",
+      "module": "statsmodels.api",
+      "parameters": {
+        "required": [],
+        "optional": [
+          "func",
+          "stable"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Opens a browser and displays online documentation",
+      "example": ""
+    },
+    "update": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Update the parameters of the model",
+      "example": ""
+    },
+    "update_cov": {
+      "node_type": "method",
+      "belongs_to": "BayesGaussMI",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Gibbs update of the covariance matrix.",
+      "example": ""
+    },
+    "update_data": {
+      "node_type": "method",
+      "belongs_to": "BayesGaussMI",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Gibbs update of the missing data values.",
+      "example": ""
+    },
+    "update_mean": {
+      "node_type": "method",
+      "belongs_to": "BayesGaussMI",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Gibbs update of the mean vector.",
+      "example": ""
+    },
+    "_check_kwargs": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "keys_extra",
+          "error"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_elbo_common": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "fep_mean",
+          "fep_sd",
+          "vcp_mean",
+          "vcp_sd",
+          "vc_mean",
+          "vc_sd"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_elbo_grad_common": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "fep_mean",
+          "fep_sd",
+          "vcp_mean",
+          "vcp_sd",
+          "vc_mean",
+          "vc_sd"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_get_init_kwds": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "return dictionary with extra keys used in model.__init__",
+      "example": ""
+    },
+    "_get_start": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_handle_data": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "endog",
+          "exog",
+          "missing",
+          "hasconst",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_lp_stats": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "fep_mean",
+          "fep_sd",
+          "vc_mean",
+          "vc_sd"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_unpack": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "vec"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "fit": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "start_params",
+          "method",
+          "maxiter",
+          "full_output",
+          "disp",
+          "callback",
+          "cov_type",
+          "cov_kwds",
+          "use_t"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Fit the model using maximum likelihood.",
+      "example": ""
+    },
+    "fit_map": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "method",
+          "minim_opts",
+          "scale_fe"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Construct the Laplace approximation to the posterior distribution.",
+      "example": ""
+    },
+    "fit_vb": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "mean",
+          "sd",
+          "fit_method",
+          "minim_opts",
+          "scale_fe",
+          "verbose"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Fit a model using the variational Bayes mean field approximation.",
+      "example": ""
+    },
+    "from_formula": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "formula",
+          "data",
+          "args",
+          "kwargs"
+        ],
+        "optional": [
+          "subset",
+          "drop_cols"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Create a Model from a formula and dataframe.",
+      "example": ""
+    },
+    "logposterior": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "The overall log-density: log p(y, fe, vc, vcp).",
+      "example": ""
+    },
+    "logposterior_grad": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "The gradient of the log posterior.",
+      "example": ""
+    },
+    "predict": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": [
+          "exog",
+          "exog_infl",
+          "exposure",
+          "offset",
+          "which",
+          "y_values"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Predict expected response or other statistic given exogenous variables.",
+      "example": ""
+    },
+    "vb_elbo": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "vb_mean",
+          "vb_sd"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the evidence lower bound (ELBO) for the model.",
+      "example": ""
+    },
+    "vb_elbo_base": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "h",
+          "tm",
+          "fep_mean",
+          "vcp_mean",
+          "vc_mean",
+          "fep_sd",
+          "vcp_sd",
+          "vc_sd"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the evidence lower bound (ELBO) for the model.",
+      "example": ""
+    },
+    "vb_elbo_grad": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "vb_mean",
+          "vb_sd"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the gradient of the model's evidence lower bound (ELBO).",
+      "example": ""
+    },
+    "vb_elbo_grad_base": {
+      "node_type": "method",
+      "belongs_to": "PoissonBayesMixedGLM",
+      "parameters": {
+        "required": [
+          "self",
+          "h",
+          "tm",
+          "tv",
+          "fep_mean",
+          "vcp_mean",
+          "vc_mean",
+          "fep_sd",
+          "vcp_sd",
+          "vc_sd"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return the gradient of the ELBO function.",
+      "example": ""
+    },
+    "_denom": {
+      "node_type": "method",
+      "belongs_to": "ConditionalLogit",
+      "parameters": {
+        "required": [
+          "self",
+          "grp",
+          "params"
+        ],
+        "optional": [
+          "ofs"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_denom_grad": {
+      "node_type": "method",
+      "belongs_to": "ConditionalLogit",
+      "parameters": {
+        "required": [
+          "self",
+          "grp",
+          "params"
+        ],
+        "optional": [
+          "ofs"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_fit_collinear": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "kwds"
+        ],
+        "optional": [
+          "atol",
+          "rtol"
+        ]
+      },
+      "returns": "unknown",
+      "description": "experimental, fit of the model without collinear variables",
+      "example": ""
+    },
+    "_fit_zeros": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "fit_kwds"
+        ],
+        "optional": [
+          "keep_index",
+          "start_params",
+          "return_auxiliary",
+          "k_params"
+        ]
+      },
+      "returns": "unknown",
+      "description": "experimental, fit the model subject to zero constraints",
+      "example": ""
+    },
+    "fit_regularized": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "start_params",
+          "method",
+          "maxiter",
+          "full_output",
+          "disp",
+          "callback",
+          "alpha",
+          "trim_mode",
+          "auto_trim_tol",
+          "size_trim_tol",
+          "qc_tol"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Fit the model using a regularized maximum likelihood.",
+      "example": ""
+    },
+    "hessian": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Generic Zero Inflated model Hessian matrix of the loglikelihood",
+      "example": ""
+    },
+    "information": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Fisher information matrix of model.",
+      "example": ""
+    },
+    "initialize": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Initialize is called by",
+      "example": ""
+    },
+    "loglike": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Loglikelihood of Generic Zero Inflated model.",
+      "example": ""
+    },
+    "loglike_grp": {
+      "node_type": "method",
+      "belongs_to": "ConditionalLogit",
+      "parameters": {
+        "required": [
+          "self",
+          "grp",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "score": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Score vector of model.",
+      "example": ""
+    },
+    "score_grp": {
+      "node_type": "method",
+      "belongs_to": "ConditionalLogit",
+      "parameters": {
+        "required": [
+          "self",
+          "grp",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_fit_ml": {
+      "node_type": "method",
+      "belongs_to": "Factor",
+      "parameters": {
+        "required": [
+          "self",
+          "start",
+          "em_iter",
+          "opt_method",
+          "opt"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "estimate Factor model using Maximum Likelihood",
+      "example": ""
+    },
+    "_fit_ml_em": {
+      "node_type": "method",
+      "belongs_to": "Factor",
+      "parameters": {
+        "required": [
+          "self",
+          "iter"
+        ],
+        "optional": [
+          "random_state"
+        ]
+      },
+      "returns": "unknown",
+      "description": "estimate Factor model using EM algorithm",
+      "example": ""
+    },
+    "_fit_pa": {
+      "node_type": "method",
+      "belongs_to": "Factor",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "maxiter",
+          "tol"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Extract factors using the iterative principal axis method",
+      "example": ""
+    },
+    "_pack": {
+      "node_type": "method",
+      "belongs_to": "Factor",
+      "parameters": {
+        "required": [
+          "self",
+          "load",
+          "uniq"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_rotate": {
+      "node_type": "method",
+      "belongs_to": "Factor",
+      "parameters": {
+        "required": [
+          "self",
+          "load",
+          "uniq"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "rotate loadings for MLE",
+      "example": ""
+    },
+    "_bc_covmat": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "cov_naive"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_check_inputs": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "offset",
+          "exposure",
+          "endog"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_covmat": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the sampling covariance matrix of the regression",
+      "example": ""
+    },
+    "_deriv_mean_dparams": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Derivative of the expected endog with respect to the parameters.",
+      "example": ""
+    },
+    "_deriv_score_obs_dendog": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "derivative of score_obs w.r.t. endog",
+      "example": ""
+    },
+    "_derivative_exog": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": [
+          "exog",
+          "transform",
+          "dummy_idx",
+          "count_idx"
+        ]
+      },
+      "returns": "unknown",
+      "description": "NotImplemented",
+      "example": ""
+    },
+    "_derivative_exog_helper": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "margeff",
+          "params",
+          "exog",
+          "dummy_idx",
+          "count_idx",
+          "transform"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Helper for _derivative_exog to wrap results appropriately",
+      "example": ""
+    },
+    "_derivative_predict": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": [
+          "exog",
+          "transform"
+        ]
+      },
+      "returns": "unknown",
+      "description": "NotImplemented",
+      "example": ""
+    },
+    "_estimate_x2_scale": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "mu"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_fit_gradient": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "start_params",
+          "method",
+          "maxiter",
+          "tol",
+          "full_output",
+          "disp",
+          "scale",
+          "cov_type",
+          "cov_kwds",
+          "use_t",
+          "max_start_irls"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Fits a generalized linear model for a given family iteratively",
+      "example": ""
+    },
+    "_fit_irls": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "start_params",
+          "maxiter",
+          "tol",
+          "scale",
+          "cov_type",
+          "cov_kwds",
+          "use_t"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Fits a generalized linear model for a given family using",
+      "example": ""
+    },
+    "_fit_ridge": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "alpha",
+          "start_params",
+          "method"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_handle_constraint": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "mean_params",
+          "bcov"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Expand the parameter estimate `mean_params` and covariance matrix",
+      "example": ""
+    },
+    "_regularized_covmat": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "mean_params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_setup_binomial": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_starting_params": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_update_assoc": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Update the association parameters",
+      "example": ""
+    },
+    "_update_history": {
+      "node_type": "method",
+      "belongs_to": "RLM",
+      "parameters": {
+        "required": [
+          "self",
+          "tmp_results",
+          "history",
+          "conv"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_update_mean_params": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns",
+      "example": ""
+    },
+    "_update_regularized": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "pen_wt",
+          "scad_param",
+          "eps"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "cluster_list": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "array"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns `array` split into subarrays corresponding to the",
+      "example": ""
+    },
+    "compare_score_test": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "submodel"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Perform a score test for the given submodel against this model.",
+      "example": ""
+    },
+    "estimate_scale": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Estimate the dispersion/scale.",
+      "example": ""
+    },
+    "estimate_tweedie_power": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "mu"
+        ],
+        "optional": [
+          "method",
+          "low",
+          "high"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Tweedie specific function to estimate scale and the variance parameter.",
+      "example": ""
+    },
+    "fit_constrained": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "constraints",
+          "fit_kwds"
+        ],
+        "optional": [
+          "start_params"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Fit the model with some parameters subject to equality constraints.",
+      "example": ""
+    },
+    "get_distribution": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": [
+          "exog",
+          "exog_infl",
+          "exposure",
+          "offset"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Get frozen instance of distribution based on predicted parameters.",
+      "example": ""
+    },
+    "hessian_factor": {
+      "node_type": "method",
+      "belongs_to": "WLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": [
+          "scale",
+          "observed"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Compute the weights for calculating the Hessian.",
+      "example": ""
+    },
+    "loglike_mu": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "mu"
+        ],
+        "optional": [
+          "scale"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Evaluate the log-likelihood for a generalized linear model.",
+      "example": ""
+    },
+    "mean_deriv": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "exog",
+          "lin_pred"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Derivative of the expected endog with respect to the parameters.",
+      "example": ""
+    },
+    "mean_deriv_exog": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "exog",
+          "params"
+        ],
+        "optional": [
+          "offset_exposure"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Derivative of the expected endog with respect to exog.",
+      "example": ""
+    },
+    "qic": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "scale",
+          "cov_params"
+        ],
+        "optional": [
+          "n_step"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Returns quasi-information criteria and quasi-likelihood values.",
+      "example": ""
+    },
+    "score_factor": {
+      "node_type": "method",
+      "belongs_to": "Probit",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Probit model Jacobian for each observation",
+      "example": ""
+    },
+    "score_obs": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Generic Zero Inflated model score (gradient) vector of the log-likelihood",
+      "example": ""
+    },
+    "score_test": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "params_constrained"
+        ],
+        "optional": [
+          "k_constraints",
+          "exog_extra",
+          "observed"
+        ]
+      },
+      "returns": "unknown",
+      "description": "score test for restrictions or for omitted variables",
+      "example": ""
+    },
+    "update_cached_means": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "mean_params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "cached_means should always contain the most recent calculation",
+      "example": ""
+    },
+    "_check_alpha": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "self",
+          "alpha"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "check and convert alpha to required list format",
+      "example": ""
+    },
+    "_fit_pirls": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "self",
+          "alpha"
+        ],
+        "optional": [
+          "start_params",
+          "maxiter",
+          "tol",
+          "scale",
+          "cov_type",
+          "cov_kwds",
+          "use_t",
+          "weights"
+        ]
+      },
+      "returns": "unknown",
+      "description": "fit model with penalized reweighted least squares",
+      "example": ""
+    },
+    "_handle_scale": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwds"
+        ],
+        "optional": [
+          "scale"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_results_class": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "model",
+          "params",
+          "normalized_cov_params",
+          "scale",
+          "kwds"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Results class for generalized additive models, GAM.",
+      "example": ""
+    },
+    "_results_class_wrapper": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "results"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Class which wraps a statsmodels estimation Results class and steps in to",
+      "example": ""
+    },
+    "hessian_numdiff": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwds"
+        ],
+        "optional": [
+          "pen_weight"
+        ]
+      },
+      "returns": "unknown",
+      "description": "hessian based on finite difference derivative",
+      "example": ""
+    },
+    "loglikeobs": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Loglikelihood for observations of Generic Zero Inflated model.",
+      "example": ""
+    },
+    "score_numdiff": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwds"
+        ],
+        "optional": [
+          "pen_weight",
+          "method"
+        ]
+      },
+      "returns": "unknown",
+      "description": "score based on finite difference derivative",
+      "example": ""
+    },
+    "select_penweight": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "self",
+          "fit_kwds"
+        ],
+        "optional": [
+          "criterion",
+          "start_params",
+          "start_model_params",
+          "method"
+        ]
+      },
+      "returns": "unknown",
+      "description": "find alpha by minimizing results criterion",
+      "example": ""
+    },
+    "select_penweight_kfold": {
+      "node_type": "method",
+      "belongs_to": "GLMGam",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "alphas",
+          "cv_iterator",
+          "cost",
+          "k_folds",
+          "k_grid"
+        ]
+      },
+      "returns": "unknown",
+      "description": "find alphas by k-fold cross-validation",
+      "example": ""
+    },
+    "whiten": {
+      "node_type": "method",
+      "belongs_to": "WLS",
+      "parameters": {
+        "required": [
+          "self",
+          "x"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Whitener for WLS model, multiplies each column by sqrt(self.weights).",
+      "example": ""
+    },
+    "iterative_fit": {
+      "node_type": "method",
+      "belongs_to": "GLSAR",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "maxiter",
+          "rtol"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Perform an iterative two-stage procedure to estimate a GLS model.",
+      "example": ""
+    },
+    "_check_perfect_pred": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "args"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_estimate_dispersion": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomialP",
+      "parameters": {
+        "required": [
+          "self",
+          "mu",
+          "resid"
+        ],
+        "optional": [
+          "df_resid"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_get_exogs": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "list of exogs, for internal use in post-estimation",
+      "example": ""
+    },
+    "_get_predict_arrays": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "exog",
+          "offset",
+          "exposure"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_get_start_params_null": {
+      "node_type": "method",
+      "belongs_to": "Poisson",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Compute one-step moment estimator for null (constant-only) model",
+      "example": ""
+    },
+    "_prob_nonzero": {
+      "node_type": "method",
+      "belongs_to": "Poisson",
+      "parameters": {
+        "required": [
+          "self",
+          "mu"
+        ],
+        "optional": [
+          "params"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Probability that count is not zero",
+      "example": ""
+    },
+    "_score_p": {
+      "node_type": "method",
+      "belongs_to": "GeneralizedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Generalized Poisson model derivative of the log-likelihood by p-parameter",
+      "example": ""
+    },
+    "_var": {
+      "node_type": "method",
+      "belongs_to": "Poisson",
+      "parameters": {
+        "required": [
+          "self",
+          "mu"
+        ],
+        "optional": [
+          "params"
+        ]
+      },
+      "returns": "unknown",
+      "description": "variance implied by the distribution",
+      "example": ""
+    },
+    "cdf": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "X"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "The cumulative distribution function of the model.",
+      "example": ""
+    },
+    "cov_params_func_l1": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "likelihood_model",
+          "xopt",
+          "retvals"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Computes cov_params on a reduced parameter space",
+      "example": ""
+    },
+    "pdf": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "X"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "The probability density (mass) function of the model.",
+      "example": ""
+    },
+    "_initialize": {
+      "node_type": "method",
+      "belongs_to": "RLM",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Initializes the model for the IRLS fit.",
+      "example": ""
+    },
+    "mv_test": {
+      "node_type": "method",
+      "belongs_to": "MANOVA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "hypotheses",
+          "skip_intercept_test"
+        ]
+      },
+      "returns": "unknown",
+      "description": "    Linear hypotheses testing",
+      "example": ""
+    },
+    "_combine": {
+      "node_type": "method",
+      "belongs_to": "MI",
+      "parameters": {
+        "required": [
+          "self",
+          "par",
+          "cov"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "combine": {
+      "node_type": "method",
+      "belongs_to": "MICE",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Pools MICE imputation results.",
+      "example": ""
+    },
+    "next_sample": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the next imputed dataset in the imputation process.",
+      "example": ""
+    },
+    "_boot_kwds": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "kwds",
+          "rix"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_get_predicted": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "obj"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_initial_imputation": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Use a PMM-like procedure for initial imputed values.",
+      "example": ""
+    },
+    "_perturb_bootstrap": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "vname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Perturbs the model's parameters using a bootstrap.",
+      "example": ""
+    },
+    "_perturb_gaussian": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "vname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Gaussian perturbation of model parameters.",
+      "example": ""
+    },
+    "_process_kwds": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "kwds",
+          "ix"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_split_indices": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "vec"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_store_changes": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "col",
+          "vals"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Fill in dataset with imputed values.",
+      "example": ""
+    },
+    "get_fitting_data": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "vname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return the data needed to fit a model for imputation.",
+      "example": ""
+    },
+    "get_split_data": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "vname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return endog and exog for imputation of a given variable.",
+      "example": ""
+    },
+    "impute": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "vname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "impute_pmm": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "vname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Use predictive mean matching to impute missing values.",
+      "example": ""
+    },
+    "perturb_params": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "vname"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "plot_bivariate": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "col1_name",
+          "col2_name"
+        ],
+        "optional": [
+          "lowess_args",
+          "lowess_min_n",
+          "jitter",
+          "plot_points",
+          "ax"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Plot observed and imputed values for two variables.",
+      "example": ""
+    },
+    "plot_fit_obs": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "col_name"
+        ],
+        "optional": [
+          "lowess_args",
+          "lowess_min_n",
+          "jitter",
+          "plot_points",
+          "ax"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Plot fitted versus imputed or observed values as a scatterplot.",
+      "example": ""
+    },
+    "plot_imputed_hist": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "col_name"
+        ],
+        "optional": [
+          "ax",
+          "imp_hist_args",
+          "obs_hist_args",
+          "all_hist_args"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Display imputed values for one variable as a histogram.",
+      "example": ""
+    },
+    "plot_missing_pattern": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "ax",
+          "row_order",
+          "column_order",
+          "hide_complete_rows",
+          "hide_complete_columns",
+          "color_row_patterns"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Generate an image showing the missing data pattern.",
+      "example": ""
+    },
+    "set_imputer": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self",
+          "endog_name"
+        ],
+        "optional": [
+          "formula",
+          "model_class",
+          "init_kwds",
+          "fit_kwds",
+          "predict_kwds",
+          "k_pmm",
+          "perturbation_method",
+          "regularized"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Specify the imputation process for a single variable.",
+      "example": ""
+    },
+    "update_all": {
+      "node_type": "method",
+      "belongs_to": "MICEData",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "n_iter"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Perform a specified number of MICE iterations.",
+      "example": ""
+    },
+    "loglike_and_score": {
+      "node_type": "method",
+      "belongs_to": "MNLogit",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns log likelihood and score, efficiently reusing calculations.",
+      "example": ""
+    },
+    "_augment_exog": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "group_ix"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Concatenate the columns for variance components to the columns",
+      "example": ""
+    },
+    "_expand_vcomp": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "vcomp",
+          "group_ix"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Replicate variance parameters to match a group's design.",
+      "example": ""
+    },
+    "_gen_dV_dPar": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "ex_r",
+          "solver",
+          "group_ix"
+        ],
+        "optional": [
+          "max_ix"
+        ]
+      },
+      "returns": "unknown",
+      "description": "A generator that yields the element-wise derivative of the",
+      "example": ""
+    },
+    "_make_param_names": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "exog_re"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the full parameter names list, just the exogenous random",
+      "example": ""
+    },
+    "_reparam": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns parameters of the map converting parameters from the",
+      "example": ""
+    },
+    "get_fe_params": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "cov_re",
+          "vcomp"
+        ],
+        "optional": [
+          "tol"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Use GLS to update the fixed effects parameter estimates.",
+      "example": ""
+    },
+    "get_scale": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "fe_params",
+          "cov_re",
+          "vcomp"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the estimated error variance based on given estimates",
+      "example": ""
+    },
+    "group_list": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "array"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns `array` split into subarrays corresponding to the",
+      "example": ""
+    },
+    "score_full": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "calc_fe"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the score with respect to untransformed parameters.",
+      "example": ""
+    },
+    "score_sqrt": {
+      "node_type": "method",
+      "belongs_to": "MixedLM",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": [
+          "calc_fe"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Returns the score with respect to transformed parameters.",
+      "example": ""
+    },
+    "_hessian_geom": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_hessian_nb1": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Hessian of NB1 model.",
+      "example": ""
+    },
+    "_hessian_nb2": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Hessian of NB2 model.",
+      "example": ""
+    },
+    "_ll_geometric": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_ll_nb1": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_ll_nb2": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_ll_nbin": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "alpha"
+        ],
+        "optional": [
+          "Q"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_score_geom": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_score_nb1": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_score_nbin": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomial",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": [
+          "Q"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Score vector for NB2 model",
+      "example": ""
+    },
+    "convert_params": {
+      "node_type": "method",
+      "belongs_to": "NegativeBinomialP",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "mu"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "setup_nominal": {
+      "node_type": "method",
+      "belongs_to": "NominalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "endog",
+          "exog",
+          "groups",
+          "time",
+          "offset"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Restructure nominal data as binary indicators so that they can",
+      "example": ""
+    },
+    "_setup_score_hess": {
+      "node_type": "method",
+      "belongs_to": "OLS",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_sqrt_lasso": {
+      "node_type": "method",
+      "belongs_to": "OLS",
+      "parameters": {
+        "required": [
+          "self",
+          "alpha",
+          "refit",
+          "zero_tol"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "setup_ordinal": {
+      "node_type": "method",
+      "belongs_to": "OrdinalGEE",
+      "parameters": {
+        "required": [
+          "self",
+          "endog",
+          "exog",
+          "groups",
+          "time",
+          "offset"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Restructure ordinal data as binary indicators so that they can",
+      "example": ""
+    },
+    "_adjust_missing": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Implements alternatives for handling missing values",
+      "example": ""
+    },
+    "_compute_eig": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Wrapper for actual eigenvalue method",
+      "example": ""
+    },
+    "_compute_gls_weights": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Computes GLS weights based on percentage of data fit",
+      "example": ""
+    },
+    "_compute_pca_from_eig": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Compute relevant statistics after eigenvalues have been computed",
+      "example": ""
+    },
+    "_compute_rsquare_and_ic": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Final statistics to compute",
+      "example": ""
+    },
+    "_compute_using_eig": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Eigenvalue decomposition method to compute eigenvalues and eigenvectors",
+      "example": ""
+    },
+    "_compute_using_nipals": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "NIPALS implementation to compute small number of eigenvalues",
+      "example": ""
+    },
+    "_compute_using_svd": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "SVD method to compute eigenvalues and eigenvecs",
+      "example": ""
+    },
+    "_fill_missing_em": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "EM algorithm to fill missing values",
+      "example": ""
+    },
+    "_pca": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Main PCA routine",
+      "example": ""
+    },
+    "_prepare_data": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Standardize or demean data.",
+      "example": ""
+    },
+    "_to_pandas": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns pandas DataFrames for all values",
+      "example": ""
+    },
+    "plot_rsquare": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "ncomp",
+          "ax"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Box plots of the individual series R-square against the number of PCs.",
+      "example": ""
+    },
+    "plot_scree": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "ncomp",
+          "log_scale",
+          "cumulative",
+          "ax"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Plot of the ordered eigenvalues",
+      "example": ""
+    },
+    "project": {
+      "node_type": "method",
+      "belongs_to": "PCA",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "ncomp",
+          "transform",
+          "unweight"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Project series onto a specific number of factors.",
+      "example": ""
+    },
+    "baseline_cumulative_hazard": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Estimate the baseline cumulative hazard and survival",
+      "example": ""
+    },
+    "baseline_cumulative_hazard_function": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns a function that calculates the baseline cumulative",
+      "example": ""
+    },
+    "breslow_gradient": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the gradient of the log partial likelihood, using the",
+      "example": ""
+    },
+    "breslow_hessian": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the Hessian of the log partial likelihood evaluated at",
+      "example": ""
+    },
+    "breslow_loglike": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the value of the log partial likelihood function",
+      "example": ""
+    },
+    "efron_gradient": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the gradient of the log partial likelihood evaluated",
+      "example": ""
+    },
+    "efron_hessian": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the Hessian matrix of the partial log-likelihood",
+      "example": ""
+    },
+    "efron_loglike": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the value of the log partial likelihood function",
+      "example": ""
+    },
+    "robust_covariance": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns a covariance matrix for the proportional hazards model",
+      "example": ""
+    },
+    "score_residuals": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the score residuals calculated at a given vector of",
+      "example": ""
+    },
+    "weighted_covariate_averages": {
+      "node_type": "method",
+      "belongs_to": "PHReg",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the hazard-weighted average of covariate values for",
+      "example": ""
+    },
+    "ppplot": {
+      "node_type": "method",
+      "belongs_to": "ProbPlot",
+      "parameters": {
+        "required": [
+          "self",
+          "plotkwargs"
+        ],
+        "optional": [
+          "xlabel",
+          "ylabel",
+          "line",
+          "other",
+          "ax"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Plot of the percentiles of x versus the percentiles of a distribution.",
+      "example": ""
+    },
+    "probplot": {
+      "node_type": "method",
+      "belongs_to": "ProbPlot",
+      "parameters": {
+        "required": [
+          "self",
+          "plotkwargs"
+        ],
+        "optional": [
+          "xlabel",
+          "ylabel",
+          "line",
+          "exceed",
+          "ax"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Plot of unscaled quantiles of x against the prob of a distribution.",
+      "example": ""
+    },
+    "_estimate_scale": {
+      "node_type": "method",
+      "belongs_to": "RLM",
+      "parameters": {
+        "required": [
+          "self",
+          "resid"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Estimates the scale based on the option provided to the fit method.",
+      "example": ""
+    },
+    "deviance": {
+      "node_type": "method",
+      "belongs_to": "RLM",
+      "parameters": {
+        "required": [
+          "self",
+          "tmp_results"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the (unnormalized) log-likelihood from the M estimator.",
+      "example": ""
+    },
+    "_clone_from_init_kwds": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "endog",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_forecasts_error_partial_derivatives": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": [
+          "transformed",
+          "includes_fixed",
+          "approx_complex_step",
+          "approx_centered",
+          "res"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_get_exog_names": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_get_extension_time_varying_matrices": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "exog",
+          "out_of_sample",
+          "kwargs"
+        ],
+        "optional": [
+          "extend_kwargs",
+          "transformed",
+          "includes_fixed"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Get updated time-varying state space system matrices",
+      "example": ""
+    },
+    "_get_index_label_loc": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "key"
+        ],
+        "optional": [
+          "base_index"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Get the location of a specific key in an index or model row labels",
+      "example": ""
+    },
+    "_get_index_loc": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "key"
+        ],
+        "optional": [
+          "base_index"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Get the location of a specific key in an index",
+      "example": ""
+    },
+    "_get_index_with_final_state": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_get_prediction_index": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "start",
+          "end"
+        ],
+        "optional": [
+          "index",
+          "silent"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Get the location of a specific key in an index or model row labels",
+      "example": ""
+    },
+    "_hessian_complex_step": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Hessian matrix computed by second-order complex-step differentiation",
+      "example": ""
+    },
+    "_hessian_finite_difference": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": [
+          "approx_centered"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_hessian_oim": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Hessian matrix computed using the Harvey (1989) information matrix",
+      "example": ""
+    },
+    "_hessian_opg": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Hessian matrix computed using the outer product of gradients",
+      "example": ""
+    },
+    "_init_dates": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "dates",
+          "freq"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Initialize dates",
+      "example": ""
+    },
+    "_score_complex_step": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_score_finite_difference": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": [
+          "approx_centered"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_score_harvey": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": [
+          "approx_complex_step"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_score_obs_harvey": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": [
+          "approx_complex_step",
+          "approx_centered",
+          "includes_fixed"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Score",
+      "example": ""
+    },
+    "_set_exog_names": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "vals"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_validate_can_fix_params": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "param_names"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_validate_out_of_sample_exog": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "exog",
+          "out_of_sample"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Validate given `exog` as satisfactory for out-of-sample operations",
+      "example": ""
+    },
+    "_wrap_results": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "result",
+          "return_raw"
+        ],
+        "optional": [
+          "cov_type",
+          "cov_kwds",
+          "results_class",
+          "wrapper_class"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "clone": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "endog",
+          "kwargs"
+        ],
+        "optional": [
+          "exog"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Clone state space model with new data and optionally new specification",
+      "example": ""
+    },
+    "filter": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "return_ssm"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Kalman filtering",
+      "example": ""
+    },
+    "fix_params": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Fix parameters to specific values (context manager)",
+      "example": ""
+    },
+    "handle_params": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": [
+          "transformed",
+          "includes_fixed",
+          "return_jacobian"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Ensure model parameters satisfy shape and other requirements",
+      "example": ""
+    },
+    "impulse_responses": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": [
+          "steps",
+          "impulse",
+          "orthogonalized",
+          "cumulative",
+          "anchor",
+          "exog",
+          "extend_model",
+          "extend_kwargs",
+          "transformed",
+          "includes_fixed"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Impulse response function",
+      "example": ""
+    },
+    "initialize_approximate_diffuse": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "variance"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Initialize approximate diffuse",
+      "example": ""
+    },
+    "initialize_known": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "initial_state",
+          "initial_state_cov"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Initialize known",
+      "example": ""
+    },
+    "initialize_statespace": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Initialize the state space representation",
+      "example": ""
+    },
+    "initialize_stationary": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Initialize stationary",
+      "example": ""
+    },
+    "observed_information_matrix": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": [
+          "transformed",
+          "includes_fixed",
+          "approx_complex_step",
+          "approx_centered"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Observed information matrix",
+      "example": ""
+    },
+    "opg_information_matrix": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "kwargs"
+        ],
+        "optional": [
+          "transformed",
+          "includes_fixed",
+          "approx_complex_step"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Outer product of gradients information matrix",
+      "example": ""
+    },
+    "prepare_data": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Prepare data for use in the state space representation",
+      "example": ""
+    },
+    "set_conserve_memory": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "conserve_memory"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Set the memory conservation method",
+      "example": ""
+    },
+    "set_filter_method": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "filter_method"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Set the filtering method",
+      "example": ""
+    },
+    "set_inversion_method": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "inversion_method"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Set the inversion method",
+      "example": ""
+    },
+    "set_smoother_output": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "smoother_output"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Set the smoother output",
+      "example": ""
+    },
+    "set_stability_method": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "stability_method"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Set the numerical stability method",
+      "example": ""
+    },
+    "simulate": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "nsimulations",
+          "kwargs"
+        ],
+        "optional": [
+          "measurement_shocks",
+          "state_shocks",
+          "initial_state",
+          "anchor",
+          "repetitions",
+          "exog",
+          "extend_model",
+          "extend_kwargs",
+          "transformed",
+          "includes_fixed",
+          "pretransformed_measurement_shocks",
+          "pretransformed_state_shocks",
+          "pretransformed_initial_state",
+          "random_state"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Simulate a new time series following the state space model",
+      "example": ""
+    },
+    "simulation_smoother": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "simulation_output"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Retrieve a simulation smoother for the state space model.",
+      "example": ""
+    },
+    "smooth": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "kwargs"
+        ],
+        "optional": [
+          "return_ssm"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Kalman smoothing",
+      "example": ""
+    },
+    "transform_jacobian": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "unconstrained"
+        ],
+        "optional": [
+          "approx_centered"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Jacobian matrix for the parameter transformation function",
+      "example": ""
+    },
+    "transform_params": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "unconstrained"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Transform unconstrained parameters used by the optimizer to constrained",
+      "example": ""
+    },
+    "untransform_params": {
+      "node_type": "method",
+      "belongs_to": "RecursiveLS",
+      "parameters": {
+        "required": [
+          "self",
+          "constrained"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Transform constrained parameters used in likelihood evaluation",
+      "example": ""
+    },
+    "plot": {
+      "node_type": "method",
+      "belongs_to": "SurvfuncRight",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "ax"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Plot the survival function.",
+      "example": ""
+    },
+    "quantile": {
+      "node_type": "method",
+      "belongs_to": "SurvfuncRight",
+      "parameters": {
+        "required": [
+          "self",
+          "p"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Estimated quantile of a survival distribution.",
+      "example": ""
+    },
+    "quantile_ci": {
+      "node_type": "method",
+      "belongs_to": "SurvfuncRight",
+      "parameters": {
+        "required": [
+          "self",
+          "p"
+        ],
+        "optional": [
+          "alpha",
+          "method"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Returns a confidence interval for a survival quantile.",
+      "example": ""
+    },
+    "simultaneous_cb": {
+      "node_type": "method",
+      "belongs_to": "SurvfuncRight",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "alpha",
+          "method",
+          "transform"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Returns a simultaneous confidence band for the survival function.",
+      "example": ""
+    },
+    "summary": {
+      "node_type": "method",
+      "belongs_to": "SurvfuncRight",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return a summary of the estimated survival function.",
+      "example": ""
+    },
+    "_predict_mom_trunc0": {
+      "node_type": "method",
+      "belongs_to": "TruncatedLFPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "mu"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Predict mean and variance of zero-truncated distribution.",
+      "example": ""
+    },
+    "_get_start_params": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_hessian_logit": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_hessian_main": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_hessian_probit": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_predict_prob": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "exog",
+          "exog_infl",
+          "exposure",
+          "offset"
+        ],
+        "optional": [
+          "y_values"
+        ]
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_predict_var": {
+      "node_type": "method",
+      "belongs_to": "ZeroInflatedPoisson",
+      "parameters": {
+        "required": [
+          "self",
+          "params",
+          "mu",
+          "prob_infl"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "predict values for conditional variance V(endog | exog)",
+      "example": ""
+    }
+  }
+}
