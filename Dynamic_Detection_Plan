@@ -1,0 +1,269 @@
+
+The Core Problem
+You have code that passes static analysis—no syntax errors, imports exist, variables are defined—but it produces wrong results. Classic examples:
+Off-by-one errors in loops
+Wrong operators (+ instead of *)
+Incorrect conditionals (< instead of <=)
+Logic that works for some inputs but not edge cases
+Static analysis can't catch these. You need execution + oracles.
+
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│   Input Code    │────▶│  Sandbox Exec    │────▶│  Test Oracle    │
+│  (Markdown +    │     │  (Subprocess)    │     │  (Comparison)   │
+│   Python)       │     │  + Timeout       │     │                 │
+└─────────────────┘     └──────────────────┘     └─────────────────┘
+                                │                        │
+                                ▼                        ▼
+                       ┌──────────────────┐     ┌─────────────────┐
+                       │  Execution       │     │  Classification  │
+                       │  Result          │────▶│  (Pass/Fail/     │
+                       │  (stdout/stderr) │     │   Exception/     │
+                       │                  │     │   Timeout)       │
+                       └──────────────────┘     └─────────────────┘
+
+
+Step-by-Step Execution Flow
+Step 1: Code Extraction
+
+def _extract_code(self, code: str) -> str:
+    """Strip markdown fences and extract executable Python."""
+    # Handle ```python blocks
+    if "```python" in code:
+        return code.split("```python")[1].split("```")[0].strip()
+    # Handle generic ``` blocks
+    if "```" in code:
+        return code.split("```")[1].split("```")[0].strip()
+    # Assume raw code
+    return code.strip()
+
+
+Why this matters: If you don't strip fences, ast.parse() and subprocess execution fail on markdown syntax.
+Step 2: Test Harness Injection
+You can't just run python generated_code.py. You need to:
+Execute the function with specific inputs
+Capture return values
+Handle exceptions safely
+Report structured results
+The harness pattern:
+
+# What gets written to temp file
+USER_CODE = """
+def find_max(numbers):
+    max_val = 0  # Bug: fails on all-negative lists
+    for n in numbers:
+        if n > max_val:
+            max_val = n
+    return max_val
+"""
+
+TEST_HARNESS = """
+import json
+
+# Test cases injected here
+test_cases = [
+    {"input": "find_max([1, 3, 2])", "expected": 3},
+    {"input": "find_max([-5, -2, -10])", "expected": -2}
+]
+
+results = []
+for i, test in enumerate(test_cases):
+    try:
+        # Execute in shared namespace
+        result = eval(test["input"])
+        results.append({
+            "test_id": i,
+            "output": result,
+            "error": None,
+            "passed": result == test["expected"]
+        })
+    except Exception as e:
+        results.append({
+            "test_id": i,
+            "output": None,
+            "error": str(e),
+            "passed": False
+        })
+
+# JSON output for parent process parsing
+print(json.dumps(results))
+
+
+
+Critical design choice: eval() inside the subprocess is safe because:
+Subprocess runs with restricted permissions (no network, limited filesystem)
+Timeout kills infinite loops
+Temp file deletion prevents persistence
+
+
+Step 3: Subprocess Execution with Guardrails
+import subprocess
+import tempfile
+import os
+
+def _execute_in_sandbox(self, code: str, test_cases: List[Dict]) -> Dict:
+    """Execute code in isolated subprocess with resource limits."""
+    
+    # Create temp file with code + harness
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
+        f.write(code)
+        f.write(self._generate_harness(test_cases))
+        temp_path = f.name
+    
+    try:
+        # Execute with strict limits
+        result = subprocess.run(
+            ['python', temp_path],
+            capture_output=True,
+            text=True,
+            timeout=self.timeout,  # 5 seconds default
+            # Optional: limit memory with ulimit or cgroup (platform-specific)
+        )
+        
+        if result.returncode != 0:
+            # Process crashed (syntax error caught late, OOM, etc.)
+            return {
+                "status": "crash",
+                "stderr": result.stderr,
+                "stdout": result.stdout
+            }
+        
+        # Parse JSON results from harness
+        last_line = result.stdout.strip().split('\n')[-1]
+        test_results = json.loads(last_line)
+        return {
+            "status": "success",
+            "results": test_results
+        }
+        
+    except subprocess.TimeoutExpired:
+        return {"status": "timeout", "results": []}
+    except json.JSONDecodeError:
+        return {"status": "parse_error", "raw_output": result.stdout}
+    finally:
+        # Cleanup regardless of outcome
+        os.unlink(temp_path)
+
+
+
+| Approach                 | Risk                                      | Mitigation                  |
+| ------------------------ | ----------------------------------------- | --------------------------- |
+| `exec()` in main process | Infinite loops freeze your pipeline       | None                        |
+| `exec()` in main process | `os.system('rm -rf /')` in generated code | Sandboxing complex          |
+| **Subprocess**           | Process isolation, timeout works          | **Used here**               |
+| Subprocess               | Slower (process spawn overhead)           | Acceptable for verification |
+
+
+
+Step 4: Oracle Comparison
+You have actual output vs expected. Now classify the failure.
+
+
+def _classify_failures(self, execution_results: List[Dict], test_cases: List[Dict]) -> Dict:
+    """Compare actual vs expected, categorize error type."""
+    
+    failures = []
+    for actual, expected in zip(execution_results, test_cases):
+        if actual.get("error"):
+            # Exception during execution
+            failures.append({
+                "test_id": actual["test_id"],
+                "type": "exception",
+                "subtype": self._classify_exception(actual["error"]),
+                "message": actual["error"]
+            })
+        elif not self._compare_values(actual["output"], expected["expected"], expected.get("comparison", "exact")):
+            # Wrong output (the core "logical error")
+            failures.append({
+                "test_id": actual["test_id"],
+                "type": "wrong_output",
+                "expected": expected["expected"],
+                "actual": actual["output"],
+                "input": expected["input"]
+            })
+    
+    return {
+        "valid": len(failures) == 0,
+        "error_type": "logical" if failures else "none",
+        "failures": failures,
+        "can_repair": self._assess_repairability(failures)
+    }
+
+def _compare_values(self, actual, expected, method: str) -> bool:
+    """Flexible comparison for different data types."""
+    if method == "exact":
+        return actual == expected
+    if method == "approx":
+        return abs(float(actual) - float(expected)) < 0.001
+    if method == "set":
+        return set(actual) == set(expected)
+    if method == "sorted":
+        return sorted(actual) == sorted(expected)
+    return False
+
+def _classify_exception(self, error_msg: str) -> str:
+    """Map exception to hallucination taxonomy."""
+    error_lower = error_msg.lower()
+    if "nameerror" in error_lower:
+        return "undefined_name"  # Should have been caught by static
+    if "typeerror" in error_lower:
+        return "type_mismatch"
+    if "indexerror" in error_lower or "keyerror" in error_lower:
+        return "boundary_violation"
+    if "zerodivisionerror" in error_lower:
+        return "arithmetic_error"
+    return "runtime_error"
+
+def _assess_repairability(self, failures: List[Dict]) -> bool:
+    """Determine if error is repairable."""
+    for f in failures:
+        if f["type"] == "exception" and f["subtype"] == "timeout":
+            return False  # Infinite loops are hard to auto-repair
+    return True
+
+
+Pipeline execution:
+| Stage          | Action                          | Result               |
+| -------------- | ------------------------------- | -------------------- |
+| Extraction     | Strip fences (none here)        | Raw code             |
+| Temp file      | Write code + harness            | `/tmp/tmp_abc123.py` |
+| Subprocess     | `python /tmp/tmp_abc123.py`     | Executes in <1s      |
+| Harness        | `eval("sum_list([1,2,3,4])")`   | Returns 6            |
+| Comparison     | `6 == 10`                       | False                |
+| Classification | Wrong output, input `[1,2,3,4]` | Logical error        |
+| Repairability  | Not timeout                     | `can_repair: true`   |
+
+
+
+example output
+{
+    "valid": false,
+    "error_type": "logical",
+    "hallucination_subtype": "wrong_output",
+    "stage": "logical",
+    "failures": [
+        {
+            "test_id": 0,
+            "type": "wrong_output",
+            "input": "sum_list([1, 2, 3, 4])",
+            "expected": 10,
+            "actual": 6,
+            "hint": "off_by_one: loop range excludes last index"
+        }
+    ],
+    "can_repair": true,
+    "diagnostic_info": {
+        "function": "sum_list",
+        "bug_location": "range(len(arr) - 1)",
+        "suggested_fix": "range(len(arr))"
+    }
+}
+
+Failure Modes & Handling
+
+| Scenario                          | Detection            | Handling                                       |
+| --------------------------------- | -------------------- | ---------------------------------------------- |
+| Infinite loop                     | Timeout (5s)         | Mark `can_repair: false`, suggest human review |
+| Memory exhaustion                 | Subprocess OOM       | Catch stderr, mark resource\_error             |
+| Syntax error in generated harness | JSON parse fail      | Return parse\_error status                     |
+| Non-deterministic code (random)   | Flaky results        | Run 3×, majority vote                          |
+| Side effects (file/network)       | Subprocess isolation | Limited impact, may timeout                    |
