@@ -713,7 +713,6 @@
         "_gen_axes_spines",
         "_get_aspect_ratio",
         "_get_pan_points",
-        "_get_subplotspec_with_optional_colorbar",
         "_get_view",
         "_init_axis",
         "_internal_update",
@@ -2380,7 +2379,6 @@
         "_gen_axes_spines",
         "_get_aspect_ratio",
         "_get_pan_points",
-        "_get_subplotspec_with_optional_colorbar",
         "_get_view",
         "_init_axis",
         "_internal_update",
@@ -3118,7 +3116,6 @@
         "_gen_axes_spines",
         "_get_aspect_ratio",
         "_get_pan_points",
-        "_get_subplotspec_with_optional_colorbar",
         "_get_view",
         "_init_axis",
         "_internal_update",
@@ -10801,19 +10798,6 @@
       "description": "Helper function to return the new points after a pan.",
       "example": ""
     },
-    "_get_subplotspec_with_optional_colorbar": {
-      "node_type": "method",
-      "belongs_to": "Subplot",
-      "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Return the subplotspec for this Axes, except that if this Axes has been",
-      "example": ""
-    },
     "_get_view": {
       "node_type": "method",
       "belongs_to": "Subplot",
@@ -15191,7 +15175,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return the title text of the window containing the figure.",
+      "description": "Return the title text of the window containing the figure, or None",
       "example": ""
     },
     "pyplot_show": {
@@ -15631,9 +15615,7 @@
       "node_type": "method",
       "belongs_to": "MouseButton",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",

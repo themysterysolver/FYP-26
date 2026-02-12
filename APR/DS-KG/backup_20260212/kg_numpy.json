@@ -6,10 +6,6 @@
       "node_type": "module",
       "parent": "numpy"
     },
-    "_array_api_info": {
-      "node_type": "module",
-      "parent": "numpy"
-    },
     "_core": {
       "node_type": "module",
       "parent": "numpy"
@@ -123,21 +119,6 @@
       ],
       "description": "An enumeration for the copy modes supported"
     },
-    "__array_namespace_info__": {
-      "node_type": "class",
-      "module": "numpy",
-      "methods": [
-        "capabilities",
-        "default_device",
-        "default_dtypes",
-        "devices",
-        "dtypes"
-      ],
-      "attributes": [
-        "_module_source"
-      ],
-      "description": "Get the array API inspection namespace for NumPy."
-    },
     "bool": {
       "node_type": "class",
       "module": "numpy",
@@ -184,10 +165,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -197,14 +178,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -258,10 +241,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -271,14 +254,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -361,10 +346,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -375,15 +360,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -476,10 +463,10 @@
         "swapcase",
         "take",
         "title",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "translate",
         "transpose",
@@ -492,14 +479,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -531,7 +520,6 @@
         "dumps",
         "fill",
         "flatten",
-        "from_number",
         "getfield",
         "item",
         "max",
@@ -554,10 +542,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -567,20 +555,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Complex number type composed of two double-precision floating-point numbers,"
+      "description": "Complex number type composed of two double-precision floating-point"
     },
     "character": {
       "node_type": "class",
@@ -628,10 +618,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -641,14 +631,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -702,10 +694,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -715,20 +707,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Complex number type composed of two extended-precision floating-point numbers."
+      "description": "Complex number type composed of two extended-precision floating-point"
     },
     "complex128": {
       "node_type": "class",
@@ -754,7 +748,6 @@
         "dumps",
         "fill",
         "flatten",
-        "from_number",
         "getfield",
         "item",
         "max",
@@ -777,10 +770,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -790,20 +783,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Complex number type composed of two double-precision floating-point numbers,"
+      "description": "Complex number type composed of two double-precision floating-point"
     },
     "complex64": {
       "node_type": "class",
@@ -851,10 +846,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -864,20 +859,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Complex number type composed of two single-precision floating-point numbers."
+      "description": "Complex number type composed of two single-precision floating-point"
     },
     "complexfloating": {
       "node_type": "class",
@@ -925,10 +922,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -938,14 +935,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -999,10 +998,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1012,20 +1011,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Complex number type composed of two single-precision floating-point numbers."
+      "description": "Complex number type composed of two single-precision floating-point"
     },
     "datetime64": {
       "node_type": "class",
@@ -1073,10 +1074,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1086,20 +1087,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "If created from a 64-bit integer, it represents an offset from ``1970-01-01T00:00:00``."
+      "description": "If created from a 64-bit integer, it represents an offset from"
     },
     "double": {
       "node_type": "class",
@@ -1126,7 +1129,6 @@
         "dumps",
         "fill",
         "flatten",
-        "from_number",
         "fromhex",
         "getfield",
         "hex",
@@ -1152,10 +1154,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1165,20 +1167,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Double-precision floating-point number type, compatible with Python :class:`float` and C ``double``."
+      "description": "Double-precision floating-point number type, compatible with Python"
     },
     "dtype": {
       "node_type": "class",
@@ -1210,7 +1214,7 @@
         "subdtype",
         "type"
       ],
-      "description": "dtype(dtype, align=False, copy=False, **kwargs)"
+      "description": "dtype(dtype, align=False, copy=False, [metadata])"
     },
     "errstate": {
       "node_type": "class",
@@ -1221,7 +1225,6 @@
         "_call",
         "_divide",
         "_invalid",
-        "_module_source",
         "_over",
         "_token",
         "_under"
@@ -1236,13 +1239,7 @@
       ],
       "attributes": [
         "_finfo_cache",
-        "_module_source",
-        "epsneg",
-        "iexp",
-        "machep",
-        "negep",
-        "nexp",
-        "resolution",
+        "smallest_normal",
         "tiny"
       ],
       "description": "finfo(dtype)"
@@ -1306,10 +1303,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1319,14 +1316,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -1382,10 +1381,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1395,14 +1394,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -1458,10 +1459,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1471,14 +1472,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -1511,7 +1514,6 @@
         "dumps",
         "fill",
         "flatten",
-        "from_number",
         "fromhex",
         "getfield",
         "hex",
@@ -1537,10 +1539,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1550,20 +1552,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Double-precision floating-point number type, compatible with Python :class:`float` and C ``double``."
+      "description": "Double-precision floating-point number type, compatible with Python"
     },
     "floating": {
       "node_type": "class",
@@ -1611,10 +1615,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1624,14 +1628,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -1685,10 +1691,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1698,14 +1704,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -1761,10 +1769,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1774,14 +1782,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -1796,7 +1806,6 @@
       "attributes": [
         "_max_vals",
         "_min_vals",
-        "_module_source",
         "max",
         "min"
       ],
@@ -1848,10 +1857,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1861,14 +1870,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -1924,10 +1935,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -1938,15 +1949,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -2002,10 +2015,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2016,21 +2029,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Signed integer type, compatible with C ``int``."
+      "description": "Abstract base class of all signed integer scalar types."
     },
     "int64": {
       "node_type": "class",
@@ -2080,10 +2095,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2094,21 +2109,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Signed integer type, compatible with C ``long``."
+      "description": "Default signed integer type, 64bit on 64bit systems and 32bit on 32bit"
     },
     "int8": {
       "node_type": "class",
@@ -2158,10 +2175,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2172,15 +2189,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -2236,10 +2255,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2250,21 +2269,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Signed integer type, compatible with C ``long``."
+      "description": "Default signed integer type, 64bit on 64bit systems and 32bit on 32bit"
     },
     "intc": {
       "node_type": "class",
@@ -2314,10 +2335,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2328,15 +2349,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -2391,10 +2414,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2405,15 +2428,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -2469,10 +2494,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2483,21 +2508,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Signed integer type, compatible with C ``long``."
+      "description": "Default signed integer type, 64bit on 64bit systems and 32bit on 32bit"
     },
     "long": {
       "node_type": "class",
@@ -2547,10 +2574,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2561,21 +2588,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Signed integer type, compatible with C ``long``."
+      "description": "Abstract base class of all signed integer scalar types."
     },
     "longdouble": {
       "node_type": "class",
@@ -2625,10 +2654,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2638,20 +2667,22 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Extended-precision floating-point number type, compatible with C ``long double``"
+      "description": "Extended-precision floating-point number type, compatible with C"
     },
     "longlong": {
       "node_type": "class",
@@ -2701,10 +2732,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2715,21 +2746,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Signed integer type, compatible with C ``long long``."
+      "description": "Default signed integer type, 64bit on 64bit systems and 32bit on 32bit"
     },
     "matrix": {
       "node_type": "class",
@@ -2792,6 +2825,7 @@
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2803,7 +2837,6 @@
         "H",
         "I",
         "T",
-        "_module_source",
         "base",
         "ctypes",
         "data",
@@ -2812,10 +2845,12 @@
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "mT",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "real",
         "shape",
         "size",
@@ -2877,6 +2912,7 @@
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2884,7 +2920,6 @@
       ],
       "attributes": [
         "T",
-        "_module_source",
         "base",
         "ctypes",
         "data",
@@ -2893,10 +2928,13 @@
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "mT",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -2957,6 +2995,7 @@
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -2972,33 +3011,34 @@
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "mT",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "ndarray(shape, dtype=float, buffer=None, offset=0, strides=None, order=None)"
+      "description": "ndarray(shape, dtype=float, buffer=None, offset=0,"
     },
     "ndenumerate": {
       "node_type": "class",
       "module": "numpy",
       "methods": [],
-      "attributes": [
-        "_module_source"
-      ],
+      "attributes": [],
       "description": "Multidimensional index iterator."
     },
     "ndindex": {
       "node_type": "class",
       "module": "numpy",
-      "methods": [],
-      "attributes": [
-        "_module_source"
+      "methods": [
+        "ndincr"
       ],
+      "attributes": [],
       "description": "An N-dimensional iterator object to index arrays."
     },
     "nditer": {
@@ -3081,10 +3121,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3094,14 +3134,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3155,10 +3197,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3168,14 +3210,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3192,7 +3236,6 @@
       ],
       "attributes": [
         "_coeffs",
-        "_module_source",
         "c",
         "coef",
         "coefficients",
@@ -3259,6 +3302,7 @@
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3266,7 +3310,6 @@
       ],
       "attributes": [
         "T",
-        "_module_source",
         "base",
         "ctypes",
         "data",
@@ -3275,10 +3318,13 @@
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "mT",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3333,10 +3379,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3346,14 +3392,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3409,10 +3457,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3423,15 +3471,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3486,10 +3536,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3500,15 +3550,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3564,10 +3616,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3577,14 +3629,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3682,10 +3736,10 @@
         "swapcase",
         "take",
         "title",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "translate",
         "transpose",
@@ -3698,14 +3752,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3760,10 +3816,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3774,15 +3830,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3838,10 +3896,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3852,15 +3910,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -3940,10 +4000,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -3954,21 +4014,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit systems."
+      "description": "Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit"
     },
     "uint16": {
       "node_type": "class",
@@ -4018,10 +4080,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4032,15 +4094,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -4096,10 +4160,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4110,21 +4174,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Unsigned integer type, compatible with C ``unsigned int``."
+      "description": "Abstract base class of all unsigned integer scalar types."
     },
     "uint64": {
       "node_type": "class",
@@ -4174,10 +4240,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4188,21 +4254,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit systems."
+      "description": "Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit"
     },
     "uint8": {
       "node_type": "class",
@@ -4252,10 +4320,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4266,15 +4334,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -4330,10 +4400,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4344,15 +4414,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -4408,10 +4480,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4422,21 +4494,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit systems."
+      "description": "Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit"
     },
     "ulong": {
       "node_type": "class",
@@ -4486,10 +4560,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4500,21 +4574,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit systems."
+      "description": "Abstract base class of all unsigned integer scalar types."
     },
     "ulonglong": {
       "node_type": "class",
@@ -4564,10 +4640,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4578,21 +4654,23 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
         "strides"
       ],
-      "description": "Unsigned integer type, compatible with C ``unsigned long long``."
+      "description": "Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit"
     },
     "unsignedinteger": {
       "node_type": "class",
@@ -4641,10 +4719,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4655,15 +4733,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -4719,10 +4799,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4733,15 +4813,17 @@
         "base",
         "data",
         "denominator",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
         "numerator",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -4759,9 +4841,7 @@
         "_vectorize_call",
         "_vectorize_call_with_signature"
       ],
-      "attributes": [
-        "_module_source"
-      ],
+      "attributes": [],
       "description": "vectorize(pyfunc=np._NoValue, otypes=None, doc=None, excluded=None,"
     },
     "void": {
@@ -4810,10 +4890,10 @@
         "sum",
         "swapaxes",
         "take",
-        "to_device",
         "tobytes",
         "tofile",
         "tolist",
+        "tostring",
         "trace",
         "transpose",
         "var",
@@ -4823,14 +4903,16 @@
         "T",
         "base",
         "data",
-        "device",
         "dtype",
         "flags",
         "flat",
         "imag",
+        "itemset",
         "itemsize",
         "nbytes",
         "ndim",
+        "newbyteorder",
+        "ptp",
         "real",
         "shape",
         "size",
@@ -4864,6 +4946,28 @@
       "description": "",
       "example": ""
     },
+    "_get_promotion_state": {
+      "node_type": "function",
+      "module": "numpy",
+      "parameters": {
+        "required": [],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Get the current NEP 50 promotion state.",
+      "example": ""
+    },
+    "_no_nep50_warning": {
+      "node_type": "function",
+      "module": "numpy",
+      "parameters": {
+        "required": [],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Context manager to disable NEP 50 warnings.  This context manager is",
+      "example": ""
+    },
     "_pyinstaller_hooks_dir": {
       "node_type": "function",
       "module": "numpy",
@@ -4875,20 +4979,23 @@
       "description": "",
       "example": ""
     },
+    "_set_promotion_state": {
+      "node_type": "function",
+      "module": "numpy",
+      "parameters": {
+        "required": [],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Set the NEP 50 promotion state.  This is not thread-safe.",
+      "example": ""
+    },
     "arange": {
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "start_or_stop"
-        ],
-        "optional": [
-          "stop",
-          "step",
-          "dtype",
-          "device",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "arange([start,] stop[, step,], dtype=None, *, device=None, like=None)",
@@ -4898,18 +5005,8 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "object"
-        ],
-        "optional": [
-          "dtype",
-          "copy",
-          "order",
-          "subok",
-          "ndmin",
-          "ndmax",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "array(object, dtype=None, *, copy=True, order='K', subok=False, ndmin=0,",
@@ -4919,35 +5016,19 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "a"
-        ],
-        "optional": [
-          "dtype",
-          "order",
-          "device",
-          "copy",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "asanyarray(a, dtype=None, order=None, *, device=None, copy=None, like=None)",
+      "description": "asanyarray(a, dtype=None, order=None, *, like=None)",
       "example": ""
     },
     "asarray": {
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "a"
-        ],
-        "optional": [
-          "dtype",
-          "order",
-          "device",
-          "copy",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "asarray(a, dtype=None, order=None, *, device=None, copy=None, like=None)",
@@ -4973,13 +5054,8 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "a"
-        ],
-        "optional": [
-          "dtype",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "ascontiguousarray(a, dtype=None, *, like=None)",
@@ -4989,13 +5065,8 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "a"
-        ],
-        "optional": [
-          "dtype",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "asfortranarray(a, dtype=None, *, like=None)",
@@ -5106,9 +5177,7 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "dtype"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -5134,18 +5203,11 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "shape"
-        ],
-        "optional": [
-          "dtype",
-          "order",
-          "device",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "empty(shape, dtype=None, order='C', *, device=None, like=None)",
+      "description": "empty(shape, dtype=float, order='C', *, device=None, like=None)",
       "example": ""
     },
     "eye": {
@@ -5215,31 +5277,19 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "x"
-        ],
-        "optional": [
-          "device",
-          "copy"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "from_dlpack(x, /, *, device=None, copy=None)",
+      "description": "from_dlpack(x, /)",
       "example": ""
     },
     "frombuffer": {
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "buffer"
-        ],
-        "optional": [
-          "dtype",
-          "count",
-          "offset",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "frombuffer(buffer, dtype=float, count=-1, offset=0, *, like=None)",
@@ -5249,16 +5299,8 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "file"
-        ],
-        "optional": [
-          "dtype",
-          "count",
-          "sep",
-          "offset",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "fromfile(file, dtype=float, count=-1, sep='', offset=0, *, like=None)",
@@ -5286,14 +5328,8 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "iter",
-          "dtype"
-        ],
-        "optional": [
-          "count",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "fromiter(iter, dtype, count=-1, *, like=None)",
@@ -5303,12 +5339,7 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "func",
-          "nin",
-          "nout",
-          "kwargs"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -5336,15 +5367,8 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "string",
-          "sep"
-        ],
-        "optional": [
-          "dtype",
-          "count",
-          "like"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "fromstring(string, dtype=float, count=-1, *, sep, like=None)",
@@ -5698,21 +5722,11 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "op",
-          "axes"
-        ],
-        "optional": [
-          "flags",
-          "op_flags",
-          "op_dtypes",
-          "order",
-          "casting",
-          "buffersize"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "nested_iters(op, axes, flags=None, op_flags=None, op_dtypes=None,",
+      "description": "nested_iters(op, axes, flags=None, op_flags=None, op_dtypes=None,     order=\"K\", casting=\"safe\", buffersize=0)",
       "example": ""
     },
     "ones": {
@@ -5751,14 +5765,11 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "type1",
-          "type2"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "promote_types(type1, type2, /)",
+      "description": "promote_types(type1, type2)",
       "example": ""
     },
     "require": {
@@ -5810,8 +5821,7 @@
           "formatter",
           "sign",
           "floatmode",
-          "legacy",
-          "override_repr"
+          "legacy"
         ]
       },
       "returns": "unknown",
@@ -5885,6 +5895,23 @@
       "description": "Print information about various resources in the system",
       "example": ""
     },
+    "trapz": {
+      "node_type": "function",
+      "module": "numpy",
+      "parameters": {
+        "required": [
+          "y"
+        ],
+        "optional": [
+          "x",
+          "dx",
+          "axis"
+        ]
+      },
+      "returns": "unknown",
+      "description": "`trapz` is deprecated in NumPy 2.0.",
+      "example": ""
+    },
     "tri": {
       "node_type": "function",
       "module": "numpy",
@@ -5952,410 +5979,231 @@
       "node_type": "function",
       "module": "numpy",
       "parameters": {
-        "required": [
-          "shape"
-        ],
-        "optional": [
-          "dtype",
-          "order",
-          "device",
-          "like"
-        ]
-      },
-      "returns": "unknown",
-      "description": "zeros(shape, dtype=None, order='C', *, device=None, like=None)",
-      "example": ""
-    },
-    "capabilities": {
-      "node_type": "method",
-      "belongs_to": "__array_namespace_info__",
-      "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return a dictionary of array API library capabilities.",
-      "example": ""
-    },
-    "default_device": {
-      "node_type": "method",
-      "belongs_to": "__array_namespace_info__",
-      "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "The default device used for new NumPy arrays.",
-      "example": ""
-    },
-    "default_dtypes": {
-      "node_type": "method",
-      "belongs_to": "__array_namespace_info__",
-      "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "device"
-        ]
-      },
-      "returns": "unknown",
-      "description": "The default data types used for new NumPy arrays.",
-      "example": ""
-    },
-    "devices": {
-      "node_type": "method",
-      "belongs_to": "__array_namespace_info__",
-      "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "The devices supported by NumPy.",
-      "example": ""
-    },
-    "dtypes": {
-      "node_type": "method",
-      "belongs_to": "__array_namespace_info__",
-      "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "device",
-          "kind"
-        ]
-      },
-      "returns": "unknown",
-      "description": "The array API data types supported by NumPy.",
+      "description": "zeros(shape, dtype=float, order='C', *, like=None)",
       "example": ""
     },
     "all": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis",
-          "out",
-          "keepdims",
-          "where"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.all`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "any": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis",
-          "out",
-          "keepdims",
-          "where"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.any`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "argmax": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis",
-          "out",
-          "keepdims"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.argmax`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "argmin": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis",
-          "out",
-          "keepdims"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.argmin`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "argsort": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis",
-          "kind",
-          "order",
-          "stable"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.argsort`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "astype": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "dtype"
-        ],
-        "optional": [
-          "order",
-          "casting",
-          "subok",
-          "copy"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.astype`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "byteswap": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "inplace"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.byteswap`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "choose": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "choices"
-        ],
-        "optional": [
-          "out",
-          "mode"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.choose`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "clip": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "kwargs"
-        ],
-        "optional": [
-          "min",
-          "max",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.clip`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "compress": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "condition"
-        ],
-        "optional": [
-          "axis",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.compress`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "conj": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.conj`.",
+      "description": "",
       "example": ""
     },
     "conjugate": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.conjugate`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "copy": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "order"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.copy`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "cumprod": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.cumprod`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "cumsum": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.cumsum`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "diagonal": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "offset",
-          "axis1",
-          "axis2"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.diagonal`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "dump": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "file"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.dump`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "dumps": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.dumps`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "fill": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "value"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.fill`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "flatten": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "order"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.flatten`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "getfield": {
@@ -6366,218 +6214,150 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.getfield`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "item": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "args"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.item`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "max": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "kwargs"
-        ],
-        "optional": [
-          "axis",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.max`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "mean": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "kwargs"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.mean`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "min": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "kwargs"
-        ],
-        "optional": [
-          "axis",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.min`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "nonzero": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.nonzero`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "prod": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "kwargs"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.prod`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "put": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "indices",
-          "values"
-        ],
-        "optional": [
-          "mode"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.put`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "ravel": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "order"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.ravel`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "repeat": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "repeats"
-        ],
-        "optional": [
-          "axis"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.repeat`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "reshape": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "shape"
-        ],
-        "optional": [
-          "order",
-          "copy"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.reshape`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "resize": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "new_shape"
-        ],
-        "optional": [
-          "refcheck"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.resize`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "round": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "decimals",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.round`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "searchsorted": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "v"
-        ],
-        "optional": [
-          "side",
-          "sorter"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.searchsorted`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "setfield": {
@@ -6588,264 +6368,179 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.setfield`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "setflags": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "write",
-          "align",
-          "uic"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.setflags`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "sort": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis",
-          "kind",
-          "order",
-          "stable"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.sort`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "squeeze": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "axis"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.squeeze`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "std": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "kwargs"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out",
-          "ddof"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.std`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "sum": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "kwargs"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.sum`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "swapaxes": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "axis1",
-          "axis2"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.swapaxes`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "take": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "indices"
-        ],
-        "optional": [
-          "axis",
-          "out",
-          "mode"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.take`.",
-      "example": ""
-    },
-    "to_device": {
-      "node_type": "method",
-      "belongs_to": "void",
-      "parameters": {
-        "required": [
-          "self",
-          "device"
-        ],
-        "optional": [
-          "stream"
-        ]
-      },
-      "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.to_device`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "tobytes": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "order"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.tobytes`.",
+      "description": "",
       "example": ""
     },
     "tofile": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "fid"
-        ],
-        "optional": [
-          "sep",
-          "format"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.tofile`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "tolist": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.tolist`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
+      "example": ""
+    },
+    "tostring": {
+      "node_type": "method",
+      "belongs_to": "void",
+      "parameters": {
+        "required": [],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "trace": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "offset",
-          "axis1",
-          "axis2",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.trace`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "transpose": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "axes"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.transpose`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "var": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "kwargs"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out",
-          "ddof"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.var`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "view": {
       "node_type": "method",
       "belongs_to": "void",
       "parameters": {
-        "required": [
-          "self",
-          "args",
-          "kwargs"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Scalar method identical to `ndarray.view`.",
+      "description": "Scalar method identical to the corresponding array attribute.",
       "example": ""
     },
     "reset": {
       "node_type": "method",
       "belongs_to": "nditer",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -6856,9 +6551,7 @@
       "node_type": "method",
       "belongs_to": "ushort",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -6869,9 +6562,7 @@
       "node_type": "method",
       "belongs_to": "ushort",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -6915,7 +6606,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return the number of non-overlapping occurrences of substring sub in string S[start:end].",
+      "description": "S.count(sub[, start[, end]]) -> int",
       "example": ""
     },
     "decode": {
@@ -6942,7 +6633,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return True if the string ends with the specified suffix, False otherwise.",
+      "description": "S.endswith(suffix[, start[, end]]) -> bool",
       "example": ""
     },
     "expandtabs": {
@@ -6968,7 +6659,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].",
+      "description": "S.find(sub[, start[, end]]) -> int",
       "example": ""
     },
     "fromhex": {
@@ -7005,7 +6696,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].",
+      "description": "S.index(sub[, start[, end]]) -> int",
       "example": ""
     },
     "isalnum": {
@@ -7248,7 +6939,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].",
+      "description": "S.rfind(sub[, start[, end]]) -> int",
       "example": ""
     },
     "rindex": {
@@ -7259,7 +6950,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].",
+      "description": "S.rindex(sub[, start[, end]]) -> int",
       "example": ""
     },
     "rjust": {
@@ -7362,7 +7053,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return True if the string starts with the specified prefix, False otherwise.",
+      "description": "S.startswith(prefix[, start[, end]]) -> bool",
       "example": ""
     },
     "strip": {
@@ -7447,26 +7138,11 @@
       "description": "Pad a numeric string with zeros on the left, to fill a field of the given width.",
       "example": ""
     },
-    "from_number": {
-      "node_type": "method",
-      "belongs_to": "float64",
-      "parameters": {
-        "required": [
-          "number"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Convert real number to a floating-point number.",
-      "example": ""
-    },
     "as_integer_ratio": {
       "node_type": "method",
       "belongs_to": "single",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -7477,12 +7153,8 @@
       "node_type": "method",
       "belongs_to": "dtype",
       "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "new_order"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "newbyteorder(new_order='S', /)",
@@ -7534,15 +7206,8 @@
       "node_type": "method",
       "belongs_to": "recarray",
       "parameters": {
-        "required": [
-          "self",
-          "kth"
-        ],
-        "optional": [
-          "axis",
-          "kind",
-          "order"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "a.argpartition(kth, axis=-1, kind='introselect', order=None)",
@@ -7552,16 +7217,11 @@
       "node_type": "method",
       "belongs_to": "recarray",
       "parameters": {
-        "required": [
-          "self",
-          "other"
-        ],
-        "optional": [
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
-      "description": "a.dot(other, /, out=None)",
+      "description": "",
       "example": ""
     },
     "getA": {
@@ -7645,6 +7305,17 @@
       "description": "Peak-to-peak (maximum - minimum) value along the given axis.",
       "example": ""
     },
+    "to_device": {
+      "node_type": "method",
+      "belongs_to": "recarray",
+      "parameters": {
+        "required": [],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
     "flush": {
       "node_type": "method",
       "belongs_to": "memmap",
@@ -7658,13 +7329,24 @@
       "description": "Write any changes in the array to the file on disk.",
       "example": ""
     },
-    "close": {
+    "ndincr": {
       "node_type": "method",
-      "belongs_to": "nditer",
+      "belongs_to": "ndindex",
       "parameters": {
         "required": [
           "self"
         ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Increment the multi-dimensional index by one.",
+      "example": ""
+    },
+    "close": {
+      "node_type": "method",
+      "belongs_to": "nditer",
+      "parameters": {
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -7675,9 +7357,7 @@
       "node_type": "method",
       "belongs_to": "nditer",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -7688,9 +7368,7 @@
       "node_type": "method",
       "belongs_to": "nditer",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -7701,9 +7379,7 @@
       "node_type": "method",
       "belongs_to": "nditer",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -7714,10 +7390,7 @@
       "node_type": "method",
       "belongs_to": "nditer",
       "parameters": {
-        "required": [
-          "self",
-          "i"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -7728,9 +7401,7 @@
       "node_type": "method",
       "belongs_to": "nditer",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -7830,29 +7501,22 @@
       "node_type": "method",
       "belongs_to": "str_",
       "parameters": {
-        "required": [
-          "self",
-          "args",
-          "kwargs"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return a formatted version of the string, using substitutions from args and kwargs.",
+      "description": "S.format(*args, **kwargs) -> str",
       "example": ""
     },
     "format_map": {
       "node_type": "method",
       "belongs_to": "str_",
       "parameters": {
-        "required": [
-          "self",
-          "mapping"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return a formatted version of the string, using substitutions from mapping.",
+      "description": "S.format_map(mapping) -> str",
       "example": ""
     },
     "isdecimal": {
@@ -7904,20 +7568,15 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return True if all characters in the string are printable, False otherwise.",
+      "description": "Return True if the string is printable, False otherwise.",
       "example": ""
     },
     "_get_strided_loop": {
       "node_type": "method",
       "belongs_to": "ufunc",
       "parameters": {
-        "required": [
-          "self",
-          "call_info"
-        ],
-        "optional": [
-          "fixed_strides"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "_get_strided_loop(call_info, /, *, fixed_strides=None)",
@@ -7927,15 +7586,8 @@
       "node_type": "method",
       "belongs_to": "ufunc",
       "parameters": {
-        "required": [
-          "self",
-          "dtypes"
-        ],
-        "optional": [
-          "signature",
-          "casting",
-          "reduction"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "_resolve_dtypes_and_context(dtypes, *, signature=None, casting=None, reduction=False)",
@@ -7945,15 +7597,8 @@
       "node_type": "method",
       "belongs_to": "ufunc",
       "parameters": {
-        "required": [
-          "self",
-          "array"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "accumulate(array, axis=0, dtype=None, out=None)",
@@ -7963,14 +7608,8 @@
       "node_type": "method",
       "belongs_to": "ufunc",
       "parameters": {
-        "required": [
-          "self",
-          "a",
-          "indices"
-        ],
-        "optional": [
-          "b"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "at(a, indices, b=None, /)",
@@ -7980,12 +7619,7 @@
       "node_type": "method",
       "belongs_to": "ufunc",
       "parameters": {
-        "required": [
-          "self",
-          "A",
-          "B",
-          "kwargs"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -7996,16 +7630,8 @@
       "node_type": "method",
       "belongs_to": "ufunc",
       "parameters": {
-        "required": [
-          "self",
-          "array",
-          "kwargs"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "reduce(array, axis=0, dtype=None, out=None, keepdims=False, initial=<no value>, where=True)",
@@ -8015,16 +7641,8 @@
       "node_type": "method",
       "belongs_to": "ufunc",
       "parameters": {
-        "required": [
-          "self",
-          "array",
-          "indices"
-        ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "reduceat(array, indices, axis=0, dtype=None, out=None)",
@@ -8034,15 +7652,8 @@
       "node_type": "method",
       "belongs_to": "ufunc",
       "parameters": {
-        "required": [
-          "self",
-          "dtypes"
-        ],
-        "optional": [
-          "signature",
-          "casting",
-          "reduction"
-        ]
+        "required": [],
+        "optional": []
       },
       "returns": "unknown",
       "description": "resolve_dtypes(dtypes, *, signature=None, casting=None, reduction=False)",

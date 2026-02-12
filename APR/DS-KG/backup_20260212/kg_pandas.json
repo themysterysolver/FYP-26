@@ -98,7 +98,6 @@
         "name",
         "names",
         "numpy_dtype",
-        "storage",
         "type"
       ],
       "description": "An ExtensionDtype for PyArrow data types."
@@ -117,14 +116,11 @@
       "attributes": [
         "_can_fast_transpose",
         "_can_hold_na",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "itemsize",
@@ -143,7 +139,7 @@
       "methods": [
         "_accumulate",
         "_box_func",
-        "_cast_pointwise_result",
+        "_cast_quantile_result",
         "_categories_match_up_to_permutation",
         "_concat_same_type",
         "_dir_additions",
@@ -151,6 +147,7 @@
         "_empty",
         "_encode_with_my_categories",
         "_explode",
+        "_fill_mask_inplace",
         "_formatter",
         "_from_backing_data",
         "_from_factorized",
@@ -169,6 +166,7 @@
         "_quantile",
         "_rank",
         "_reduce",
+        "_replace",
         "_repr_2d",
         "_repr_categories",
         "_reset_cache",
@@ -193,7 +191,6 @@
         "_str_index",
         "_str_isalnum",
         "_str_isalpha",
-        "_str_isascii",
         "_str_isdecimal",
         "_str_isdigit",
         "_str_islower",
@@ -229,7 +226,6 @@
         "_str_translate",
         "_str_upper",
         "_str_wrap",
-        "_str_zfill",
         "_unbox_scalar",
         "_validate_codes_for_dtype",
         "_validate_listlike",
@@ -283,6 +279,7 @@
         "sort_values",
         "swapaxes",
         "take",
+        "to_list",
         "to_numpy",
         "tolist",
         "transpose",
@@ -292,6 +289,7 @@
       ],
       "attributes": [
         "T",
+        "_abc_impl",
         "_accessors",
         "_can_hold_na",
         "_codes",
@@ -301,7 +299,7 @@
         "_hidden_attrs",
         "_internal_fill_value",
         "_ndarray",
-        "_readonly",
+        "_str_na_value",
         "_typ",
         "categories",
         "codes",
@@ -412,11 +410,13 @@
         "_get_string_slice",
         "_get_values_for_csv",
         "_getitem_slice",
+        "_holds_integer",
         "_inner_indexer",
         "_intersection",
         "_intersection_via_get_indexer",
         "_is_comparable_dtype",
         "_is_dtype_compat",
+        "_is_memory_usage_qualified",
         "_join_empty",
         "_join_level",
         "_join_monotonic",
@@ -431,7 +431,6 @@
         "_maybe_cast_listlike_indexer",
         "_maybe_cast_slice_bound",
         "_maybe_check_unique",
-        "_maybe_copy_array_input",
         "_maybe_disable_logical_methods",
         "_maybe_disallow_fill",
         "_maybe_downcast_for_indexing",
@@ -469,7 +468,7 @@
         "_with_infer",
         "_wrap_difference_result",
         "_wrap_intersection_result",
-        "_wrap_join_result",
+        "_wrap_joined_index",
         "_wrap_reindex_result",
         "_wrap_setop_result",
         "add_categories",
@@ -496,6 +495,7 @@
         "equals",
         "factorize",
         "fillna",
+        "format",
         "get_indexer",
         "get_indexer_for",
         "get_indexer_non_unique",
@@ -503,11 +503,19 @@
         "get_loc",
         "get_slice_bound",
         "groupby",
+        "holds_integer",
         "identical",
         "infer_objects",
         "insert",
         "intersection",
         "is_",
+        "is_boolean",
+        "is_categorical",
+        "is_floating",
+        "is_integer",
+        "is_interval",
+        "is_numeric",
+        "is_object",
         "isin",
         "isna",
         "isnull",
@@ -536,6 +544,7 @@
         "shift",
         "slice_indexer",
         "slice_locs",
+        "sort",
         "sort_values",
         "sortlevel",
         "str",
@@ -573,7 +582,6 @@
         "_id",
         "_index_as_unique",
         "_is_all_dates",
-        "_is_memory_usage_qualified",
         "_is_multi",
         "_is_strictly_monotonic_decreasing",
         "_is_strictly_monotonic_increasing",
@@ -618,13 +626,16 @@
         "_align_for_op",
         "_align_frame",
         "_align_series",
-        "_append_internal",
+        "_append",
         "_arith_method",
         "_arith_method_with_reindex",
+        "_as_manager",
         "_box_col_values",
-        "_check_copy_deprecation",
         "_check_inplace_and_allows_duplicate_labels",
+        "_check_is_chained_assignment_possible",
         "_check_label_or_level_ambiguity",
+        "_check_setitem_copy",
+        "_clear_item_cache",
         "_clip_with_one_bound",
         "_clip_with_scalar",
         "_cmp_method",
@@ -636,6 +647,8 @@
         "_constructor_from_mgr",
         "_constructor_sliced",
         "_constructor_sliced_from_mgr",
+        "_create_data_for_split_and_tight_to_dict",
+        "_deprecate_downcast",
         "_dir_additions",
         "_dir_deletions",
         "_dispatch_frame_op",
@@ -657,13 +670,14 @@
         "_get_cleaned_column_resolvers",
         "_get_column_array",
         "_get_index_resolvers",
-        "_get_item",
+        "_get_item_cache",
         "_get_label_or_level_values",
         "_get_numeric_data",
         "_get_value",
         "_get_values_for_csv",
         "_getitem_bool_array",
         "_getitem_multilevel",
+        "_getitem_nocopy",
         "_getitem_slice",
         "_gotitem",
         "_indexed_same",
@@ -673,6 +687,7 @@
         "_is_label_or_level_reference",
         "_is_label_reference",
         "_is_level_reference",
+        "_is_view_after_cow_rules",
         "_iset_item",
         "_iset_item_mgr",
         "_iset_not_inplace",
@@ -681,9 +696,12 @@
         "_logical_func",
         "_logical_method",
         "_maybe_align_series_as_frame",
+        "_maybe_cache_changed",
+        "_maybe_update_cacher",
         "_min_count_stat_function",
         "_needs_reindex_multi",
         "_pad_or_backfill",
+        "_protect_consolidate",
         "_reduce",
         "_reduce_axis1",
         "_reindex_axes",
@@ -697,10 +715,12 @@
         "_repr_html_",
         "_repr_latex_",
         "_reset_cache",
+        "_reset_cacher",
         "_sanitize_column",
         "_set_axis",
         "_set_axis_name",
         "_set_axis_nocheck",
+        "_set_is_copy",
         "_set_item",
         "_set_item_frame_value",
         "_set_item_mgr",
@@ -713,6 +733,7 @@
         "_slice",
         "_stat_function",
         "_stat_function_ddof",
+        "_take_with_is_copy",
         "_to_dict_of_blocks",
         "_to_latex_via_styler",
         "_update_inplace",
@@ -728,13 +749,16 @@
         "all",
         "any",
         "apply",
+        "applymap",
         "asfreq",
         "asof",
         "assign",
         "astype",
         "at_time",
+        "backfill",
         "between_time",
         "bfill",
+        "bool",
         "boxplot",
         "clip",
         "combine",
@@ -769,9 +793,9 @@
         "ffill",
         "fillna",
         "filter",
+        "first",
         "first_valid_index",
         "floordiv",
-        "from_arrow",
         "from_dict",
         "from_records",
         "ge",
@@ -797,6 +821,7 @@
         "keys",
         "kurt",
         "kurtosis",
+        "last",
         "last_valid_index",
         "le",
         "lt",
@@ -819,6 +844,7 @@
         "notnull",
         "nsmallest",
         "nunique",
+        "pad",
         "pct_change",
         "pipe",
         "pivot",
@@ -866,6 +892,7 @@
         "sub",
         "subtract",
         "sum",
+        "swapaxes",
         "swaplevel",
         "tail",
         "take",
@@ -874,9 +901,9 @@
         "to_dict",
         "to_excel",
         "to_feather",
+        "to_gbq",
         "to_hdf",
         "to_html",
-        "to_iceberg",
         "to_json",
         "to_latex",
         "to_markdown",
@@ -916,14 +943,17 @@
         "_agg_see_also_doc",
         "_can_fast_transpose",
         "_constructor",
+        "_data",
         "_hidden_attrs",
         "_info_axis",
         "_info_axis_name",
         "_info_axis_number",
         "_internal_names",
         "_internal_names_set",
+        "_is_copy",
         "_is_homogeneous_type",
         "_is_mixed_type",
+        "_is_view",
         "_metadata",
         "_series",
         "_typ",
@@ -958,6 +988,7 @@
         "_repr_attrs",
         "_validate_n",
         "copy",
+        "is_anchored",
         "is_month_end",
         "is_month_start",
         "is_on_offset",
@@ -973,8 +1004,6 @@
         "_attributes",
         "_cache",
         "_day_opt",
-        "_n",
-        "_normalize",
         "_params",
         "_pd_timedelta",
         "_prefix",
@@ -1052,10 +1081,12 @@
         "_get_time_micros",
         "_get_values_for_csv",
         "_getitem_slice",
+        "_holds_integer",
         "_inner_indexer",
         "_intersection",
         "_intersection_via_get_indexer",
         "_is_comparable_dtype",
+        "_is_memory_usage_qualified",
         "_join_empty",
         "_join_level",
         "_join_monotonic",
@@ -1070,7 +1101,6 @@
         "_maybe_cast_listlike_indexer",
         "_maybe_cast_slice_bound",
         "_maybe_check_unique",
-        "_maybe_copy_array_input",
         "_maybe_disable_logical_methods",
         "_maybe_disallow_fill",
         "_maybe_downcast_for_indexing",
@@ -1113,7 +1143,7 @@
         "_with_infer",
         "_wrap_difference_result",
         "_wrap_intersection_result",
-        "_wrap_join_result",
+        "_wrap_joined_index",
         "_wrap_range_setop",
         "_wrap_reindex_result",
         "_wrap_setop_result",
@@ -1142,6 +1172,7 @@
         "factorize",
         "fillna",
         "floor",
+        "format",
         "get_indexer",
         "get_indexer_for",
         "get_indexer_non_unique",
@@ -1149,6 +1180,7 @@
         "get_loc",
         "get_slice_bound",
         "groupby",
+        "holds_integer",
         "identical",
         "indexer_at_time",
         "indexer_between_time",
@@ -1156,6 +1188,13 @@
         "insert",
         "intersection",
         "is_",
+        "is_boolean",
+        "is_categorical",
+        "is_floating",
+        "is_integer",
+        "is_interval",
+        "is_numeric",
+        "is_object",
         "isin",
         "isna",
         "isnull",
@@ -1184,6 +1223,7 @@
         "slice_indexer",
         "slice_locs",
         "snap",
+        "sort",
         "sort_values",
         "sortlevel",
         "std",
@@ -1231,7 +1271,6 @@
         "_index_as_unique",
         "_is_all_dates",
         "_is_dates_only",
-        "_is_memory_usage_qualified",
         "_is_monotonic_decreasing",
         "_is_monotonic_increasing",
         "_is_multi",
@@ -1376,6 +1415,8 @@
         "close"
       ],
       "attributes": [
+        "_docstring_components",
+        "_path",
         "book",
         "date_format",
         "datetime_format",
@@ -1416,14 +1457,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -1457,14 +1495,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -1486,7 +1521,12 @@
         "_set_grouper"
       ],
       "attributes": [
-        "_attributes"
+        "_attributes",
+        "ax",
+        "grouper",
+        "groups",
+        "indexer",
+        "obj"
       ],
       "description": "A Grouper allows the user to specify a groupby instruction for an object."
     },
@@ -1580,10 +1620,12 @@
         "_get_string_slice",
         "_get_values_for_csv",
         "_getitem_slice",
+        "_holds_integer",
         "_inner_indexer",
         "_intersection",
         "_intersection_via_get_indexer",
         "_is_comparable_dtype",
+        "_is_memory_usage_qualified",
         "_join_empty",
         "_join_level",
         "_join_monotonic",
@@ -1598,7 +1640,6 @@
         "_maybe_cast_listlike_indexer",
         "_maybe_cast_slice_bound",
         "_maybe_check_unique",
-        "_maybe_copy_array_input",
         "_maybe_disable_logical_methods",
         "_maybe_disallow_fill",
         "_maybe_downcast_for_indexing",
@@ -1635,7 +1676,7 @@
         "_with_infer",
         "_wrap_difference_result",
         "_wrap_intersection_result",
-        "_wrap_join_result",
+        "_wrap_joined_index",
         "_wrap_reindex_result",
         "_wrap_setop_result",
         "all",
@@ -1659,6 +1700,7 @@
         "equals",
         "factorize",
         "fillna",
+        "format",
         "get_indexer",
         "get_indexer_for",
         "get_indexer_non_unique",
@@ -1666,11 +1708,19 @@
         "get_loc",
         "get_slice_bound",
         "groupby",
+        "holds_integer",
         "identical",
         "infer_objects",
         "insert",
         "intersection",
         "is_",
+        "is_boolean",
+        "is_categorical",
+        "is_floating",
+        "is_integer",
+        "is_interval",
+        "is_numeric",
+        "is_object",
         "isin",
         "isna",
         "isnull",
@@ -1694,6 +1744,7 @@
         "shift",
         "slice_indexer",
         "slice_locs",
+        "sort",
         "sort_values",
         "sortlevel",
         "str",
@@ -1732,7 +1783,6 @@
         "_id",
         "_index_as_unique",
         "_is_all_dates",
-        "_is_memory_usage_qualified",
         "_is_multi",
         "_is_strictly_monotonic_decreasing",
         "_is_strictly_monotonic_increasing",
@@ -1786,14 +1836,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -1827,14 +1874,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -1868,14 +1912,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -1909,14 +1950,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -2046,12 +2084,14 @@
         "_get_string_slice",
         "_get_values_for_csv",
         "_getitem_slice",
+        "_holds_integer",
         "_inner_indexer",
         "_intersection",
         "_intersection_non_unique",
         "_intersection_unique",
         "_intersection_via_get_indexer",
         "_is_comparable_dtype",
+        "_is_memory_usage_qualified",
         "_join_empty",
         "_join_level",
         "_join_monotonic",
@@ -2067,7 +2107,6 @@
         "_maybe_cast_slice_bound",
         "_maybe_check_unique",
         "_maybe_convert_i8",
-        "_maybe_copy_array_input",
         "_maybe_disable_logical_methods",
         "_maybe_disallow_fill",
         "_maybe_downcast_for_indexing",
@@ -2105,7 +2144,7 @@
         "_with_infer",
         "_wrap_difference_result",
         "_wrap_intersection_result",
-        "_wrap_join_result",
+        "_wrap_joined_index",
         "_wrap_reindex_result",
         "_wrap_setop_result",
         "all",
@@ -2130,6 +2169,7 @@
         "equals",
         "factorize",
         "fillna",
+        "format",
         "from_arrays",
         "from_breaks",
         "from_tuples",
@@ -2140,11 +2180,19 @@
         "get_loc",
         "get_slice_bound",
         "groupby",
+        "holds_integer",
         "identical",
         "infer_objects",
         "insert",
         "intersection",
         "is_",
+        "is_boolean",
+        "is_categorical",
+        "is_floating",
+        "is_integer",
+        "is_interval",
+        "is_numeric",
+        "is_object",
         "isin",
         "isna",
         "isnull",
@@ -2170,6 +2218,7 @@
         "shift",
         "slice_indexer",
         "slice_locs",
+        "sort",
         "sort_values",
         "sortlevel",
         "str",
@@ -2208,7 +2257,6 @@
         "_id",
         "_index_as_unique",
         "_is_all_dates",
-        "_is_memory_usage_qualified",
         "_is_multi",
         "_is_strictly_monotonic_decreasing",
         "_is_strictly_monotonic_increasing",
@@ -2313,11 +2361,13 @@
         "_get_string_slice",
         "_get_values_for_csv",
         "_getitem_slice",
+        "_holds_integer",
         "_inner_indexer",
         "_intersection",
         "_intersection_via_get_indexer",
         "_is_comparable_dtype",
         "_is_lexsorted",
+        "_is_memory_usage_qualified",
         "_join_empty",
         "_join_level",
         "_join_monotonic",
@@ -2332,7 +2382,6 @@
         "_maybe_cast_listlike_indexer",
         "_maybe_cast_slice_bound",
         "_maybe_check_unique",
-        "_maybe_copy_array_input",
         "_maybe_disable_logical_methods",
         "_maybe_disallow_fill",
         "_maybe_downcast_for_indexing",
@@ -2379,7 +2428,7 @@
         "_with_infer",
         "_wrap_difference_result",
         "_wrap_intersection_result",
-        "_wrap_join_result",
+        "_wrap_joined_index",
         "_wrap_reindex_result",
         "_wrap_setop_result",
         "all",
@@ -2404,6 +2453,7 @@
         "equals",
         "factorize",
         "fillna",
+        "format",
         "from_arrays",
         "from_frame",
         "from_product",
@@ -2417,11 +2467,19 @@
         "get_locs",
         "get_slice_bound",
         "groupby",
+        "holds_integer",
         "identical",
         "infer_objects",
         "insert",
         "intersection",
         "is_",
+        "is_boolean",
+        "is_categorical",
+        "is_floating",
+        "is_integer",
+        "is_interval",
+        "is_numeric",
+        "is_object",
         "isin",
         "isna",
         "isnull",
@@ -2449,6 +2507,7 @@
         "shift",
         "slice_indexer",
         "slice_locs",
+        "sort",
         "sort_values",
         "sortlevel",
         "str",
@@ -2488,8 +2547,8 @@
         "_hidden_attrs",
         "_id",
         "_index_as_unique",
+        "_inferred_type_levels",
         "_is_all_dates",
-        "_is_memory_usage_qualified",
         "_is_multi",
         "_is_strictly_monotonic_decreasing",
         "_is_strictly_monotonic_increasing",
@@ -2533,9 +2592,18 @@
     "NamedAgg": {
       "node_type": "class",
       "module": "pandas",
-      "methods": [],
+      "methods": [
+        "_asdict",
+        "_make",
+        "_replace",
+        "count",
+        "index"
+      ],
       "attributes": [
-        "args"
+        "_field_defaults",
+        "_fields",
+        "aggfunc",
+        "column"
       ],
       "description": "Helper for column specific aggregation with control over output column names."
     },
@@ -2555,8 +2623,6 @@
       ],
       "attributes": [
         "_dtype",
-        "_freq",
-        "_ordinal",
         "day",
         "day_of_week",
         "day_of_year",
@@ -2686,10 +2752,12 @@
         "_get_string_slice",
         "_get_values_for_csv",
         "_getitem_slice",
+        "_holds_integer",
         "_inner_indexer",
         "_intersection",
         "_intersection_via_get_indexer",
         "_is_comparable_dtype",
+        "_is_memory_usage_qualified",
         "_join_empty",
         "_join_level",
         "_join_monotonic",
@@ -2705,7 +2773,6 @@
         "_maybe_cast_slice_bound",
         "_maybe_check_unique",
         "_maybe_convert_timedelta",
-        "_maybe_copy_array_input",
         "_maybe_disable_logical_methods",
         "_maybe_disallow_fill",
         "_maybe_downcast_for_indexing",
@@ -2745,7 +2812,7 @@
         "_with_infer",
         "_wrap_difference_result",
         "_wrap_intersection_result",
-        "_wrap_join_result",
+        "_wrap_joined_index",
         "_wrap_reindex_result",
         "_wrap_setop_result",
         "all",
@@ -2770,6 +2837,7 @@
         "equals",
         "factorize",
         "fillna",
+        "format",
         "from_fields",
         "from_ordinals",
         "get_indexer",
@@ -2779,11 +2847,19 @@
         "get_loc",
         "get_slice_bound",
         "groupby",
+        "holds_integer",
         "identical",
         "infer_objects",
         "insert",
         "intersection",
         "is_",
+        "is_boolean",
+        "is_categorical",
+        "is_floating",
+        "is_integer",
+        "is_interval",
+        "is_numeric",
+        "is_object",
         "isin",
         "isna",
         "isnull",
@@ -2808,6 +2884,7 @@
         "shift",
         "slice_indexer",
         "slice_locs",
+        "sort",
         "sort_values",
         "sortlevel",
         "str",
@@ -2848,7 +2925,6 @@
         "_id",
         "_index_as_unique",
         "_is_all_dates",
-        "_is_memory_usage_qualified",
         "_is_multi",
         "_is_strictly_monotonic_decreasing",
         "_is_strictly_monotonic_increasing",
@@ -2912,7 +2988,6 @@
       "node_type": "class",
       "module": "pandas",
       "methods": [
-        "_argminmax",
         "_arith_method",
         "_assert_can_do_setop",
         "_can_hold_identifiers_and_holds_name",
@@ -2961,10 +3036,12 @@
         "_get_string_slice",
         "_get_values_for_csv",
         "_getitem_slice",
+        "_holds_integer",
         "_inner_indexer",
         "_intersection",
         "_intersection_via_get_indexer",
         "_is_comparable_dtype",
+        "_is_memory_usage_qualified",
         "_join_empty",
         "_join_level",
         "_join_monotonic",
@@ -2979,12 +3056,12 @@
         "_maybe_cast_listlike_indexer",
         "_maybe_cast_slice_bound",
         "_maybe_check_unique",
-        "_maybe_copy_array_input",
         "_maybe_disable_logical_methods",
         "_maybe_disallow_fill",
         "_maybe_downcast_for_indexing",
         "_maybe_preserve_names",
         "_memory_usage",
+        "_min_fitting_element",
         "_minmax",
         "_mpl_repr",
         "_outer_indexer",
@@ -3019,7 +3096,7 @@
         "_with_infer",
         "_wrap_difference_result",
         "_wrap_intersection_result",
-        "_wrap_join_result",
+        "_wrap_joined_index",
         "_wrap_reindex_result",
         "_wrap_setop_result",
         "all",
@@ -3043,6 +3120,7 @@
         "equals",
         "factorize",
         "fillna",
+        "format",
         "from_range",
         "get_indexer",
         "get_indexer_for",
@@ -3051,11 +3129,19 @@
         "get_loc",
         "get_slice_bound",
         "groupby",
+        "holds_integer",
         "identical",
         "infer_objects",
         "insert",
         "intersection",
         "is_",
+        "is_boolean",
+        "is_categorical",
+        "is_floating",
+        "is_integer",
+        "is_interval",
+        "is_numeric",
+        "is_object",
         "isin",
         "isna",
         "isnull",
@@ -3079,6 +3165,7 @@
         "shift",
         "slice_indexer",
         "slice_locs",
+        "sort",
         "sort_values",
         "sortlevel",
         "str",
@@ -3119,7 +3206,6 @@
         "_id",
         "_index_as_unique",
         "_is_all_dates",
-        "_is_memory_usage_qualified",
         "_is_multi",
         "_is_strictly_monotonic_decreasing",
         "_is_strictly_monotonic_increasing",
@@ -3164,12 +3250,15 @@
         "_align_for_op",
         "_align_frame",
         "_align_series",
-        "_append_internal",
+        "_append",
         "_arith_method",
+        "_as_manager",
         "_binop",
-        "_check_copy_deprecation",
         "_check_inplace_and_allows_duplicate_labels",
+        "_check_is_chained_assignment_possible",
         "_check_label_or_level_ambiguity",
+        "_check_setitem_copy",
+        "_clear_item_cache",
         "_clip_with_one_bound",
         "_clip_with_scalar",
         "_cmp_method",
@@ -3179,6 +3268,7 @@
         "_construct_result",
         "_constructor_expanddim_from_mgr",
         "_constructor_from_mgr",
+        "_deprecate_downcast",
         "_dir_additions",
         "_dir_deletions",
         "_drop_axis",
@@ -3193,6 +3283,7 @@
         "_get_axis_resolvers",
         "_get_block_manager_axis",
         "_get_bool_data",
+        "_get_cacher",
         "_get_cleaned_column_resolvers",
         "_get_index_resolvers",
         "_get_label_or_level_values",
@@ -3210,26 +3301,33 @@
         "_is_label_or_level_reference",
         "_is_label_reference",
         "_is_level_reference",
+        "_is_view_after_cow_rules",
         "_ixs",
         "_logical_func",
         "_logical_method",
         "_map_values",
+        "_maybe_update_cacher",
         "_memory_usage",
         "_min_count_stat_function",
         "_needs_reindex_multi",
         "_pad_or_backfill",
+        "_protect_consolidate",
         "_reduce",
         "_reindex_axes",
         "_reindex_indexer",
         "_reindex_multi",
         "_reindex_with_indexers",
         "_rename",
+        "_replace_single",
         "_repr_data_resource_",
         "_repr_latex_",
         "_reset_cache",
+        "_reset_cacher",
+        "_set_as_cached",
         "_set_axis",
         "_set_axis_name",
         "_set_axis_nocheck",
+        "_set_is_copy",
         "_set_labels",
         "_set_name",
         "_set_value",
@@ -3240,6 +3338,7 @@
         "_slice",
         "_stat_function",
         "_stat_function_ddof",
+        "_take_with_is_copy",
         "_to_latex_via_styler",
         "_update_inplace",
         "_validate_dtype",
@@ -3262,9 +3361,11 @@
         "astype",
         "at_time",
         "autocorr",
+        "backfill",
         "between",
         "between_time",
         "bfill",
+        "bool",
         "case_when",
         "cat",
         "clip",
@@ -3301,9 +3402,9 @@
         "ffill",
         "fillna",
         "filter",
+        "first",
         "first_valid_index",
         "floordiv",
-        "from_arrow",
         "ge",
         "get",
         "groupby",
@@ -3323,6 +3424,7 @@
         "keys",
         "kurt",
         "kurtosis",
+        "last",
         "last_valid_index",
         "le",
         "list",
@@ -3344,6 +3446,7 @@
         "notnull",
         "nsmallest",
         "nunique",
+        "pad",
         "pct_change",
         "pipe",
         "plot",
@@ -3354,6 +3457,7 @@
         "quantile",
         "radd",
         "rank",
+        "ravel",
         "rdiv",
         "rdivmod",
         "reindex",
@@ -3390,6 +3494,7 @@
         "sub",
         "subtract",
         "sum",
+        "swapaxes",
         "swaplevel",
         "tail",
         "take",
@@ -3422,6 +3527,7 @@
         "update",
         "value_counts",
         "var",
+        "view",
         "where",
         "xs"
       ],
@@ -3437,13 +3543,17 @@
         "_can_hold_na",
         "_constructor",
         "_constructor_expanddim",
+        "_data",
         "_hidden_attrs",
         "_info_axis",
         "_info_axis_name",
         "_info_axis_number",
         "_internal_names",
         "_internal_names_set",
+        "_is_cached",
+        "_is_copy",
         "_is_mixed_type",
+        "_is_view",
         "_metadata",
         "_references",
         "_typ",
@@ -3530,7 +3640,6 @@
         "na_value",
         "name",
         "names",
-        "storage",
         "type"
       ],
       "description": "Extension dtype for string data."
@@ -3557,9 +3666,6 @@
       "attributes": [
         "_creso",
         "_d",
-        "_docstring_max",
-        "_docstring_min",
-        "_docstring_reso",
         "_h",
         "_is_populated",
         "_m",
@@ -3645,10 +3751,12 @@
         "_get_string_slice",
         "_get_values_for_csv",
         "_getitem_slice",
+        "_holds_integer",
         "_inner_indexer",
         "_intersection",
         "_intersection_via_get_indexer",
         "_is_comparable_dtype",
+        "_is_memory_usage_qualified",
         "_join_empty",
         "_join_level",
         "_join_monotonic",
@@ -3663,7 +3771,6 @@
         "_maybe_cast_listlike_indexer",
         "_maybe_cast_slice_bound",
         "_maybe_check_unique",
-        "_maybe_copy_array_input",
         "_maybe_disable_logical_methods",
         "_maybe_disallow_fill",
         "_maybe_downcast_for_indexing",
@@ -3706,7 +3813,7 @@
         "_with_infer",
         "_wrap_difference_result",
         "_wrap_intersection_result",
-        "_wrap_join_result",
+        "_wrap_joined_index",
         "_wrap_range_setop",
         "_wrap_reindex_result",
         "_wrap_setop_result",
@@ -3734,6 +3841,7 @@
         "factorize",
         "fillna",
         "floor",
+        "format",
         "get_indexer",
         "get_indexer_for",
         "get_indexer_non_unique",
@@ -3741,11 +3849,19 @@
         "get_loc",
         "get_slice_bound",
         "groupby",
+        "holds_integer",
         "identical",
         "infer_objects",
         "insert",
         "intersection",
         "is_",
+        "is_boolean",
+        "is_categorical",
+        "is_floating",
+        "is_integer",
+        "is_interval",
+        "is_numeric",
+        "is_object",
         "isin",
         "isna",
         "isnull",
@@ -3771,6 +3887,7 @@
         "shift",
         "slice_indexer",
         "slice_locs",
+        "sort",
         "sort_values",
         "sortlevel",
         "std",
@@ -3814,7 +3931,6 @@
         "_id",
         "_index_as_unique",
         "_is_all_dates",
-        "_is_memory_usage_qualified",
         "_is_monotonic_decreasing",
         "_is_monotonic_increasing",
         "_is_multi",
@@ -3916,14 +4032,9 @@
       "attributes": [
         "_creso",
         "_date_repr",
-        "_docstring_max",
-        "_docstring_min",
-        "_docstring_reso",
-        "_nanosecond",
         "_repr_base",
         "_time_repr",
         "_value",
-        "_year",
         "asm8",
         "day",
         "day_of_week",
@@ -3980,14 +4091,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -4021,14 +4129,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -4062,14 +4167,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -4103,14 +4205,11 @@
         "_can_fast_transpose",
         "_can_hold_na",
         "_default_np_dtype",
-        "_falsey_value",
-        "_internal_fill_value",
         "_is_boolean",
         "_is_immutable",
         "_is_numeric",
         "_metadata",
         "_supports_2d",
-        "_truthy_value",
         "base",
         "index_class",
         "is_signed_integer",
@@ -4123,6 +4222,15 @@
         "numpy_dtype"
       ],
       "description": "An ExtensionDtype for uint8 integer data."
+    },
+    "option_context": {
+      "node_type": "class",
+      "module": "pandas",
+      "methods": [
+        "_recreate_cm"
+      ],
+      "attributes": [],
+      "description": "Context manager to temporarily set options in the `with` statement context."
     }
   },
   "functions": {
@@ -4164,19 +4272,6 @@
       },
       "returns": "unknown",
       "description": "Return a fixed frequency DatetimeIndex with business day as the default.",
-      "example": ""
-    },
-    "col": {
-      "node_type": "function",
-      "module": "pandas",
-      "parameters": {
-        "required": [
-          "col_name"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Generate deferred object representing a column of a DataFrame.",
       "example": ""
     },
     "concat": {
@@ -4270,20 +4365,6 @@
       "description": "Return a fixed frequency DatetimeIndex.",
       "example": ""
     },
-    "describe_option": {
-      "node_type": "function",
-      "module": "pandas",
-      "parameters": {
-        "required": [],
-        "optional": [
-          "pat",
-          "_print_desc"
-        ]
-      },
-      "returns": "unknown",
-      "description": "Print the description for one or more registered options.",
-      "example": ""
-    },
     "eval": {
       "node_type": "method",
       "belongs_to": "DataFrame",
@@ -4352,19 +4433,6 @@
       },
       "returns": "unknown",
       "description": "Convert categorical variable into dummy/indicator variables.",
-      "example": ""
-    },
-    "get_option": {
-      "node_type": "function",
-      "module": "pandas",
-      "parameters": {
-        "required": [
-          "pat"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Retrieve the value of the specified option.",
       "example": ""
     },
     "infer_freq": {
@@ -4478,7 +4546,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Unpivot DataFrame from wide to long format, optionally leaving identifiers set.",
+      "description": "Unpivot a DataFrame from wide to long format, optionally leaving identifiers set.",
       "example": ""
     },
     "merge": {
@@ -4583,19 +4651,6 @@
       "description": "Detect existing (non-missing) values.",
       "example": ""
     },
-    "option_context": {
-      "node_type": "function",
-      "module": "pandas",
-      "parameters": {
-        "required": [
-          "args"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Context manager to temporarily set options in a ``with`` statement.",
-      "example": ""
-    },
     "period_range": {
       "node_type": "function",
       "module": "pandas",
@@ -4635,8 +4690,7 @@
       "belongs_to": "DataFrame",
       "parameters": {
         "required": [
-          "self",
-          "kwargs"
+          "self"
         ],
         "optional": [
           "values",
@@ -4716,8 +4770,12 @@
           "na_values",
           "keep_default_na",
           "na_filter",
+          "verbose",
           "skip_blank_lines",
           "parse_dates",
+          "infer_datetime_format",
+          "keep_date_col",
+          "date_parser",
           "date_format",
           "dayfirst",
           "cache_dates",
@@ -4736,6 +4794,7 @@
           "encoding_errors",
           "dialect",
           "on_bad_lines",
+          "delim_whitespace",
           "low_memory",
           "memory_map",
           "float_precision",
@@ -4772,6 +4831,7 @@
           "na_filter",
           "verbose",
           "parse_dates",
+          "date_parser",
           "date_format",
           "thousands",
           "decimal",
@@ -4783,7 +4843,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Read an Excel file into a ``DataFrame``.",
+      "description": "Read an Excel file into a ``pandas`` ``DataFrame``.",
       "example": ""
     },
     "read_feather": {
@@ -4816,12 +4876,39 @@
           "colspecs",
           "widths",
           "infer_nrows",
+          "dtype_backend",
           "iterator",
           "chunksize"
         ]
       },
       "returns": "unknown",
       "description": "Read a table of fixed-width formatted lines into DataFrame.",
+      "example": ""
+    },
+    "read_gbq": {
+      "node_type": "function",
+      "module": "pandas",
+      "parameters": {
+        "required": [
+          "query"
+        ],
+        "optional": [
+          "project_id",
+          "index_col",
+          "col_order",
+          "reauth",
+          "auth_local_webserver",
+          "dialect",
+          "location",
+          "configuration",
+          "credentials",
+          "use_bqstorage_api",
+          "max_results",
+          "progress_bar_type"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Load data from Google BigQuery.",
       "example": ""
     },
     "read_hdf": {
@@ -4877,28 +4964,6 @@
       },
       "returns": "unknown",
       "description": "Read HTML tables into a ``list`` of ``DataFrame`` objects.",
-      "example": ""
-    },
-    "read_iceberg": {
-      "node_type": "function",
-      "module": "pandas",
-      "parameters": {
-        "required": [
-          "table_identifier"
-        ],
-        "optional": [
-          "catalog_name",
-          "catalog_properties",
-          "columns",
-          "row_filter",
-          "case_sensitive",
-          "snapshot_id",
-          "limit",
-          "scan_properties"
-        ]
-      },
-      "returns": "unknown",
-      "description": "Read an Apache Iceberg table into a pandas DataFrame.",
       "example": ""
     },
     "read_json": {
@@ -4962,10 +5027,10 @@
           "engine",
           "columns",
           "storage_options",
+          "use_nullable_dtypes",
           "dtype_backend",
           "filesystem",
-          "filters",
-          "to_pandas_kwargs"
+          "filters"
         ]
       },
       "returns": "unknown",
@@ -4985,7 +5050,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Load pickled pandas object (or any object) from file and return unpickled object.",
+      "description": "Load pickled pandas object (or any object) from file.",
       "example": ""
     },
     "read_sas": {
@@ -5013,8 +5078,7 @@
       "module": "pandas",
       "parameters": {
         "required": [
-          "path",
-          "kwargs"
+          "path"
         ],
         "optional": [
           "usecols",
@@ -5144,8 +5208,12 @@
           "na_values",
           "keep_default_na",
           "na_filter",
+          "verbose",
           "skip_blank_lines",
           "parse_dates",
+          "infer_datetime_format",
+          "keep_date_col",
+          "date_parser",
           "date_format",
           "dayfirst",
           "cache_dates",
@@ -5164,6 +5232,7 @@
           "encoding_errors",
           "dialect",
           "on_bad_lines",
+          "delim_whitespace",
           "low_memory",
           "memory_map",
           "float_precision",
@@ -5204,19 +5273,6 @@
       "description": "Read XML document into a :class:`~pandas.DataFrame` object.",
       "example": ""
     },
-    "reset_option": {
-      "node_type": "function",
-      "module": "pandas",
-      "parameters": {
-        "required": [
-          "pat"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Reset one or more options to their default value.",
-      "example": ""
-    },
     "set_eng_float_format": {
       "node_type": "function",
       "module": "pandas",
@@ -5229,19 +5285,6 @@
       },
       "returns": "unknown",
       "description": "Format float representation in DataFrame with SI notation.",
-      "example": ""
-    },
-    "set_option": {
-      "node_type": "function",
-      "module": "pandas",
-      "parameters": {
-        "required": [
-          "args"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Set the value of the specified option or options.",
       "example": ""
     },
     "show_versions": {
@@ -5305,6 +5348,7 @@
           "format",
           "exact",
           "unit",
+          "infer_datetime_format",
           "origin",
           "cache"
         ]
@@ -5379,6 +5423,25 @@
       "description": "Return unique values in the index.",
       "example": ""
     },
+    "value_counts": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "normalize",
+          "sort",
+          "ascending",
+          "bins",
+          "dropna"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Return a Series containing counts of unique values.",
+      "example": ""
+    },
     "wide_to_long": {
       "node_type": "function",
       "module": "pandas",
@@ -5429,9 +5492,7 @@
       "node_type": "method",
       "belongs_to": "UInt8Dtype",
       "parameters": {
-        "required": [
-          "self"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -5522,18 +5583,18 @@
       "description": "Wrap numpy type in our dtype.type if necessary.",
       "example": ""
     },
-    "_cast_pointwise_result": {
+    "_cast_quantile_result": {
       "node_type": "method",
       "belongs_to": "Categorical",
       "parameters": {
         "required": [
           "self",
-          "values"
+          "res_values"
         ],
         "optional": []
       },
       "returns": "unknown",
-      "description": "Construct an ExtensionArray after a pointwise operation.",
+      "description": "Cast the result of quantile_with_mask to an appropriate dtype",
       "example": ""
     },
     "_categories_match_up_to_permutation": {
@@ -5632,6 +5693,22 @@
       "description": "Transform each element of list-like to a row.",
       "example": ""
     },
+    "_fill_mask_inplace": {
+      "node_type": "method",
+      "belongs_to": "Categorical",
+      "parameters": {
+        "required": [
+          "self",
+          "method",
+          "limit",
+          "mask"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Replace values in locations specified by 'mask' using pad or backfill.",
+      "example": ""
+    },
     "_formatter": {
       "node_type": "method",
       "belongs_to": "Categorical",
@@ -5727,10 +5804,10 @@
       "belongs_to": "Categorical",
       "parameters": {
         "required": [
-          "strings",
-          "dtype"
+          "strings"
         ],
         "optional": [
+          "dtype",
           "copy"
         ]
       },
@@ -5839,7 +5916,8 @@
           "axis",
           "inplace",
           "limit",
-          "limit_area"
+          "limit_area",
+          "downcast"
         ]
       },
       "returns": "unknown",
@@ -5916,6 +5994,20 @@
       "description": "Perform a reduction operation.",
       "example": ""
     },
+    "_replace": {
+      "node_type": "method",
+      "belongs_to": "NamedAgg",
+      "parameters": {
+        "required": [
+          "self",
+          "kwds"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return a new NamedAgg object replacing specified fields with new values",
+      "example": ""
+    },
     "_repr_2d": {
       "node_type": "method",
       "belongs_to": "Categorical",
@@ -5962,7 +6054,9 @@
       "belongs_to": "CategoricalIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -5992,8 +6086,7 @@
       "parameters": {
         "required": [
           "self",
-          "dtype",
-          "copy"
+          "dtype"
         ],
         "optional": []
       },
@@ -6217,8 +6310,7 @@
           "self"
         ],
         "optional": [
-          "sep",
-          "dtype"
+          "sep"
         ]
       },
       "returns": "unknown",
@@ -6270,19 +6362,6 @@
       "example": ""
     },
     "_str_isalpha": {
-      "node_type": "method",
-      "belongs_to": "Categorical",
-      "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "",
-      "example": ""
-    },
-    "_str_isascii": {
       "node_type": "method",
       "belongs_to": "Categorical",
       "parameters": {
@@ -6816,20 +6895,6 @@
       "description": "",
       "example": ""
     },
-    "_str_zfill": {
-      "node_type": "method",
-      "belongs_to": "Categorical",
-      "parameters": {
-        "required": [
-          "self",
-          "width"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "",
-      "example": ""
-    },
     "_unbox_scalar": {
       "node_type": "method",
       "belongs_to": "Categorical",
@@ -6964,7 +7029,8 @@
           "other",
           "inplace",
           "axis",
-          "level"
+          "level",
+          "warn"
         ]
       },
       "returns": "unknown",
@@ -6992,7 +7058,8 @@
       "parameters": {
         "required": [
           "self",
-          "new_categories"
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -7015,7 +7082,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return int position of the largest value in the Index.",
+      "description": "Return int position of the largest value in the Series.",
       "example": ""
     },
     "argmin": {
@@ -7033,7 +7100,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return int position of the smallest value in the Index.",
+      "description": "Return int position of the smallest value in the Series.",
       "example": ""
     },
     "argsort": {
@@ -7056,7 +7123,9 @@
       "belongs_to": "CategoricalIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -7069,7 +7138,9 @@
       "belongs_to": "CategoricalIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -7203,10 +7274,12 @@
       "belongs_to": "TimedeltaIndex",
       "parameters": {
         "required": [
-          "self",
-          "value"
+          "self"
         ],
-        "optional": []
+        "optional": [
+          "value",
+          "downcast"
+        ]
       },
       "returns": "unknown",
       "description": "Fill NA/NaN values with the specified value.",
@@ -7259,7 +7332,8 @@
           "limit",
           "inplace",
           "limit_direction",
-          "limit_area"
+          "limit_area",
+          "downcast"
         ]
       },
       "returns": "unknown",
@@ -7370,7 +7444,8 @@
       "parameters": {
         "required": [
           "self",
-          "removals"
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -7383,7 +7458,9 @@
       "belongs_to": "CategoricalIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -7397,7 +7474,8 @@
       "parameters": {
         "required": [
           "self",
-          "new_categories"
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -7411,11 +7489,10 @@
       "parameters": {
         "required": [
           "self",
-          "new_categories"
+          "args",
+          "kwargs"
         ],
-        "optional": [
-          "ordered"
-        ]
+        "optional": []
       },
       "returns": "unknown",
       "description": "Reorder categories as specified in new_categories.",
@@ -7434,7 +7511,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Repeat elements of an Index.",
+      "description": "Repeat elements of a Index.",
       "example": ""
     },
     "reshape": {
@@ -7475,12 +7552,10 @@
       "parameters": {
         "required": [
           "self",
-          "new_categories"
+          "args",
+          "kwargs"
         ],
-        "optional": [
-          "ordered",
-          "rename"
-        ]
+        "optional": []
       },
       "returns": "unknown",
       "description": "Set the categories to the specified new categories.",
@@ -7536,17 +7611,19 @@
     },
     "swapaxes": {
       "node_type": "method",
-      "belongs_to": "Categorical",
+      "belongs_to": "Series",
       "parameters": {
         "required": [
           "self",
           "axis1",
           "axis2"
         ],
-        "optional": []
+        "optional": [
+          "copy"
+        ]
       },
       "returns": "unknown",
-      "description": "",
+      "description": "Interchange axes and swap values axes appropriately.",
       "example": ""
     },
     "take": {
@@ -7566,6 +7643,19 @@
       },
       "returns": "unknown",
       "description": "Return a new Index of the values selected by the indices.",
+      "example": ""
+    },
+    "to_list": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return a list of the values.",
       "example": ""
     },
     "to_numpy": {
@@ -7612,25 +7702,6 @@
       "description": "Return the transpose, which is by definition self.",
       "example": ""
     },
-    "value_counts": {
-      "node_type": "method",
-      "belongs_to": "TimedeltaIndex",
-      "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": [
-          "normalize",
-          "sort",
-          "ascending",
-          "bins",
-          "dropna"
-        ]
-      },
-      "returns": "unknown",
-      "description": "Return a Series containing counts of unique values.",
-      "example": ""
-    },
     "view": {
       "node_type": "method",
       "belongs_to": "TimedeltaIndex",
@@ -7643,7 +7714,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return a view of the Index with the specified dtype or a new Index instance.",
+      "description": "",
       "example": ""
     },
     "_finalize": {
@@ -7725,9 +7796,7 @@
       "belongs_to": "UInt8Dtype",
       "parameters": {
         "required": [],
-        "optional": [
-          "value"
-        ]
+        "optional": []
       },
       "returns": "unknown",
       "description": "Unsigned integer type, compatible with C ``unsigned char``.",
@@ -7899,8 +7968,7 @@
         "required": [
           "self",
           "result",
-          "name",
-          "other"
+          "name"
         ],
         "optional": []
       },
@@ -7957,7 +8025,7 @@
       "belongs_to": "TimedeltaIndex",
       "parameters": {
         "required": [
-          "data"
+          "values"
         ],
         "optional": [
           "dtype",
@@ -8367,7 +8435,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Get names on index.",
+      "description": "",
       "example": ""
     },
     "_get_nearest_indexer": {
@@ -8447,6 +8515,19 @@
       "description": "Fastpath for __getitem__ when we know we have a slice.",
       "example": ""
     },
+    "_holds_integer": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Whether the type is an integer type.",
+      "example": ""
+    },
     "_inner_indexer": {
       "node_type": "method",
       "belongs_to": "TimedeltaIndex",
@@ -8518,6 +8599,19 @@
       },
       "returns": "unknown",
       "description": "*this is an internal non-public method*",
+      "example": ""
+    },
+    "_is_memory_usage_qualified": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return a boolean if we need a qualified .info display.",
       "example": ""
     },
     "_join_empty": {
@@ -8670,7 +8764,8 @@
           "mapper"
         ],
         "optional": [
-          "na_action"
+          "na_action",
+          "convert"
         ]
       },
       "returns": "unknown",
@@ -8731,21 +8826,6 @@
       },
       "returns": "unknown",
       "description": "Check that an Index has no duplicates.",
-      "example": ""
-    },
-    "_maybe_copy_array_input": {
-      "node_type": "method",
-      "belongs_to": "TimedeltaIndex",
-      "parameters": {
-        "required": [
-          "data",
-          "copy",
-          "dtype"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Ensure that the input data is copied if necessary.",
       "example": ""
     },
     "_maybe_disable_logical_methods": {
@@ -9245,7 +9325,7 @@
       "description": "",
       "example": ""
     },
-    "_wrap_join_result": {
+    "_wrap_joined_index": {
       "node_type": "method",
       "belongs_to": "TimedeltaIndex",
       "parameters": {
@@ -9254,8 +9334,7 @@
           "joined",
           "other",
           "lidx",
-          "ridx",
-          "how"
+          "ridx"
         ],
         "optional": []
       },
@@ -9444,6 +9523,24 @@
       "description": "Return index with requested level(s) removed.",
       "example": ""
     },
+    "format": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "name",
+          "formatter",
+          "na_rep",
+          "date_format"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Render a string representation of the Index.",
+      "example": ""
+    },
     "get_indexer": {
       "node_type": "method",
       "belongs_to": "TimedeltaIndex",
@@ -9547,6 +9644,19 @@
       "description": "Group the index labels by a given array of values.",
       "example": ""
     },
+    "holds_integer": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Whether the type is an integer type.",
+      "example": ""
+    },
     "identical": {
       "node_type": "method",
       "belongs_to": "TimedeltaIndex",
@@ -9604,6 +9714,97 @@
       },
       "returns": "unknown",
       "description": "More flexible, faster check like ``is`` but that works through views.",
+      "example": ""
+    },
+    "is_boolean": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Check if the Index only consists of booleans.",
+      "example": ""
+    },
+    "is_categorical": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Check if the Index holds categorical data.",
+      "example": ""
+    },
+    "is_floating": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Check if the Index is a floating type.",
+      "example": ""
+    },
+    "is_integer": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Check if the Index only consists of integers.",
+      "example": ""
+    },
+    "is_interval": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Check if the Index holds Interval objects.",
+      "example": ""
+    },
+    "is_numeric": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Check if the Index only consists of numeric data.",
+      "example": ""
+    },
+    "is_object": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Check if the Index is of the object dtype.",
       "example": ""
     },
     "item": {
@@ -9771,6 +9972,21 @@
       "description": "Compute slice locations for input labels.",
       "example": ""
     },
+    "sort": {
+      "node_type": "method",
+      "belongs_to": "TimedeltaIndex",
+      "parameters": {
+        "required": [
+          "self",
+          "args",
+          "kwargs"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Use sort_values instead.",
+      "example": ""
+    },
     "sortlevel": {
       "node_type": "method",
       "belongs_to": "TimedeltaIndex",
@@ -9846,19 +10062,6 @@
       },
       "returns": "unknown",
       "description": "Create a DataFrame with a column containing the Index.",
-      "example": ""
-    },
-    "to_list": {
-      "node_type": "method",
-      "belongs_to": "TimedeltaIndex",
-      "parameters": {
-        "required": [
-          "self"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Return a list of the values.",
       "example": ""
     },
     "to_series": {
@@ -9957,7 +10160,11 @@
           "join",
           "axis",
           "level",
-          "fill_value"
+          "copy",
+          "fill_value",
+          "method",
+          "limit",
+          "fill_axis"
         ]
       },
       "returns": "unknown",
@@ -9976,14 +10183,18 @@
           "join",
           "axis",
           "level",
-          "fill_value"
+          "copy",
+          "fill_value",
+          "method",
+          "limit",
+          "fill_axis"
         ]
       },
       "returns": "unknown",
       "description": "",
       "example": ""
     },
-    "_append_internal": {
+    "_append": {
       "node_type": "method",
       "belongs_to": "Series",
       "parameters": {
@@ -9992,7 +10203,8 @@
           "to_append"
         ],
         "optional": [
-          "ignore_index"
+          "ignore_index",
+          "verify_integrity"
         ]
       },
       "returns": "unknown",
@@ -10014,6 +10226,22 @@
       "description": "For DataFrame-with-DataFrame operations that require reindexing,",
       "example": ""
     },
+    "_as_manager": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "typ"
+        ],
+        "optional": [
+          "copy"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Private helper function to create a DataFrame with specific manager.",
+      "example": ""
+    },
     "_box_col_values": {
       "node_type": "method",
       "belongs_to": "DataFrame",
@@ -10027,19 +10255,6 @@
       },
       "returns": "unknown",
       "description": "Provide boxed values for a column.",
-      "example": ""
-    },
-    "_check_copy_deprecation": {
-      "node_type": "method",
-      "belongs_to": "Series",
-      "parameters": {
-        "required": [
-          "copy"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "",
       "example": ""
     },
     "_check_inplace_and_allows_duplicate_labels": {
@@ -10056,6 +10271,19 @@
       "description": "",
       "example": ""
     },
+    "_check_is_chained_assignment_possible": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "See NDFrame._check_is_chained_assignment_possible.__doc__",
+      "example": ""
+    },
     "_check_label_or_level_ambiguity": {
       "node_type": "method",
       "belongs_to": "Series",
@@ -10070,6 +10298,35 @@
       },
       "returns": "unknown",
       "description": "Check whether `key` is ambiguous.",
+      "example": ""
+    },
+    "_check_setitem_copy": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "t",
+          "force"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Parameters",
+      "example": ""
+    },
+    "_clear_item_cache": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
       "example": ""
     },
     "_clip_with_one_bound": {
@@ -10190,7 +10447,8 @@
           "index",
           "dtype",
           "name",
-          "copy"
+          "copy",
+          "fastpath"
         ]
       },
       "returns": "unknown",
@@ -10205,6 +10463,36 @@
           "self",
           "mgr",
           "axes"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_create_data_for_split_and_tight_to_dict": {
+      "node_type": "method",
+      "belongs_to": "DataFrame",
+      "parameters": {
+        "required": [
+          "self",
+          "are_all_object_dtype_cols",
+          "object_dtype_indices"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Simple helper method to create data for to ``to_dict(orient=\"split\")`` and",
+      "example": ""
+    },
+    "_deprecate_downcast": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "downcast",
+          "method_name"
         ],
         "optional": []
       },
@@ -10465,7 +10753,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return the special character free column resolvers of a DataFrame.",
+      "description": "Return the special character free column resolvers of a dataframe.",
       "example": ""
     },
     "_get_column_array": {
@@ -10495,7 +10783,7 @@
       "description": "",
       "example": ""
     },
-    "_get_item": {
+    "_get_item_cache": {
       "node_type": "method",
       "belongs_to": "DataFrame",
       "parameters": {
@@ -10506,7 +10794,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "",
+      "description": "Return the cached item, item represents a label indexer.",
       "example": ""
     },
     "_get_label_or_level_values": {
@@ -10580,6 +10868,20 @@
       },
       "returns": "unknown",
       "description": "",
+      "example": ""
+    },
+    "_getitem_nocopy": {
+      "node_type": "method",
+      "belongs_to": "DataFrame",
+      "parameters": {
+        "required": [
+          "self",
+          "key"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Behaves like __getitem__, but returns a view in cases where __getitem__",
       "example": ""
     },
     "_gotitem": {
@@ -10706,6 +11008,19 @@
       "description": "Test whether a key is a level reference for a given axis.",
       "example": ""
     },
+    "_is_view_after_cow_rules": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
     "_iset_item": {
       "node_type": "method",
       "belongs_to": "DataFrame",
@@ -10820,6 +11135,39 @@
       "description": "If the Series operand is not EA-dtype, we can broadcast to 2D and operate",
       "example": ""
     },
+    "_maybe_cache_changed": {
+      "node_type": "method",
+      "belongs_to": "DataFrame",
+      "parameters": {
+        "required": [
+          "self",
+          "item",
+          "value",
+          "inplace"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "The object has called back to us saying maybe it has changed.",
+      "example": ""
+    },
+    "_maybe_update_cacher": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "clear",
+          "verify_is_copy",
+          "inplace"
+        ]
+      },
+      "returns": "unknown",
+      "description": "See NDFrame._maybe_update_cacher.__doc__",
+      "example": ""
+    },
     "_min_count_stat_function": {
       "node_type": "method",
       "belongs_to": "Series",
@@ -10857,6 +11205,20 @@
       "description": "Check if we do need a multi reindex; this is for compat with",
       "example": ""
     },
+    "_protect_consolidate": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "f"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Consolidate _mgr -- if the blocks have changed, then clear the",
+      "example": ""
+    },
     "_reduce_axis1": {
       "node_type": "method",
       "belongs_to": "DataFrame",
@@ -10884,7 +11246,8 @@
           "limit",
           "tolerance",
           "method",
-          "fill_value"
+          "fill_value",
+          "copy"
         ],
         "optional": []
       },
@@ -10899,6 +11262,7 @@
         "required": [
           "self",
           "axes",
+          "copy",
           "fill_value"
         ],
         "optional": []
@@ -10917,6 +11281,7 @@
         ],
         "optional": [
           "fill_value",
+          "copy",
           "allow_dups"
         ]
       },
@@ -11005,6 +11370,19 @@
       "description": "Returns a LaTeX representation for a particular object.",
       "example": ""
     },
+    "_reset_cacher": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Reset the cacher.",
+      "example": ""
+    },
     "_sanitize_column": {
       "node_type": "method",
       "belongs_to": "DataFrame",
@@ -11044,7 +11422,8 @@
         ],
         "optional": [
           "axis",
-          "inplace"
+          "inplace",
+          "copy"
         ]
       },
       "returns": "unknown",
@@ -11059,9 +11438,26 @@
           "self",
           "labels",
           "axis",
-          "inplace"
+          "inplace",
+          "copy"
         ],
         "optional": []
+      },
+      "returns": "unknown",
+      "description": "",
+      "example": ""
+    },
+    "_set_is_copy": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "ref"
+        ],
+        "optional": [
+          "copy"
+        ]
       },
       "returns": "unknown",
       "description": "",
@@ -11267,6 +11663,22 @@
       "description": "",
       "example": ""
     },
+    "_take_with_is_copy": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "indices"
+        ],
+        "optional": [
+          "axis"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Internal version of the `take` method that sets the `_is_copy`",
+      "example": ""
+    },
     "_to_dict_of_blocks": {
       "node_type": "method",
       "belongs_to": "DataFrame",
@@ -11293,7 +11705,6 @@
           "relabel_index",
           "format",
           "format_index",
-          "format_index_names",
           "render_kwargs"
         ]
       },
@@ -11309,7 +11720,9 @@
           "self",
           "result"
         ],
-        "optional": []
+        "optional": [
+          "verify_is_copy"
+        ]
       },
       "returns": "unknown",
       "description": "Replace self internals with result.",
@@ -11440,7 +11853,11 @@
           "axis",
           "level",
           "copy",
-          "fill_value"
+          "fill_value",
+          "method",
+          "limit",
+          "fill_axis",
+          "broadcast_axis"
         ]
       },
       "returns": "unknown",
@@ -11457,12 +11874,30 @@
           "kwargs"
         ],
         "optional": [
+          "convert_dtype",
           "args",
           "by_row"
         ]
       },
       "returns": "unknown",
       "description": "Invoke function on values of Series.",
+      "example": ""
+    },
+    "applymap": {
+      "node_type": "method",
+      "belongs_to": "DataFrame",
+      "parameters": {
+        "required": [
+          "self",
+          "func",
+          "kwargs"
+        ],
+        "optional": [
+          "na_action"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Apply a function to a Dataframe elementwise.",
       "example": ""
     },
     "asfreq": {
@@ -11515,6 +11950,24 @@
       "description": "Select values at particular time of day (e.g., 9:30AM).",
       "example": ""
     },
+    "backfill": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "axis",
+          "inplace",
+          "limit",
+          "downcast"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Fill NA/NaN values by using the next valid observation to fill the gap.",
+      "example": ""
+    },
     "between_time": {
       "node_type": "method",
       "belongs_to": "Series",
@@ -11544,11 +11997,25 @@
           "axis",
           "inplace",
           "limit",
-          "limit_area"
+          "limit_area",
+          "downcast"
         ]
       },
       "returns": "unknown",
       "description": "Fill NA/NaN values by using the next valid observation to fill the gap.",
+      "example": ""
+    },
+    "bool": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return the bool of a single element Series or DataFrame.",
       "example": ""
     },
     "boxplot": {
@@ -11659,7 +12126,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Convert columns from numpy dtypes to the best dtypes that support ``pd.NA``.",
+      "description": "Convert columns to the best possible dtypes using dtypes supporting ``pd.NA``.",
       "example": ""
     },
     "corr": {
@@ -11691,8 +12158,7 @@
           "axis",
           "drop",
           "method",
-          "numeric_only",
-          "min_periods"
+          "numeric_only"
         ]
       },
       "returns": "unknown",
@@ -11744,7 +12210,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return cumulative maximum over a Series.",
+      "description": "Return cumulative maximum over a DataFrame or Series axis.",
       "example": ""
     },
     "cummin": {
@@ -11762,7 +12228,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return cumulative minimum over a Series.",
+      "description": "Return cumulative minimum over a DataFrame or Series axis.",
       "example": ""
     },
     "cumprod": {
@@ -11780,7 +12246,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return cumulative product over a Series.",
+      "description": "Return cumulative product over a DataFrame or Series axis.",
       "example": ""
     },
     "cumsum": {
@@ -11798,7 +12264,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return cumulative sum over a Series.",
+      "description": "Return cumulative sum over a DataFrame or Series axis.",
       "example": ""
     },
     "div": {
@@ -11816,7 +12282,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return Floating division of series and other,         element-wise (binary operator `truediv`).",
+      "description": "Return Floating division of series and other, element-wise (binary operator `truediv`).",
       "example": ""
     },
     "divide": {
@@ -11834,7 +12300,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return Floating division of series and other,         element-wise (binary operator `truediv`).",
+      "description": "Return Floating division of series and other, element-wise (binary operator `truediv`).",
       "example": ""
     },
     "dot": {
@@ -11884,6 +12350,7 @@
           "min_periods",
           "adjust",
           "ignore_na",
+          "axis",
           "times",
           "method"
         ]
@@ -11901,6 +12368,7 @@
         ],
         "optional": [
           "min_periods",
+          "axis",
           "method"
         ]
       },
@@ -11934,7 +12402,8 @@
           "axis",
           "inplace",
           "limit",
-          "limit_area"
+          "limit_area",
+          "downcast"
         ]
       },
       "returns": "unknown",
@@ -11956,7 +12425,21 @@
         ]
       },
       "returns": "unknown",
-      "description": "Subset the DataFrame or Series according to the specified index labels.",
+      "description": "Subset the dataframe rows or columns according to the specified index labels.",
+      "example": ""
+    },
+    "first": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "offset"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Select initial periods of time series data based on a date offset.",
       "example": ""
     },
     "first_valid_index": {
@@ -11969,7 +12452,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return index for first non-missing value or None, if no value is found.",
+      "description": "Return index for first non-NA value or None, if no non-NA value is found.",
       "example": ""
     },
     "floordiv": {
@@ -11988,19 +12471,6 @@
       },
       "returns": "unknown",
       "description": "Return Integer division of series and other, element-wise (binary operator `floordiv`).",
-      "example": ""
-    },
-    "from_arrow": {
-      "node_type": "method",
-      "belongs_to": "Series",
-      "parameters": {
-        "required": [
-          "data"
-        ],
-        "optional": []
-      },
-      "returns": "unknown",
-      "description": "Construct a Series from an array-like Arrow object.",
       "example": ""
     },
     "from_dict": {
@@ -12054,7 +12524,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return Greater than or equal to of series and other,         element-wise (binary operator `ge`).",
+      "description": "Return Greater than or equal to of series and other, element-wise (binary operator `ge`).",
       "example": ""
     },
     "get": {
@@ -12293,6 +12763,20 @@
       "description": "Return unbiased kurtosis over requested axis.",
       "example": ""
     },
+    "last": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "offset"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Select final periods of time series data based on a date offset.",
+      "example": ""
+    },
     "last_valid_index": {
       "node_type": "method",
       "belongs_to": "Series",
@@ -12303,7 +12787,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return index for last non-missing value or None, if no value is found.",
+      "description": "Return index for last non-NA value or None, if no non-NA value is found.",
       "example": ""
     },
     "le": {
@@ -12321,7 +12805,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return Less than or equal to of series and other,         element-wise (binary operator `le`).",
+      "description": "Return Less than or equal to of series and other, element-wise (binary operator `le`).",
       "example": ""
     },
     "lt": {
@@ -12339,7 +12823,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return Greater than of series and other, element-wise (binary operator `lt`).",
+      "description": "Return Less than of series and other, element-wise (binary operator `lt`).",
       "example": ""
     },
     "mask": {
@@ -12383,12 +12867,10 @@
       "parameters": {
         "required": [
           "self",
+          "args",
           "kwargs"
         ],
-        "optional": [
-          "axis",
-          "skipna"
-        ]
+        "optional": []
       },
       "returns": "unknown",
       "description": "",
@@ -12513,6 +12995,24 @@
       "description": "Return the smallest `n` elements.",
       "example": ""
     },
+    "pad": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": [
+          "axis",
+          "inplace",
+          "limit",
+          "downcast"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Fill NA/NaN values by propagating the last valid observation to next valid.",
+      "example": ""
+    },
     "pct_change": {
       "node_type": "method",
       "belongs_to": "Series",
@@ -12524,6 +13024,7 @@
         "optional": [
           "periods",
           "fill_method",
+          "limit",
           "freq"
         ]
       },
@@ -12652,15 +13153,10 @@
       "parameters": {
         "required": [
           "self",
-          "expr"
+          "expr",
+          "kwargs"
         ],
         "optional": [
-          "parser",
-          "engine",
-          "local_dict",
-          "global_dict",
-          "resolvers",
-          "level",
           "inplace"
         ]
       },
@@ -12759,7 +13255,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Set the name of the axis for the index.",
+      "description": "Set the name of the axis for the index or columns.",
       "example": ""
     },
     "reorder_levels": {
@@ -12809,9 +13305,11 @@
           "rule"
         ],
         "optional": [
+          "axis",
           "closed",
           "label",
           "convention",
+          "kind",
           "on",
           "level",
           "origin",
@@ -12909,6 +13407,7 @@
           "center",
           "win_type",
           "on",
+          "axis",
           "closed",
           "step",
           "method"
@@ -13172,16 +13671,11 @@
       "belongs_to": "TimedeltaIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out",
-          "ddof",
-          "keepdims",
-          "skipna"
-        ]
+        "optional": []
       },
       "returns": "unknown",
       "description": "",
@@ -13228,17 +13722,11 @@
       "belongs_to": "TimedeltaIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
-        "optional": [
-          "axis",
-          "dtype",
-          "out",
-          "keepdims",
-          "initial",
-          "skipna",
-          "min_count"
-        ]
+        "optional": []
       },
       "returns": "unknown",
       "description": "",
@@ -13366,8 +13854,7 @@
           "inf_rep",
           "freeze_panes",
           "storage_options",
-          "engine_kwargs",
-          "autofilter"
+          "engine_kwargs"
         ]
       },
       "returns": "unknown",
@@ -13387,6 +13874,30 @@
       },
       "returns": "unknown",
       "description": "Write a DataFrame to the binary Feather format.",
+      "example": ""
+    },
+    "to_gbq": {
+      "node_type": "method",
+      "belongs_to": "DataFrame",
+      "parameters": {
+        "required": [
+          "self",
+          "destination_table"
+        ],
+        "optional": [
+          "project_id",
+          "chunksize",
+          "reauth",
+          "if_exists",
+          "auth_local_webserver",
+          "table_schema",
+          "location",
+          "progress_bar",
+          "credentials"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Write a DataFrame to a Google BigQuery table.",
       "example": ""
     },
     "to_hdf": {
@@ -13452,26 +13963,6 @@
       },
       "returns": "unknown",
       "description": "Render a DataFrame as an HTML table.",
-      "example": ""
-    },
-    "to_iceberg": {
-      "node_type": "method",
-      "belongs_to": "DataFrame",
-      "parameters": {
-        "required": [
-          "self",
-          "table_identifier"
-        ],
-        "optional": [
-          "catalog_name",
-          "catalog_properties",
-          "location",
-          "append",
-          "snapshot_properties"
-        ]
-      },
-      "returns": "unknown",
-      "description": "Write a DataFrame to an Apache Iceberg table.",
       "example": ""
     },
     "to_json": {
@@ -13570,7 +14061,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Write a DataFrame to the Optimized Row Columnar (ORC) format.",
+      "description": "Write a DataFrame to the ORC format.",
       "example": ""
     },
     "to_parquet": {
@@ -13587,8 +14078,7 @@
           "compression",
           "index",
           "partition_cols",
-          "storage_options",
-          "filesystem"
+          "storage_options"
         ]
       },
       "returns": "unknown",
@@ -13607,7 +14097,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return a period of which this timestamp is an observation.",
+      "description": "Return an period of which this timestamp is an observation.",
       "example": ""
     },
     "to_records": {
@@ -13793,7 +14283,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Return Floating division of series and other,         element-wise (binary operator `truediv`).",
+      "description": "Return Floating division of series and other, element-wise (binary operator `truediv`).",
       "example": ""
     },
     "truncate": {
@@ -13992,6 +14482,19 @@
       },
       "returns": "unknown",
       "description": "Require that `n` be an integer.",
+      "example": ""
+    },
+    "is_anchored": {
+      "node_type": "method",
+      "belongs_to": "DateOffset",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return boolean whether the frequency is a unit frequency (n=1).",
       "example": ""
     },
     "is_month_end": {
@@ -14393,7 +14896,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Convert the underlying int64 representation to the given unit.",
+      "description": "Convert the underlying int64 representaton to the given unit.",
       "example": ""
     },
     "ceil": {
@@ -14691,6 +15194,7 @@
           "nrows",
           "na_values",
           "parse_dates",
+          "date_parser",
           "date_format",
           "thousands",
           "comment",
@@ -14755,8 +15259,7 @@
           "sheet_name",
           "startrow",
           "startcol",
-          "freeze_panes",
-          "autofilter_range"
+          "freeze_panes"
         ]
       },
       "returns": "unknown",
@@ -14837,8 +15340,7 @@
           "obj"
         ],
         "optional": [
-          "validate",
-          "observed"
+          "validate"
         ]
       },
       "returns": "unknown",
@@ -15272,7 +15774,8 @@
       "parameters": {
         "required": [
           "self",
-          "other"
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -15370,7 +15873,8 @@
       "parameters": {
         "required": [
           "self",
-          "other"
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -15434,7 +15938,8 @@
       "parameters": {
         "required": [
           "self",
-          "closed"
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -15447,14 +15952,14 @@
       "belongs_to": "IntervalIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
-        "optional": [
-          "na_tuple"
-        ]
+        "optional": []
       },
       "returns": "unknown",
-      "description": "Return an ndarray (if self is IntervalArray) or Index         (if self is IntervalIndex) of tuples of the form (left, right).",
+      "description": "Return an ndarray (if self is IntervalArray) or Index (if self is IntervalIndex) of tuples of the form (left, right).",
       "example": ""
     },
     "_drop_from_level": {
@@ -15644,10 +16149,11 @@
       "parameters": {
         "required": [
           "self",
-          "new_levels",
-          "copy"
+          "new_levels"
         ],
-        "optional": []
+        "optional": [
+          "copy"
+        ]
       },
       "returns": "unknown",
       "description": "",
@@ -15876,6 +16382,49 @@
       "description": "Set new levels on MultiIndex. Defaults to returning new index.",
       "example": ""
     },
+    "_asdict": {
+      "node_type": "method",
+      "belongs_to": "NamedAgg",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return a new dict which maps field names to their values.",
+      "example": ""
+    },
+    "_make": {
+      "node_type": "method",
+      "belongs_to": "NamedAgg",
+      "parameters": {
+        "required": [
+          "iterable"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Make a new NamedAgg object from a sequence or iterable",
+      "example": ""
+    },
+    "index": {
+      "node_type": "method",
+      "belongs_to": "NamedAgg",
+      "parameters": {
+        "required": [
+          "self",
+          "value"
+        ],
+        "optional": [
+          "start",
+          "stop"
+        ]
+      },
+      "returns": "unknown",
+      "description": "Return first index of value.",
+      "example": ""
+    },
     "_add_offset": {
       "node_type": "method",
       "belongs_to": "Period",
@@ -16044,7 +16593,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Construct a PeriodIndex from fields (year, month, day, etc.).",
+      "description": "",
       "example": ""
     },
     "from_ordinals": {
@@ -16057,23 +16606,6 @@
         ],
         "optional": [
           "name"
-        ]
-      },
-      "returns": "unknown",
-      "description": "Construct a PeriodIndex from ordinals.",
-      "example": ""
-    },
-    "_argminmax": {
-      "node_type": "method",
-      "belongs_to": "RangeIndex",
-      "parameters": {
-        "required": [
-          "self",
-          "meth"
-        ],
-        "optional": [
-          "axis",
-          "skipna"
         ]
       },
       "returns": "unknown",
@@ -16106,6 +16638,20 @@
       },
       "returns": "unknown",
       "description": "return a list of tuples of start, stop, step",
+      "example": ""
+    },
+    "_min_fitting_element": {
+      "node_type": "method",
+      "belongs_to": "RangeIndex",
+      "parameters": {
+        "required": [
+          "self",
+          "lower_limit"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Returns the smallest element greater than or equal to the limit",
       "example": ""
     },
     "_minmax": {
@@ -16204,6 +16750,19 @@
       "description": "",
       "example": ""
     },
+    "_get_cacher": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "return my cacher or None",
+      "example": ""
+    },
     "_get_rows_with_mask": {
       "node_type": "method",
       "belongs_to": "Series",
@@ -16270,12 +16829,45 @@
         "required": [
           "self",
           "new_index",
-          "indexer"
+          "indexer",
+          "copy"
         ],
         "optional": []
       },
       "returns": "unknown",
       "description": "",
+      "example": ""
+    },
+    "_replace_single": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "to_replace",
+          "method",
+          "inplace",
+          "limit"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Replaces values in a Series using the fill method specified when no",
+      "example": ""
+    },
+    "_set_as_cached": {
+      "node_type": "method",
+      "belongs_to": "Series",
+      "parameters": {
+        "required": [
+          "self",
+          "item",
+          "cacher"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Set the _cacher attribute on the calling object with a weakref to",
       "example": ""
     },
     "_set_labels": {
@@ -16287,7 +16879,9 @@
           "key",
           "value"
         ],
-        "optional": []
+        "optional": [
+          "warn"
+        ]
       },
       "returns": "unknown",
       "description": "",
@@ -16302,7 +16896,8 @@
           "name"
         ],
         "optional": [
-          "inplace"
+          "inplace",
+          "deep"
         ]
       },
       "returns": "unknown",
@@ -16318,7 +16913,9 @@
           "key",
           "value"
         ],
-        "optional": []
+        "optional": [
+          "warn"
+        ]
       },
       "returns": "unknown",
       "description": "",
@@ -16333,7 +16930,9 @@
           "key",
           "value"
         ],
-        "optional": []
+        "optional": [
+          "warn"
+        ]
       },
       "returns": "unknown",
       "description": "",
@@ -16348,7 +16947,9 @@
           "key",
           "value"
         ],
-        "optional": []
+        "optional": [
+          "warn"
+        ]
       },
       "returns": "unknown",
       "description": "",
@@ -16441,7 +17042,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Accessor object for Series values' datetime-like, timedelta and period properties.",
+      "description": "Accessor object for datetimelike properties of the Series values.",
       "example": ""
     },
     "list": {
@@ -16597,7 +17198,9 @@
       "belongs_to": "TimedeltaIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -16623,7 +17226,9 @@
       "belongs_to": "TimedeltaIndex",
       "parameters": {
         "required": [
-          "self"
+          "self",
+          "args",
+          "kwargs"
         ],
         "optional": []
       },
@@ -16668,7 +17273,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return a ctime() style string representing the Timestamp.",
+      "description": "Return ctime() style string.",
       "example": ""
     },
     "date": {
@@ -16681,7 +17286,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Returns `datetime.date` with the same year, month, and day.",
+      "description": "Return date object with same year, month and day.",
       "example": ""
     },
     "dst": {
@@ -16712,9 +17317,7 @@
       "node_type": "method",
       "belongs_to": "Timestamp",
       "parameters": {
-        "required": [
-          "object"
-        ],
+        "required": [],
         "optional": []
       },
       "returns": "unknown",
@@ -16733,7 +17336,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Construct a timestamp from a proleptic Gregorian ordinal.",
+      "description": "Construct a timestamp from a a proleptic Gregorian ordinal.",
       "example": ""
     },
     "fromtimestamp": {
@@ -16748,7 +17351,7 @@
         ]
       },
       "returns": "unknown",
-      "description": "Create a `Timestamp` object from a POSIX timestamp.",
+      "description": "Timestamp.fromtimestamp(ts)",
       "example": ""
     },
     "isoweekday": {
@@ -16775,7 +17378,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Convert string argument to datetime.",
+      "description": "Timestamp.strptime(string, format)",
       "example": ""
     },
     "time": {
@@ -16840,7 +17443,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return a NumPy datetime64 object with same precision.",
+      "description": "Return a numpy.datetime64 object with same precision.",
       "example": ""
     },
     "today": {
@@ -16929,7 +17532,7 @@
         "optional": []
       },
       "returns": "unknown",
-      "description": "Return UTC time tuple, compatible with `time.localtime()`.",
+      "description": "Return UTC time tuple, compatible with time.localtime().",
       "example": ""
     },
     "weekday": {
@@ -16943,6 +17546,19 @@
       },
       "returns": "unknown",
       "description": "Return the day of the week represented by the date.",
+      "example": ""
+    },
+    "_recreate_cm": {
+      "node_type": "method",
+      "belongs_to": "option_context",
+      "parameters": {
+        "required": [
+          "self"
+        ],
+        "optional": []
+      },
+      "returns": "unknown",
+      "description": "Return a recreated instance of self.",
       "example": ""
     }
   }

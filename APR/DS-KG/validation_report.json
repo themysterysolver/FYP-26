@@ -1,0 +1,150 @@
+{
+  "timestamp": "2026-02-12T19:59:54.950863",
+  "comparison": {
+    "numpy": {
+      "before": {
+        "library": "numpy",
+        "modules": 26,
+        "classes": 71,
+        "functions": 216,
+        "functions_with_params": 106,
+        "functions_without_params": 110,
+        "param_coverage_pct": 49.1
+      },
+      "after": {
+        "library": "numpy",
+        "modules": 27,
+        "classes": 72,
+        "functions": 216,
+        "functions_with_params": 198,
+        "functions_without_params": 18,
+        "param_coverage_pct": 91.7
+      }
+    },
+    "pandas": {
+      "before": {
+        "library": "pandas",
+        "modules": 17,
+        "classes": 41,
+        "functions": 827,
+        "functions_with_params": 820,
+        "functions_without_params": 7,
+        "param_coverage_pct": 99.2
+      },
+      "after": {
+        "library": "pandas",
+        "modules": 17,
+        "classes": 40,
+        "functions": 796,
+        "functions_with_params": 792,
+        "functions_without_params": 4,
+        "param_coverage_pct": 99.5
+      }
+    },
+    "matplotlib_pyplot": {
+      "before": {
+        "library": "matplotlib.pyplot",
+        "modules": 17,
+        "classes": 51,
+        "functions": 874,
+        "functions_with_params": 830,
+        "functions_without_params": 44,
+        "param_coverage_pct": 95.0
+      },
+      "after": {
+        "library": "matplotlib.pyplot",
+        "modules": 17,
+        "classes": 51,
+        "functions": 875,
+        "functions_with_params": 832,
+        "functions_without_params": 43,
+        "param_coverage_pct": 95.1
+      }
+    },
+    "scipy": {
+      "before": {
+        "library": "scipy",
+        "modules": 18,
+        "classes": 1,
+        "functions": 5,
+        "functions_with_params": 5,
+        "functions_without_params": 0,
+        "param_coverage_pct": 100.0
+      },
+      "after": {
+        "library": "scipy",
+        "modules": 18,
+        "classes": 1,
+        "functions": 5,
+        "functions_with_params": 5,
+        "functions_without_params": 0,
+        "param_coverage_pct": 100.0
+      }
+    },
+    "sklearn": {
+      "before": {
+        "library": "sklearn",
+        "modules": 38,
+        "classes": 0,
+        "functions": 5,
+        "functions_with_params": 3,
+        "functions_without_params": 2,
+        "param_coverage_pct": 60.0
+      },
+      "after": {
+        "library": "sklearn",
+        "modules": 38,
+        "classes": 0,
+        "functions": 5,
+        "functions_with_params": 3,
+        "functions_without_params": 2,
+        "param_coverage_pct": 60.0
+      }
+    },
+    "seaborn": {
+      "before": {
+        "library": "seaborn",
+        "modules": 22,
+        "classes": 3,
+        "functions": 97,
+        "functions_with_params": 94,
+        "functions_without_params": 3,
+        "param_coverage_pct": 96.9
+      },
+      "after": {
+        "library": "seaborn",
+        "modules": 22,
+        "classes": 3,
+        "functions": 97,
+        "functions_with_params": 94,
+        "functions_without_params": 3,
+        "param_coverage_pct": 96.9
+      }
+    },
+    "statsmodels_api": {
+      "before": {
+        "library": "statsmodels.api",
+        "modules": 18,
+        "classes": 41,
+        "functions": 244,
+        "functions_with_params": 244,
+        "functions_without_params": 0,
+        "param_coverage_pct": 100.0
+      },
+      "after": {
+        "library": "statsmodels.api",
+        "modules": 18,
+        "classes": 41,
+        "functions": 244,
+        "functions_with_params": 244,
+        "functions_without_params": 0,
+        "param_coverage_pct": 100.0
+      }
+    }
+  },
+  "summary": {
+    "improved": 3,
+    "unchanged": 4,
+    "regressed": 0
+  }
+}
