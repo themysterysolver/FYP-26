@@ -13,7 +13,7 @@ I have the following DataFrame:
 The DataFrame is read from a CSV file. All rows which have Type 1 are on top, followed by the rows with Type 2, followed by the rows with Type 3, etc.
 I would like to shuffle the order of the DataFrame's rows according to a list. \
 For example, give a list [2, 4, 0, 3, 1, 5] and desired result should be:
-    Col1  Col2  Col3  Type
+    Col1  Cgit checkout mainol2  Col3  Type
 2      7     8     9     2
 4     13    14    15     3
 0     1     2     3     1
