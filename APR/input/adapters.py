@@ -259,6 +259,12 @@ def current_dynamic_to_dynamic_result(
             })
 
     failure_details: FailureDetails | None = None
+    # Parse traceback from stderr when available (e.g. crash, resource_error)
+    traceback_lines = None
+    stderr = record.get("stderr")
+    if stderr and isinstance(stderr, str) and stderr.strip():
+        traceback_lines = [line for line in stderr.strip().split("\n") if line.strip()]
+    
     if failures:
         f0 = failures[0]
         failing_test_id = f0.get("test_id", "")
@@ -277,8 +283,23 @@ def current_dynamic_to_dynamic_result(
             "failing_test_id": failing_test_id,
             "exception_type": exc_type,
             "exception_message": exc_msg,
-            "traceback": None,
+            "traceback": traceback_lines,
             "expected_vs_actual": expected_vs_actual,
+        }
+    elif traceback_lines and status == "runtime_error":
+        # For crash/parse_error with no oracle failures, create minimal failure_details with traceback
+        exc_msg = record.get("stderr", "")[:200] if record.get("stderr") else "Runtime error"
+        exc_type = None
+        if ":" in exc_msg:
+            first_line = exc_msg.split("\n")[0] if "\n" in exc_msg else exc_msg
+            if ":" in first_line:
+                exc_type = first_line.split(":", 1)[0].strip()
+        failure_details = {
+            "failing_test_id": "",
+            "exception_type": exc_type,
+            "exception_message": exc_msg,
+            "traceback": traceback_lines,
+            "expected_vs_actual": None,
         }
 
     subtype = record.get("hallucination_subtype") or record.get("error_type") or "none"

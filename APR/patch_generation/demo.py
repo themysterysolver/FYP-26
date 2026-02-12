@@ -10,10 +10,10 @@ import os
 import sys
 
 
-def _spec_example_apr_input() -> dict:
-    """Spec example: find_max logic error (assertion_failure)."""
+def _logic_error_example() -> dict:
+    """Example: find_max logic error (assertion_failure) - uses RICH prompt."""
     return {
-        "task_id": "MBPP_37",
+        "task_id": "MBPP_37_logic",
         "generated_code": """def find_max(numbers):
     max_val = 0
     for n in numbers:
@@ -52,23 +52,41 @@ def _spec_example_apr_input() -> dict:
     }
 
 
-def main() -> None:
-    # Ensure we can import from APR
-    repo_root = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "..")
-    )
-    if repo_root not in sys.path:
-        sys.path.insert(0, repo_root)
+def _syntax_error_example() -> dict:
+    """Example: syntax error (missing colon) - uses SIMPLE prompt."""
+    return {
+        "task_id": "SYNTAX_42",
+        "generated_code": """def calculate_sum(numbers)
+    total = 0
+    for n in numbers:
+        total += n
+    return total""",
+        "problem_description": "Calculate the sum of numbers in a list.",
+        "function_signature": "def calculate_sum(numbers):",
+        "test_cases": [
+            {
+                "test_id": "t1",
+                "input_expression": "calculate_sum([1, 2, 3])",
+                "expected_output": 6,
+            },
+        ],
+        "static_ast": {
+            "status": "syntax_error",
+            "error_type": "SyntaxError",
+            "error_message": "invalid syntax. Perhaps you forgot a comma?",
+            "error_location": {"line_start": 1, "line_end": 1, "column_start": 28, "column_end": 28},
+        },
+        "static_cfg": {"status": "build_failure"},
+        "static_library_api": {"status": "success"},
+        "dynamic_analysis": {"status": "runtime_error"},
+    }
 
-    from APR.patch_generation import (
-        PatchGenerator,
-        build_repair_prompt,
-        validate_patch,
-    )
 
-    # Use spec example so we always have a dynamic hunk
-    apr_input = _spec_example_apr_input()
-    request: PatchGenerationRequest = {
+def _run_example(name: str, apr_input: dict, generator) -> None:
+    """Run one example and show the patch and prompt type."""
+    from APR.patch_generation import build_repair_prompt, validate_patch
+    
+    request = {
         "apr_input": apr_input,
         "patch_strategy": {
             "mode": "multi_hunk",
@@ -77,43 +95,82 @@ def main() -> None:
         },
         "context_lines": 3,
     }
-
-    generator = PatchGenerator()
+    
     patch = generator.generate(request)
     valid = validate_patch(patch)
-
-    print("=" * 60)
-    print("PatchGenerator module – execution demo")
-    print("=" * 60)
-    print(f"Validation: {'PASS' if valid else 'FAIL'}")
-    print(f"patch_id:   {patch.get('patch_id')}")
-    print(f"task_id:    {patch.get('task_id')}")
+    prompt = build_repair_prompt(apr_input, patch)
+    
+    print("\n" + "=" * 70)
+    print(f"EXAMPLE: {name}")
+    print("=" * 70)
+    
     meta = patch.get("metadata") or {}
-    print(f"strategy:   {meta.get('strategy_used')}")
-    print(f"total_hunks: {meta.get('total_hunks')}")
-    print(f"critical_hunks: {meta.get('critical_hunks')}")
-    print()
-    print("--- Patched code (snippet) ---")
-    patched = patch.get("patched_code") or ""
-    lines = patched.split("\n")
-    for i, line in enumerate(lines[:25], 1):
-        print(f"  {i:2d}| {line}")
-    if len(lines) > 25:
-        print(f"  ... ({len(lines) - 25} more lines)")
-    print()
     hunks = patch.get("hunks") or []
-    if hunks:
-        print("--- First hunk marked_representation ---")
-        first = hunks[0]
-        mr = first.get("marked_representation", "")
-        for line in mr.split("\n")[:20]:
-            print(f"  {line}")
-        if len(mr.split("\n")) > 20:
-            print("  ...")
+    error_types = [h.get("error_type") for h in hunks]
+    
+    print(f"Task ID:        {patch.get('task_id')}")
+    print(f"Validation:     {'PASS' if valid else 'FAIL'}")
+    print(f"Strategy:       {meta.get('strategy_used')}")
+    print(f"Total hunks:    {meta.get('total_hunks')}")
+    print(f"Error types:    {', '.join(error_types)}")
+    
+    # Determine prompt type
+    from APR.patch_generation.prompts import _use_simple_prompt
+    prompt_type = "SIMPLE (error-line)" if _use_simple_prompt(patch) else "RICH (test I/O)"
+    print(f"Prompt type:    {prompt_type}")
     print()
-    print("Repair prompt length:", len(build_repair_prompt(apr_input, patch)))
-    print("=" * 60)
-    print("Demo finished successfully.")
+    
+    print("--- Patched code (first 15 lines) ---")
+    patched = patch.get("patched_code") or ""
+    for i, line in enumerate(patched.split("\n")[:15], 1):
+        print(f"  {i:2d}| {line}")
+    print()
+    
+    print("--- Repair prompt (first 400 chars) ---")
+    print(prompt[:400])
+    if len(prompt) > 400:
+        print(f"... ({len(prompt) - 400} more chars)")
+    print()
+
+
+def main() -> None:
+    # Ensure we can import from APR
+    repo_root = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "..")
+    )
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
+
+    from APR.patch_generation import PatchGenerator
+    
+    print("\n" + "=" * 70)
+    print("HYBRID REPAIR PROMPT DEMONSTRATION")
+    print("Showcasing simple prompt vs rich prompt based on error type")
+    print("=" * 70)
+
+    generator = PatchGenerator()
+    
+    # Example 1: Syntax error -> Simple prompt
+    _run_example(
+        "Syntax Error (uses SIMPLE prompt)",
+        _syntax_error_example(),
+        generator,
+    )
+    
+    # Example 2: Logic error -> Rich prompt
+    _run_example(
+        "Logic Error (uses RICH prompt)",
+        _logic_error_example(),
+        generator,
+    )
+    
+    print("\n" + "=" * 70)
+    print("DEMONSTRATION COMPLETE")
+    print("=" * 70)
+    print("\nKey differences:")
+    print("  - SIMPLE: Short prompt with 'Error at line N: <message>'")
+    print("  - RICH:   Full prompt with TEST/EXPECTED/ACTUAL and test summary")
+    print()
 
 
 if __name__ == "__main__":
