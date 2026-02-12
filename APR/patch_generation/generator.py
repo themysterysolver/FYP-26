@@ -3,7 +3,7 @@ PatchGenerator: dispatch by strategy and mode, return validated GeneratedPatch.
 """
 from __future__ import annotations
 
-from typing import List
+from typing import Any, List, Optional
 
 from .schema import GeneratedPatch, Hunk, PatchGenerationRequest, PatchStrategy
 from .strategies import (
@@ -16,6 +16,21 @@ from .validation import validate_patch
 
 class PatchGenerator:
     """Generates patches from APRInput with configurable strategy and mode."""
+    
+    def __init__(
+        self,
+        kg_engine: Optional[Any] = None,  # DSKGEngine
+        kg_context_budget: int = 800
+    ):
+        """
+        Initialize patch generator.
+        
+        Args:
+            kg_engine: Optional DSKGEngine for API documentation integration
+            kg_context_budget: Token budget for KG context (default 800)
+        """
+        self.kg_engine = kg_engine
+        self.kg_budget = kg_context_budget
 
     def generate(self, request: PatchGenerationRequest) -> GeneratedPatch:
         """

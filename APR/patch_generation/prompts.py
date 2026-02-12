@@ -3,10 +3,22 @@ LLM repair prompt template and test case formatting.
 """
 from __future__ import annotations
 
-from typing import Any, List
+from typing import Any, List, Optional
 
 from ..input.schema import APRInput, TestCase
 from .schema import GeneratedPatch
+
+try:
+    from ..DS_KG.engine import DSKGEngine
+    from .kg_integration import (
+        build_kg_context,
+        extract_error_signatures,
+        query_kg_for_errors,
+    )
+    KG_AVAILABLE = True
+except ImportError:
+    DSKGEngine = None  # type: ignore
+    KG_AVAILABLE = False
 
 
 REPAIR_PROMPT_TEMPLATE = """Fix the code by resolving all [ERROR START/END] blocks.
@@ -47,6 +59,55 @@ Line {error_line}: {error_message}
 - Fix the marked block at line {error_line}
 - Remove all marker lines (<<<<<<<, =======, >>>>>>>)
 - Return the corrected code
+"""
+
+
+REPAIR_PROMPT_ERROR_LINE_WITH_KG = """Fix the error in the code below using the provided API documentation.
+
+## API Documentation
+{kg_context}
+
+## Error
+Line {error_line}: {error_message}
+
+## Problem
+{problem_description}
+
+## Code with Error Marked
+```python
+{patched_code}
+```
+
+## Instructions
+- Refer to API Documentation above for correct usage
+- Fix the marked block at line {error_line}
+- Remove all marker lines (<<<<<<<, =======, >>>>>>>)
+- Return only the corrected code
+"""
+
+
+REPAIR_PROMPT_TEMPLATE_WITH_KG = """Fix the code by resolving all [ERROR START/END] blocks using the provided API documentation.
+
+## API Documentation
+{kg_context}
+
+## Problem
+{problem_description}
+
+## Function Signature
+{function_signature}
+
+## Code with Errors Marked
+```python
+{patched_code}
+```
+
+## Instructions
+- Refer to API Documentation above for correct usage
+- Replace each <<<<<<< [ERROR START: X] ... >>>>>>> [ERROR END: X] block with correct code
+- Remove all marker lines (<<<<<<<, =======, >>>>>>>)
+- Preserve all other code exactly
+- Ensure the fixed code passes: {test_cases_summary}
 """
 
 
@@ -124,6 +185,8 @@ def build_repair_prompt(
     patch: GeneratedPatch,
     template: str | None = None,
     auto_select: bool = True,
+    kg_engine: Optional[Any] = None,  # DSKGEngine
+    kg_context_budget: int = 800,
 ) -> str:
     """
     Build the full repair prompt string for an LLM.
@@ -131,29 +194,79 @@ def build_repair_prompt(
     If auto_select=True and template is None, automatically chooses:
     - REPAIR_PROMPT_ERROR_LINE for simple errors (syntax, runtime, name, API)
     - REPAIR_PROMPT_TEMPLATE for logic errors (wrong output)
+    
+    If kg_engine is provided, queries KG for relevant API documentation
+    and uses KG-enhanced templates.
+    
+    Args:
+        apr_input: Full APR input with code and analysis
+        patch: Generated patch with error markers
+        template: Override template (optional)
+        auto_select: Auto-select template based on error types
+        kg_engine: Optional DSKGEngine for API documentation
+        kg_context_budget: Token budget for KG context (default 800)
+    
+    Returns:
+        Formatted repair prompt string
     """
+    # Query KG if available
+    kg_context = ""
+    if kg_engine is not None and KG_AVAILABLE:
+        try:
+            signatures = extract_error_signatures(apr_input, patch)
+            kg_entries = query_kg_for_errors(kg_engine, signatures)
+            if kg_entries:
+                kg_context = build_kg_context(kg_entries, signatures, kg_context_budget)
+        except Exception as e:
+            # Gracefully fallback if KG query fails
+            print(f"Warning: KG query failed: {e}")
+            kg_context = ""
+    
+    # Select template
     if template is None and auto_select:
-        # Auto-select template based on hunk types
-        if _use_simple_prompt(patch):
-            template = REPAIR_PROMPT_ERROR_LINE
+        use_simple = _use_simple_prompt(patch)
+        
+        # Use KG templates if we have context
+        if kg_context:
+            template = REPAIR_PROMPT_ERROR_LINE_WITH_KG if use_simple else REPAIR_PROMPT_TEMPLATE_WITH_KG
         else:
-            template = REPAIR_PROMPT_TEMPLATE
+            template = REPAIR_PROMPT_ERROR_LINE if use_simple else REPAIR_PROMPT_TEMPLATE
     elif template is None:
-        template = REPAIR_PROMPT_TEMPLATE
+        # Default to KG template if we have context
+        template = REPAIR_PROMPT_TEMPLATE_WITH_KG if kg_context else REPAIR_PROMPT_TEMPLATE
     
     # Fill template placeholders
-    if template == REPAIR_PROMPT_ERROR_LINE:
+    if template in (REPAIR_PROMPT_ERROR_LINE, REPAIR_PROMPT_ERROR_LINE_WITH_KG):
         error_line, error_message = _get_primary_error_for_simple(apr_input, patch)
-        return template.format(
-            error_line=error_line,
-            error_message=error_message,
-            problem_description=apr_input.get("problem_description") or "",
-            patched_code=patch.get("patched_code") or "",
-        )
+        if kg_context and template == REPAIR_PROMPT_ERROR_LINE_WITH_KG:
+            return template.format(
+                kg_context=kg_context,
+                error_line=error_line,
+                error_message=error_message,
+                problem_description=apr_input.get("problem_description") or "",
+                patched_code=patch.get("patched_code") or "",
+            )
+        else:
+            return template.format(
+                error_line=error_line,
+                error_message=error_message,
+                problem_description=apr_input.get("problem_description") or "",
+                patched_code=patch.get("patched_code") or "",
+            )
     else:
-        return template.format(
-            problem_description=apr_input.get("problem_description") or "",
-            function_signature=apr_input.get("function_signature") or "",
-            patched_code=patch.get("patched_code") or "",
-            test_cases_summary=format_test_cases(apr_input.get("test_cases")),
-        )
+        # Full template
+        if kg_context and template == REPAIR_PROMPT_TEMPLATE_WITH_KG:
+            return template.format(
+                kg_context=kg_context,
+                problem_description=apr_input.get("problem_description") or "",
+                function_signature=apr_input.get("function_signature") or "",
+                patched_code=patch.get("patched_code") or "",
+                test_cases_summary=format_test_cases(apr_input.get("test_cases")),
+            )
+        else:
+            return template.format(
+                problem_description=apr_input.get("problem_description") or "",
+                function_signature=apr_input.get("function_signature") or "",
+                patched_code=patch.get("patched_code") or "",
+                test_cases_summary=format_test_cases(apr_input.get("test_cases")),
+            )
