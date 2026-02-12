@@ -17,7 +17,7 @@ DATASETS = {
     "DS1000": {
         "path": os.path.join(BASE_DIR, "ds1k_gen.csv"),
         "code_column": "full_code",
-        "task_id_column": None,
+        "task_id_column": "task_id",
         "output": "libapi_ds1000.jsonl"
     },
     "HumanEval": {
@@ -60,7 +60,6 @@ class LibraryAPIVistor(ast.NodeVisitor):
 
     def visit_ImportFrom(self, node):
         if node.module is None:
-            # Relative imports like: from . import x
             return
 
         try:
