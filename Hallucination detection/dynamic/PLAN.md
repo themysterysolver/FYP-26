@@ -119,3 +119,14 @@ Summary of **can_repair** and **suggestion** by type:
 - Diagnostic hints (off_by_one, bug_location, suggested_fix) can be stubbed or best-effort.
 - DS1000: add proper test extraction from metadata in a later iteration.
 - Integration with static pipeline: run dynamic only on samples that passed static checks.
+
+## Implementation status update
+
+- Added a standalone generation framework under `dynamic/test_generation/` with modules for:
+  - spec extraction (`spec_extraction.py`)
+  - domain inference (`domain_inference.py`)
+  - BVA/ECP generation (`case_generation.py`)
+  - oracle emission (`oracle_emission.py`)
+- Integrated framework calls into `dynamic_detection.py`.
+- DS1000 now uses executable oracles from `code_context` when `generate_test_case` and `exec_test` are available, with `oracle_confidence` fallback metadata.
+- Output now carries BVA/ECP provenance fields per failure (`test_design_method`, `equivalence_class`, `boundary_kind`, `generated_test_id`, `source`) and aggregate columns in `dynamic_summary.csv`.
