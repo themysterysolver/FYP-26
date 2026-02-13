@@ -23,22 +23,20 @@ DATASET_DIR = PROJECT_ROOT / "Dataset used"
 OUTPUT_DIR = Path(__file__).parent
 
 # Dataset configurations
+# Note: Generation files contain both generated code AND test cases
 DATASETS = {
     "DS1000": {
         "gen_path": GENERATION_DIR / "ds1k_gen.csv",
-        "test_path": DATASET_DIR / "ds1000.csv",
         "code_column": "full_code",
         "task_id_column": "task_id"
     },
     "HumanEval": {
         "gen_path": GENERATION_DIR / "humaneval_gen.csv",
-        "test_path": DATASET_DIR / "humaneval.csv",
         "code_column": "GENERATED_CODE",
         "task_id_column": "task_id"
     },
     "MBPP": {
         "gen_path": GENERATION_DIR / "mbpp_gen.csv",
-        "test_path": DATASET_DIR / "mbpp.csv",
         "code_column": "GENERATED_CODE",
         "task_id_column": "task_id"
     }
@@ -408,13 +406,12 @@ def execute_mbpp_test(generated_code: str, test_list: List[str], test_imports: L
     return execute_with_timeout(execute_mbpp_test_inner, (generated_code, test_list, test_imports))
 
 
-def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, Any]]:
+def process_ds1000(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
     """
     Process DS1000 dataset and execute tests.
     
     Args:
-        gen_df: DataFrame with generated code
-        test_df: DataFrame with test cases
+        gen_df: DataFrame with generated code and test cases
     
     Returns:
         List of result dictionaries
@@ -427,10 +424,8 @@ def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str
         task_id = row.get('task_id')
         generated_code = str(row.get('full_code', ''))
         
-        # Find corresponding test case
-        test_row = test_df[test_df['prompt'] == row['prompt']]
-        
-        if test_row.empty:
+        # Get code_context from the same row
+        if 'code_context' not in row or pd.isna(row['code_context']):
             print(f"  Warning: No test found for task_id {task_id}")
             results.append({
                 "dataset": "DS1000",
@@ -445,7 +440,7 @@ def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str
             })
             continue
         
-        code_context = str(test_row.iloc[0]['code_context'])
+        code_context = str(row['code_context'])
         
         # Execute test
         result = execute_ds1000_test(generated_code, code_context)
@@ -460,13 +455,12 @@ def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str
     return results
 
 
-def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, Any]]:
+def process_humaneval(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
     """
     Process HumanEval dataset and execute tests.
     
     Args:
-        gen_df: DataFrame with generated code
-        test_df: DataFrame with test cases
+        gen_df: DataFrame with generated code and test cases
     
     Returns:
         List of result dictionaries
@@ -479,10 +473,8 @@ def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[
         task_id = row.get('task_id')
         generated_code = str(row.get('GENERATED_CODE', ''))
         
-        # Find corresponding test case
-        test_row = test_df[test_df['task_id'] == task_id]
-        
-        if test_row.empty:
+        # Get test data from the same row
+        if 'test' not in row or pd.isna(row['test']) or 'entry_point' not in row or pd.isna(row['entry_point']):
             print(f"  Warning: No test found for task_id {task_id}")
             results.append({
                 "dataset": "HumanEval",
@@ -497,8 +489,8 @@ def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[
             })
             continue
         
-        test_code = str(test_row.iloc[0]['test'])
-        entry_point = str(test_row.iloc[0]['entry_point'])
+        test_code = str(row['test'])
+        entry_point = str(row['entry_point'])
         
         # Execute test
         result = execute_humaneval_test(generated_code, test_code, entry_point)
@@ -513,13 +505,12 @@ def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[
     return results
 
 
-def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, Any]]:
+def process_mbpp(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
     """
     Process MBPP dataset and execute tests.
     
     Args:
-        gen_df: DataFrame with generated code
-        test_df: DataFrame with test cases
+        gen_df: DataFrame with generated code and test cases
     
     Returns:
         List of result dictionaries
@@ -532,10 +523,8 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
         task_id = row.get('task_id')
         generated_code = str(row.get('GENERATED_CODE', ''))
         
-        # Find corresponding test case
-        test_row = test_df[test_df['task_id'] == task_id]
-        
-        if test_row.empty:
+        # Get test data from the same row
+        if 'test_list' not in row or pd.isna(row['test_list']) or 'test_imports' not in row or pd.isna(row['test_imports']):
             print(f"  Warning: No test found for task_id {task_id}")
             results.append({
                 "dataset": "MBPP",
@@ -551,8 +540,8 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
             continue
         
         # Parse test_list and test_imports from string representation
-        test_list_str = str(test_row.iloc[0]['test_list'])
-        test_imports_str = str(test_row.iloc[0]['test_imports'])
+        test_list_str = str(row['test_list'])
+        test_imports_str = str(row['test_imports'])
         
         try:
             test_list = ast.literal_eval(test_list_str)
@@ -630,6 +619,7 @@ def update_syntax_error_line_numbers(csv_path: Path) -> int:
 def run_dynamic_pipeline():
     """
     Main pipeline to process all datasets and generate results CSV.
+    Generation files contain both generated code and test cases.
     """
     print("=" * 80)
     print("Dynamic Test Execution Module")
@@ -641,8 +631,7 @@ def run_dynamic_pipeline():
     print("\n[1/3] Loading DS1000 dataset...")
     try:
         ds1000_gen = pd.read_csv(DATASETS["DS1000"]["gen_path"])
-        ds1000_tests = pd.read_csv(DATASETS["DS1000"]["test_path"])
-        ds1000_results = process_ds1000(ds1000_gen, ds1000_tests)
+        ds1000_results = process_ds1000(ds1000_gen)
         all_results.extend(ds1000_results)
         print(f"✓ DS1000 completed: {len(ds1000_results)} results")
     except Exception as e:
@@ -653,8 +642,7 @@ def run_dynamic_pipeline():
     print("\n[2/3] Loading HumanEval dataset...")
     try:
         humaneval_gen = pd.read_csv(DATASETS["HumanEval"]["gen_path"])
-        humaneval_tests = pd.read_csv(DATASETS["HumanEval"]["test_path"])
-        humaneval_results = process_humaneval(humaneval_gen, humaneval_tests)
+        humaneval_results = process_humaneval(humaneval_gen)
         all_results.extend(humaneval_results)
         print(f"✓ HumanEval completed: {len(humaneval_results)} results")
     except Exception as e:
@@ -665,8 +653,7 @@ def run_dynamic_pipeline():
     print("\n[3/3] Loading MBPP dataset...")
     try:
         mbpp_gen = pd.read_csv(DATASETS["MBPP"]["gen_path"])
-        mbpp_tests = pd.read_csv(DATASETS["MBPP"]["test_path"])
-        mbpp_results = process_mbpp(mbpp_gen, mbpp_tests)
+        mbpp_results = process_mbpp(mbpp_gen)
         all_results.extend(mbpp_results)
         print(f"✓ MBPP completed: {len(mbpp_results)} results")
     except Exception as e:
