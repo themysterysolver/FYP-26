@@ -844,7 +844,11 @@ def process_mbpp(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
         test_imports_str = str(row['test_imports'])
         
         try:
-            test_list = ast.literal_eval(test_list_str)
+            # Fix for MBPP CSV format: Replace actual newlines between strings with commas
+            # The CSV stores lists like: ['test1'\n 'test2'\n 'test3'] (actual newlines)
+            # Python's literal_eval treats adjacent strings as concatenation, so we need commas
+            test_list_str_fixed = test_list_str.replace("'\n '", "', '").replace('"\n "', '", "')
+            test_list = ast.literal_eval(test_list_str_fixed)
             test_imports = ast.literal_eval(test_imports_str)
         except Exception as e:
             print(f"  Error parsing test data for task_id {task_id}: {e}")
