@@ -12,7 +12,7 @@ from pathlib import Path
 
 def load_csv_files():
     """Load all 4 CSV files."""
-    base_path = Path(__file__).parent
+    base_path = Path(__file__).parent.parent  # Go up to "Hallucination detection" folder
     
     # Define file paths
     ast_path = base_path / "static/AST/ast_summary.csv"
@@ -257,8 +257,8 @@ def main():
     hallucinated_count = len(output_df[output_df['status'] == 'hallucinated'])
     print(f"Status breakdown: {passed_count} passed, {hallucinated_count} hallucinated")
     
-    # Create output directory
-    output_dir = Path(__file__).parent / "Fault Information"
+    # Create output directory (already in "Fault Information" folder)
+    output_dir = Path(__file__).parent
     output_dir.mkdir(exist_ok=True)
     
     # Write output
