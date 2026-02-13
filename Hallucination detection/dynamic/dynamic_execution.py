@@ -8,6 +8,7 @@ Captures pass/fail status and detailed error information.
 import os
 import sys
 import ast
+import re
 import traceback
 import pandas as pd
 import signal
@@ -57,6 +58,23 @@ def timeout_handler(signum, frame):
     raise TimeoutException("Execution exceeded timeout")
 
 
+def extract_syntax_error_line(error_message: str) -> str:
+    """
+    Extract line number from SyntaxError message.
+    Format: "... (<string>, line N) ..."
+    
+    Args:
+        error_message: The error message string
+    
+    Returns:
+        Line number as string, or empty string if not found
+    """
+    match = re.search(r'\(<string>,\s*line\s+(\d+)\)', error_message)
+    if match:
+        return match.group(1)
+    return ""
+
+
 def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
     """
     Execute function with timeout protection for infinite loops/recursion.
@@ -86,43 +104,63 @@ def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
     
     if thread.is_alive():
         # Thread still running - timeout occurred
+        # Extract generated_code from args if available
+        gen_code = args[0] if args else ""
         return {
             "status": "failed",
             "error_type": "TimeoutError",
             "error_message": "Execution exceeded timeout (likely infinite loop or recursion)",
             "line_number": "",
             "test_case": "",
-            "testcase_output": ""
+            "testcase_output": "",
+            "generated_code": gen_code
         }
     
     if result_container["exception"] is not None:
         e = result_container["exception"]
         is_assertion_error = isinstance(e, AssertionError)
+        is_syntax_error = isinstance(e, SyntaxError)
         tb = traceback.extract_tb(e.__traceback__)
         full_traceback = result_container["traceback"] or ""
         
-        # Get minimum line number from all frames (per user requirement)
-        line_num = min((frame.lineno for frame in tb), default="") if tb else ""
+        # Get line number based on error type
+        if is_assertion_error:
+            # AssertionErrors don't populate line_number
+            line_num = ""
+        elif is_syntax_error:
+            # Extract line number from SyntaxError message
+            line_num = extract_syntax_error_line(str(e))
+        else:
+            # For runtime errors, get minimum line from <string> frames (user's code)
+            string_frames = [frame for frame in tb if '<string>' in frame.filename]
+            line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
+        
+        # Extract generated_code from args if available
+        gen_code = args[0] if args else ""
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
-            "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
+            "line_number": str(line_num) if line_num else "",
             "test_case": "",
-            "testcase_output": full_traceback if is_assertion_error else ""
+            "testcase_output": full_traceback if is_assertion_error else "",
+            "generated_code": gen_code
         }
     
     if result_container["result"] is not None:
         return result_container["result"]
     
+    # Extract generated_code from args if available
+    gen_code = args[0] if args else ""
     return {
         "status": "failed",
         "error_type": "UnknownError",
         "error_message": "Execution completed but no result returned",
         "line_number": "",
         "test_case": "",
-        "testcase_output": ""
+        "testcase_output": "",
+        "generated_code": gen_code
     }
 
 
@@ -152,24 +190,36 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
             "error_message": "",
             "line_number": "",
             "test_case": "",
-            "testcase_output": ""
+            "testcase_output": "",
+            "generated_code": generated_code
         }
     
     except Exception as e:
         is_assertion_error = isinstance(e, AssertionError)
+        is_syntax_error = isinstance(e, SyntaxError)
         tb = traceback.extract_tb(e.__traceback__)
         full_traceback = traceback.format_exc()
         
-        # Get minimum line number from all frames (per user requirement)
-        line_num = min((frame.lineno for frame in tb), default="") if tb else ""
+        # Get line number based on error type
+        if is_assertion_error:
+            # AssertionErrors don't populate line_number
+            line_num = ""
+        elif is_syntax_error:
+            # Extract line number from SyntaxError message
+            line_num = extract_syntax_error_line(str(e))
+        else:
+            # For runtime errors, get minimum line from <string> frames (user's code)
+            string_frames = [frame for frame in tb if '<string>' in frame.filename]
+            line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
-            "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
+            "line_number": str(line_num) if line_num else "",
             "test_case": code_context if is_assertion_error else "",
-            "testcase_output": full_traceback if is_assertion_error else ""
+            "testcase_output": full_traceback if is_assertion_error else "",
+            "generated_code": generated_code
         }
 
 
@@ -220,24 +270,36 @@ def execute_humaneval_test_inner(generated_code: str, test_code: str, entry_poin
             "error_message": "",
             "line_number": "",
             "test_case": "",
-            "testcase_output": ""
+            "testcase_output": "",
+            "generated_code": generated_code
         }
     
     except Exception as e:
         is_assertion_error = isinstance(e, AssertionError)
+        is_syntax_error = isinstance(e, SyntaxError)
         tb = traceback.extract_tb(e.__traceback__)
         full_traceback = traceback.format_exc()
         
-        # Get minimum line number from all frames (per user requirement)
-        line_num = min((frame.lineno for frame in tb), default="") if tb else ""
+        # Get line number based on error type
+        if is_assertion_error:
+            # AssertionErrors don't populate line_number
+            line_num = ""
+        elif is_syntax_error:
+            # Extract line number from SyntaxError message
+            line_num = extract_syntax_error_line(str(e))
+        else:
+            # For runtime errors, get minimum line from <string> frames (user's code)
+            string_frames = [frame for frame in tb if '<string>' in frame.filename]
+            line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
-            "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
+            "line_number": str(line_num) if line_num else "",
             "test_case": test_code if is_assertion_error else "",
-            "testcase_output": full_traceback if is_assertion_error else ""
+            "testcase_output": full_traceback if is_assertion_error else "",
+            "generated_code": generated_code
         }
 
 
@@ -298,24 +360,36 @@ def execute_mbpp_test_inner(generated_code: str, test_list: List[str], test_impo
             "error_message": "",
             "line_number": "",
             "test_case": "",
-            "testcase_output": ""
+            "testcase_output": "",
+            "generated_code": generated_code
         }
     
     except Exception as e:
         is_assertion_error = isinstance(e, AssertionError)
+        is_syntax_error = isinstance(e, SyntaxError)
         tb = traceback.extract_tb(e.__traceback__)
         full_traceback = traceback.format_exc()
         
-        # Get minimum line number from all frames (per user requirement)
-        line_num = min((frame.lineno for frame in tb), default="") if tb else ""
+        # Get line number based on error type
+        if is_assertion_error:
+            # AssertionErrors don't populate line_number
+            line_num = ""
+        elif is_syntax_error:
+            # Extract line number from SyntaxError message
+            line_num = extract_syntax_error_line(str(e))
+        else:
+            # For runtime errors, get minimum line from <string> frames (user's code)
+            string_frames = [frame for frame in tb if '<string>' in frame.filename]
+            line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
-            "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
+            "line_number": str(line_num) if line_num else "",
             "test_case": formatted_test_case if is_assertion_error else "",
-            "testcase_output": full_traceback if is_assertion_error else ""
+            "testcase_output": full_traceback if is_assertion_error else "",
+            "generated_code": generated_code
         }
 
 
@@ -366,7 +440,8 @@ def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str
                 "error_message": "Test case not found in dataset",
                 "line_number": "",
                 "test_case": "",
-                "testcase_output": ""
+                "testcase_output": "",
+                "generated_code": generated_code
             })
             continue
         
@@ -417,7 +492,8 @@ def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[
                 "error_message": "Test case not found in dataset",
                 "line_number": "",
                 "test_case": "",
-                "testcase_output": ""
+                "testcase_output": "",
+                "generated_code": generated_code
             })
             continue
         
@@ -469,7 +545,8 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
                 "error_message": "Test case not found in dataset",
                 "line_number": "",
                 "test_case": "",
-                "testcase_output": ""
+                "testcase_output": "",
+                "generated_code": generated_code
             })
             continue
         
@@ -490,7 +567,8 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
                 "error_message": f"Failed to parse test data: {str(e)}",
                 "line_number": "",
                 "test_case": "",
-                "testcase_output": ""
+                "testcase_output": "",
+                "generated_code": generated_code
             })
             continue
         
@@ -505,6 +583,48 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
             print(f"  Processed {idx + 1}/{len(gen_df)} samples")
     
     return results
+
+
+def update_syntax_error_line_numbers(csv_path: Path) -> int:
+    """
+    Post-process existing CSV to extract line numbers from SyntaxError messages.
+    This ensures any SyntaxErrors that slipped through without line numbers get updated.
+    
+    Args:
+        csv_path: Path to the results CSV file
+    
+    Returns:
+        Number of rows updated
+    """
+    print("\nPost-processing: Updating SyntaxError line numbers...")
+    
+    try:
+        df = pd.read_csv(csv_path)
+        updates = 0
+        
+        # Find SyntaxErrors with empty line_number
+        for idx, row in df.iterrows():
+            if row['error_type'] == 'SyntaxError' and pd.notna(row['error_message']):
+                # Check if line_number is empty or NaN
+                if pd.isna(row['line_number']) or str(row['line_number']).strip() == '':
+                    # Extract line number from error message
+                    line_num = extract_syntax_error_line(str(row['error_message']))
+                    if line_num:
+                        df.at[idx, 'line_number'] = line_num
+                        updates += 1
+        
+        if updates > 0:
+            df.to_csv(csv_path, index=False)
+            print(f"✓ Updated {updates} SyntaxError entries with line numbers")
+        else:
+            print("✓ All SyntaxError entries already have line numbers")
+        
+        return updates
+    
+    except Exception as e:
+        print(f"✗ Failed to update SyntaxError line numbers: {e}")
+        traceback.print_exc()
+        return 0
 
 
 def run_dynamic_pipeline():
@@ -569,7 +689,7 @@ def run_dynamic_pipeline():
     
     # Ensure column order
     columns = ["dataset", "task_id", "status", "error_type", "error_message", 
-               "line_number", "test_case", "testcase_output"]
+               "line_number", "test_case", "testcase_output", "generated_code"]
     results_df = results_df[columns]
     
     results_df.to_csv(OUTPUT_CSV, index=False)
@@ -578,6 +698,10 @@ def run_dynamic_pipeline():
     print(f"  Total results: {len(results_df)}")
     print(f"  Passed: {len(results_df[results_df['status'] == 'passed'])}")
     print(f"  Failed: {len(results_df[results_df['status'] == 'failed'])}")
+    
+    # Post-process to ensure all SyntaxErrors have line numbers
+    update_syntax_error_line_numbers(OUTPUT_CSV)
+    
     print("=" * 80)
 
 
