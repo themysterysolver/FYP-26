@@ -76,6 +76,108 @@ def extract_syntax_error_line(error_message: str) -> str:
     return ""
 
 
+def adjust_line_number_for_ds1000(
+    raw_line_num: int,
+    code_context: str,
+    generated_code: str,
+    full_code: str
+) -> str:
+    """
+    Adjust line number from exec_context coordinates to full_code coordinates.
+    
+    For DS1000: traceback line numbers are relative to the exec'd string which
+    includes boilerplate before [insert]. This function maps that line number
+    to the corresponding line in full_code.
+    
+    Args:
+        raw_line_num: Line number from traceback (relative to exec_context)
+        code_context: Test context containing exec_context template
+        generated_code: Generated code snippet that was inserted
+        full_code: Complete generated solution (imports + snippet)
+    
+    Returns:
+        Adjusted line number as string (relative to full_code), or empty string if adjustment fails
+    """
+    # Validate inputs
+    if not raw_line_num or not code_context or not full_code:
+        return ""
+    
+    # Check if this is a DS1000 task with exec_context
+    if 'exec_context' not in code_context or '[insert]' not in code_context:
+        return str(raw_line_num)
+    
+    try:
+        # Extract exec_context template from code_context
+        exec_context_match = re.search(r'exec_context\s*=\s*r?"""(.*?)"""', code_context, re.DOTALL)
+        if not exec_context_match:
+            return str(raw_line_num)
+        
+        exec_context_template = exec_context_match.group(1)
+        
+        # Count lines before [insert] in exec_context
+        insert_pos = exec_context_template.find('[insert]')
+        if insert_pos == -1:
+            return str(raw_line_num)
+        
+        lines_before_insert = exec_context_template[:insert_pos].count('\n')
+        
+        # Calculate line number relative to snippet
+        # Note: exec_context often starts with empty line, so adjust accordingly
+        line_in_snippet = raw_line_num - lines_before_insert
+        
+        # Prepare snippet and full_code lines
+        snippet_lines = generated_code.strip().split('\n')
+        full_lines = full_code.strip().split('\n')
+        
+        # Case 1: Error is in boilerplate before [insert]
+        if line_in_snippet <= 0:
+            # Error is in boilerplate before the snippet, not in generated code
+            return ""
+        
+        # Case 2: Error is beyond snippet (in boilerplate after [insert])
+        if line_in_snippet > len(snippet_lines):
+            # Error is in boilerplate after the snippet, not in generated code
+            return ""
+        
+        # Case 3: Error is in snippet - map to full_code
+        snippet_line_text = snippet_lines[line_in_snippet - 1].strip()
+        
+        # Strategy 1: Try direct offset mapping first
+        # Many DS1000 tasks have imports at the top of both snippet and full_code
+        # So we can try matching by offset from start
+        if line_in_snippet <= len(full_lines):
+            # Check if the line at the same position in full_code matches
+            if full_lines[line_in_snippet - 1].strip() == snippet_line_text:
+                return str(line_in_snippet)
+        
+        # Strategy 2: Search for the line in full_code by content
+        # This handles cases where imports differ or snippet is embedded differently
+        for i, full_line in enumerate(full_lines, 1):
+            if full_line.strip() == snippet_line_text:
+                # Found a match - use the first occurrence
+                return str(i)
+        
+        # Strategy 3: If snippet line is empty or very common, try context matching
+        # Look for the line with surrounding context
+        if line_in_snippet > 1 and line_in_snippet < len(snippet_lines):
+            prev_line = snippet_lines[line_in_snippet - 2].strip()
+            next_line = snippet_lines[line_in_snippet].strip() if line_in_snippet < len(snippet_lines) else ""
+            
+            for i in range(1, len(full_lines) - 1):
+                if (full_lines[i].strip() == snippet_line_text and
+                    full_lines[i - 1].strip() == prev_line and
+                    (not next_line or i >= len(full_lines) - 1 or full_lines[i + 1].strip() == next_line)):
+                    return str(i + 1)
+        
+        # If all strategies fail, return raw line number as fallback
+        # This is better than returning empty, as it provides some information
+        return str(raw_line_num)
+        
+    except Exception:
+        # If anything goes wrong, return raw line number
+        return str(raw_line_num)
+
+
 def serialize_value(value: Any, max_length: int = 500) -> str:
     """
     Serialize a value to a string representation, handling complex types.
@@ -450,13 +552,13 @@ def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
     }
 
 
-def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[str, Any]:
+def execute_ds1000_test_inner(generated_code: str, code_context: str, full_code: str = "") -> Dict[str, Any]:
     """
     Inner function to execute DS1000 test (runs inside timeout wrapper).
     
     Args:
-        generated_code: Generated code snippet
-        code_context: Test context with test_execution function
+        generated_code: Generated code snippet (for DS1000, this should be just the snippet without imports)
+        code_context: Test context with test_execution function containing exec_context template
     
     Returns:
         Dictionary with test results including test_case and testcase_output
@@ -491,12 +593,21 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
             # AssertionErrors don't populate line_number
             line_num = ""
         elif is_syntax_error:
-            # Extract line number from SyntaxError message
-            line_num = extract_syntax_error_line(str(e))
+            # Extract line number from SyntaxError message and adjust it
+            raw_line = extract_syntax_error_line(str(e))
+            if raw_line:
+                line_num = adjust_line_number_for_ds1000(int(raw_line), code_context, generated_code, full_code)
+            else:
+                line_num = ""
         else:
             # For runtime errors, get minimum line from <string> frames (user's code)
             string_frames = [frame for frame in tb if '<string>' in frame.filename]
-            line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
+            if string_frames:
+                raw_line = min((frame.lineno for frame in string_frames))
+                # Adjust line number from exec_context to full_code coordinates
+                line_num = adjust_line_number_for_ds1000(raw_line, code_context, generated_code, full_code)
+            else:
+                line_num = ""
         
         # Extract test case data for all failed tests
         test_case_data = extract_ds1000_test_cases(generated_code, code_context)
@@ -513,18 +624,19 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
         }
 
 
-def execute_ds1000_test(generated_code: str, code_context: str) -> Dict[str, Any]:
+def execute_ds1000_test(generated_code: str, code_context: str, full_code: str = "") -> Dict[str, Any]:
     """
     Execute DS1000 test with timeout protection.
     
     Args:
-        generated_code: Generated code snippet
+        generated_code: Generated code snippet (code to insert at [insert] in exec_context)
         code_context: Test context with test_execution function
+        full_code: Full generated code with imports/boilerplate (for line number mapping)
     
     Returns:
         Dictionary with test results
     """
-    return execute_with_timeout(execute_ds1000_test_inner, (generated_code, code_context))
+    return execute_with_timeout(execute_ds1000_test_inner, (generated_code, code_context, full_code))
 
 
 def execute_humaneval_test_inner(generated_code: str, test_code: str, entry_point: str) -> Dict[str, Any]:
@@ -581,6 +693,17 @@ def execute_humaneval_test_inner(generated_code: str, test_code: str, entry_poin
             # For runtime errors, get minimum line from <string> frames (user's code)
             string_frames = [frame for frame in tb if '<string>' in frame.filename]
             line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
+        
+        # For HumanEval: Validate line number is within generated code range
+        # If error is in test code (beyond generated_code), return empty line number
+        if line_num:
+            try:
+                generated_lines = len(generated_code.strip().split('\n'))
+                if int(line_num) > generated_lines:
+                    # Error is in test code, not generated code
+                    line_num = ""
+            except:
+                pass
         
         # Extract test case data for all failed tests
         test_case_data = extract_humaneval_test_cases(generated_code, test_code, entry_point)
@@ -676,6 +799,17 @@ def execute_mbpp_test_inner(generated_code: str, test_list: List[str], test_impo
             string_frames = [frame for frame in tb if '<string>' in frame.filename]
             line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
         
+        # For MBPP: Validate line number is within generated code range
+        # If error is in test code (beyond generated_code), return empty line number
+        if line_num:
+            try:
+                generated_lines = len(generated_code.strip().split('\n'))
+                if int(line_num) > generated_lines:
+                    # Error is in test imports/assertions, not generated code
+                    line_num = ""
+            except:
+                pass
+        
         # Extract test case data for all failed tests
         test_case_data = extract_mbpp_test_cases(generated_code, test_list, test_imports)
         test_case_json = json.dumps(test_case_data) if test_case_data else ""
@@ -722,7 +856,10 @@ def process_ds1000(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
     
     for idx, row in gen_df.iterrows():
         task_id = row.get('task_id')
-        generated_code = str(row.get('full_code', ''))
+        # Use generated_code_snippet for execution (exec_context already has imports/boilerplate)
+        # But store full_code in results for reference
+        generated_snippet = str(row.get('generated_code_snippet', ''))
+        full_code = str(row.get('full_code', '')).strip()  # Strip leading/trailing newlines
         
         # Get code_context from the same row
         if 'code_context' not in row or pd.isna(row['code_context']):
@@ -736,16 +873,19 @@ def process_ds1000(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
                 "line_number": "",
                 "test_case": "",
                 "testcase_output": "",
-                "generated_code": generated_code
+                "generated_code": full_code
             })
             continue
         
         code_context = str(row['code_context'])
         
-        # Execute test
-        result = execute_ds1000_test(generated_code, code_context)
+        # Execute test with snippet (not full_code to avoid duplication)
+        # Pass full_code for line number mapping
+        result = execute_ds1000_test(generated_snippet, code_context, full_code)
         result["dataset"] = "DS1000"
         result["task_id"] = task_id
+        # Override generated_code with full_code for storage
+        result["generated_code"] = full_code
         
         results.append(result)
         
@@ -991,7 +1131,8 @@ def run_dynamic_pipeline():
     print(f"  Failed: {len(results_df[results_df['status'] == 'failed'])}")
     
     # Post-process to ensure all SyntaxErrors have line numbers
-    update_syntax_error_line_numbers(OUTPUT_CSV)
+    # NOTE: Disabled - SyntaxErrors are now handled correctly by adjust_line_number_for_ds1000()
+    # update_syntax_error_line_numbers(OUTPUT_CSV)
     
     print("=" * 80)
 
