@@ -68,15 +68,16 @@ def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
         timeout: Timeout in seconds (default 10)
     
     Returns:
-        Dictionary with status, error_type, error_message, and line_number
+        Dictionary with status, error_type, error_message, line_number, test_case, and testcase_output
     """
-    result_container = {"result": None, "exception": None}
+    result_container = {"result": None, "exception": None, "traceback": None}
     
     def wrapper():
         try:
             result_container["result"] = func(*args)
         except Exception as e:
             result_container["exception"] = e
+            result_container["traceback"] = traceback.format_exc()
     
     thread = threading.Thread(target=wrapper)
     thread.daemon = True
@@ -89,18 +90,25 @@ def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
             "status": "failed",
             "error_type": "TimeoutError",
             "error_message": "Execution exceeded timeout (likely infinite loop or recursion)",
-            "line_number": ""
+            "line_number": "",
+            "test_case": "",
+            "testcase_output": ""
         }
     
     if result_container["exception"] is not None:
         e = result_container["exception"]
+        is_assertion_error = isinstance(e, AssertionError)
         tb = traceback.extract_tb(e.__traceback__)
         line_num = tb[-1].lineno if tb else ""
+        full_traceback = result_container["traceback"] or ""
+        
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
-            "line_number": str(line_num) if line_num else ""
+            "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
+            "test_case": "",
+            "testcase_output": full_traceback
         }
     
     if result_container["result"] is not None:
@@ -110,7 +118,9 @@ def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
         "status": "failed",
         "error_type": "UnknownError",
         "error_message": "Execution completed but no result returned",
-        "line_number": ""
+        "line_number": "",
+        "test_case": "",
+        "testcase_output": ""
     }
 
 
@@ -123,7 +133,7 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
         code_context: Test context with test_execution function
     
     Returns:
-        Dictionary with test results
+        Dictionary with test results including test_case and testcase_output
     """
     test_env = {}
     
@@ -138,18 +148,24 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
             "status": "passed",
             "error_type": "",
             "error_message": "",
-            "line_number": ""
+            "line_number": "",
+            "test_case": "",
+            "testcase_output": ""
         }
     
     except Exception as e:
+        is_assertion_error = isinstance(e, AssertionError)
         tb = traceback.extract_tb(e.__traceback__)
         line_num = tb[-1].lineno if tb else ""
+        full_traceback = traceback.format_exc()
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
-            "line_number": str(line_num) if line_num else ""
+            "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
+            "test_case": code_context,
+            "testcase_output": full_traceback
         }
 
 
@@ -177,7 +193,7 @@ def execute_humaneval_test_inner(generated_code: str, test_code: str, entry_poin
         entry_point: Function name to test
     
     Returns:
-        Dictionary with test results
+        Dictionary with test results including test_case and testcase_output
     """
     test_env = {}
     
@@ -198,18 +214,24 @@ def execute_humaneval_test_inner(generated_code: str, test_code: str, entry_poin
             "status": "passed",
             "error_type": "",
             "error_message": "",
-            "line_number": ""
+            "line_number": "",
+            "test_case": "",
+            "testcase_output": ""
         }
     
     except Exception as e:
+        is_assertion_error = isinstance(e, AssertionError)
         tb = traceback.extract_tb(e.__traceback__)
         line_num = tb[-1].lineno if tb else ""
+        full_traceback = traceback.format_exc()
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
-            "line_number": str(line_num) if line_num else ""
+            "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
+            "test_case": test_code,
+            "testcase_output": full_traceback
         }
 
 
@@ -238,9 +260,17 @@ def execute_mbpp_test_inner(generated_code: str, test_list: List[str], test_impo
         test_imports: List of import statements
     
     Returns:
-        Dictionary with test results
+        Dictionary with test results including test_case and testcase_output
     """
     test_env = {}
+    
+    # Format test case as combination of imports and assertions
+    test_case_parts = []
+    if test_imports:
+        test_case_parts.extend([imp for imp in test_imports if imp.strip()])
+    if test_list:
+        test_case_parts.extend([test for test in test_list if test.strip()])
+    formatted_test_case = "\n".join(test_case_parts)
     
     try:
         # Execute imports
@@ -260,18 +290,24 @@ def execute_mbpp_test_inner(generated_code: str, test_list: List[str], test_impo
             "status": "passed",
             "error_type": "",
             "error_message": "",
-            "line_number": ""
+            "line_number": "",
+            "test_case": "",
+            "testcase_output": ""
         }
     
     except Exception as e:
+        is_assertion_error = isinstance(e, AssertionError)
         tb = traceback.extract_tb(e.__traceback__)
         line_num = tb[-1].lineno if tb else ""
+        full_traceback = traceback.format_exc()
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
-            "line_number": str(line_num) if line_num else ""
+            "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
+            "test_case": formatted_test_case,
+            "testcase_output": full_traceback
         }
 
 
@@ -320,7 +356,9 @@ def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str
                 "status": "failed",
                 "error_type": "TestNotFound",
                 "error_message": "Test case not found in dataset",
-                "line_number": ""
+                "line_number": "",
+                "test_case": "",
+                "testcase_output": ""
             })
             continue
         
@@ -369,7 +407,9 @@ def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[
                 "status": "failed",
                 "error_type": "TestNotFound",
                 "error_message": "Test case not found in dataset",
-                "line_number": ""
+                "line_number": "",
+                "test_case": "",
+                "testcase_output": ""
             })
             continue
         
@@ -419,7 +459,9 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
                 "status": "failed",
                 "error_type": "TestNotFound",
                 "error_message": "Test case not found in dataset",
-                "line_number": ""
+                "line_number": "",
+                "test_case": "",
+                "testcase_output": ""
             })
             continue
         
@@ -438,7 +480,9 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
                 "status": "failed",
                 "error_type": "TestParseError",
                 "error_message": f"Failed to parse test data: {str(e)}",
-                "line_number": ""
+                "line_number": "",
+                "test_case": "",
+                "testcase_output": ""
             })
             continue
         
@@ -516,7 +560,8 @@ def run_dynamic_pipeline():
     results_df = pd.DataFrame(all_results)
     
     # Ensure column order
-    columns = ["dataset", "task_id", "status", "error_type", "error_message", "line_number"]
+    columns = ["dataset", "task_id", "status", "error_type", "error_message", 
+               "line_number", "test_case", "testcase_output"]
     results_df = results_df[columns]
     
     results_df.to_csv(OUTPUT_CSV, index=False)
