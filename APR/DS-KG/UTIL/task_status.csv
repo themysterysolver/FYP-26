@@ -1,0 +1,1566 @@
+task_id,status
+DS0000,Passed
+DS0001,Failed: Logic Error (Assertion failed)
+DS0002,"Failed: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all()."
+DS0003,"Failed: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all()."
+DS0004,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0005,Failed: Logic Error (Assertion failed)
+DS0006,"Failed: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all()."
+DS0007,Failed: Logic Error (Assertion failed)
+DS0008,Failed: Logic Error (Assertion failed)
+DS0009,Failed: Logic Error (Assertion failed)
+DS0010,Failed: ValueError: DataFrame index must be unique for orient='index'.
+DS0011,Failed: KeyError: 'datetime_column'
+DS0012,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0013,Failed: Logic Error (Assertion failed)
+DS0014,Failed: Logic Error (Assertion failed)
+DS0015,"Failed: IndexError: Too many levels: Index has only 1 level, not 2"
+DS0016,Failed: Logic Error (Assertion failed)
+DS0017,Failed: Logic Error (Assertion failed)
+DS0018,Failed: Logic Error (Assertion failed)
+DS0019,Failed: Logic Error (Assertion failed)
+DS0020,Failed: NameError: name 'result' is not defined
+DS0021,Failed: NameError: name 'result' is not defined
+DS0022,Failed: NameError: name 'result' is not defined
+DS0023,Failed: NameError: name 'result' is not defined
+DS0024,Failed: NameError: name 'result' is not defined
+DS0025,Failed: NameError: name 'result' is not defined
+DS0026,Failed: Logic Error (Assertion failed)
+DS0027,Failed: Logic Error (Assertion failed)
+DS0028,Failed: Logic Error (Assertion failed)
+DS0029,Failed: Logic Error (Assertion failed)
+DS0030,Passed
+DS0031,Passed
+DS0032,Failed: Logic Error (Assertion failed)
+DS0033,Failed: Logic Error (Assertion failed)
+DS0034,Failed: Logic Error (Assertion failed)
+DS0035,Failed: Logic Error (Assertion failed)
+DS0036,Passed
+DS0037,Passed
+DS0038,Failed: Logic Error (Assertion failed)
+DS0039,Failed: TypeError: '<' not supported between instances of 'str' and 'int'
+DS0040,Failed: TypeError: '<' not supported between instances of 'str' and 'int'
+DS0041,Failed: Logic Error (Assertion failed)
+DS0042,Failed: AttributeError: 'DataFrame' object has no attribute 'append'
+DS0043,Failed: Logic Error (Assertion failed)
+DS0044,Failed: Logic Error (Assertion failed)
+DS0045,Failed: Logic Error (Assertion failed)
+DS0046,Failed: Logic Error (Assertion failed)
+DS0047,Failed: AttributeError: 'DataFrame' object has no attribute 'append'
+DS0048,Failed: AttributeError: 'DataFrame' object has no attribute 'append'
+DS0049,Failed: AttributeError: 'DataFrame' object has no attribute 'append'
+DS0050,Passed
+DS0051,Passed
+DS0052,Passed
+DS0053,Failed: TypeError: bad operand type for unary -: 'str'
+DS0054,"Failed: InvalidIndexError: a   2017-01-08
+b   2017-01-05
+c   2017-01-05
+dtype: datetime64[ns]"
+DS0055,Failed: Logic Error (Assertion failed)
+DS0056,Failed: Logic Error (Assertion failed)
+DS0057,Failed: ValueError: cannot include dtype 'M' in a buffer
+DS0058,Failed: Logic Error (Assertion failed)
+DS0059,Failed: ValueError: Length of values (1) does not match length of index (2)
+DS0060,Failed: KeyError: 'dt'
+DS0061,Failed: Logic Error (Assertion failed)
+DS0062,Failed: Logic Error (Assertion failed)
+DS0063,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0064,Failed: Logic Error (Assertion failed)
+DS0065,Failed: Logic Error (Assertion failed)
+DS0066,Failed: Logic Error (Assertion failed)
+DS0067,Failed: Logic Error (Assertion failed)
+DS0068,"Failed: ValueError: operands could not be broadcast together with shapes (4,) (5,) "
+DS0069,"Failed: ValueError: operands could not be broadcast together with shapes (4,) (5,) "
+DS0070,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0071,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0072,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0073,Failed: TypeError: unsupported operand type(s) for -: 'str' and 'str'
+DS0074,Failed: AttributeError: Can only use .dt accessor with datetimelike values
+DS0075,Failed: AttributeError: 'DataFrame' object has no attribute 'append'
+DS0076,Passed
+DS0077,Passed
+DS0078,Passed
+DS0079,Failed: Logic Error (Assertion failed)
+DS0080,Failed: Logic Error (Assertion failed)
+DS0081,Failed: Logic Error (Assertion failed)
+DS0082,Failed: Logic Error (Assertion failed)
+DS0083,Failed: Logic Error (Assertion failed)
+DS0084,Failed: Logic Error (Assertion failed)
+DS0085,Failed: AttributeError: 'DataFrame' object has no attribute 'str'
+DS0086,Failed: Logic Error (Assertion failed)
+DS0087,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0088,Failed: Logic Error (Assertion failed)
+DS0089,Passed
+DS0090,Failed: Logic Error (Assertion failed)
+DS0091,Failed: Logic Error (Assertion failed)
+DS0092,Failed: Logic Error (Assertion failed)
+DS0093,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0094,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0095,"Failed: KeyError: ""The following id_vars or value_vars are not present in the DataFrame: ['Variable 2000', 'Variable 2001', 'Variable 2002', 'Variable 2003', 'Variable 2004', 'Variable 2005']"""
+DS0096,"Failed: KeyError: ""The following id_vars or value_vars are not present in the DataFrame: ['Variable 2000', 'Variable 2001', 'Variable 2002', 'Variable 2003', 'Variable 2004', 'Variable 2005']"""
+DS0097,Failed: Logic Error (Assertion failed)
+DS0098,Failed: Logic Error (Assertion failed)
+DS0099,"Failed: SyntaxError: closing parenthesis ']' does not match opening parenthesis '(' (<string>, line 5)"
+DS0100,Failed: Logic Error (Assertion failed)
+DS0101,Failed: Logic Error (Assertion failed)
+DS0102,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0103,Failed: Logic Error (Assertion failed)
+DS0104,Failed: Logic Error (Assertion failed)
+DS0105,Failed: NameError: name 'name_df' is not defined
+DS0106,Failed: NameError: name 'name_df' is not defined
+DS0107,Failed: NameError: name 'name_df' is not defined
+DS0108,Failed: Logic Error (Assertion failed)
+DS0109,Failed: Logic Error (Assertion failed)
+DS0110,Failed: NameError: name 'result' is not defined
+DS0111,Failed: NameError: name 'result' is not defined
+DS0112,Failed: AttributeError: 'str' object has no attribute 'is_integer'
+DS0113,Failed: AttributeError: 'str' object has no attribute 'is_integer'
+DS0114,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0115,Failed: NameError: name 'result' is not defined
+DS0116,"Failed: TypeError: can only concatenate str (not ""int"") to str"
+DS0117,Failed: Logic Error (Assertion failed)
+DS0118,Failed: NameError: name 'rows' is not defined
+DS0119,Failed: Logic Error (Assertion failed)
+DS0120,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0121,Failed: Logic Error (Assertion failed)
+DS0122,Failed: KeyError: 'Column not found: euclidean_distance'
+DS0123,Failed: NameError: name 'result' is not defined
+DS0124,Failed: NameError: name 'result' is not defined
+DS0125,Failed: NameError: name 'result' is not defined
+DS0126,Failed: NameError: name 'result' is not defined
+DS0127,Failed: Logic Error (Assertion failed)
+DS0128,Failed: Logic Error (Assertion failed)
+DS0129,Failed: Logic Error (Assertion failed)
+DS0130,Failed: Logic Error (Assertion failed)
+DS0131,Failed: Logic Error (Assertion failed)
+DS0132,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0133,Failed: Logic Error (Assertion failed)
+DS0134,Failed: Logic Error (Assertion failed)
+DS0135,Passed
+DS0136,Failed: Logic Error (Assertion failed)
+DS0137,Failed: Logic Error (Assertion failed)
+DS0138,Passed
+DS0139,Passed
+DS0140,"Failed: ValueError: ('Lengths must match to compare', (4,), (2,))"
+DS0141,Failed: ValueError: id_vars must be a list of tuples when columns are a MultiIndex
+DS0142,"Failed: KeyError: ""The following id_vars or value_vars are not present in the DataFrame: ['A', 'B', 'E']"""
+DS0143,Passed
+DS0144,Failed: NameError: name 'result' is not defined
+DS0145,Passed
+DS0146,Passed
+DS0147,Passed
+DS0148,Failed: Logic Error (Assertion failed)
+DS0149,Failed: Logic Error (Assertion failed)
+DS0150,Failed: Logic Error (Assertion failed)
+DS0151,Failed: AttributeError: 'int' object has no attribute 'replace'
+DS0152,Failed: KeyError: 0
+DS0153,Failed: Logic Error (Assertion failed)
+DS0154,Failed: Logic Error (Assertion failed)
+DS0155,Passed
+DS0156,Failed: NameError: name 'df' is not defined
+DS0157,Failed: Logic Error (Assertion failed)
+DS0158,Failed: Logic Error (Assertion failed)
+DS0159,"Failed: TypeError: Index(...) must be called with a collection of some kind, 'Has Family' was passed"
+DS0160,Failed: Logic Error (Assertion failed)
+DS0161,Failed: Logic Error (Assertion failed)
+DS0162,Passed
+DS0163,Passed
+DS0164,Failed: Logic Error (Assertion failed)
+DS0165,Failed: Logic Error (Assertion failed)
+DS0166,Passed
+DS0167,Passed
+DS0168,Failed: NameError: name 'result' is not defined
+DS0169,Failed: Logic Error (Assertion failed)
+DS0170,Failed: Logic Error (Assertion failed)
+DS0171,Failed: Logic Error (Assertion failed)
+DS0172,Failed: Logic Error (Assertion failed)
+DS0173,Failed: Logic Error (Assertion failed)
+DS0174,Failed: KeyError: 'value'
+DS0175,Passed
+DS0176,Passed
+DS0177,Passed
+DS0178,Failed: Logic Error (Assertion failed)
+DS0179,Failed: Logic Error (Assertion failed)
+DS0180,Passed
+DS0181,Failed: AttributeError: module 'numpy' has no attribute 'NAN'
+DS0182,Failed: AttributeError: module 'numpy' has no attribute 'NAN'
+DS0183,Failed: AttributeError: module 'numpy' has no attribute 'NAN'
+DS0184,Failed: AttributeError: module 'numpy' has no attribute 'NAN'
+DS0185,Failed: AttributeError: Can only use .dt accessor with datetimelike values
+DS0186,Failed: AttributeError: Can only use .dt accessor with datetimelike values
+DS0187,Failed: AttributeError: Can only use .dt accessor with datetimelike values
+DS0188,Failed: TypeError: DataFrame.reset_index() got an unexpected keyword argument 'name'
+DS0189,Failed: NameError: name 'result1' is not defined
+DS0190,Passed
+DS0191,Passed
+DS0192,Passed
+DS0193,Failed: TypeError: pivot_table() got an unexpected keyword argument 'rows'
+DS0194,Passed
+DS0195,Failed: TypeError: DataFrame.drop() takes from 1 to 2 positional arguments but 3 were given
+DS0196,Failed: TypeError: DataFrame.drop() takes from 1 to 2 positional arguments but 3 were given
+DS0197,Failed: AttributeError: module 'numpy' has no attribute 'NAN'
+DS0198,Failed: Logic Error (Assertion failed)
+DS0199,Failed: TypeError: StringMethods.split() takes from 1 to 2 positional arguments but 3 were given
+DS0200,Failed: TypeError: StringMethods.split() takes from 1 to 2 positional arguments but 3 were given
+DS0201,Failed: TypeError: StringMethods.split() takes from 1 to 2 positional arguments but 3 were given
+DS0202,Failed: NameError: name 'result' is not defined
+DS0203,"Failed: TypeError: can only concatenate str (not ""int"") to str"
+DS0204,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0205,"Failed: TypeError: can only concatenate str (not ""int"") to str"
+DS0206,Passed
+DS0207,Failed: NameError: name 'result' is not defined
+DS0208,Failed: Logic Error (Assertion failed)
+DS0209,"Failed: ValueError: time data ""2016-05-19 21:25:00"" doesn't match format "" %Y-%m-%d %H:%M:%S"", at position 2. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this."
+DS0210,"Failed: ValueError: time data ""2016-05-19 21:25:00"" doesn't match format "" %Y-%m-%d %H:%M:%S"", at position 2. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this."
+DS0211,"Failed: ValueError: time data ""2016-05-19 21:25:00"" doesn't match format "" %Y-%m-%d %H:%M:%S"", at position 2. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this."
+DS0212,Failed: Logic Error (Assertion failed)
+DS0213,Failed: Logic Error (Assertion failed)
+DS0214,Failed: Logic Error (Assertion failed)
+DS0215,Passed
+DS0216,Failed: ValueError: Length of values (13) does not match length of index (12)
+DS0217,Passed
+DS0218,Passed
+DS0219,Failed: Logic Error (Assertion failed)
+DS0220,Failed: TypeError: StringMethods.rsplit() takes from 1 to 2 positional arguments but 3 were given
+DS0221,Failed: TypeError: StringMethods.rsplit() takes from 1 to 2 positional arguments but 3 were given
+DS0222,Failed: TypeError: StringMethods.rsplit() takes from 1 to 2 positional arguments but 3 were given
+DS0223,Failed: Logic Error (Assertion failed)
+DS0224,Failed: Logic Error (Assertion failed)
+DS0225,Failed: Logic Error (Assertion failed)
+DS0226,Failed: Logic Error (Assertion failed)
+DS0227,"Failed: ValueError: 1 columns passed, passed data had 3 columns"
+DS0228,Failed: Logic Error (Assertion failed)
+DS0229,Failed: Logic Error (Assertion failed)
+DS0230,Failed: Logic Error (Assertion failed)
+DS0231,Failed: Logic Error (Assertion failed)
+DS0232,Failed: Logic Error (Assertion failed)
+DS0233,Failed: Logic Error (Assertion failed)
+DS0234,Failed: Logic Error (Assertion failed)
+DS0235,Failed: Logic Error (Assertion failed)
+DS0236,Failed: Logic Error (Assertion failed)
+DS0237,Failed: Logic Error (Assertion failed)
+DS0238,Failed: KeyError: 'date'
+DS0239,Failed: Logic Error (Assertion failed)
+DS0240,Failed: Logic Error (Assertion failed)
+DS0241,Failed: Logic Error (Assertion failed)
+DS0242,Failed: Logic Error (Assertion failed)
+DS0243,Failed: KeyError: 'time'
+DS0244,Failed: KeyError: 'time'
+DS0245,Failed: KeyError: 'time'
+DS0246,Failed: NameError: name 'df' is not defined
+DS0247,Failed: NameError: name 'df' is not defined
+DS0248,Failed: Logic Error (Assertion failed)
+DS0249,Failed: ValueError: Item wrong length 5 instead of 3.
+DS0250,Failed: AttributeError: 'Index' object has no attribute 'columns'
+DS0251,Failed: Logic Error (Assertion failed)
+DS0252,"Failed: ValueError: 1 columns passed, passed data had 3 columns"
+DS0253,Failed: Logic Error (Assertion failed)
+DS0254,Failed: KeyError: 'User IDs'
+DS0255,Failed: KeyError: 'User IDs'
+DS0256,Failed: KeyError: 'User IDs'
+DS0257,"Failed: TypeError: Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'RangeIndex'"
+DS0258,"Failed: TypeError: Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'RangeIndex'"
+DS0259,Failed: Logic Error (Assertion failed)
+DS0260,Failed: Logic Error (Assertion failed)
+DS0261,Passed
+DS0262,Failed: IndexingError: Unalignable boolean Series provided as indexer (index of the boolean Series and of the indexed object do not match).
+DS0263,Failed: IndexingError: Unalignable boolean Series provided as indexer (index of the boolean Series and of the indexed object do not match).
+DS0264,Failed: Logic Error (Assertion failed)
+DS0265,Failed: TypeError: Series.eq() got an unexpected keyword argument 'na_equal'
+DS0266,Failed: Logic Error (Assertion failed)
+DS0267,Failed: AttributeError: module 'pandas' has no attribute 'isclose'
+DS0268,Failed: NameError: name 'ts' is not defined
+DS0269,Failed: Logic Error (Assertion failed)
+DS0270,Failed: Logic Error (Assertion failed)
+DS0271,Failed: Logic Error (Assertion failed)
+DS0272,Failed: Logic Error (Assertion failed)
+DS0273,Failed: Logic Error (Assertion failed)
+DS0274,Failed: NameError: name 'result' is not defined
+DS0275,Failed: NameError: name 'result' is not defined
+DS0276,Passed
+DS0277,Passed
+DS0278,Failed: NameError: name 'sp' is not defined
+DS0279,Failed: NameError: name 'sp' is not defined
+DS0280,Failed: Logic Error (Assertion failed)
+DS0281,Failed: Logic Error (Assertion failed)
+DS0282,Failed: TypeError: DataFrame.set_axis() got an unexpected keyword argument 'inplace'
+DS0283,Failed: TypeError: DataFrame.set_axis() got an unexpected keyword argument 'inplace'
+DS0284,Failed: NameError: name 'result' is not defined
+DS0285,Failed: NameError: name 'result' is not defined
+DS0286,Failed: KeyError: 'frequent'
+DS0287,"Failed: TypeError: agg function failed [how->mean,dtype->object]"
+DS0288,"Failed: TypeError: can only concatenate str (not ""int"") to str"
+DS0289,Passed
+DS0290,Passed
+DS0291,Passed
+DS0292,Failed: Logic Error (Assertion failed)
+DS0293,Failed: AttributeError: 'numpy.ndarray' object has no attribute 'fillna'
+DS0294,Failed: Logic Error (Assertion failed)
+DS0295,Passed
+DS0296,Failed: Logic Error (Assertion failed)
+DS0297,Passed
+DS0298,Failed: Logic Error (Assertion failed)
+DS0299,Failed: Logic Error (Assertion failed)
+DS0300,Passed
+DS0301,Passed
+DS0302,Passed
+DS0303,Failed: ValueError: cannot reshape array of size 7 into shape (2)
+DS0304,Failed: ValueError: cannot reshape array of size 1 into shape (2)
+DS0305,Failed: Logic Error (Assertion failed)
+DS0306,Failed: Logic Error (Assertion failed)
+DS0307,Failed: Logic Error (Assertion failed)
+DS0308,Failed: Logic Error (Assertion failed)
+DS0309,Passed
+DS0310,Passed
+DS0311,Failed: Logic Error (Assertion failed)
+DS0312,Failed: Logic Error (Assertion failed)
+DS0313,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0314,Passed
+DS0315,Failed: NameError: name 'z' is not defined
+DS0316,Failed: Logic Error (Assertion failed)
+DS0317,Passed
+DS0318,Failed: Logic Error (Assertion failed)
+DS0319,Failed: IndexError: index 2 is out of bounds for axis 2 with size 2
+DS0320,Passed
+DS0321,Passed
+DS0322,Failed: Logic Error (Assertion failed)
+DS0323,Passed
+DS0324,Passed
+DS0325,Failed: Logic Error (Assertion failed)
+DS0326,Passed
+DS0327,Passed
+DS0328,Failed: Logic Error (Assertion failed)
+DS0329,Failed: Logic Error (Assertion failed)
+DS0330,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0331,Passed
+DS0332,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0333,Failed: Logic Error (Assertion failed)
+DS0334,Passed
+DS0335,Passed
+DS0336,Failed: Logic Error (Assertion failed)
+DS0337,Failed: Logic Error (Assertion failed)
+DS0338,Failed: Logic Error (Assertion failed)
+DS0339,Failed: Logic Error (Assertion failed)
+DS0340,Passed
+DS0341,Passed
+DS0342,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0343,Passed
+DS0344,Passed
+DS0345,Failed: Logic Error (Assertion failed)
+DS0346,Failed: Logic Error (Assertion failed)
+DS0347,Failed: Logic Error (Assertion failed)
+DS0348,Failed: IndexError: tuple index out of range
+DS0349,Failed: Logic Error (Assertion failed)
+DS0350,Failed: TypeError: ttest_ind() got an unexpected keyword argument 'weights'
+DS0351,Failed: NameError: name 'p_value' is not defined
+DS0352,Failed: TypeError: ttest_ind_from_stats() got an unexpected keyword argument 'var1'
+DS0353,Failed: NameError: name 'output' is not defined
+DS0354,"Failed: ValueError: operands could not be broadcast together with shapes (0,) (7,) "
+DS0355,Failed: NameError: name 'c' is not defined
+DS0356,Failed: NameError: name 'c' is not defined
+DS0357,Failed: NameError: name 'c' is not defined
+DS0358,Passed
+DS0359,Failed: Logic Error (Assertion failed)
+DS0360,Failed: Logic Error (Assertion failed)
+DS0361,Failed: Logic Error (Assertion failed)
+DS0362,Failed: NameError: name 'arr' is not defined
+DS0363,Failed: Logic Error (Assertion failed)
+DS0364,Failed: Logic Error (Assertion failed)
+DS0365,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0366,Failed: Logic Error (Assertion failed)
+DS0367,Passed
+DS0368,Passed
+DS0369,Failed: AxisError: axis 1 is out of bounds for array of dimension 1
+DS0370,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0371,Failed: NameError: name 'z' is not defined
+DS0372,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0373,Failed: Logic Error (Assertion failed)
+DS0374,Failed: Logic Error (Assertion failed)
+DS0375,Failed: Logic Error (Assertion failed)
+DS0376,Failed: Logic Error (Assertion failed)
+DS0377,Failed: NameError: name 'a_np' is not defined
+DS0378,Failed: NameError: name 'a_pt' is not defined
+DS0379,Failed: NameError: name 'a_np' is not defined
+DS0380,Passed
+DS0381,Passed
+DS0382,Passed
+DS0383,Failed: Logic Error (Assertion failed)
+DS0384,Failed: Logic Error (Assertion failed)
+DS0385,Failed: Logic Error (Assertion failed)
+DS0386,Failed: Logic Error (Assertion failed)
+DS0387,Failed: Logic Error (Assertion failed)
+DS0388,Failed: Logic Error (Assertion failed)
+DS0389,"Failed: ValueError: all the input arrays must have same number of dimensions, but the array at index 0 has 3 dimension(s) and the array at index 1 has 0 dimension(s)"
+DS0390,Failed: Logic Error (Assertion failed)
+DS0391,Failed: Logic Error (Assertion failed)
+DS0392,Failed: Logic Error (Assertion failed)
+DS0393,Passed
+DS0394,"Failed: SyntaxError: invalid syntax. Perhaps you forgot a comma? (<string>, line 1)"
+DS0395,Failed: AttributeError: module 'numpy.random' has no attribute 'loguniform'
+DS0396,Failed: AttributeError: module 'numpy.random' has no attribute 'loguniform'
+DS0397,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0398,Failed: NameError: name 'B' is not defined
+DS0399,Failed: KeyError: -1
+DS0400,Passed
+DS0401,Passed
+DS0402,Failed: TypeError: only int indices permitted
+DS0403,Passed
+DS0404,Failed: NameError: name 'df' is not defined
+DS0405,Passed
+DS0406,Failed: Logic Error (Assertion failed)
+DS0407,Failed: ValueError: 'list' argument must have no negative elements
+DS0408,Failed: Logic Error (Assertion failed)
+DS0409,Failed: NameError: name 'elementwise_function' is not defined
+DS0410,Failed: ValueError: a must be 1-dimensional
+DS0411,Failed: Logic Error (Assertion failed)
+DS0412,Passed
+DS0413,Passed
+DS0414,Failed: NameError: name 'bin_data_mean' is not defined
+DS0415,Failed: NameError: name 'bin_data_max' is not defined
+DS0416,Failed: NameError: name 'bin_data_mean' is not defined
+DS0417,Failed: NameError: name 'bin_data_mean' is not defined
+DS0418,Failed: NameError: name 'bin_data_mean' is not defined
+DS0419,Failed: NameError: name 'bin_data_mean' is not defined
+DS0420,Failed: NameError: name 'smoothclamp' is not defined
+DS0421,Failed: NameError: name 'smoothclamp' is not defined
+DS0422,Failed: Logic Error (Assertion failed)
+DS0423,Failed: Logic Error (Assertion failed)
+DS0424,Failed: Logic Error (Assertion failed)
+DS0425,Failed: AxisError: axis 1 is out of bounds for array of dimension 1
+DS0426,Failed: AxisError: axis 1 is out of bounds for array of dimension 1
+DS0427,Failed: AxisError: axis 1 is out of bounds for array of dimension 1
+DS0428,Passed
+DS0429,Passed
+DS0430,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0431,Passed
+DS0432,Failed: NameError: name 'prob' is not defined
+DS0433,Failed: Logic Error (Assertion failed)
+DS0434,Failed: Logic Error (Assertion failed)
+DS0435,Failed: Logic Error (Assertion failed)
+DS0436,Failed: NameError: name 'mask' is not defined
+DS0437,Failed: NameError: name 'mask' is not defined
+DS0438,Passed
+DS0439,Failed: Logic Error (Assertion failed)
+DS0440,"Failed: ValueError: operand has more dimensions than subscripts given in einstein sum, but no '...' ellipsis provided to broadcast the extra dimensions."
+DS0441,Failed: NameError: name 'is_contained' is not defined
+DS0442,Failed: Logic Error (Assertion failed)
+DS0443,Failed: Logic Error (Assertion failed)
+DS0444,Failed: Logic Error (Assertion failed)
+DS0445,Failed: TypeError: bad operand type for unary -: 'list'
+DS0446,Failed: Logic Error (Assertion failed)
+DS0447,"Failed: IndentationError: expected an indented block after function definition on line 5 (<string>, line 6)"
+DS0448,Passed
+DS0449,Passed
+DS0450,Failed: NameError: name 'A' is not defined
+DS0451,Failed: NameError: name 'arr' is not defined
+DS0452,Failed: Logic Error (Assertion failed)
+DS0453,Passed
+DS0454,Passed
+DS0455,"Failed: TypeError: Choicelist and default value do not have a common dtype: The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given inputs. For example they cannot be stored in a single array unless the dtype is `object`. The full list of DTypes is: (<class 'numpy.dtypes.StrDType'>, <class 'numpy.dtypes._PyFloatDType'>)"
+DS0456,Failed: Logic Error (Assertion failed)
+DS0457,Passed
+DS0458,Failed: Logic Error (Assertion failed)
+DS0459,Failed: AttributeError: 'list' object has no attribute 'mean'
+DS0460,Failed: AttributeError: 'list' object has no attribute 'mean'
+DS0461,Failed: AttributeError: 'list' object has no attribute 'mean'
+DS0462,Failed: Logic Error (Assertion failed)
+DS0463,Failed: AttributeError: 'numpy.ndarray' object has no attribute 'unique'
+DS0464,Failed: NameError: name 'df' is not defined
+DS0465,"Failed: IndentationError: expected an indented block after function definition on line 5 (<string>, line 6)"
+DS0466,Failed: Logic Error (Assertion failed)
+DS0467,Failed: TypeError: arange: scalar arguments expected instead of a tuple.
+DS0468,Failed: TypeError: arange: scalar arguments expected instead of a tuple.
+DS0469,Failed: Logic Error (Assertion failed)
+DS0470,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0471,Passed
+DS0472,Passed
+DS0473,Passed
+DS0474,Failed: Logic Error (Assertion failed)
+DS0475,"Failed: NotImplementedError: `interp2d` has been removed in SciPy 1.14.0.
+
+For legacy code, nearly bug-for-bug compatible replacements are
+`RectBivariateSpline` on regular grids, and `bisplrep`/`bisplev` for
+scattered 2D data.
+
+In new code, for regular grids use `RegularGridInterpolator` instead.
+For scattered data, prefer `LinearNDInterpolator` or
+`CloughTocher2DInterpolator`.
+
+For more details see
+https://scipy.github.io/devdocs/tutorial/interpolate/interp_transition_guide.html
+"
+DS0476,Failed: NameError: name 'df' is not defined
+DS0477,Failed: Logic Error (Assertion failed)
+DS0478,Failed: Logic Error (Assertion failed)
+DS0479,Passed
+DS0480,Failed: IndexError: index 0 is out of bounds for axis 0 with size 0
+DS0481,Passed
+DS0482,Failed: Logic Error (Assertion failed)
+DS0483,Failed: TypeError: vander() got an unexpected keyword argument 'n'
+DS0484,Failed: NameError: name 'temp_df' is not defined
+DS0485,"Failed: ValueError: operands could not be broadcast together with remapped shapes [original->remapped]: (5,6,3)->(5,newaxis,3,6) (3,3)->(3,newaxis,3) "
+DS0486,Failed: Logic Error (Assertion failed)
+DS0487,Passed
+DS0488,"Failed: ValueError: Expected 2D array, got 1D array instead:
+array=[ 1.  -0.5  1. ].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample."
+DS0489,Failed: Logic Error (Assertion failed)
+DS0490,"Failed: ValueError: operands could not be broadcast together with shapes (5,50) (5,) "
+DS0491,Failed: Logic Error (Assertion failed)
+DS0492,Failed: Logic Error (Assertion failed)
+DS0493,Passed
+DS0494,Failed: Logic Error (Assertion failed)
+DS0495,Passed
+DS0496,Passed
+DS0497,Passed
+DS0498,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0499,Failed: Logic Error (Assertion failed)
+DS0500,Failed: NameError: name 'n' is not defined
+DS0501,Failed: Logic Error (Assertion failed)
+DS0502,Failed: Logic Error (Assertion failed)
+DS0503,Failed: Logic Error (Assertion failed)
+DS0504,Failed: Logic Error (Assertion failed)
+DS0505,Failed: Logic Error (Assertion failed)
+DS0506,"Failed: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all()."
+DS0507,Failed: Logic Error (Assertion failed)
+DS0508,Passed
+DS0509,Failed: Logic Error (Assertion failed)
+DS0510,Failed: Logic Error (Assertion failed)
+DS0511,Failed: AttributeError: 'NoneType' object has no attribute 'get_texts'
+DS0512,Failed: Logic Error (Assertion failed)
+DS0513,Passed
+DS0514,Failed: Logic Error (Assertion failed)
+DS0515,Failed: Logic Error (Assertion failed)
+DS0516,Failed: Logic Error (Assertion failed)
+DS0517,Failed: Logic Error (Assertion failed)
+DS0518,Passed
+DS0519,Passed
+DS0520,Failed: Logic Error (Assertion failed)
+DS0521,Failed: Logic Error (Assertion failed)
+DS0522,Passed
+DS0523,Failed: Logic Error (Assertion failed)
+DS0524,Failed: Logic Error (Assertion failed)
+DS0525,Passed
+DS0526,Failed: Logic Error (Assertion failed)
+DS0527,Passed
+DS0528,Failed: Logic Error (Assertion failed)
+DS0529,Failed: AttributeError: 'Line2D' object has no attribute 'set_facecolor'
+DS0530,Failed: AttributeError: 'Line2D' object has no attribute 'set_edgecolor'
+DS0531,Failed: Logic Error (Assertion failed)
+DS0532,Passed
+DS0533,Failed: Logic Error (Assertion failed)
+DS0534,Passed
+DS0535,Passed
+DS0536,Passed
+DS0537,Passed
+DS0538,Failed: Logic Error (Assertion failed)
+DS0539,Passed
+DS0540,Failed: Logic Error (Assertion failed)
+DS0541,Passed
+DS0542,Passed
+DS0543,Passed
+DS0544,Failed: AttributeError: Line2D.set() got an unexpected keyword argument 'ax'
+DS0545,Passed
+DS0546,Passed
+DS0547,Passed
+DS0548,Failed: Logic Error (Assertion failed)
+DS0549,Failed: Logic Error (Assertion failed)
+DS0550,Failed: Logic Error (Assertion failed)
+DS0551,Passed
+DS0552,Passed
+DS0553,Passed
+DS0554,Passed
+DS0555,Failed: Logic Error (Assertion failed)
+DS0556,Passed
+DS0557,Passed
+DS0558,Failed: Logic Error (Assertion failed)
+DS0559,Passed
+DS0560,Failed: Logic Error (Assertion failed)
+DS0561,Passed
+DS0562,Passed
+DS0563,Failed: Logic Error (Assertion failed)
+DS0564,Failed: Logic Error (Assertion failed)
+DS0565,Failed: Logic Error (Assertion failed)
+DS0566,Failed: TypeError: regplot() got an unexpected keyword argument 'hist_kws'
+DS0567,Failed: Logic Error (Assertion failed)
+DS0568,Passed
+DS0569,Passed
+DS0570,Failed: KeyError: 'color'
+DS0571,Failed: Logic Error (Assertion failed)
+DS0572,Passed
+DS0573,Failed: Logic Error (Assertion failed)
+DS0574,Failed: Logic Error (Assertion failed)
+DS0575,Failed: Logic Error (Assertion failed)
+DS0576,Failed: AttributeError: 'Figure' object has no attribute 'plot'
+DS0577,Failed: AttributeError: PathCollection.set() got an unexpected keyword argument 'markersize'
+DS0578,Failed: AttributeError: 'PathCollection' object has no attribute 'text'
+DS0579,Passed
+DS0580,Failed: TypeError: Legend.__init__() got an unexpected keyword argument 'title_fontweight'
+DS0581,Passed
+DS0582,Failed: AttributeError: 'Figure' object has no attribute '_gridspecs'
+DS0583,Failed: Logic Error (Assertion failed)
+DS0584,Passed
+DS0585,Failed: Logic Error (Assertion failed)
+DS0586,Failed: NameError: name 'fig' is not defined
+DS0587,Passed
+DS0588,Failed: Logic Error (Assertion failed)
+DS0589,Passed
+DS0590,Failed: AttributeError: Line2D.set() got an unexpected keyword argument 'fontsize'
+DS0591,Passed
+DS0592,"Failed: ValueError: array([[1, 0, 0, 1],
+       [0, 1, 0, 1],
+       [0, 0, 1, 1]]) is not a valid value for color: supported inputs are (r, g, b) and (r, g, b, a) 0-1 float tuples; '#rrggbb', '#rrggbbaa', '#rgb', '#rgba' strings; named color strings; string reprs of 0-1 floats for grayscale values; 'C0', 'C1', ... strings for colors of the color cycle; and pairs combining one of the above with an alpha value"
+DS0593,Failed: TypeError: LogScale.__init__() got an unexpected keyword argument 'basex'
+DS0594,Failed: Logic Error (Assertion failed)
+DS0595,Failed: Logic Error (Assertion failed)
+DS0596,Failed: Logic Error (Assertion failed)
+DS0597,Passed
+DS0598,Failed: Logic Error (Assertion failed)
+DS0599,Failed: Logic Error (Assertion failed)
+DS0600,Failed: AttributeError: 'NoneType' object has no attribute 'get_texts'
+DS0601,Failed: Logic Error (Assertion failed)
+DS0602,Passed
+DS0603,"Failed: ValueError: 'top' is not a valid value for align; supported values are 'center', 'right', 'left'"
+DS0604,Failed: Logic Error (Assertion failed)
+DS0605,Failed: Logic Error (Assertion failed)
+DS0606,Failed: Logic Error (Assertion failed)
+DS0607,Passed
+DS0608,Failed: Logic Error (Assertion failed)
+DS0609,Failed: Logic Error (Assertion failed)
+DS0610,Failed: Logic Error (Assertion failed)
+DS0611,Passed
+DS0612,Failed: ValueError: Unrecognized marker style '*v'
+DS0613,Passed
+DS0614,Passed
+DS0615,Passed
+DS0616,Failed: AttributeError: 'NoneType' object has no attribute 'get_lines'
+DS0617,Failed: Logic Error (Assertion failed)
+DS0618,Passed
+DS0619,Failed: Logic Error (Assertion failed)
+DS0620,"Failed: ValueError: '' is not a valid value for color: supported inputs are (r, g, b) and (r, g, b, a) 0-1 float tuples; '#rrggbb', '#rrggbbaa', '#rgb', '#rgba' strings; named color strings; string reprs of 0-1 floats for grayscale values; 'C0', 'C1', ... strings for colors of the color cycle; and pairs combining one of the above with an alpha value"
+DS0621,Failed: Logic Error (Assertion failed)
+DS0622,Failed: Logic Error (Assertion failed)
+DS0623,Passed
+DS0624,Passed
+DS0625,Failed: ValueError: 'facecolor' or 'color' argument must be a valid color orsequence of colors.
+DS0626,Failed: Logic Error (Assertion failed)
+DS0627,Passed
+DS0628,Passed
+DS0629,Failed: Logic Error (Assertion failed)
+DS0630,Failed: Logic Error (Assertion failed)
+DS0631,Passed
+DS0632,Failed: Logic Error (Assertion failed)
+DS0633,Passed
+DS0634,Passed
+DS0635,Failed: Logic Error (Assertion failed)
+DS0636,Passed
+DS0637,Failed: Logic Error (Assertion failed)
+DS0638,Failed: Logic Error (Assertion failed)
+DS0639,Passed
+DS0640,Failed: IndexError: list index out of range
+DS0641,Passed
+DS0642,Failed: AttributeError: 'tuple' object has no attribute 'flatten'
+DS0643,Passed
+DS0644,Failed: Logic Error (Assertion failed)
+DS0645,Failed: Logic Error (Assertion failed)
+DS0646,"Failed: ValueError: ['r', 'r', 'b', 'b'] is not a valid value for color: supported inputs are (r, g, b) and (r, g, b, a) 0-1 float tuples; '#rrggbb', '#rrggbbaa', '#rgb', '#rgba' strings; named color strings; string reprs of 0-1 floats for grayscale values; 'C0', 'C1', ... strings for colors of the color cycle; and pairs combining one of the above with an alpha value"
+DS0647,Failed: Logic Error (Assertion failed)
+DS0648,Passed
+DS0649,Failed: ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+DS0650,Failed: AttributeError: 'Styler' object has no attribute 'render'
+DS0651,Failed: AttributeError: Text.set() got an unexpected keyword argument 'labelpad'
+DS0652,Failed: Logic Error (Assertion failed)
+DS0653,Passed
+DS0654,"Failed: ValueError: Could not interpret value `time` for `x`. Value is a string, but `data` was not passed."
+DS0655,"Failed: ValueError: Could not interpret value `time` for `x`. Value is a string, but `data` was not passed."
+DS0656,"Failed: ValueError: Invalid `kind`: 'scatter'. Options are 'strip', 'swarm', 'box', 'boxen', 'violin', 'bar', 'count', and 'point'."
+DS0657,Passed
+DS0658,Passed
+DS0659,Passed
+DS0660,Passed
+DS0661,Failed: Logic Error (Assertion failed)
+DS0662,Failed: AttributeError: Line2D.set() got an unexpected keyword argument 'xticks'
+DS0663,Failed: TypeError: gca() got an unexpected keyword argument 'projection'
+DS0664,Passed
+DS0665,Failed: Logic Error (Assertion failed)
+DS0666,Passed
+DS0667,Passed
+DS0668,Passed
+DS0669,Failed: Logic Error (Assertion failed)
+DS0670,Failed: Logic Error (Assertion failed)
+DS0671,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0672,Failed: Logic Error (Assertion failed)
+DS0673,Failed: NameError: name 'ds' is not defined
+DS0674,"Failed: IndentationError: expected an indented block after function definition on line 5 (<string>, line 6)"
+DS0675,Failed: Logic Error (Assertion failed)
+DS0676,Failed: TypeError: unsupported operand type(s) for -: 'int' and 'list'
+DS0677,Failed: Logic Error (Assertion failed)
+DS0678,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0679,Failed: TypeError: unsupported operand type(s) for -: 'int' and 'list'
+DS0680,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0681,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0682,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0683,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0684,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0685,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0686,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0687,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0688,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0689,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0690,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0691,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0692,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0693,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0694,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0695,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0696,Failed: Logic Error (Assertion failed)
+DS0697,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0698,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0699,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0700,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0701,Failed: NameError: name 'A' is not defined
+DS0702,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0703,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0704,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0705,Failed: TypeError: cannot pickle 'SymbolicTensor' object
+DS0706,Failed: Logic Error (Assertion failed)
+DS0707,Failed: Logic Error (Assertion failed)
+DS0708,Failed: Logic Error (Assertion failed)
+DS0709,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0710,Passed
+DS0711,Passed
+DS0712,Failed: Logic Error (Assertion failed)
+DS0713,"Failed: ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 2 dimensions. The detected shape was (2, 3) + inhomogeneous part."
+DS0714,Failed: NameError: name 'z' is not defined
+DS0715,Passed
+DS0716,Failed: NameError: name 'minimize' is not defined
+DS0717,Failed: NameError: name 'p_values' is not defined
+DS0718,Failed: NameError: name 'p_values' is not defined
+DS0719,Failed: NameError: name 'z_scores' is not defined
+DS0720,Failed: NameError: name 'lognorm' is not defined
+DS0721,Failed: NameError: name 'expected_value' is not defined
+DS0722,Passed
+DS0723,"Failed: IndentationError: expected an indented block after function definition on line 5 (<string>, line 6)"
+DS0724,Failed: ValueError: too many values to unpack (expected 4)
+DS0725,Failed: NameError: name 'data' is not defined
+DS0726,Failed: AttributeError: module 'scipy.misc' has no attribute 'face'
+DS0727,Failed: AttributeError: 'csr_matrix' object has no attribute 'A'
+DS0728,Failed: NameError: name 'kstest' is not defined
+DS0729,"Failed: IndentationError: expected an indented block after function definition on line 13 (<string>, line 14)"
+DS0730,Failed: NameError: name 'kstest' is not defined
+DS0731,Failed: ValueError: scipy sparse array classes do not support instantiation from a scalar
+DS0732,Failed: NameError: name 'Feature' is not defined
+DS0733,Failed: NameError: name 'Feature' is not defined
+DS0734,Failed: Logic Error (Assertion failed)
+DS0735,Failed: Logic Error (Assertion failed)
+DS0736,Failed: AttributeError: 'NoneType' object has no attribute 'tocsr'
+DS0737,Failed: Logic Error (Assertion failed)
+DS0738,Failed: Logic Error (Assertion failed)
+DS0739,Failed: NameError: name 'img' is not defined
+DS0740,Failed: Logic Error (Assertion failed)
+DS0741,Failed: Logic Error (Assertion failed)
+DS0742,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0743,Failed: Logic Error (Assertion failed)
+DS0744,Failed: Logic Error (Assertion failed)
+DS0745,Failed: AttributeError: 'csr_matrix' object has no attribute 'std'
+DS0746,Failed: NameError: name 'Max' is not defined
+DS0747,Failed: ValueError: object too deep for desired array
+DS0748,Failed: Logic Error (Assertion failed)
+DS0749,"Failed: ValueError: cannot reshape array of size 20736 into shape (12,12)"
+DS0750,"Failed: ValueError: cannot reshape array of size 20736 into shape (12,12)"
+DS0751,"Failed: IndentationError: expected an indented block after function definition on line 5 (<string>, line 6)"
+DS0752,Failed: NameError: name 'tck' is not defined
+DS0753,Failed: NameError: name 'statistic' is not defined
+DS0754,Failed: Logic Error (Assertion failed)
+DS0755,Failed: Logic Error (Assertion failed)
+DS0756,Passed
+DS0757,Passed
+DS0758,Passed
+DS0759,Failed: NameError: name 'p_value' is not defined
+DS0760,"Failed: IndentationError: expected an indented block after function definition on line 4 (<string>, line 5)"
+DS0761,Failed: NameError: name 'kurtosis_result' is not defined
+DS0762,Failed: NameError: name 'kurtosis_result' is not defined
+DS0763,"Failed: NotImplementedError: `interp2d` has been removed in SciPy 1.14.0.
+
+For legacy code, nearly bug-for-bug compatible replacements are
+`RectBivariateSpline` on regular grids, and `bisplrep`/`bisplev` for
+scattered 2D data.
+
+In new code, for regular grids use `RegularGridInterpolator` instead.
+For scattered data, prefer `LinearNDInterpolator` or
+`CloughTocher2DInterpolator`.
+
+For more details see
+https://scipy.github.io/devdocs/tutorial/interpolate/interp_transition_guide.html
+"
+DS0764,Failed: NameError: name 'z' is not defined
+DS0765,Failed: NameError: name 'np' is not defined
+DS0766,Failed: NameError: name 'np' is not defined
+DS0767,"Failed: ValueError: blocks[:,0] has incompatible column dimensions. Got blocks[1,0].shape[1] == 1000, expected 900."
+DS0768,Failed: NameError: name 'b' is not defined
+DS0769,Passed
+DS0770,Failed: Logic Error (Assertion failed)
+DS0771,Failed: NameError: name 'new_array' is not defined
+DS0772,Failed: NameError: name 'dev' is not defined
+DS0773,"Failed: IndentationError: expected an indented block after function definition on line 8 (<string>, line 9)"
+DS0774,Failed: AttributeError: module 'scipy.fft' has no attribute 'dctmtx'
+DS0775,Failed: AttributeError: 'dia_matrix' object has no attribute 'A'
+DS0776,Failed: KeyError: 'result'
+DS0777,Failed: Logic Error (Assertion failed)
+DS0778,Failed: Logic Error (Assertion failed)
+DS0779,Failed: Logic Error (Assertion failed)
+DS0780,Failed: Logic Error (Assertion failed)
+DS0781,Failed: TypeError: can't multiply sequence by non-int of type 'float'
+DS0782,Failed: AttributeError: 'tuple' object has no attribute 'shape'
+DS0783,Failed: AttributeError: 'tuple' object has no attribute 'shape'
+DS0784,"Failed: IndentationError: expected an indented block after function definition on line 5 (<string>, line 6)"
+DS0785,Failed: Logic Error (Assertion failed)
+DS0786,Failed: NameError: name 'out' is not defined
+DS0787,Failed: NameError: name 'out' is not defined
+DS0788,Passed
+DS0789,Failed: Logic Error (Assertion failed)
+DS0790,Failed: Logic Error (Assertion failed)
+DS0791,Passed
+DS0792,Failed: ValueError: scipy sparse array classes do not support instantiation from a scalar
+DS0793,Failed: ValueError: scipy sparse array classes do not support instantiation from a scalar
+DS0794,Failed: AttributeError: module 'scipy.integrate' has no attribute 'quadrature'
+DS0795,Failed: AttributeError: module 'scipy.integrate' has no attribute 'quadrature'
+DS0796,Failed: AttributeError: 'dok_matrix' object has no attribute '_update'
+DS0797,Failed: Logic Error (Assertion failed)
+DS0798,Failed: TypeError: unsupported operand type(s) for +: 'coo_matrix' and 'tuple'
+DS0799,Failed: LinAlgError: Last 2 dimensions of the array must be square
+DS0800,Failed: Logic Error (Assertion failed)
+DS0801,Failed: Logic Error (Assertion failed)
+DS0802,Failed: Logic Error (Assertion failed)
+DS0803,Failed: Logic Error (Assertion failed)
+DS0804,Passed
+DS0805,Failed: Logic Error (Assertion failed)
+DS0806,Failed: Logic Error (Assertion failed)
+DS0807,Failed: Logic Error (Assertion failed)
+DS0808,Failed: Logic Error (Assertion failed)
+DS0809,Failed: NameError: name 'scipy' is not defined
+DS0810,Failed: AttributeError: module 'scipy.integrate' has no attribute 'trapz'
+DS0811,Failed: NameError: name 'np' is not defined
+DS0812,Failed: NameError: name 'weights' is not defined
+DS0813,Failed: ValueError: Optimization bounds must be finite scalars.
+DS0814,Failed: Logic Error (Assertion failed)
+DS0815,Failed: Logic Error (Assertion failed)
+DS0816,Failed: Logic Error (Assertion failed)
+DS0817,Failed: Logic Error (Assertion failed)
+DS0818,Failed: NameError: name 'data1' is not defined
+DS0819,Failed: NameError: name 'data1' is not defined
+DS0820,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0821,Failed: TypeError: unhashable type: 'list'
+DS0822,Failed: Logic Error (Assertion failed)
+DS0823,Failed: TypeError: unhashable type: 'list'
+DS0824,Failed: TypeError: unhashable type: 'list'
+DS0825,Failed: TypeError: unhashable type: 'list'
+DS0826,Failed: NameError: name 'predicted_test_scores' is not defined
+DS0827,Failed: AttributeError: 'LinearSVC' object has no attribute 'predict_proba'
+DS0828,Failed: NameError: name 'df' is not defined
+DS0829,Failed: NameError: name 'df' is not defined
+DS0830,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0831,Failed: Logic Error (Assertion failed)
+DS0832,Failed: Logic Error (Assertion failed)
+DS0833,Failed: Logic Error (Assertion failed)
+DS0834,Failed: Logic Error (Assertion failed)
+DS0835,Failed: Logic Error (Assertion failed)
+DS0836,Failed: Logic Error (Assertion failed)
+DS0837,"Failed: ValueError: 
+All the 4 fits failed.
+It is very likely that your model is misconfigured.
+You can try to debug the error by setting error_score='raise'.
+
+Below are more details about the failures:
+--------------------------------------------------------------------------------
+4 fits failed with the following error:
+Traceback (most recent call last):
+  File ""/usr/local/lib/python3.12/dist-packages/sklearn/model_selection/_validation.py"", line 866, in _fit_and_score
+    estimator.fit(X_train, y_train, **fit_params)
+  File ""/usr/local/lib/python3.12/dist-packages/xgboost/core.py"", line 774, in inner_f
+    return func(**kwargs)
+           ^^^^^^^^^^^^^^
+TypeError: XGBModel.fit() got an unexpected keyword argument 'early_stopping_rounds'
+"
+DS0838,"Failed: ValueError: 
+All the 4 fits failed.
+It is very likely that your model is misconfigured.
+You can try to debug the error by setting error_score='raise'.
+
+Below are more details about the failures:
+--------------------------------------------------------------------------------
+4 fits failed with the following error:
+Traceback (most recent call last):
+  File ""/usr/local/lib/python3.12/dist-packages/sklearn/model_selection/_validation.py"", line 866, in _fit_and_score
+    estimator.fit(X_train, y_train, **fit_params)
+  File ""/usr/local/lib/python3.12/dist-packages/xgboost/core.py"", line 774, in inner_f
+    return func(**kwargs)
+           ^^^^^^^^^^^^^^
+TypeError: XGBModel.fit() got an unexpected keyword argument 'early_stopping_rounds'
+"
+DS0839,Failed: NameError: name 'proba' is not defined
+DS0840,Failed: NameError: name 'proba' is not defined
+DS0841,Passed
+DS0842,"Failed: IndentationError: expected an indented block after function definition on line 9 (<string>, line 10)"
+DS0843,Failed: NameError: name 'models' is not defined
+DS0844,Failed: NameError: name 'models' is not defined
+DS0845,"Failed: SyntaxError: invalid syntax (<string>, line 6)"
+DS0846,Failed: NotFittedError: The TF-IDF vectorizer is not fitted
+DS0847,Failed: NotFittedError: The TF-IDF vectorizer is not fitted
+DS0848,Failed: NotFittedError: This SelectKBest instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
+DS0849,Passed
+DS0850,Failed: NameError: name 'regressor' is not defined
+DS0851,Failed: NameError: name 'regressor' is not defined
+DS0852,Failed: NameError: name 'preprocess' is not defined
+DS0853,Failed: NameError: name 'prePro' is not defined
+DS0854,Passed
+DS0855,Failed: Logic Error (Assertion failed)
+DS0856,Failed: AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+DS0857,Failed: AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+DS0858,Failed: NameError: name 'model' is not defined
+DS0859,Failed: NameError: name 'model' is not defined
+DS0860,Failed: NameError: name 'model' is not defined
+DS0861,Failed: NameError: name 'X_new' is not defined
+DS0862,Failed: NotFittedError: This KMeans instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
+DS0863,Failed: NotFittedError: This KMeans instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
+DS0864,Failed: NotFittedError: This KMeans instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
+DS0865,"Failed: IndentationError: expected an indented block after function definition on line 7 (<string>, line 8)"
+DS0866,"Failed: TypeError: Feature names are only supported if all input features have string names, but your input has ['int', 'str'] as feature name / column name types. If you want feature names to be stored and validated, you must convert them all to strings, by using X.columns = X.columns.astype(str) for example. Otherwise you can remove feature / column names from your input data, or convert them all to a non-string data type."
+DS0867,"Failed: TypeError: Feature names are only supported if all input features have string names, but your input has ['int', 'str'] as feature name / column name types. If you want feature names to be stored and validated, you must convert them all to strings, by using X.columns = X.columns.astype(str) for example. Otherwise you can remove feature / column names from your input data, or convert them all to a non-string data type."
+DS0868,Failed: NameError: name 'predict' is not defined
+DS0869,Failed: NameError: name 'predict' is not defined
+DS0870,Failed: NameError: name 'predict' is not defined
+DS0871,Failed: NameError: name 'predict' is not defined
+DS0872,Failed: NameError: name 'cosine_similarities_of_queries' is not defined
+DS0873,Failed: NameError: name 'cosine_similarities_of_queries' is not defined
+DS0874,Failed: NameError: name 'cosine_similarity' is not defined
+DS0875,Failed: TypeError: OneHotEncoder.__init__() got an unexpected keyword argument 'sparse'
+DS0876,Failed: TypeError: OneHotEncoder.__init__() got an unexpected keyword argument 'sparse'
+DS0877,Failed: TypeError: OneHotEncoder.__init__() got an unexpected keyword argument 'sparse'
+DS0878,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0879,Failed: TypeError: OneHotEncoder.__init__() got an unexpected keyword argument 'sparse'
+DS0880,Failed: NameError: name 'cluster_labels' is not defined
+DS0881,Failed: TypeError: unsupported operand type(s) for -: 'int' and 'list'
+DS0882,Failed: NameError: name 'cluster_labels' is not defined
+DS0883,Failed: NameError: name 'cluster_labels' is not defined
+DS0884,Failed: NameError: name 'cluster_labels' is not defined
+DS0885,Failed: NameError: name 'cluster_labels' is not defined
+DS0886,"Failed: ValueError: Expected 2D array, got 1D array instead:
+array=[1. 2. 3. 2. 4. 5.].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample."
+DS0887,"Failed: ValueError: Expected 2D array, got 1D array instead:
+array=[1. 2. 3. 2. 4. 5.].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample."
+DS0888,Passed
+DS0889,Failed: ValueError: Data must be 1-dimensional.
+DS0890,Passed
+DS0891,Passed
+DS0892,"Failed: ValueError: Iterable over raw text documents expected, string object received."
+DS0893,Failed: FileNotFoundError: [Errno 2] No such file or directory: 'example.csv'
+DS0894,Failed: NameError: name 'train_test_split' is not defined
+DS0895,Failed: FileNotFoundError: [Errno 2] No such file or directory: 'example.csv'
+DS0896,"Failed: IndentationError: expected an indented block after function definition on line 5 (<string>, line 6)"
+DS0897,Failed: NameError: name 'kmeans' is not defined
+DS0898,Failed: NameError: name 'kmeans' is not defined
+DS0899,Failed: AttributeError: 'TfidfVectorizer' object has no attribute 'get_feature_names'
+DS0900,Failed: AttributeError: 'TfidfVectorizer' object has no attribute 'get_feature_names'
+DS0901,"Failed: IndentationError: expected an indented block after function definition on line 10 (<string>, line 11)"
+DS0902,Failed: NameError: name 'vectorizer' is not defined
+DS0903,Failed: NameError: name 'vectorizer' is not defined
+DS0904,Failed: NameError: name 'vectorizer' is not defined
+DS0905,Failed: NameError: name 'vectorizer' is not defined
+DS0906,Failed: ValueError: Expected a 2-dimensional container but got <class 'pandas.core.series.Series'> instead. Pass a DataFrame containing a single row (i.e. single sample) or a single column (i.e. single feature) instead.
+DS0907,"Failed: ValueError: Found input variables with inconsistent numbers of samples: [4, 7]"
+DS0908,Failed: NameError: name 'transformed_df' is not defined
+DS0909,Failed: FileNotFoundError: [Errno 2] No such file or directory: 'data.csv'
+DS0910,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0911,Failed: NameError: name 'ElasticNet' is not defined
+DS0912,Passed
+DS0913,Passed
+DS0914,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0915,"Failed: ValueError: X has 7 features, but DecisionTreeRegressor is expecting 28 features as input."
+DS0916,Failed: ValueError: could not convert string to float: 'asdf'
+DS0917,Failed: ValueError: could not convert string to float: 'asdf'
+DS0918,Failed: ValueError: could not convert string to float: 'dsa'
+DS0919,Failed: NameError: name 'logReg' is not defined
+DS0920,Failed: NameError: name 'logReg' is not defined
+DS0921,Failed: Logic Error (Assertion failed)
+DS0922,Failed: Logic Error (Assertion failed)
+DS0923,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0924,Failed: TypeError: incompatible index of inserted column with frame index
+DS0925,Failed: TypeError: incompatible index of inserted column with frame index
+DS0926,Failed: NameError: name 'count' is not defined
+DS0927,Failed: NameError: name 'count' is not defined
+DS0928,Failed: NameError: name 'full_results' is not defined
+DS0929,Failed: NameError: name 'full_results' is not defined
+DS0930,Passed
+DS0931,Failed: Logic Error (Assertion failed)
+DS0932,Failed: Logic Error (Assertion failed)
+DS0933,Failed: Logic Error (Assertion failed)
+DS0934,Failed: Logic Error (Assertion failed)
+DS0935,Failed: NameError: name 'loss' is not defined
+DS0936,Failed: ModuleNotFoundError: No module named 'gensim'
+DS0937,Failed: ModuleNotFoundError: No module named 'gensim'
+DS0938,Failed: NameError: name 'px' is not defined
+DS0939,Failed: NameError: name 'px' is not defined
+DS0940,Failed: NameError: name 'px' is not defined
+DS0941,Failed: NameError: name 'C' is not defined
+DS0942,Failed: NameError: name 'C' is not defined
+DS0943,Failed: NameError: name 'C' is not defined
+DS0944,Failed: NameError: name 'C' is not defined
+DS0945,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0946,Failed: NameError: name 'C' is not defined
+DS0947,Failed: NameError: name 'C' is not defined
+DS0948,Passed
+DS0949,"Failed: TypeError: can't convert np.ndarray of type numpy.object_. The only supported types are: float64, float32, float16, complex64, complex128, int64, int32, int16, int8, uint64, uint32, uint16, uint8, and bool."
+DS0950,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0951,Failed: NameError: name 'mask' is not defined
+DS0952,Failed: NameError: name 'mask' is not defined
+DS0953,Failed: NameError: name 'mask' is not defined
+DS0954,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0955,Failed: NameError: name 'diag_ele' is not defined
+DS0956,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0957,Failed: RuntimeError: Sizes of tensors must match except in dimension 0. Expected size 2 but got size 1 for tensor number 1 in the list.
+DS0958,Failed: RuntimeError: Sizes of tensors must match except in dimension 0. Expected size 2 but got size 1 for tensor number 1 in the list.
+DS0959,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0960,Failed: RuntimeError: The size of tensor a (96) must match the size of tensor b (1000) at non-singleton dimension 2
+DS0961,Failed: TypeError: only integer tensors of a single element can be converted to an index
+DS0962,Failed: RuntimeError: The size of tensor a (23) must match the size of tensor b (964) at non-singleton dimension 2
+DS0963,Failed: TypeError: only integer tensors of a single element can be converted to an index
+DS0964,Failed: NameError: name 'tensor_of_tensors' is not defined
+DS0965,Failed: NameError: name 'new_tensors' is not defined
+DS0966,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0967,Failed: NameError: name 'tensor_of_tensors' is not defined
+DS0968,Failed: Logic Error (Assertion failed)
+DS0969,Failed: Logic Error (Assertion failed)
+DS0970,Failed: Logic Error (Assertion failed)
+DS0971,Passed
+DS0972,Failed: Logic Error (Assertion failed)
+DS0973,Passed
+DS0974,Failed: NameError: name 'y' is not defined
+DS0975,Failed: NameError: name 'y' is not defined
+DS0976,Failed: NameError: name 'y' is not defined
+DS0977,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0978,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0979,Failed: NameError: name 'loss' is not defined
+DS0980,Failed: NameError: name 'cnt_equal' is not defined
+DS0981,Failed: NameError: name 'cnt_equal' is not defined
+DS0982,Failed: NameError: name 'cnt_not_equal' is not defined
+DS0983,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0984,Failed: NameError: name 'x' is not defined
+DS0985,Failed: NameError: name 'x' is not defined
+DS0986,Failed: NameError: name 'tensors_31' is not defined
+DS0987,Failed: NameError: name 'tensors_31' is not defined
+DS0988,Failed: RuntimeError: The size of tensor a (2) must match the size of tensor b (3) at non-singleton dimension 2
+DS0989,Failed: RuntimeError: The size of tensor a (2) must match the size of tensor b (3) at non-singleton dimension 2
+DS0990,Failed: NameError: name 'signed_min' is not defined
+DS0991,Failed: NameError: name 'signed_max' is not defined
+DS0992,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0993,Failed: NameError: name 'output' is not defined
+DS0994,Failed: RuntimeError: Tensors must have same number of dimensions: got 2 and 1
+DS0995,"Failed: IndentationError: expected an indented block after function definition on line 6 (<string>, line 7)"
+DS0996,Failed: RuntimeError: Tensors must have same number of dimensions: got 3 and 2
+DS0997,Failed: RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 1 but got size 4 for tensor number 1 in the list.
+DS0998,Failed: RuntimeError: Tensors must have same number of dimensions: got 3 and 2
+DS0999,Failed: RuntimeError: batch2 must be a 3D tensor
+HumanEval/0,Passed
+HumanEval/1,Passed
+HumanEval/2,Passed
+HumanEval/3,Passed
+HumanEval/4,Passed
+HumanEval/5,Passed
+HumanEval/6,Passed
+HumanEval/7,Passed
+HumanEval/8,Passed
+HumanEval/9,Passed
+HumanEval/10,Failed: Logic Hallucination (Assertion Error)
+HumanEval/11,Passed
+HumanEval/12,Passed
+HumanEval/13,Passed
+HumanEval/14,Passed
+HumanEval/15,Passed
+HumanEval/16,Passed
+HumanEval/17,Passed
+HumanEval/18,Passed
+HumanEval/19,Passed
+HumanEval/20,Passed
+HumanEval/21,Passed
+HumanEval/22,Passed
+HumanEval/23,Passed
+HumanEval/24,Passed
+HumanEval/25,Passed
+HumanEval/26,Failed: Logic Hallucination (Assertion Error)
+HumanEval/27,Passed
+HumanEval/28,Passed
+HumanEval/29,Passed
+HumanEval/30,Passed
+HumanEval/31,Passed
+HumanEval/32,Passed
+HumanEval/33,Passed
+HumanEval/34,Passed
+HumanEval/35,Passed
+HumanEval/36,Passed
+HumanEval/37,Passed
+HumanEval/38,Failed: NameError: name 'encode_cyclic' is not defined
+HumanEval/39,Passed
+HumanEval/40,Passed
+HumanEval/41,Passed
+HumanEval/42,Passed
+HumanEval/43,Passed
+HumanEval/44,Passed
+HumanEval/45,Passed
+HumanEval/46,Passed
+HumanEval/47,Passed
+HumanEval/48,Passed
+HumanEval/49,Passed
+HumanEval/100,Passed
+HumanEval/101,Passed
+HumanEval/102,Failed: Logic Hallucination (Assertion Error)
+HumanEval/103,Passed
+HumanEval/104,Passed
+HumanEval/105,Passed
+HumanEval/106,Passed
+HumanEval/107,Passed
+HumanEval/108,Failed: Logic Hallucination (Assertion Error)
+HumanEval/109,Failed: Logic Hallucination (Assertion Error)
+HumanEval/110,Passed
+HumanEval/111,Passed
+HumanEval/112,Passed
+HumanEval/113,Passed
+HumanEval/114,Passed
+HumanEval/115,Failed: NameError: name 'math' is not defined
+HumanEval/116,Passed
+HumanEval/117,Passed
+HumanEval/118,Passed
+HumanEval/119,Failed: Logic Hallucination (Assertion Error)
+HumanEval/120,Failed: NameError: name 'heapq' is not defined
+HumanEval/121,Passed
+HumanEval/122,Passed
+HumanEval/123,Passed
+HumanEval/124,Passed
+HumanEval/125,Passed
+HumanEval/126,"Failed: Syntax Hallucination (invalid character '➞' (U+279E) (<string>, line 15))"
+HumanEval/127,Failed: Logic Hallucination (Assertion Error)
+HumanEval/128,Passed
+HumanEval/129,Failed: Logic Hallucination (Assertion Error)
+HumanEval/130,Failed: IndexError: list index out of range
+HumanEval/131,Passed
+HumanEval/132,"Failed: Syntax Hallucination (invalid character '➞' (U+279E) (<string>, line 17))"
+HumanEval/133,Passed
+HumanEval/134,Failed: Logic Hallucination (Assertion Error)
+HumanEval/135,Failed: Logic Hallucination (Assertion Error)
+HumanEval/136,Passed
+HumanEval/137,"Failed: Syntax Hallucination (invalid character '➞' (U+279E) (<string>, line 19))"
+HumanEval/138,Passed
+HumanEval/139,Passed
+HumanEval/140,Passed
+HumanEval/141,Failed: Logic Hallucination (Assertion Error)
+HumanEval/142,Failed: Logic Hallucination (Assertion Error)
+HumanEval/143,Passed
+HumanEval/144,Passed
+HumanEval/145,Failed: Logic Hallucination (Assertion Error)
+HumanEval/146,Passed
+HumanEval/147,Passed
+HumanEval/148,Passed
+HumanEval/149,Passed
+HumanEval/150,Passed
+HumanEval/151,Passed
+HumanEval/152,Passed
+HumanEval/153,Passed
+HumanEval/154,Passed
+HumanEval/155,Failed: Logic Hallucination (Assertion Error)
+HumanEval/156,Passed
+HumanEval/157,Passed
+HumanEval/158,Passed
+HumanEval/159,Passed
+HumanEval/160,Failed: Logic Hallucination (Assertion Error)
+HumanEval/161,Passed
+HumanEval/162,Passed
+HumanEval/163,Failed: Logic Hallucination (Assertion Error)
+HumanEval/50,Failed: NameError: name 'encode_shift' is not defined
+HumanEval/51,Passed
+HumanEval/52,Passed
+HumanEval/53,Passed
+HumanEval/54,Passed
+HumanEval/55,Passed
+HumanEval/56,Passed
+HumanEval/57,Passed
+HumanEval/58,Passed
+HumanEval/59,Passed
+HumanEval/60,Passed
+HumanEval/61,Passed
+HumanEval/62,Passed
+HumanEval/63,Passed
+HumanEval/64,Passed
+HumanEval/65,Failed: Logic Hallucination (Assertion Error)
+HumanEval/66,Passed
+HumanEval/67,Passed
+HumanEval/68,Passed
+HumanEval/69,Passed
+HumanEval/70,Passed
+HumanEval/71,Passed
+HumanEval/72,Passed
+HumanEval/73,Passed
+HumanEval/74,Passed
+HumanEval/75,Passed
+HumanEval/76,Passed
+HumanEval/77,Failed: TypeError: type complex doesn't define __round__ method
+HumanEval/78,Passed
+HumanEval/79,Passed
+HumanEval/80,Passed
+HumanEval/81,Passed
+HumanEval/82,Passed
+HumanEval/83,Failed: Logic Hallucination (Assertion Error)
+HumanEval/84,Passed
+HumanEval/85,Passed
+HumanEval/86,Passed
+HumanEval/87,Passed
+HumanEval/88,Passed
+HumanEval/89,Passed
+HumanEval/90,Passed
+HumanEval/91,Failed: Logic Hallucination (Assertion Error)
+HumanEval/92,Passed
+HumanEval/93,Failed: Logic Hallucination (Assertion Error)
+HumanEval/94,Passed
+HumanEval/95,Failed: AttributeError: 'int' object has no attribute 'islower'
+HumanEval/96,Passed
+HumanEval/97,Passed
+HumanEval/98,Passed
+HumanEval/99,Failed: Logic Hallucination (Assertion Error)
+602,Passed
+603,Passed
+604,Passed
+605,Passed
+606,Passed
+607,Passed
+608,Passed
+610,Passed
+611,Passed
+612,Passed
+614,Passed
+615,Passed
+616,Passed
+617,Passed
+618,Passed
+619,Failed: TypeError: 'str' object does not support item assignment
+620,Passed
+622,Passed
+623,Passed
+624,Passed
+625,Passed
+626,Passed
+627,Passed
+628,Passed
+629,Passed
+630,Passed
+631,Passed
+632,Passed
+633,Passed
+635,Passed
+637,Passed
+638,Passed
+639,Passed
+640,Passed
+641,Passed
+643,"Failed: Syntax Hallucination (unterminated string literal (detected at line 31) (<string>, line 31))"
+644,Passed
+720,Passed
+721,Passed
+722,Passed
+723,Passed
+724,Passed
+725,Passed
+726,Passed
+728,Passed
+730,Passed
+731,Passed
+732,Passed
+733,Passed
+734,Passed
+788,Passed
+790,Passed
+791,Passed
+792,Passed
+793,Passed
+794,Passed
+796,Passed
+797,Passed
+798,Passed
+799,Passed
+800,Passed
+801,Passed
+802,Passed
+803,Passed
+804,Passed
+805,Passed
+806,Passed
+807,Passed
+808,Passed
+809,Passed
+735,Passed
+736,Passed
+737,Passed
+738,Passed
+739,Passed
+740,Passed
+741,Passed
+742,Passed
+743,Passed
+744,Passed
+745,Passed
+746,Passed
+747,Passed
+748,Passed
+749,Passed
+750,Passed
+751,Passed
+752,Passed
+753,Passed
+754,Passed
+755,Passed
+756,Passed
+757,Passed
+758,Passed
+759,Passed
+760,Passed
+762,Passed
+763,Passed
+764,Passed
+765,Passed
+766,Passed
+767,Passed
+769,Passed
+770,Passed
+771,"Failed: Syntax Hallucination (unterminated string literal (detected at line 46) (<string>, line 46))"
+772,Passed
+773,Passed
+775,Passed
+776,Passed
+777,Passed
+778,Passed
+779,Passed
+780,Failed: TypeError: unsupported operand type(s) for +: 'int' and 'tuple'
+781,Passed
+782,Passed
+783,Passed
+784,Passed
+785,Passed
+786,Passed
+787,Passed
+11,Passed
+12,Passed
+14,Passed
+16,Passed
+17,Passed
+18,Passed
+19,Passed
+20,Passed
+56,Passed
+57,Passed
+58,Passed
+59,Passed
+61,Passed
+62,Passed
+63,Passed
+64,Passed
+65,Passed
+66,Passed
+67,Passed
+68,Passed
+69,Passed
+70,Passed
+71,Passed
+72,Passed
+74,Passed
+75,Passed
+77,Passed
+79,Passed
+80,Passed
+82,Passed
+83,Passed
+84,Failed: IndexError: list index out of range
+85,Passed
+86,Passed
+87,Passed
+88,Passed
+89,Passed
+90,Passed
+91,Passed
+92,Passed
+93,Passed
+94,Passed
+95,Passed
+96,Passed
+97,Passed
+98,Passed
+99,Passed
+100,Passed
+101,Passed
+102,Passed
+227,Passed
+228,Passed
+229,Passed
+230,Passed
+232,Passed
+233,Passed
+234,Passed
+235,Passed
+237,Passed
+238,Passed
+239,Passed
+240,Passed
+242,Passed
+244,Passed
+245,Passed
+246,Passed
+247,Passed
+248,Passed
+249,Passed
+250,Passed
+251,Passed
+252,Passed
+253,Passed
+255,Passed
+256,Passed
+257,Passed
+259,Passed
+260,Passed
+261,Passed
+262,Passed
+264,Passed
+265,Passed
+266,Passed
+267,Passed
+268,Passed
+269,Passed
+270,Passed
+271,Passed
+272,Passed
+273,Passed
+274,Passed
+276,Passed
+277,Passed
+278,Passed
+279,Passed
+280,Passed
+281,Passed
+282,Passed
+283,Passed
+284,Passed
+418,Passed
+419,Passed
+420,Passed
+421,Passed
+422,Passed
+424,Passed
+425,Passed
+426,Passed
+427,Passed
+428,Passed
+429,Passed
+430,Passed
+431,Passed
+432,Passed
+433,Passed
+434,Passed
+435,Passed
+436,Passed
+437,Passed
+438,Passed
+439,Passed
+440,Passed
+441,Passed
+442,Passed
+443,Passed
+444,Passed
+445,Passed
+446,Passed
+447,Passed
+448,Passed
+450,Passed
+451,Passed
+452,Passed
+453,Passed
+454,Passed
+455,Passed
+456,Passed
+457,Passed
+458,Passed
+459,Passed
+460,Passed
+461,Passed
+462,Passed
+463,Passed
+464,Passed
+465,Passed
+468,Passed
+470,Passed
+471,Passed
+472,Passed
+473,Passed
+474,Passed
+475,Passed
+476,Passed
+477,Passed
+478,Passed
+479,Failed: ValueError: invalid literal for int() with base 10: '-'
+103,Passed
+104,Passed
+105,Passed
+106,Passed
+108,Passed
+109,Passed
+111,Passed
+113,Passed
+115,Passed
+116,Passed
+117,Passed
+118,Passed
+119,"Failed: Syntax Hallucination (invalid syntax (<string>, line 1))"
+120,Passed
+123,Passed
+124,Passed
+125,Passed
+126,Passed
+127,Passed
+128,Passed
+129,Passed
+130,Passed
+131,Passed
+132,Passed
+133,Passed
+135,Passed
+137,Passed
+138,Passed
+139,Passed
+140,Passed
+141,Passed
+142,Passed
+143,Passed
+145,Passed
+160,Passed
+161,Passed
+162,Passed
+163,Passed
+164,Passed
+165,Passed
+166,Passed
+167,Passed
+168,Passed
+170,Passed
+171,Passed
+172,Passed
+222,Passed
+223,Passed
+224,Passed
+226,Passed
