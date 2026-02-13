@@ -171,82 +171,78 @@ def extract_dynamic_errors(dynamic_info: str) -> List[Tuple[int, int, str]]:
     return []
 
 
-def generate_patch(code: str, start_line: int, end_line: int) -> Optional[str]:
+def generate_full_patch(code: str, errors: List[Tuple[int, int, str]]) -> Optional[str]:
     """
-    Generate patched code with error markers.
+    Generate the full code with error markers inserted at each error location.
     
     Args:
         code: The generated code
-        start_line: Starting line number (1-indexed)
-        end_line: Ending line number (1-indexed)
+        errors: List of (start_line, end_line, error_type) tuples (1-indexed)
     
     Returns:
-        Patched code with error markers, or None if invalid
+        Full code with error markers at each error location, or None if invalid
     """
     if pd.isna(code) or not code:
         return None
     
-    # Split code into lines
     lines = code.split('\n')
     total_lines = len(lines)
     
-    # Validate line numbers
-    if start_line < 1 or end_line < 1 or start_line > total_lines or end_line > total_lines:
-        print(f"Warning: Invalid line numbers {start_line}-{end_line} for code with {total_lines} lines")
+    # Build lookup: line_idx -> markers before/after
+    start_markers = {}  # idx -> list of error_type strings
+    end_markers = {}    # idx -> list of error_type strings
+    
+    for start_line, end_line, error_type in errors:
+        # Validate line numbers
+        if start_line < 1 or end_line < 1 or start_line > total_lines or end_line > total_lines:
+            print(f"Warning: Invalid line numbers {start_line}-{end_line} for code with {total_lines} lines")
+            continue
+        if start_line > end_line:
+            print(f"Warning: start_line {start_line} > end_line {end_line}")
+            continue
+        
+        start_markers.setdefault(start_line - 1, []).append(error_type)
+        end_markers.setdefault(end_line - 1, []).append(error_type)
+    
+    # If no valid errors, return None
+    if not start_markers:
         return None
     
-    if start_line > end_line:
-        print(f"Warning: start_line {start_line} > end_line {end_line}")
-        return None
-    
-    # Convert to 0-indexed
-    start_idx = start_line - 1
-    end_idx = end_line - 1
-    
-    # Build patched code
+    # Build the full patched code with markers
     patched_lines = []
-    
-    # Add context line above (if exists)
-    if start_idx > 0:
-        patched_lines.append(lines[start_idx - 1])
-    
-    # Add error start marker
-    patched_lines.append("<<<< [ERROR START]")
-    
-    # Add error lines
-    for i in range(start_idx, end_idx + 1):
-        patched_lines.append(lines[i])
-    
-    # Add error finish marker
-    patched_lines.append("[ERROR FINISH] >>>>")
-    
-    # Add context line below (if exists)
-    if end_idx < total_lines - 1:
-        patched_lines.append(lines[end_idx + 1])
+    for i, line in enumerate(lines):
+        if i in start_markers:
+            for et in start_markers[i]:
+                patched_lines.append(f"<<<< [ERROR START] ({et})")
+        patched_lines.append(line)
+        if i in end_markers:
+            for et in end_markers[i]:
+                patched_lines.append(f"[ERROR FINISH] ({et}) >>>>")
     
     return '\n'.join(patched_lines)
 
 
-def process_row(row: pd.Series) -> List[dict]:
+def process_row(row: pd.Series) -> Optional[dict]:
     """
-    Process a single row and generate separate rows for each error.
+    Process a single row and generate one combined patched code with all errors marked.
     
     Args:
         row: A row from the merged DataFrame
     
     Returns:
-        List of dictionaries, one for each error found
+        A single dictionary with aggregated error info, or None if no errors found
     """
-    # Extract all errors
-    all_errors = []
+    # Extract all errors from each source
+    all_errors = []  # List of (source, start, end, error_type)
     
     ast_errors = extract_ast_errors(row['ast_info'])
     for start, end, error_type in ast_errors:
         all_errors.append(('ast', start, end, error_type))
     
-    cfg_errors = extract_cfg_errors(row['cfg_info'])
-    for start, end, error_type in cfg_errors:
-        all_errors.append(('cfg', start, end, error_type))
+    # NOTE: CFG errors commented out for now — will be re-enabled later
+    # cfg_errors = extract_cfg_errors(row['cfg_info'])
+    # for start, end, error_type in cfg_errors:
+    #     all_errors.append(('cfg', start, end, error_type))
     
     lib_errors = extract_lib_errors(row['lib_info'])
     for start, end, error_type in lib_errors:
@@ -258,37 +254,37 @@ def process_row(row: pd.Series) -> List[dict]:
     
     # If no errors found, skip this row
     if not all_errors:
-        return []
+        return None
     
-    # Generate a row for each error
-    result_rows = []
-    for error_source, start_line, end_line, error_type in all_errors:
-        patched_code = generate_patch(row['generated_code'], start_line, end_line)
-        
-        # Skip if patch generation failed
-        if patched_code is None:
-            continue
-        
-        # Create new row with all original fields plus new fields
-        new_row = {
-            'dataset': row['dataset'],
-            'status': row['status'],
-            'task_id': row['task_id'],
-            'ast_info': row['ast_info'],
-            'cfg_info': row['cfg_info'],
-            'lib_info': row['lib_info'],
-            'dynamic_info': row['dynamic_info'],
-            'generated_code': row['generated_code'],
-            'patched_code': patched_code,
-            'error_source': error_source,
-            'error_type': error_type,
-            'error_line_start': start_line,
-            'error_line_end': end_line
-        }
-        
-        result_rows.append(new_row)
+    # Build the list of (start, end, error_type) for generate_full_patch
+    error_tuples = [(start, end, etype) for _, start, end, etype in all_errors]
     
-    return result_rows
+    # Generate a single patched code with ALL error markers in the full code
+    patched_code = generate_full_patch(row['generated_code'], error_tuples)
+    
+    # Skip if patch generation failed
+    if patched_code is None:
+        return None
+    
+    # Aggregate error metadata
+    error_sources = ','.join(source for source, _, _, _ in all_errors)
+    error_types = ','.join(etype for _, _, _, etype in all_errors)
+    error_lines = ','.join(f"{start}-{end}" for _, start, end, _ in all_errors)
+    
+    return {
+        'dataset': row['dataset'],
+        'status': row['status'],
+        'task_id': row['task_id'],
+        'ast_info': row['ast_info'],
+        'cfg_info': row['cfg_info'],
+        'lib_info': row['lib_info'],
+        'dynamic_info': row['dynamic_info'],
+        'generated_code': row['generated_code'],
+        'patched_code': patched_code,
+        'error_sources': error_sources,
+        'error_types': error_types,
+        'error_lines': error_lines
+    }
 
 
 def main():
@@ -308,7 +304,7 @@ def main():
     merged_df = load_and_merge_data(fault_info_path, master_table_path)
     print()
     
-    # Step 2-4: Process each row and expand
+    # Step 2-4: Process each row and generate combined patches
     print("Step 2-4: Processing rows and generating patches...")
     all_result_rows = []
     
@@ -316,8 +312,9 @@ def main():
         if idx % 100 == 0:
             print(f"Processing row {idx}/{len(merged_df)}...")
         
-        result_rows = process_row(row)
-        all_result_rows.extend(result_rows)
+        result = process_row(row)
+        if result is not None:
+            all_result_rows.append(result)
     
     print(f"Total patches generated: {len(all_result_rows)}")
     print()
@@ -331,7 +328,7 @@ def main():
         'dataset', 'status', 'task_id',
         'ast_info', 'cfg_info', 'lib_info', 'dynamic_info',
         'generated_code', 'patched_code',
-        'error_source', 'error_type', 'error_line_start', 'error_line_end'
+        'error_sources', 'error_types', 'error_lines'
     ]
     
     result_df = result_df[column_order]
@@ -346,8 +343,6 @@ def main():
     print("=" * 80)
     print(f"Total input rows: {len(merged_df)}")
     print(f"Total output rows: {len(result_df)}")
-    print(f"\nError source breakdown:")
-    print(result_df['error_source'].value_counts())
     print()
     print("Done!")
 
