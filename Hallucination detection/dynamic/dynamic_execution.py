@@ -99,8 +99,10 @@ def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
         e = result_container["exception"]
         is_assertion_error = isinstance(e, AssertionError)
         tb = traceback.extract_tb(e.__traceback__)
-        line_num = tb[-1].lineno if tb else ""
         full_traceback = result_container["traceback"] or ""
+        
+        # Get minimum line number from all frames (per user requirement)
+        line_num = min((frame.lineno for frame in tb), default="") if tb else ""
         
         return {
             "status": "failed",
@@ -108,7 +110,7 @@ def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
             "error_message": str(e),
             "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
             "test_case": "",
-            "testcase_output": full_traceback
+            "testcase_output": full_traceback if is_assertion_error else ""
         }
     
     if result_container["result"] is not None:
@@ -156,16 +158,18 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
     except Exception as e:
         is_assertion_error = isinstance(e, AssertionError)
         tb = traceback.extract_tb(e.__traceback__)
-        line_num = tb[-1].lineno if tb else ""
         full_traceback = traceback.format_exc()
+        
+        # Get minimum line number from all frames (per user requirement)
+        line_num = min((frame.lineno for frame in tb), default="") if tb else ""
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
             "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
-            "test_case": code_context,
-            "testcase_output": full_traceback
+            "test_case": code_context if is_assertion_error else "",
+            "testcase_output": full_traceback if is_assertion_error else ""
         }
 
 
@@ -222,16 +226,18 @@ def execute_humaneval_test_inner(generated_code: str, test_code: str, entry_poin
     except Exception as e:
         is_assertion_error = isinstance(e, AssertionError)
         tb = traceback.extract_tb(e.__traceback__)
-        line_num = tb[-1].lineno if tb else ""
         full_traceback = traceback.format_exc()
+        
+        # Get minimum line number from all frames (per user requirement)
+        line_num = min((frame.lineno for frame in tb), default="") if tb else ""
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
             "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
-            "test_case": test_code,
-            "testcase_output": full_traceback
+            "test_case": test_code if is_assertion_error else "",
+            "testcase_output": full_traceback if is_assertion_error else ""
         }
 
 
@@ -298,16 +304,18 @@ def execute_mbpp_test_inner(generated_code: str, test_list: List[str], test_impo
     except Exception as e:
         is_assertion_error = isinstance(e, AssertionError)
         tb = traceback.extract_tb(e.__traceback__)
-        line_num = tb[-1].lineno if tb else ""
         full_traceback = traceback.format_exc()
+        
+        # Get minimum line number from all frames (per user requirement)
+        line_num = min((frame.lineno for frame in tb), default="") if tb else ""
         
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
             "line_number": "" if is_assertion_error else (str(line_num) if line_num else ""),
-            "test_case": formatted_test_case,
-            "testcase_output": full_traceback
+            "test_case": formatted_test_case if is_assertion_error else "",
+            "testcase_output": full_traceback if is_assertion_error else ""
         }
 
 
