@@ -11,10 +11,13 @@ import ast
 import re
 import traceback
 import pandas as pd
+import numpy as np
 import signal
 import threading
+import json
+import copy
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 
 # Project paths
 PROJECT_ROOT = Path(__file__).parent.parent.parent
@@ -23,22 +26,20 @@ DATASET_DIR = PROJECT_ROOT / "Dataset used"
 OUTPUT_DIR = Path(__file__).parent
 
 # Dataset configurations
+# Note: Generation files contain both generated code AND test cases
 DATASETS = {
     "DS1000": {
         "gen_path": GENERATION_DIR / "ds1k_gen.csv",
-        "test_path": DATASET_DIR / "ds1000.csv",
         "code_column": "full_code",
         "task_id_column": "task_id"
     },
     "HumanEval": {
         "gen_path": GENERATION_DIR / "humaneval_gen.csv",
-        "test_path": DATASET_DIR / "humaneval.csv",
         "code_column": "GENERATED_CODE",
         "task_id_column": "task_id"
     },
     "MBPP": {
         "gen_path": GENERATION_DIR / "mbpp_gen.csv",
-        "test_path": DATASET_DIR / "mbpp.csv",
         "code_column": "GENERATED_CODE",
         "task_id_column": "task_id"
     }
@@ -73,6 +74,291 @@ def extract_syntax_error_line(error_message: str) -> str:
     if match:
         return match.group(1)
     return ""
+
+
+def serialize_value(value: Any, max_length: int = 500) -> str:
+    """
+    Serialize a value to a string representation, handling complex types.
+    
+    Args:
+        value: The value to serialize (can be DataFrame, array, dict, etc.)
+        max_length: Maximum string length before truncation
+    
+    Returns:
+        String representation of the value
+    """
+    try:
+        # Check for complex types BEFORE pd.isna() to avoid "ambiguous truth value" errors
+        if isinstance(value, pd.DataFrame):
+            # Convert DataFrame to dict representation or string
+            try:
+                # Try to serialize to dict first (more structured)
+                serialized = value.to_dict('list')
+                result = f"DataFrame({serialized})"
+            except:
+                # Fallback to string representation
+                result = f"DataFrame:\n{value.to_string()}"
+        elif isinstance(value, pd.Series):
+            try:
+                serialized = value.to_dict()
+                result = f"Series({serialized})"
+            except:
+                result = f"Series:\n{value.to_string()}"
+        elif isinstance(value, np.ndarray):
+            # Always convert to list first to avoid ambiguous truth value errors
+            try:
+                result = f"array({value.tolist()})"
+            except:
+                # If tolist() fails, use repr
+                result = f"array({repr(value)})"
+        elif isinstance(value, (dict, list, tuple)):
+            result = str(value)
+        elif value is None:
+            return "None"
+        else:
+            # For scalar values, check pd.isna() carefully
+            try:
+                if pd.isna(value):
+                    return "NaN"
+            except (TypeError, ValueError):
+                # If pd.isna() fails, it's not a scalar NaN
+                pass
+            result = str(value)
+        
+        # Truncate if too long
+        if len(result) > max_length:
+            result = result[:max_length] + "...[truncated]"
+        
+        return result
+    except Exception as e:
+        return f"<Serialization Error: {str(e)}>"
+
+
+def extract_ds1000_test_cases(generated_code: str, code_context: str) -> List[List[str]]:
+    """
+    Extract test case data (input, expected, actual) for DS1000 tests.
+    
+    Args:
+        generated_code: Generated code snippet
+        code_context: Test context with test_execution function
+    
+    Returns:
+        List of [input, expected, actual] for each test case
+    """
+    test_cases_data = []
+    
+    try:
+        # Create test environment
+        test_env = {}
+        exec(code_context, test_env)
+        
+        # Check if generate_test_case function exists
+        if 'generate_test_case' not in test_env:
+            return []
+        
+        # Try to determine number of test cases by executing them
+        # Most DS1000 problems have 1-3 test cases
+        for test_id in range(1, 10):  # Try up to 10 test cases
+            try:
+                test_input, expected_result = test_env['generate_test_case'](test_id)
+                
+                # Execute generated code with this test input
+                exec_env = {}
+                exec_env['test_input'] = test_input
+                
+                try:
+                    exec(generated_code, exec_env)
+                    actual_result = exec_env.get('result', '<No result variable>')
+                except Exception as exec_error:
+                    actual_result = f"<Execution Error: {str(exec_error)}>"
+                
+                # Serialize the values
+                input_str = serialize_value(test_input)
+                expected_str = serialize_value(expected_result)
+                actual_str = serialize_value(actual_result)
+                
+                test_cases_data.append([input_str, expected_str, actual_str])
+                
+            except Exception:
+                # No more test cases
+                break
+        
+    except Exception as e:
+        # If extraction fails, return empty list
+        pass
+    
+    return test_cases_data
+
+
+def extract_humaneval_test_cases(generated_code: str, test_code: str, entry_point: str) -> List[List[str]]:
+    """
+    Extract test case data (input, expected, actual) for HumanEval tests.
+    
+    Args:
+        generated_code: Generated function code
+        test_code: Test code with check() function
+        entry_point: Function name to test
+    
+    Returns:
+        List of [input, expected, actual] for each test case
+    """
+    test_cases_data = []
+    
+    try:
+        # Parse the test code to extract assertions
+        tree = ast.parse(test_code)
+        
+        # Execute generated code to get the function
+        test_env = {}
+        exec(generated_code, test_env)
+        
+        if entry_point not in test_env:
+            return []
+        
+        func = test_env[entry_point]
+        
+        # Find all assert statements in the check function
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Assert):
+                try:
+                    # Try to extract the assertion
+                    test_node = node.test
+                    
+                    # Handle assert func(input) == expected
+                    if isinstance(test_node, ast.Compare):
+                        left = test_node.left
+                        comparators = test_node.comparators
+                        
+                        # Try to extract input and expected
+                        if isinstance(left, ast.Call):
+                            # Extract arguments
+                            args = []
+                            for arg in left.args:
+                                try:
+                                    arg_value = ast.literal_eval(arg)
+                                    args.append(arg_value)
+                                except:
+                                    args.append("<complex_arg>")
+                            
+                            # Extract expected value
+                            if comparators:
+                                try:
+                                    expected_value = ast.literal_eval(comparators[0])
+                                except:
+                                    expected_value = "<complex_expected>"
+                            else:
+                                expected_value = "<unknown>"
+                            
+                            # Execute function with args to get actual
+                            try:
+                                actual_value = func(*args)
+                            except Exception as exec_error:
+                                actual_value = f"<Error: {str(exec_error)}>"
+                            
+                            # Serialize
+                            input_str = serialize_value(tuple(args) if len(args) > 1 else (args[0] if args else "()"))
+                            expected_str = serialize_value(expected_value)
+                            actual_str = serialize_value(actual_value)
+                            
+                            test_cases_data.append([input_str, expected_str, actual_str])
+                except Exception:
+                    continue
+        
+    except Exception as e:
+        # If extraction fails, return empty list
+        pass
+    
+    return test_cases_data
+
+
+def extract_mbpp_test_cases(generated_code: str, test_list: List[str], test_imports: List[str]) -> List[List[str]]:
+    """
+    Extract test case data (input, expected, actual) for MBPP tests.
+    
+    Args:
+        generated_code: Generated function code
+        test_list: List of test assertions
+        test_imports: List of import statements
+    
+    Returns:
+        List of [input, expected, actual] for each test case
+    """
+    test_cases_data = []
+    
+    try:
+        # Execute imports and generated code
+        test_env = {}
+        for imp in test_imports:
+            if imp.strip():
+                exec(imp, test_env)
+        exec(generated_code, test_env)
+        
+        # Parse each test assertion
+        for test_assertion in test_list:
+            if not test_assertion.strip():
+                continue
+            
+            try:
+                # Parse the assertion
+                tree = ast.parse(test_assertion)
+                
+                for node in ast.walk(tree):
+                    if isinstance(node, ast.Assert):
+                        test_node = node.test
+                        
+                        # Handle assert func(input) == expected
+                        if isinstance(test_node, ast.Compare):
+                            left = test_node.left
+                            comparators = test_node.comparators
+                            
+                            # Extract input arguments
+                            if isinstance(left, ast.Call):
+                                # Get function name
+                                func_name = None
+                                if isinstance(left.func, ast.Name):
+                                    func_name = left.func.id
+                                
+                                if func_name and func_name in test_env:
+                                    func = test_env[func_name]
+                                    
+                                    # Extract arguments
+                                    args = []
+                                    for arg in left.args:
+                                        try:
+                                            arg_value = eval(compile(ast.Expression(arg), '<string>', 'eval'), test_env)
+                                            args.append(arg_value)
+                                        except:
+                                            args.append("<complex_arg>")
+                                    
+                                    # Extract expected value
+                                    if comparators:
+                                        try:
+                                            expected_value = eval(compile(ast.Expression(comparators[0]), '<string>', 'eval'), test_env)
+                                        except:
+                                            expected_value = "<complex_expected>"
+                                    else:
+                                        expected_value = "<unknown>"
+                                    
+                                    # Execute function to get actual
+                                    try:
+                                        actual_value = func(*args)
+                                    except Exception as exec_error:
+                                        actual_value = f"<Error: {str(exec_error)}>"
+                                    
+                                    # Serialize
+                                    input_str = serialize_value(tuple(args) if len(args) > 1 else (args[0] if args else "()"))
+                                    expected_str = serialize_value(expected_value)
+                                    actual_str = serialize_value(actual_value)
+                                    
+                                    test_cases_data.append([input_str, expected_str, actual_str])
+            except Exception:
+                continue
+        
+    except Exception as e:
+        # If extraction fails, return empty list
+        pass
+    
+    return test_cases_data
 
 
 def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
@@ -212,12 +498,16 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
             string_frames = [frame for frame in tb if '<string>' in frame.filename]
             line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
         
+        # Extract test case data for all failed tests
+        test_case_data = extract_ds1000_test_cases(generated_code, code_context)
+        test_case_json = json.dumps(test_case_data) if test_case_data else ""
+        
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
             "line_number": str(line_num) if line_num else "",
-            "test_case": code_context if is_assertion_error else "",
+            "test_case": test_case_json,
             "testcase_output": full_traceback if is_assertion_error else "",
             "generated_code": generated_code
         }
@@ -292,12 +582,16 @@ def execute_humaneval_test_inner(generated_code: str, test_code: str, entry_poin
             string_frames = [frame for frame in tb if '<string>' in frame.filename]
             line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
         
+        # Extract test case data for all failed tests
+        test_case_data = extract_humaneval_test_cases(generated_code, test_code, entry_point)
+        test_case_json = json.dumps(test_case_data) if test_case_data else ""
+        
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
             "line_number": str(line_num) if line_num else "",
-            "test_case": test_code if is_assertion_error else "",
+            "test_case": test_case_json,
             "testcase_output": full_traceback if is_assertion_error else "",
             "generated_code": generated_code
         }
@@ -382,12 +676,16 @@ def execute_mbpp_test_inner(generated_code: str, test_list: List[str], test_impo
             string_frames = [frame for frame in tb if '<string>' in frame.filename]
             line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
         
+        # Extract test case data for all failed tests
+        test_case_data = extract_mbpp_test_cases(generated_code, test_list, test_imports)
+        test_case_json = json.dumps(test_case_data) if test_case_data else ""
+        
         return {
             "status": "failed",
             "error_type": type(e).__name__,
             "error_message": str(e),
             "line_number": str(line_num) if line_num else "",
-            "test_case": formatted_test_case if is_assertion_error else "",
+            "test_case": test_case_json,
             "testcase_output": full_traceback if is_assertion_error else "",
             "generated_code": generated_code
         }
@@ -408,13 +706,12 @@ def execute_mbpp_test(generated_code: str, test_list: List[str], test_imports: L
     return execute_with_timeout(execute_mbpp_test_inner, (generated_code, test_list, test_imports))
 
 
-def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, Any]]:
+def process_ds1000(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
     """
     Process DS1000 dataset and execute tests.
     
     Args:
-        gen_df: DataFrame with generated code
-        test_df: DataFrame with test cases
+        gen_df: DataFrame with generated code and test cases
     
     Returns:
         List of result dictionaries
@@ -427,10 +724,8 @@ def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str
         task_id = row.get('task_id')
         generated_code = str(row.get('full_code', ''))
         
-        # Find corresponding test case
-        test_row = test_df[test_df['prompt'] == row['prompt']]
-        
-        if test_row.empty:
+        # Get code_context from the same row
+        if 'code_context' not in row or pd.isna(row['code_context']):
             print(f"  Warning: No test found for task_id {task_id}")
             results.append({
                 "dataset": "DS1000",
@@ -445,7 +740,7 @@ def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str
             })
             continue
         
-        code_context = str(test_row.iloc[0]['code_context'])
+        code_context = str(row['code_context'])
         
         # Execute test
         result = execute_ds1000_test(generated_code, code_context)
@@ -460,13 +755,12 @@ def process_ds1000(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str
     return results
 
 
-def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, Any]]:
+def process_humaneval(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
     """
     Process HumanEval dataset and execute tests.
     
     Args:
-        gen_df: DataFrame with generated code
-        test_df: DataFrame with test cases
+        gen_df: DataFrame with generated code and test cases
     
     Returns:
         List of result dictionaries
@@ -479,10 +773,8 @@ def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[
         task_id = row.get('task_id')
         generated_code = str(row.get('GENERATED_CODE', ''))
         
-        # Find corresponding test case
-        test_row = test_df[test_df['task_id'] == task_id]
-        
-        if test_row.empty:
+        # Get test data from the same row
+        if 'test' not in row or pd.isna(row['test']) or 'entry_point' not in row or pd.isna(row['entry_point']):
             print(f"  Warning: No test found for task_id {task_id}")
             results.append({
                 "dataset": "HumanEval",
@@ -497,8 +789,8 @@ def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[
             })
             continue
         
-        test_code = str(test_row.iloc[0]['test'])
-        entry_point = str(test_row.iloc[0]['entry_point'])
+        test_code = str(row['test'])
+        entry_point = str(row['entry_point'])
         
         # Execute test
         result = execute_humaneval_test(generated_code, test_code, entry_point)
@@ -513,13 +805,12 @@ def process_humaneval(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[
     return results
 
 
-def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, Any]]:
+def process_mbpp(gen_df: pd.DataFrame) -> List[Dict[str, Any]]:
     """
     Process MBPP dataset and execute tests.
     
     Args:
-        gen_df: DataFrame with generated code
-        test_df: DataFrame with test cases
+        gen_df: DataFrame with generated code and test cases
     
     Returns:
         List of result dictionaries
@@ -532,10 +823,8 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
         task_id = row.get('task_id')
         generated_code = str(row.get('GENERATED_CODE', ''))
         
-        # Find corresponding test case
-        test_row = test_df[test_df['task_id'] == task_id]
-        
-        if test_row.empty:
+        # Get test data from the same row
+        if 'test_list' not in row or pd.isna(row['test_list']) or 'test_imports' not in row or pd.isna(row['test_imports']):
             print(f"  Warning: No test found for task_id {task_id}")
             results.append({
                 "dataset": "MBPP",
@@ -551,11 +840,15 @@ def process_mbpp(gen_df: pd.DataFrame, test_df: pd.DataFrame) -> List[Dict[str, 
             continue
         
         # Parse test_list and test_imports from string representation
-        test_list_str = str(test_row.iloc[0]['test_list'])
-        test_imports_str = str(test_row.iloc[0]['test_imports'])
+        test_list_str = str(row['test_list'])
+        test_imports_str = str(row['test_imports'])
         
         try:
-            test_list = ast.literal_eval(test_list_str)
+            # Fix for MBPP CSV format: Replace actual newlines between strings with commas
+            # The CSV stores lists like: ['test1'\n 'test2'\n 'test3'] (actual newlines)
+            # Python's literal_eval treats adjacent strings as concatenation, so we need commas
+            test_list_str_fixed = test_list_str.replace("'\n '", "', '").replace('"\n "', '", "')
+            test_list = ast.literal_eval(test_list_str_fixed)
             test_imports = ast.literal_eval(test_imports_str)
         except Exception as e:
             print(f"  Error parsing test data for task_id {task_id}: {e}")
@@ -630,6 +923,7 @@ def update_syntax_error_line_numbers(csv_path: Path) -> int:
 def run_dynamic_pipeline():
     """
     Main pipeline to process all datasets and generate results CSV.
+    Generation files contain both generated code and test cases.
     """
     print("=" * 80)
     print("Dynamic Test Execution Module")
@@ -641,8 +935,7 @@ def run_dynamic_pipeline():
     print("\n[1/3] Loading DS1000 dataset...")
     try:
         ds1000_gen = pd.read_csv(DATASETS["DS1000"]["gen_path"])
-        ds1000_tests = pd.read_csv(DATASETS["DS1000"]["test_path"])
-        ds1000_results = process_ds1000(ds1000_gen, ds1000_tests)
+        ds1000_results = process_ds1000(ds1000_gen)
         all_results.extend(ds1000_results)
         print(f"✓ DS1000 completed: {len(ds1000_results)} results")
     except Exception as e:
@@ -653,8 +946,7 @@ def run_dynamic_pipeline():
     print("\n[2/3] Loading HumanEval dataset...")
     try:
         humaneval_gen = pd.read_csv(DATASETS["HumanEval"]["gen_path"])
-        humaneval_tests = pd.read_csv(DATASETS["HumanEval"]["test_path"])
-        humaneval_results = process_humaneval(humaneval_gen, humaneval_tests)
+        humaneval_results = process_humaneval(humaneval_gen)
         all_results.extend(humaneval_results)
         print(f"✓ HumanEval completed: {len(humaneval_results)} results")
     except Exception as e:
@@ -665,8 +957,7 @@ def run_dynamic_pipeline():
     print("\n[3/3] Loading MBPP dataset...")
     try:
         mbpp_gen = pd.read_csv(DATASETS["MBPP"]["gen_path"])
-        mbpp_tests = pd.read_csv(DATASETS["MBPP"]["test_path"])
-        mbpp_results = process_mbpp(mbpp_gen, mbpp_tests)
+        mbpp_results = process_mbpp(mbpp_gen)
         all_results.extend(mbpp_results)
         print(f"✓ MBPP completed: {len(mbpp_results)} results")
     except Exception as e:
