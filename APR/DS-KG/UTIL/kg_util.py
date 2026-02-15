@@ -49,8 +49,16 @@ def detect_attribute_error(msg):
 
 
 def detect_type_error(msg):
-    m = re.search(r"(\w+)\(", msg)
-    return m.group(1) if m else None
+    # Match patterns like "X.func() got an unexpected keyword argument"
+    # or "func() takes N positional arguments but M were given"
+    m = re.search(r"(?:\w+\.)?(\w+)\(\) (?:got an unexpected keyword argument|takes?\b)", msg)
+    if m:
+        return m.group(1)
+    # Match "X.func() missing N required positional argument"
+    m = re.search(r"(?:\w+\.)?(\w+)\(\) missing \d+ required", msg)
+    if m:
+        return m.group(1)
+    return None
 
 
 # ======================================================
@@ -58,7 +66,7 @@ def detect_type_error(msg):
 # ======================================================
 
 def rank(symbol, candidates):
-    return get_close_matches(symbol, candidates, n=2, cutoff=0.6)
+    return get_close_matches(symbol, candidates, n=2, cutoff=0.85)
 
 
 def build_function(name, node):
@@ -97,17 +105,22 @@ def build_class(name, node):
 # ======================================================
 
 def suggest_name(symbol):
+    """Only return suggestions when the symbol exactly matches a known
+    KG function or class name.  Fuzzy matching local variable names
+    (e.g. 'result', 'df') against the KG produces irrelevant noise."""
     out = []
 
-    for m in rank(symbol, KG["functions"].keys()):
-        node = KG["functions"][m]
+    # Exact match in functions
+    if symbol in KG["functions"]:
+        node = KG["functions"][symbol]
         if node["node_type"] == "function":
-            out.append(build_function(m, node))
+            out.append(build_function(symbol, node))
         else:
-            out.append(build_method(m, node))
+            out.append(build_method(symbol, node))
 
-    for c in rank(symbol, KG["classes"].keys()):
-        out.append(build_class(c, KG["classes"][c]))
+    # Exact match in classes
+    if symbol in KG["classes"]:
+        out.append(build_class(symbol, KG["classes"][symbol]))
 
     return out[:2]
 
@@ -121,7 +134,13 @@ def suggest_attribute(cls, attr):
         for m in rank(attr, class_node["methods"]):
             node = KG["functions"].get(m)
             if node:
-                out.append(build_method(m, node))
+                entry = build_method(m, node)
+                # Override with the queried class so the suggestion
+                # references the actual library/class, not a parent or
+                # sibling class that the KG node may point to.
+                entry["api"] = f"{cls}.{m}"
+                entry["belongs_to"] = cls
+                out.append(entry)
 
         for a in rank(attr, class_node["attributes"]):
             out.append({

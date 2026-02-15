@@ -462,10 +462,20 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
         Dictionary with test results including test_case and testcase_output
     """
     test_env = {}
+    line_offset = 0
     
     try:
         # Load the test execution context
         exec(code_context, test_env)
+        
+        # Compute line offset from exec_context template
+        # DS1000's test_execution() wraps generated_code inside exec_context,
+        # prepending setup lines before [insert]. Traceback line numbers refer
+        # to the combined code, so we must subtract the offset to map back to
+        # the original generated_code.
+        exec_ctx = test_env.get('exec_context', '')
+        if exec_ctx and '[insert]' in exec_ctx:
+            line_offset = exec_ctx.split('[insert]')[0].count('\n')
         
         # Execute the test
         test_env['test_execution'](generated_code)
@@ -493,10 +503,18 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
         elif is_syntax_error:
             # Extract line number from SyntaxError message
             line_num = extract_syntax_error_line(str(e))
+            # Adjust for exec_context offset
+            if line_num and line_offset:
+                line_num = str(max(1, int(line_num) - line_offset))
         else:
-            # For runtime errors, get minimum line from <string> frames (user's code)
+            # For runtime errors, use the last <string> frame (innermost exec
+            # context = actual error location), then adjust for the offset
             string_frames = [frame for frame in tb if '<string>' in frame.filename]
-            line_num = min((frame.lineno for frame in string_frames), default="") if string_frames else ""
+            if string_frames:
+                raw_line = string_frames[-1].lineno
+                line_num = str(max(1, raw_line - line_offset)) if raw_line else ""
+            else:
+                line_num = ""
         
         # Extract test case data for all failed tests
         test_case_data = extract_ds1000_test_cases(generated_code, code_context)

@@ -13,19 +13,19 @@ DATASETS = {
         "path": os.path.join(BASE_DIR, "ds1k_gen.csv"),
         "code_column": "full_code",
         "task_id_column": "task_id",
-        "output": "ast_ds1000.jsonl"
+        "output": "cfg_ds1000.jsonl"
     },
     "HumanEval": {
         "path": os.path.join(BASE_DIR, "humaneval_gen.csv"),
         "code_column": "GENERATED_CODE",
         "task_id_column": "task_id",
-        "output": "ast_humaneval.jsonl"
+        "output": "cfg_humaneval.jsonl"
     },
     "MBPP": {
         "path": os.path.join(BASE_DIR, "mbpp_gen.csv"),
         "code_column": "GENERATED_CODE",
         "task_id_column": "task_id",
-        "output": "ast_mbpp.jsonl"
+        "output": "cfg_mbpp.jsonl"
     }
 }
 
@@ -39,6 +39,8 @@ class CFGVisitor(ast.NodeVisitor):
         self.missing_returns = []
 
     def _check_block_unreachable(self, statements):
+        """Detect unreachable statements after return/raise/break/continue,
+        recursing into nested blocks."""
         terminated = False
         for stmt in statements:
             if terminated:
@@ -49,6 +51,26 @@ class CFGVisitor(ast.NodeVisitor):
                 })
             if isinstance(stmt, (ast.Return, ast.Raise, ast.Break, ast.Continue)):
                 terminated = True
+
+            # Recurse into nested blocks
+            if isinstance(stmt, ast.If):
+                self._check_block_unreachable(stmt.body)
+                if stmt.orelse:
+                    self._check_block_unreachable(stmt.orelse)
+            elif isinstance(stmt, (ast.For, ast.While)):
+                self._check_block_unreachable(stmt.body)
+                if stmt.orelse:
+                    self._check_block_unreachable(stmt.orelse)
+            elif isinstance(stmt, ast.Try):
+                self._check_block_unreachable(stmt.body)
+                for handler in stmt.handlers:
+                    self._check_block_unreachable(handler.body)
+                if stmt.orelse:
+                    self._check_block_unreachable(stmt.orelse)
+                if stmt.finalbody:
+                    self._check_block_unreachable(stmt.finalbody)
+            elif isinstance(stmt, (ast.With, ast.AsyncWith)):
+                self._check_block_unreachable(stmt.body)
 
     def visit_FunctionDef(self, node):
         self._check_block_unreachable(node.body)
@@ -61,20 +83,58 @@ class CFGVisitor(ast.NodeVisitor):
         self.generic_visit(node)
 
     def _block_returns(self, stmts):
+        """Check if a sequence of statements guarantees a return/raise on all paths."""
         for stmt in stmts:
-            if isinstance(stmt, ast.Return):
+            # Direct return or raise terminates the block
+            if isinstance(stmt, (ast.Return, ast.Raise)):
                 return True
 
+            # if/else: both branches must terminate
             if isinstance(stmt, ast.If):
                 if stmt.orelse:
                     if self._block_returns(stmt.body) and self._block_returns(stmt.orelse):
                         return True
-                else:
-                    return False
+                # if without else: does NOT guarantee termination, continue checking
+
+            # try/except: try body + all handlers must terminate (or finally terminates)
+            if isinstance(stmt, ast.Try):
+                try_returns = self._block_returns(stmt.body)
+                all_handlers_return = (
+                    all(self._block_returns(h.body) for h in stmt.handlers)
+                    if stmt.handlers else False
+                )
+                if try_returns and all_handlers_return:
+                    return True
+                if stmt.finalbody and self._block_returns(stmt.finalbody):
+                    return True
+
+            # for/while...else: else block runs when loop completes normally
+            if isinstance(stmt, (ast.For, ast.While)):
+                if stmt.orelse and self._block_returns(stmt.orelse):
+                    return True
+
+            # with: delegate to body
+            if isinstance(stmt, (ast.With, ast.AsyncWith)):
+                if self._block_returns(stmt.body):
+                    return True
+
+        return False
+
+    def _has_return_value(self, node):
+        """Check if function contains at least one 'return <value>' (not bare return),
+        excluding nested function definitions."""
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue  # Don't descend into nested functions
+            if isinstance(child, ast.Return) and child.value is not None:
+                return True
+            if self._has_return_value(child):
+                return True
         return False
 
     def _check_missing_return(self, node):
-        if not self._block_returns(node.body):
+        # Only flag functions that explicitly return a value on some path
+        if self._has_return_value(node) and not self._block_returns(node.body):
             self.missing_returns.append({
                 "type": "missing_return",
                 "function": node.name,
@@ -112,7 +172,7 @@ def run_cfg_pipeline():
         print(f"Processing CFG for {dataset}...")
 
         df = pd.read_csv(cfg["path"])
-        out_file = cfg["output"].replace("ast_", "cfg_")
+        out_file = cfg["output"]
         out = open(out_file, "w", encoding="utf-8")
 
         for idx, row in df.iterrows():
