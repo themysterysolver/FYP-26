@@ -171,7 +171,7 @@ def extract_dynamic_errors(dynamic_info: str) -> List[Tuple[int, int, str]]:
     return []
 
 
-def generate_full_patch(code: str, errors: List[Tuple[int, int, str]]) -> Optional[str]:
+def generate_patch(code: str, errors: List[Tuple[int, int, str]]) -> Optional[str]:
     """
     Generate the full code with error markers inserted at each error location.
     
@@ -260,7 +260,7 @@ def process_row(row: pd.Series) -> Optional[dict]:
     error_tuples = [(start, end, etype) for _, start, end, etype in all_errors]
     
     # Generate a single patched code with ALL error markers in the full code
-    patched_code = generate_full_patch(row['generated_code'], error_tuples)
+    patched_code = generate_patch(row['generated_code'], error_tuples)
     
     # Skip if patch generation failed
     if patched_code is None:

@@ -1,20 +1,4 @@
-"""
-Generate KG Suggestions for patched_code.csv
----------------------------------------------
-Reads patched_code.csv, dispatches library API errors and dynamic execution
-errors to the DS-KG suggestion engines, and writes KG_SUGGESTIONS.csv with
-a new `kg_suggestion` column.
 
-Supported error types (KG can provide suggestions):
-  - lib: type_error        -> suggest_type(function)
-  - lib: attribute_error   -> suggest_attribute(object, attribute)
-  - lib: name_error        -> suggest_name(name)
-  - dynamic: TypeError     -> detect_type_error(msg) -> suggest_type(func)
-  - dynamic: AttributeError-> detect_attribute_error(msg) -> suggest_attribute(cls, attr)
-  - dynamic: NameError     -> detect_name_error(msg) -> suggest_name(symbol)
-
-All other error types get [] (empty suggestions).
-"""
 
 import sys
 import os
@@ -22,9 +6,7 @@ import json
 import ast
 import pandas as pd
 
-# ======================================================
-# Ensure UTIL/ is importable
-# ======================================================
+
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(SCRIPT_DIR, "UTIL"))
@@ -38,15 +20,11 @@ from kg_util import (
     detect_name_error,
 )
 
-# ======================================================
-# Project root (where patched_code.csv lives)
-# ======================================================
+
 
 PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
 
-# ======================================================
-# Safe parsers
-# ======================================================
+
 
 
 def safe_literal_eval(val):
@@ -71,9 +49,7 @@ def safe_json_loads(val):
         return {}
 
 
-# ======================================================
-# Per-row suggestion dispatcher
-# ======================================================
+
 
 
 def get_suggestion(row):
@@ -136,9 +112,6 @@ def get_suggestion(row):
     return []
 
 
-# ======================================================
-# Main
-# ======================================================
 
 
 def main():
