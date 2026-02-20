@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-CSV Integration Script
-Merges hallucination detection data from 4 sources into a unified fault information file.
-"""
-
 import pandas as pd
 import json
 import os
@@ -45,7 +39,7 @@ def merge_dataframes(df_ast, df_cfg, df_libapi, df_dynamic):
     # Merge LIB_API data
     merged = merged.merge(
         df_libapi[['task_id', 'libapi_analyzed', 'name_error', 'attribute_error', 
-                   'type_error', 'module_not_found', 'total_libapi_errors', 'libapi_details']], 
+                'type_error', 'module_not_found', 'total_libapi_errors', 'libapi_details']], 
         on='task_id', 
         how='outer',
         suffixes=('', '_libapi')
@@ -214,7 +208,7 @@ def create_output_dataframe(merged_df):
             output_data.append({
                 'dataset': dataset,
                 'status': status,
-                'task_id': task_id,
+                'task_id': task_id, 
                 'ast_info': '',
                 'cfg_info': '',
                 'lib_info': '',
