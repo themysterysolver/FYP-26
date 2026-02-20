@@ -43,7 +43,7 @@ class StructuralViolationVisitor(ast.NodeVisitor):
         self.in_function = 0
         self.in_loop = 0
 
-    '''
+    ''' 
     generic_visit(node)
         This visitor calls visit() on all children of the node.
 

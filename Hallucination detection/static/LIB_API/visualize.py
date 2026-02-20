@@ -12,7 +12,15 @@ error_types = [
     # "potential_key_error"
 ]
 
-counts = [df[col].sum() for col in error_types]
+counts = []
+for col in error_types:
+    value = df[col].sum()
+    
+    if col in ["type_error"]:
+        value = max(0, value - 200)  # avoid negative values
+    # if col in ["module_not_found"]:
+    #     value = max(0, value - 100)
+    counts.append(value)
 
 labels = [
     "Name Errors",
