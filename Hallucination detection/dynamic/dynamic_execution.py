@@ -10,7 +10,7 @@ import sys
 import ast
 import re
 import traceback
-import pandas as pd
+# import pandas as pd
 import numpy as np
 import signal
 import threading
@@ -18,6 +18,18 @@ import json
 import copy
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple
+
+import matplotlib
+matplotlib.use("Agg")
+
+import pandas as pd
+pd.options.mode.copy_on_write = True
+
+# import os
+# import re
+# import traceback
+# import threading
+# from pathlib import Path
 
 # Project paths
 PROJECT_ROOT = Path(__file__).parent.parent.parent
