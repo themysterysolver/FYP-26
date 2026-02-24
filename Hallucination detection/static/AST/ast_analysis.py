@@ -147,7 +147,8 @@ def run_ast_pipeline():
     for dataset, dfp in DATASETS.items():
         print(f"Processing {dataset}...")
 
-        df = pd.read_csv(dfp["path"])
+        # df = pd.read_csv(dfp["path"])
+        df = pd.read_csv(dfp["path"], encoding="latin1")
         out = open(dfp["output"], "w", encoding="utf-8")
 
         for idx, row in df.iterrows():
