@@ -450,6 +450,86 @@ def execute_with_timeout(func, args, timeout=TIMEOUT_SECONDS):
     }
 
 
+def _find_import_line_in_generated_code(generated_code: str, module_name: str) -> str:
+    """
+    Find the line number of an import statement for a given module in the generated code.
+    Handles 'import X', 'from X import ...', and submodule patterns like 'X.Y'.
+
+    Returns:
+        Line number as string (1-indexed), or "" if not found.
+    """
+    base_module = module_name.split('.')[0]
+    for i, line in enumerate(generated_code.split('\n'), 1):
+        stripped = line.strip()
+        if stripped.startswith('import ') or stripped.startswith('from '):
+            if base_module in stripped:
+                return str(i)
+    return ""
+
+
+def _find_first_matplotlib_call(generated_code: str) -> str:
+    """
+    Find the line number (1-indexed) of the first matplotlib plotting call
+    in *generated_code*.  Looks for plt.figure, plt.subplots, plt.show,
+    plt.plot, plt.scatter, fig = ..., ax.plot, etc.
+
+    Returns:
+        Line number as string, or "" if not found.
+    """
+    import re
+    patterns = [
+        r'plt\.\w+\(',
+        r'fig\s*[,=]',
+        r'ax\w*\.plot\(',
+        r'ax\w*\.scatter\(',
+        r'ax\w*\.bar\(',
+        r'ax\w*\.hist\(',
+        r'ax\w*\.imshow\(',
+        r'sns\.\w+\(',
+    ]
+    combined = '|'.join(patterns)
+    for i, line in enumerate(generated_code.split('\n'), 1):
+        if re.search(combined, line):
+            return str(i)
+    return ""
+
+
+def _adjust_line_to_code(line_num_str: str, generated_code: str) -> str:
+    """
+    Validate that *line_num_str* (1-indexed) falls on a non-blank line within
+    *generated_code*.  If it is out-of-bounds or lands on a blank line, return
+    the nearest non-blank line (searching upward first, then downward).
+    Returns the adjusted line number as a string, or "" if the generated code
+    has no non-blank lines at all.
+    """
+    if not line_num_str:
+        return ""
+    try:
+        line_num = int(line_num_str)
+    except (ValueError, TypeError):
+        return ""
+    if line_num < 1:
+        return ""
+
+    code_lines = generated_code.split('\n')
+    total = len(code_lines)
+
+    if line_num > total:
+        line_num = total
+
+    if code_lines[line_num - 1].strip() == '':
+        for offset in range(1, total):
+            up = line_num - offset
+            if up >= 1 and code_lines[up - 1].strip() != '':
+                return str(up)
+            down = line_num + offset
+            if down <= total and code_lines[down - 1].strip() != '':
+                return str(down)
+        return ""
+
+    return str(line_num)
+
+
 def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[str, Any]:
     """
     Inner function to execute DS1000 test (runs inside timeout wrapper).
@@ -463,21 +543,37 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
     """
     test_env = {}
     line_offset = 0
-    
+
+    # --- Phase 1: Load the test harness (code_context) ---
     try:
-        # Load the test execution context
         exec(code_context, test_env)
-        
-        # Compute line offset from exec_context template
-        # DS1000's test_execution() wraps generated_code inside exec_context,
-        # prepending setup lines before [insert]. Traceback line numbers refer
-        # to the combined code, so we must subtract the offset to map back to
-        # the original generated_code.
-        exec_ctx = test_env.get('exec_context', '')
-        if exec_ctx and '[insert]' in exec_ctx:
-            line_offset = exec_ctx.split('[insert]')[0].count('\n')
-        
-        # Execute the test
+    except Exception as ctx_err:
+        # The error is in the test harness, NOT the generated code.
+        # For ModuleNotFoundError we can still attribute it to the
+        # generated code if it imports the same missing module.
+        line_num = ""
+        if isinstance(ctx_err, ModuleNotFoundError):
+            missing = getattr(ctx_err, 'name', '') or ''
+            if missing:
+                line_num = _find_import_line_in_generated_code(generated_code, missing)
+
+        return {
+            "status": "failed",
+            "error_type": type(ctx_err).__name__,
+            "error_message": str(ctx_err),
+            "line_number": line_num,
+            "test_case": "",
+            "testcase_output": "",
+            "generated_code": generated_code
+        }
+
+    # --- Phase 2: Compute line offset ---
+    exec_ctx = test_env.get('exec_context', '')
+    if exec_ctx and '[insert]' in exec_ctx:
+        line_offset = exec_ctx.split('[insert]')[0].count('\n')
+
+    # --- Phase 3: Execute the actual test ---
+    try:
         test_env['test_execution'](generated_code)
         
         return {
@@ -498,17 +594,12 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
         
         # Get line number based on error type
         if is_assertion_error:
-            # AssertionErrors don't populate line_number
             line_num = ""
         elif is_syntax_error:
-            # Extract line number from SyntaxError message
             line_num = extract_syntax_error_line(str(e))
-            # Adjust for exec_context offset
             if line_num and line_offset:
                 line_num = str(max(1, int(line_num) - line_offset))
         else:
-            # For runtime errors, use the last <string> frame (innermost exec
-            # context = actual error location), then adjust for the offset
             string_frames = [frame for frame in tb if '<string>' in frame.filename]
             if string_frames:
                 raw_line = string_frames[-1].lineno
@@ -516,7 +607,71 @@ def execute_ds1000_test_inner(generated_code: str, code_context: str) -> Dict[st
             else:
                 line_num = ""
         
-        # Extract test case data for all failed tests
+        if line_num:
+            line_num = _adjust_line_to_code(str(line_num), generated_code)
+
+        if isinstance(e, RuntimeError) and 'FigureManager' in str(e):
+            plt_line = _find_first_matplotlib_call(generated_code)
+            if plt_line:
+                line_num = plt_line
+
+        if isinstance(e, AttributeError):
+            import re as _re
+            m = _re.search(r"has no attribute '([^']+)'", str(e))
+            if m:
+                attr = m.group(1)
+                if attr not in generated_code:
+                    line_num = ""
+                else:
+                    for i, line in enumerate(generated_code.split('\n'), 1):
+                        if attr in line:
+                            line_num = str(i)
+                            break
+
+        if isinstance(e, ModuleNotFoundError):
+            import re as _re
+            m = _re.search(r"No module named '([^']+)'", str(e))
+            if m:
+                found = _find_import_line_in_generated_code(generated_code, m.group(1))
+                if found:
+                    line_num = found
+                else:
+                    line_num = ""
+
+        if isinstance(e, TypeError):
+            import re as _re
+            err_str = str(e)
+            m_takes = _re.search(
+                r'(\w+)\.(\w+)\(\) takes .+ positional arguments? but (\d+) were given',
+                err_str
+            )
+            if m_takes:
+                method = m_takes.group(2)
+                if '.' + method + '(' not in generated_code:
+                    line_num = ""
+                else:
+                    call_m = _re.search(
+                        r'\.' + _re.escape(method) + r'\(([^)]*)\)',
+                        generated_code
+                    )
+                    if call_m and '=' in call_m.group(1):
+                        line_num = ""
+
+            if 'Invalid value' in err_str and 'dtype' in err_str:
+                code_lines_list = generated_code.split('\n')
+                ln = int(float(line_num)) if line_num and str(line_num).strip() not in ['', 'nan'] else 0
+                if 0 < ln <= len(code_lines_list):
+                    target_line = code_lines_list[ln - 1].strip()
+                    if _re.match(r'^result\s*=\s*\w+$', target_line):
+                        line_num = ""
+
+        if isinstance(e, ValueError) and 'Invalid frequency' in str(e):
+            import re as _re
+            for i, line in enumerate(generated_code.split('\n'), 1):
+                if '.resample(' in line:
+                    line_num = str(i)
+                    break
+
         test_case_data = extract_ds1000_test_cases(generated_code, code_context)
         test_case_json = json.dumps(test_case_data) if test_case_data else ""
         
