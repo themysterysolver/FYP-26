@@ -1,4 +1,0 @@
-[["(  Category  Index\n0      Foo      1\n1      Bar      2\n2      Cho      3\n3      Foo      4, ['Foo', 'Bar'])"
-, "DataFrame({'Category': ['Cho'], 'Index': [3]})"
-, "<Execution Error: ('Lengths must match to compare', (4,), (2,))>"]
-, ["(  Category  Index\n0      Foo      1\n1      Bar      2\n2      Cho      3\n3      Foo      4\n4      Bar      5, ['Foo', 'Bar'])", "DataFrame({'Category': ['Cho'], 'Index': [3]})", "<Execution Error: ('Lengths must match to compare', (5,), (2,))>"]]
