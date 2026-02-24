@@ -43,7 +43,7 @@ class StructuralViolationVisitor(ast.NodeVisitor):
         self.in_function = 0
         self.in_loop = 0
 
-    ''' 
+    '''
     generic_visit(node)
         This visitor calls visit() on all children of the node.
 
@@ -147,8 +147,7 @@ def run_ast_pipeline():
     for dataset, dfp in DATASETS.items():
         print(f"Processing {dataset}...")
 
-        # df = pd.read_csv(dfp["path"])
-        df = pd.read_csv(dfp["path"], encoding="latin1")
+        df = pd.read_csv(dfp["path"])
         out = open(dfp["output"], "w", encoding="utf-8")
 
         for idx, row in df.iterrows():
