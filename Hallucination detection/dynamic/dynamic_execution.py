@@ -12,7 +12,6 @@ import re
 import traceback
 import pandas as pd
 import numpy as np
-import signal
 import threading
 import json
 import copy

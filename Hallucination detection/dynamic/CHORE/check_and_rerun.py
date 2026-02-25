@@ -5,6 +5,7 @@ Check which packages are installed and re-run dynamic execution if new packages 
 
 import sys
 import subprocess
+from pathlib import Path
 
 print("=" * 80)
 print("PACKAGE AVAILABILITY CHECK")
@@ -74,9 +75,10 @@ if len(installed) >= 2:  # At least some new packages
         print("\nThis will take several minutes...\n")
         
         try:
+            dynamic_dir = Path(__file__).parent.parent
             result = subprocess.run(
-                ['python3', 'dynamic_execution.py'],
-                cwd='/Users/abhinavh.parthiban/Documents/FYP-26/Hallucination detection/dynamic',
+                [sys.executable, 'dynamic_execution.py'],
+                cwd=str(dynamic_dir),
                 capture_output=False,
                 text=True
             )
@@ -86,19 +88,19 @@ if len(installed) >= 2:  # At least some new packages
                 print("✅ Dynamic execution complete!")
                 print("=" * 80)
                 print("\n📝 Next step: Re-run integration")
-                print("   cd .. && python3 integrate_fault_data.py")
+                print("   cd .. && python integrate_fault_data.py")
             else:
                 print("\n❌ Dynamic execution failed. Check output above.")
         except Exception as e:
             print(f"\n❌ Error running dynamic execution: {e}")
     else:
         print("\n📝 To run manually:")
-        print("   python3 dynamic_execution.py")
-        print("   python3 ../integrate_fault_data.py")
+        print("   python dynamic_execution.py")
+        print("   python ../integrate_fault_data.py")
 else:
     print("\n⚠️  No new packages installed yet.")
     print("\n📝 To install packages, run:")
-    print("   ./install_packages.sh")
+    print("   pip install scipy scikit-learn seaborn sympy pyyaml xgboost torch")
     print("\n   OR manually:")
     print("   pip install scipy scikit-learn seaborn sympy pyyaml xgboost torch")
 

@@ -2,10 +2,13 @@
 import pandas as pd
 import re
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).parent
 
 def get_columns():
     for file in ["ds1k_gen.csv", "humaneval_gen.csv", "mbpp_gen.csv"]:
-        df = pd.read_csv(file)
+        df = pd.read_csv(SCRIPT_DIR / file)
         print(f"\n{file} columns:")
         print(list(df.columns))
 
@@ -17,7 +20,7 @@ def get_count_status_msg():
     }
 
     for name, (file, col) in files.items():
-        df = pd.read_csv(file)
+        df = pd.read_csv(SCRIPT_DIR / file)
         print(f"\n{name} distinct {col} values:")
         print(len(df[col].dropna().unique()))
         print(df[col].dropna().unique())
@@ -57,19 +60,19 @@ get_columns()
 get_count_status_msg()
 
 def visualize():
-    ds1k = pd.read_csv("ds1k_gen.csv")
+    ds1k = pd.read_csv(SCRIPT_DIR / "ds1k_gen.csv")
 
     ds1k[["Outcome", "Failure_Type"]] = ds1k["Status"].apply(
         lambda x: pd.Series(parse_status(x))
     )
 
-    he = pd.read_csv("humaneval_gen.csv")
+    he = pd.read_csv(SCRIPT_DIR / "humaneval_gen.csv")
 
     he[["Outcome", "Failure_Type"]] = he["STATUS"].apply(
         lambda x: pd.Series(parse_status(x))
     )
 
-    mbpp = pd.read_csv("mbpp_gen.csv")
+    mbpp = pd.read_csv(SCRIPT_DIR / "mbpp_gen.csv")
 
     mbpp[["Outcome", "Failure_Type"]] = mbpp["STATUS"].apply(
         lambda x: pd.Series(parse_status(x))
@@ -106,7 +109,7 @@ def visualize():
             )
 
         plt.tight_layout()
-        plt.savefig(f"{title.replace(' ', '_')}.png", dpi=300)
+        plt.savefig(SCRIPT_DIR / f"{title.replace(' ', '_')}.png", dpi=300)
         plt.show()
 
     plot_error_distribution(ds1k, "DS-1000 Failure Type Distribution")

@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 
 # Project paths
-PROJECT_ROOT = Path(__file__).parent
+PROJECT_ROOT = Path(__file__).parent.parent
 GENERATION_DIR = PROJECT_ROOT / "Code generation" / "Qwen"
 STATIC_DIR = PROJECT_ROOT / "Hallucination detection" / "static"
 DYNAMIC_DIR = PROJECT_ROOT / "Hallucination detection" / "dynamic"

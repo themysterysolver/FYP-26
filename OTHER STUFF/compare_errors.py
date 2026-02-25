@@ -4,6 +4,9 @@ Compare error messages between dynamic_execution_results.csv and hallucination_m
 """
 import csv
 import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).parent.parent
 
 def load_csv(filepath):
     """Load CSV and return as list of dictionaries"""
@@ -16,8 +19,8 @@ def compare_error_messages():
     
     # Load both CSVs
     print("Loading CSV files...")
-    exec_results = load_csv('Hallucination detection/dynamic/dynamic_execution_results.csv')
-    master_table = load_csv('APR/ANALYSIS/hallucination_master_table.csv')
+    exec_results = load_csv(PROJECT_ROOT / 'Hallucination detection' / 'dynamic' / 'dynamic_execution_results.csv')
+    master_table = load_csv(PROJECT_ROOT / 'APR' / 'ANALYSIS' / 'hallucination_master_table.csv')
     
     # Create lookup dictionary for master table
     master_lookup = {}

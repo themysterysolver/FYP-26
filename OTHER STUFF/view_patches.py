@@ -6,6 +6,9 @@ Simple CLI tool to browse and view patches from patched_code.csv
 
 import pandas as pd
 import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).parent.parent
 
 
 def view_patch_by_index(df, index):
@@ -110,7 +113,7 @@ def main():
     # Load the data
     print("Loading patched_code.csv...")
     try:
-        df = pd.read_csv('patched_code.csv')
+        df = pd.read_csv(PROJECT_ROOT / 'patched_code.csv')
     except FileNotFoundError:
         print("Error: patched_code.csv not found. Run patch_generator.py first.")
         sys.exit(1)
@@ -139,10 +142,10 @@ def main():
         
         else:
             print("Usage:")
-            print("  python3 view_patches.py stats")
-            print("  python3 view_patches.py view <index>")
-            print("  python3 view_patches.py task <dataset> <task_id>")
-            print("  python3 view_patches.py search <error_type>")
+            print("  python view_patches.py stats")
+            print("  python view_patches.py view <index>")
+            print("  python view_patches.py task <dataset> <task_id>")
+            print("  python view_patches.py search <error_type>")
     
     else:
         # Interactive mode

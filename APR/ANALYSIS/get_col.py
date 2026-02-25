@@ -1,5 +1,8 @@
 import pandas as pd
 import os
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).parent
 
 FILES = [
     "ds1k_gen.csv",
@@ -15,8 +18,9 @@ def inspect_csv(file):
     print(f"FILE: {file}")
     print("="*80)
 
+    filepath = SCRIPT_DIR / file
     try:
-        df = pd.read_csv(file)
+        df = pd.read_csv(filepath)
 
         print("\nColumns:")
         print(df.columns.tolist())
@@ -31,7 +35,8 @@ def inspect_csv(file):
         print(f"Error loading {file}: {e}")
 
 for file in FILES:
-    if os.path.exists(file):
+    filepath = SCRIPT_DIR / file
+    if filepath.exists():
         inspect_csv(file)
     else:
         print(f"\n❌ File not found: {file}")

@@ -8,6 +8,7 @@ import pandas as pd
 import json
 import ast
 import sys
+from pathlib import Path
 from typing import List, Tuple, Optional
 
 
@@ -430,10 +431,11 @@ def process_row(row: pd.Series) -> Optional[dict]:
 
 def main():
     """Main execution function."""
-    # File paths
-    fault_info_path = 'Hallucination detection/Fault Information/fault_information.csv'
-    master_table_path = 'APR/ANALYSIS/hallucination_master_table.csv'
-    output_path = 'patched_code.csv'
+    # File paths (relative to project root)
+    project_root = Path(__file__).parent.parent.parent
+    fault_info_path = str(project_root / 'Hallucination detection' / 'Fault Information' / 'fault_information.csv')
+    master_table_path = str(project_root / 'APR' / 'ANALYSIS' / 'hallucination_master_table.csv')
+    output_path = str(project_root / 'patched_code.csv')
     
     print("=" * 80)
     print("PATCH GENERATOR TOOL")

@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 # Add module paths
-PROJECT_ROOT = Path(__file__).parent
+PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "Hallucination detection" / "static" / "AST"))
 sys.path.insert(0, str(PROJECT_ROOT / "Hallucination detection" / "static" / "CFG"))
 sys.path.insert(0, str(PROJECT_ROOT / "Hallucination detection" / "static" / "LIB_API"))
@@ -254,7 +254,7 @@ def main():
         print(f"\n❌ Error: Could not import analysis modules.")
         print(f"   {e}")
         print(f"\n   Make sure you're running this from the project root:")
-        print(f"   python3 example_access_module_data.py")
+        print(f"   python example_access_module_data.py")
 
 
 if __name__ == "__main__":

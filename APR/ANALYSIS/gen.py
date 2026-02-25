@@ -1,11 +1,14 @@
 import pandas as pd
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).parent
 
 # ===============================
 # 1️⃣ LOAD GENERATION FILES
 # ===============================
 
 # ---- DS1000 ----
-ds = pd.read_csv("ds1k_gen.csv")
+ds = pd.read_csv(SCRIPT_DIR / "ds1k_gen.csv")
 ds_gen = ds[["task_id", "full_code", "Status", "reference_code"]].copy()
 ds_gen.rename(columns={
     "full_code": "generated_code",
@@ -16,7 +19,7 @@ ds_gen["dataset"] = "DS1000"
 
 
 # ---- HumanEval ----
-he = pd.read_csv("humaneval_gen.csv")
+he = pd.read_csv(SCRIPT_DIR / "humaneval_gen.csv")
 he_gen = he[["task_id", "GENERATED_CODE", "STATUS", "canonical_solution"]].copy()
 he_gen.rename(columns={
     "GENERATED_CODE": "generated_code",
@@ -27,7 +30,7 @@ he_gen["dataset"] = "HumanEval"
 
 
 # ---- MBPP ----
-mbpp = pd.read_csv("mbpp_gen.csv")
+mbpp = pd.read_csv(SCRIPT_DIR / "mbpp_gen.csv")
 mbpp_gen = mbpp[["task_id", "GENERATED_CODE", "STATUS", "code"]].copy()
 mbpp_gen.rename(columns={
     "GENERATED_CODE": "generated_code",
@@ -45,9 +48,9 @@ gen_master = pd.concat([ds_gen, he_gen, mbpp_gen], ignore_index=True)
 # 2️⃣ LOAD STATIC + LIBAPI FILES
 # ===============================
 
-ast_df = pd.read_csv("ast_summary.csv")
-cfg_df = pd.read_csv("cfg_summary.csv")
-lib_df = pd.read_csv("libapi_summary.csv")
+ast_df = pd.read_csv(SCRIPT_DIR / "ast_summary.csv")
+cfg_df = pd.read_csv(SCRIPT_DIR / "cfg_summary.csv")
+lib_df = pd.read_csv(SCRIPT_DIR / "libapi_summary.csv")
 
 gen_master["dataset"] = gen_master["dataset"].str.strip()
 ast_df["dataset"] = ast_df["dataset"].str.strip()
@@ -114,7 +117,7 @@ print(master.columns.tolist())
 # 5️⃣ SAVE FINAL CSV
 # ===============================
 
-master.to_csv("hallucination_master_table.csv", index=False)
+master.to_csv(SCRIPT_DIR / "hallucination_master_table.csv", index=False)
 
 print("✅ Master CSV created successfully!")
 print("Final Shape:", master.shape)

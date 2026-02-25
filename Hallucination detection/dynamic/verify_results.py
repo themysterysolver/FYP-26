@@ -2,9 +2,12 @@
 """Quick verification script for dynamic execution results."""
 
 import pandas as pd
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).parent
 
 # Load results
-df = pd.read_csv("dynamic_execution_results.csv")
+df = pd.read_csv(SCRIPT_DIR / "dynamic_execution_results.csv")
 
 print("=" * 80)
 print("Dynamic Execution Results Summary")

@@ -1,8 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).parent
 
 # Load CFG summary
-df = pd.read_csv("cfg_summary.csv")
+df = pd.read_csv(SCRIPT_DIR / "cfg_summary.csv")
 
 unreachable = df["unreachable_code"].sum()
 missing_return = df["missing_return"].sum()

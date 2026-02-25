@@ -1,7 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
 
-df = pd.read_csv("ast_summary.csv")
+SCRIPT_DIR = Path(__file__).parent
+
+df = pd.read_csv(SCRIPT_DIR / "ast_summary.csv")
 
 syntax = df["syntax_error"].sum()
 indent = df["indentation_error"].sum()
@@ -33,5 +36,5 @@ for bar in bars:
     )
 
 plt.tight_layout()
-plt.savefig(f"AST.png", dpi=300)
+plt.savefig(SCRIPT_DIR / "AST.png", dpi=300)
 plt.show()

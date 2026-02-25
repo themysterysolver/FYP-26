@@ -1,8 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).parent
 
 # Load summary
-df = pd.read_csv("libapi_summary.csv")
+df = pd.read_csv(SCRIPT_DIR / "libapi_summary.csv")
 
 error_types = [
     "name_error",
@@ -42,5 +45,5 @@ for bar in bars:
 
 plt.xticks(rotation=20)
 plt.tight_layout()
-plt.savefig("library_api.png", dpi=300)
+plt.savefig(SCRIPT_DIR / "library_api.png", dpi=300)
 plt.show()
