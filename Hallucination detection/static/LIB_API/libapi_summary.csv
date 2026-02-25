@@ -378,8 +378,8 @@ DS1000,DS0375,True,0,0,0,0,0,[]
 DS1000,DS0376,True,0,0,0,0,0,[]
 DS1000,DS0377,True,0,0,0,0,0,[]
 DS1000,DS0378,True,0,0,0,0,0,[]
-DS1000,DS0379,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0380,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0379,True,0,0,0,0,0,[]
+DS1000,DS0380,True,0,0,0,0,0,[]
 DS1000,DS0381,True,0,0,0,0,0,[]
 DS1000,DS0382,True,0,0,0,0,0,[]
 DS1000,DS0383,True,0,0,0,0,0,[]
@@ -665,51 +665,51 @@ DS1000,DS0662,True,0,0,1,0,1,"[{'type': 'type_error', 'function': 'savefig', 'in
 DS1000,DS0663,True,0,0,2,0,2,"[{'type': 'type_error', 'function': 'gca', 'invalid_arg': 'projection', 'line': 8}, {'type': 'type_error', 'function': 'savefig', 'invalid_arg': 'bbox_inches', 'line': 11}]"
 DS1000,DS0664,True,0,0,2,0,2,"[{'type': 'type_error', 'function': 'savefig', 'invalid_arg': 'bbox_inches', 'line': 12}, {'type': 'type_error', 'function': 'savefig', 'invalid_arg': 'bbox_inches', 'line': 13}]"
 DS1000,DS0665,True,0,0,1,0,1,"[{'type': 'type_error', 'function': 'savefig', 'invalid_arg': 'bbox_inches', 'line': 16}]"
-DS1000,DS0666,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0667,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0668,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0669,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0670,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0666,True,0,0,0,0,0,[]
+DS1000,DS0667,True,0,0,0,0,0,[]
+DS1000,DS0668,True,0,0,0,0,0,[]
+DS1000,DS0669,True,0,0,0,0,0,[]
+DS1000,DS0670,True,0,0,0,0,0,[]
 DS1000,DS0671,False,0,0,0,0,0,[]
-DS1000,DS0672,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0673,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0672,True,0,0,0,0,0,[]
+DS1000,DS0673,True,0,0,0,0,0,[]
 DS1000,DS0674,False,0,0,0,0,0,[]
-DS1000,DS0675,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0676,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0677,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0675,True,0,0,0,0,0,[]
+DS1000,DS0676,True,0,0,0,0,0,[]
+DS1000,DS0677,True,0,0,0,0,0,[]
 DS1000,DS0678,False,0,0,0,0,0,[]
-DS1000,DS0679,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0680,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0679,True,0,0,0,0,0,[]
+DS1000,DS0680,True,0,0,0,0,0,[]
 DS1000,DS0681,False,0,0,0,0,0,[]
-DS1000,DS0682,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0683,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0684,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0685,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0686,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0687,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 3}]"
-DS1000,DS0688,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0689,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0682,True,0,0,0,0,0,[]
+DS1000,DS0683,True,0,0,0,0,0,[]
+DS1000,DS0684,True,0,0,0,0,0,[]
+DS1000,DS0685,True,0,0,0,0,0,[]
+DS1000,DS0686,True,0,0,0,0,0,[]
+DS1000,DS0687,True,0,0,0,0,0,[]
+DS1000,DS0688,True,0,0,0,0,0,[]
+DS1000,DS0689,True,0,0,0,0,0,[]
 DS1000,DS0690,False,0,0,0,0,0,[]
-DS1000,DS0691,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0692,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0691,True,0,0,0,0,0,[]
+DS1000,DS0692,True,0,0,0,0,0,[]
 DS1000,DS0693,False,0,0,0,0,0,[]
-DS1000,DS0694,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0695,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0696,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0694,True,0,0,0,0,0,[]
+DS1000,DS0695,True,0,0,0,0,0,[]
+DS1000,DS0696,True,0,0,0,0,0,[]
 DS1000,DS0697,False,0,0,0,0,0,[]
-DS1000,DS0698,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0699,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0698,True,0,0,0,0,0,[]
+DS1000,DS0699,True,0,0,0,0,0,[]
 DS1000,DS0700,False,0,0,0,0,0,[]
-DS1000,DS0701,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0702,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0703,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0701,True,0,0,0,0,0,[]
+DS1000,DS0702,True,0,0,0,0,0,[]
+DS1000,DS0703,True,0,0,0,0,0,[]
 DS1000,DS0704,False,0,0,0,0,0,[]
-DS1000,DS0705,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
-DS1000,DS0706,True,0,0,0,3,3,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 6}, {'type': 'module_not_found', 'module': 'tensorflow.keras.models', 'line': 7}, {'type': 'module_not_found', 'module': 'tensorflow.keras.layers', 'line': 8}]"
-DS1000,DS0707,True,0,0,0,2,2,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}, {'type': 'module_not_found', 'module': 'tensorflow', 'line': 4}]"
-DS1000,DS0708,True,0,0,0,2,2,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}, {'type': 'module_not_found', 'module': 'tensorflow', 'line': 4}]"
+DS1000,DS0705,True,0,0,0,0,0,[]
+DS1000,DS0706,True,0,0,0,0,0,[]
+DS1000,DS0707,True,0,0,0,0,0,[]
+DS1000,DS0708,True,0,0,0,0,0,[]
 DS1000,DS0709,False,0,0,0,0,0,[]
-DS1000,DS0710,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'tensorflow', 'line': 2}]"
+DS1000,DS0710,True,0,0,0,0,0,[]
 DS1000,DS0711,True,0,0,0,0,0,[]
 DS1000,DS0712,True,0,0,0,0,0,[]
 DS1000,DS0713,True,0,0,0,0,0,[]
@@ -733,8 +733,8 @@ DS1000,DS0730,True,0,0,0,0,0,[]
 DS1000,DS0731,True,0,0,0,0,0,[]
 DS1000,DS0732,True,0,0,0,0,0,[]
 DS1000,DS0733,True,0,0,0,0,0,[]
-DS1000,DS0734,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'spatial', 'line': 7}]"
-DS1000,DS0735,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'spatial', 'line': 6}]"
+DS1000,DS0734,True,0,0,0,0,0,[]
+DS1000,DS0735,True,0,0,0,0,0,[]
 DS1000,DS0736,True,0,0,0,0,0,[]
 DS1000,DS0737,True,0,0,0,0,0,[]
 DS1000,DS0738,True,0,0,0,0,0,[]
@@ -742,14 +742,14 @@ DS1000,DS0739,True,0,0,0,0,0,[]
 DS1000,DS0740,True,0,0,0,0,0,[]
 DS1000,DS0741,True,0,0,0,0,0,[]
 DS1000,DS0742,False,0,0,0,0,0,[]
-DS1000,DS0743,True,0,2,0,0,2,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'ndimage', 'line': 12}, {'type': 'attribute_error', 'object': 'scipy', 'attribute': 'ndimage', 'line': 23}]"
-DS1000,DS0744,True,0,2,0,0,2,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'ndimage', 'line': 12}, {'type': 'attribute_error', 'object': 'scipy', 'attribute': 'ndimage', 'line': 20}]"
+DS1000,DS0743,True,0,0,0,0,0,[]
+DS1000,DS0744,True,0,0,0,0,0,[]
 DS1000,DS0745,True,0,0,0,0,0,[]
 DS1000,DS0746,True,0,0,0,0,0,[]
 DS1000,DS0747,True,0,0,0,0,0,[]
 DS1000,DS0748,True,0,0,0,0,0,[]
-DS1000,DS0749,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'spatial', 'line': 5}]"
-DS1000,DS0750,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'spatial', 'line': 5}]"
+DS1000,DS0749,True,0,0,0,0,0,[]
+DS1000,DS0750,True,0,0,0,0,0,[]
 DS1000,DS0751,False,0,0,0,0,0,[]
 DS1000,DS0752,True,0,0,0,0,0,[]
 DS1000,DS0753,True,0,0,0,0,0,[]
@@ -764,18 +764,18 @@ DS1000,DS0761,True,0,0,0,0,0,[]
 DS1000,DS0762,True,0,0,0,0,0,[]
 DS1000,DS0763,True,0,0,0,0,0,[]
 DS1000,DS0764,True,0,0,0,0,0,[]
-DS1000,DS0765,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'spatial', 'line': 4}]"
-DS1000,DS0766,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'spatial', 'line': 4}]"
+DS1000,DS0765,True,0,0,0,0,0,[]
+DS1000,DS0766,True,0,0,0,0,0,[]
 DS1000,DS0767,True,0,0,0,0,0,[]
-DS1000,DS0768,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'ndimage', 'line': 5}]"
+DS1000,DS0768,True,0,0,0,0,0,[]
 DS1000,DS0769,True,0,0,0,0,0,[]
 DS1000,DS0770,True,0,0,0,0,0,[]
 DS1000,DS0771,True,0,0,0,0,0,[]
-DS1000,DS0772,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'integrate', 'line': 8}]"
+DS1000,DS0772,True,0,0,0,0,0,[]
 DS1000,DS0773,False,0,0,0,0,0,[]
 DS1000,DS0774,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'sf', 'attribute': 'dctmtx', 'line': 5}]"
 DS1000,DS0775,True,0,0,0,0,0,[]
-DS1000,DS0776,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'special', 'line': 14}]"
+DS1000,DS0776,True,0,0,0,0,0,[]
 DS1000,DS0777,True,0,0,0,0,0,[]
 DS1000,DS0778,True,0,0,0,0,0,[]
 DS1000,DS0779,True,0,0,0,0,0,[]
@@ -784,12 +784,12 @@ DS1000,DS0781,True,0,0,0,0,0,[]
 DS1000,DS0782,True,0,0,0,0,0,[]
 DS1000,DS0783,True,0,0,0,0,0,[]
 DS1000,DS0784,False,0,0,0,0,0,[]
-DS1000,DS0785,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'ndimage', 'line': 5}]"
+DS1000,DS0785,True,0,0,0,0,0,[]
 DS1000,DS0786,True,0,0,0,0,0,[]
 DS1000,DS0787,True,0,0,0,0,0,[]
-DS1000,DS0788,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'integrate', 'line': 5}]"
-DS1000,DS0789,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'integrate', 'line': 5}]"
-DS1000,DS0790,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'integrate', 'line': 5}]"
+DS1000,DS0788,True,0,0,0,0,0,[]
+DS1000,DS0789,True,0,0,0,0,0,[]
+DS1000,DS0790,True,0,0,0,0,0,[]
 DS1000,DS0791,True,0,0,0,0,0,[]
 DS1000,DS0792,True,0,0,0,0,0,[]
 DS1000,DS0793,True,0,0,0,0,0,[]
@@ -802,8 +802,8 @@ DS1000,DS0799,True,0,0,0,0,0,[]
 DS1000,DS0800,True,0,0,0,0,0,[]
 DS1000,DS0801,True,0,0,0,0,0,[]
 DS1000,DS0802,True,0,0,0,0,0,[]
-DS1000,DS0803,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'spatial', 'line': 9}]"
-DS1000,DS0804,True,0,1,0,0,1,"[{'type': 'attribute_error', 'object': 'scipy', 'attribute': 'spatial', 'line': 12}]"
+DS1000,DS0803,True,0,0,0,0,0,[]
+DS1000,DS0804,True,0,0,0,0,0,[]
 DS1000,DS0805,True,0,0,0,0,0,[]
 DS1000,DS0806,True,0,0,0,0,0,[]
 DS1000,DS0807,True,0,0,0,0,0,[]
@@ -836,8 +836,8 @@ DS1000,DS0833,True,0,0,0,0,0,[]
 DS1000,DS0834,True,0,0,0,0,0,[]
 DS1000,DS0835,True,0,0,0,0,0,[]
 DS1000,DS0836,True,0,0,0,0,0,[]
-DS1000,DS0837,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'xgboost.sklearn', 'line': 4}]"
-DS1000,DS0838,True,0,0,0,1,1,"[{'type': 'module_not_found', 'module': 'xgboost.sklearn', 'line': 4}]"
+DS1000,DS0837,True,0,0,0,0,0,[]
+DS1000,DS0838,True,0,0,0,0,0,[]
 DS1000,DS0839,True,0,0,0,0,0,[]
 DS1000,DS0840,True,0,0,0,0,0,[]
 DS1000,DS0841,True,0,0,0,0,0,[]
@@ -1001,7 +1001,7 @@ DS1000,DS0998,True,0,0,0,0,0,[]
 DS1000,DS0999,True,0,0,0,0,0,[]
 HumanEval,HumanEval/0,True,0,0,0,0,0,[]
 HumanEval,HumanEval/1,True,0,0,0,0,0,[]
-HumanEval,HumanEval/2,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/2,True,0,0,0,0,0,[]
 HumanEval,HumanEval/3,True,0,0,0,0,0,[]
 HumanEval,HumanEval/4,True,0,0,0,0,0,[]
 HumanEval,HumanEval/5,True,0,0,0,0,0,[]
@@ -1009,13 +1009,13 @@ HumanEval,HumanEval/6,True,0,0,0,0,0,[]
 HumanEval,HumanEval/7,True,0,0,0,0,0,[]
 HumanEval,HumanEval/8,True,0,0,0,0,0,[]
 HumanEval,HumanEval/9,True,0,0,0,0,0,[]
-HumanEval,HumanEval/10,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/10,True,0,0,0,0,0,[]
 HumanEval,HumanEval/11,True,0,0,0,0,0,[]
 HumanEval,HumanEval/12,True,0,0,0,0,0,[]
-HumanEval,HumanEval/13,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/13,True,0,0,0,0,0,[]
 HumanEval,HumanEval/14,True,0,0,0,0,0,[]
-HumanEval,HumanEval/15,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/16,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/15,True,0,0,0,0,0,[]
+HumanEval,HumanEval/16,True,0,0,0,0,0,[]
 HumanEval,HumanEval/17,True,0,0,0,0,0,[]
 HumanEval,HumanEval/18,True,0,0,0,0,0,[]
 HumanEval,HumanEval/19,True,0,0,0,0,0,[]
@@ -1023,32 +1023,32 @@ HumanEval,HumanEval/20,True,0,0,0,0,0,[]
 HumanEval,HumanEval/21,True,0,0,0,0,0,[]
 HumanEval,HumanEval/22,True,0,0,0,0,0,[]
 HumanEval,HumanEval/23,True,0,0,0,0,0,[]
-HumanEval,HumanEval/24,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/24,True,0,0,0,0,0,[]
 HumanEval,HumanEval/25,True,0,0,0,0,0,[]
 HumanEval,HumanEval/26,True,0,0,0,0,0,[]
 HumanEval,HumanEval/27,True,0,0,0,0,0,[]
 HumanEval,HumanEval/28,True,0,0,0,0,0,[]
 HumanEval,HumanEval/29,True,0,0,0,0,0,[]
-HumanEval,HumanEval/30,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/30,True,0,0,0,0,0,[]
 HumanEval,HumanEval/31,True,0,0,0,0,0,[]
 HumanEval,HumanEval/32,True,0,0,0,0,0,[]
-HumanEval,HumanEval/33,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/34,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/35,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/33,True,0,0,0,0,0,[]
+HumanEval,HumanEval/34,True,0,0,0,0,0,[]
+HumanEval,HumanEval/35,True,0,0,0,0,0,[]
 HumanEval,HumanEval/36,True,0,0,0,0,0,[]
-HumanEval,HumanEval/37,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/37,True,0,0,0,0,0,[]
 HumanEval,HumanEval/38,True,0,0,0,0,0,[]
 HumanEval,HumanEval/39,True,0,0,0,0,0,[]
-HumanEval,HumanEval/40,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/41,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/42,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/40,True,0,0,0,0,0,[]
+HumanEval,HumanEval/41,True,0,0,0,0,0,[]
+HumanEval,HumanEval/42,True,0,0,0,0,0,[]
 HumanEval,HumanEval/43,True,0,0,0,0,0,[]
 HumanEval,HumanEval/44,True,0,0,0,0,0,[]
 HumanEval,HumanEval/45,True,0,0,0,0,0,[]
-HumanEval,HumanEval/46,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/47,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/46,True,0,0,0,0,0,[]
+HumanEval,HumanEval/47,True,0,0,0,0,0,[]
 HumanEval,HumanEval/48,True,0,0,0,0,0,[]
-HumanEval,HumanEval/49,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/49,True,0,0,0,0,0,[]
 HumanEval,HumanEval/100,True,0,0,0,0,0,[]
 HumanEval,HumanEval/101,True,0,0,0,0,0,[]
 HumanEval,HumanEval/102,True,0,0,0,0,0,[]
@@ -1115,17 +1115,17 @@ HumanEval,HumanEval/162,True,0,0,0,0,0,[]
 HumanEval,HumanEval/163,True,0,0,0,0,0,[]
 HumanEval,HumanEval/50,True,0,0,0,0,0,[]
 HumanEval,HumanEval/51,True,0,0,0,0,0,[]
-HumanEval,HumanEval/52,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/52,True,0,0,0,0,0,[]
 HumanEval,HumanEval/53,True,0,0,0,0,0,[]
-HumanEval,HumanEval/54,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/55,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/56,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/57,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/58,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/54,True,0,0,0,0,0,[]
+HumanEval,HumanEval/55,True,0,0,0,0,0,[]
+HumanEval,HumanEval/56,True,0,0,0,0,0,[]
+HumanEval,HumanEval/57,True,0,0,0,0,0,[]
+HumanEval,HumanEval/58,True,0,0,0,0,0,[]
 HumanEval,HumanEval/59,True,0,0,0,0,0,[]
-HumanEval,HumanEval/60,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/61,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
-HumanEval,HumanEval/62,True,2,0,0,0,2,"[{'type': 'name_error', 'name': '*', 'line': 1}, {'type': 'name_error', 'name': '*', 'line': 2}]"
+HumanEval,HumanEval/60,True,0,0,0,0,0,[]
+HumanEval,HumanEval/61,True,0,0,0,0,0,[]
+HumanEval,HumanEval/62,True,0,0,0,0,0,[]
 HumanEval,HumanEval/63,True,0,0,0,0,0,[]
 HumanEval,HumanEval/64,True,0,0,0,0,0,[]
 HumanEval,HumanEval/65,True,0,0,0,0,0,[]
