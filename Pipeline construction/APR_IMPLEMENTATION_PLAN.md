@@ -66,6 +66,12 @@ Returns only: `error_type`, `error_message`, `line_number`. Used by attribute, t
 
 Parses `dynamic_info` from fault_information (handles dict or JSON string). Used only inside the extractors; never passed to prompts.
 
+## Error-type–wise runs
+
+- **`main_driver(error_type_filter="syntax")`** runs only tasks that have syntax errors.
+- **Tasks with multiple error types** appear in multiple filters (e.g. a task with both syntax and name errors is in both `"syntax"` and `"name"`).
+- See [extraction_plan.md](Pipeline construction/extraction_plan.md) for usage and regeneration of `error_type_ids.py`.
+
 ## Files
 
 - **Notebook**: [Pipeline construction/PHASE_1.ipynb](PHASE_1.ipynb) – single APR cell (cell 68) contains classifier, extractors, all prompt builders, dispatcher, and `fix_code`.
