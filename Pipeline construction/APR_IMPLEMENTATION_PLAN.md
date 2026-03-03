@@ -3,8 +3,9 @@
 ## Current state
 
 - **Pipeline**: `run_full_hallucination_pipeline` returns `fault_information`, `patch`, and `error_types` (plus existing keys). No KeyError in repair loop.
-- **APR (syntax only)**: `get_repair_category` returns `"syntax"` or `"skip"`. `build_prompt_syntax` builds messages for syntax/indentation fix. `fix_code` attempts repair only when category is `"syntax"`; otherwise returns code unchanged.
+- **APR (all types)**: `get_repair_category` returns syntax, attribute, type, name, key, assertion, timeout, other, or skip. One prompt per category. `fix_code` uses `build_apr_prompt` for all categories.
 - **Driver**: `repair_with_max_passes` passes `row` and `error_types` into `fix_code`. ERROR DATASET (IDs from extract.py) filters tasks to failed-only.
+- **Token economy**: We never pass full `dynamic_info` to prompts. Instead we use `extract_error_info_for_prompt` (error_type, error_message, line_number only) and `extract_failing_test_cases_for_prompt` (parsed failing tests only).
 
 ## Build plan (one prompt per error type)
 
@@ -40,6 +41,31 @@
 - **Dispatcher**: `build_apr_prompt` → `get_repair_category` → one of `build_prompt_syntax`, `build_prompt_attribute`, … `build_prompt_other`.
 - **fix_code**: If category is skip (empty), return code unchanged. Else: messages = `build_apr_prompt(...)`; raw = `generate_code(messages)`; fixed = `extract_python_code_humaneval(raw)`; return fixed or generated_code.
 
+## Dynamic analysis schema (reference)
+
+- **Input**: row, dataset_type, task_id, generated_code
+- **Output**: status, error_type, error_message, line_number, test_case, testcase_output, generated_code, dataset, task_id
+- **Main function**: `run_dynamic_driver_dynamic_analysis`
+
+## Error and test-case extraction (token economy)
+
+We do **not** pass the full `dynamic_info` to prompts (avoids token waste and hallucinations). Instead:
+
+### `extract_error_info_for_prompt(fault_information)`
+
+Returns only: `error_type`, `error_message`, `line_number`. Used by attribute, type, name, key, timeout, other prompts.
+
+### `extract_failing_test_cases_for_prompt(fault_information, max_cases=10)`
+
+- Parses `test_case` from dynamic_info: list of `[input_str, expected_str, actual_str]` per test.
+- Filters to **failing** cases only (where `actual_str != expected_str`). Passed cases are skipped.
+- Returns formatted strings: `"For this INPUT {input} we get output {actual} but we need this {expected}"`
+- Used by `build_prompt_assertion`.
+
+### Internal: `_parse_dynamic_info(fault_information)`
+
+Parses `dynamic_info` from fault_information (handles dict or JSON string). Used only inside the extractors; never passed to prompts.
+
 ## Files
 
-- **Notebook**: [Pipeline construction/PHASE_1.ipynb](PHASE_1.ipynb) – single APR cell (cell 68) contains classifier, all prompt builders, dispatcher, and `fix_code`.
+- **Notebook**: [Pipeline construction/PHASE_1.ipynb](PHASE_1.ipynb) – single APR cell (cell 68) contains classifier, extractors, all prompt builders, dispatcher, and `fix_code`.
