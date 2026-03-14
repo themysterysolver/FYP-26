@@ -1,0 +1,1563 @@
+dataset,task_id,status,ast_info,dynamic_info,lib_info,generated_code,patched_code,error_sources,error_types,error_lines,canonical_solution
+ds1000,DS0000,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df, List):\n    return df.iloc[List]\n\nresult = g(df.copy(), List)'}",,"def g(df, List):
+    return df.iloc[List]
+
+result = g(df.copy(), List)","def g(df, List):
+    return df.iloc[List]
+
+result = g(df.copy(), List)",,,,"def g(df, List):
+    return df.iloc[List]
+
+result = g(df.copy(), List)
+"
+ds1000,DS0001,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'ValueError', 'error_message': 'Can only compare identically-labeled Series objects', 'line_number': '2', 'test_case': '[[""(   Col1  Col2  Col3  Type\\n0     1     2     3     1\\n1     4     5     6     1\\n2     7     8     9     2\\n3    10    11    12     2\\n4    13    14    15     3\\n5    16    17    18     3, array([3, 0, 4, 5, 2, 1]))"", ""5"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df, List):\n    return df.iloc[List], len(df) - len(df.loc[df['Type'] == df['Type'].iloc[List]])\n\nresult, cnt = g(df.copy(), List)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, List):
+    return df.iloc[List], len(df) - len(df.loc[df['Type'] == df['Type'].iloc[List]])
+
+result, cnt = g(df.copy(), List)","def g(df, List):
+<<<< [ERROR START] (dynamic: ValueError)
+    return df.iloc[List], len(df) - len(df.loc[df['Type'] == df['Type'].iloc[List]])
+[ERROR END] (dynamic: ValueError) >>>>
+
+result, cnt = g(df.copy(), List)",dynamic,ValueError,2-2,"def g(df, List):
+    df2 = df.iloc[List].reindex().reset_index(drop=True)
+    return (df2.Type != df.Type).sum()
+
+result = g(df.copy(), List)
+"
+ds1000,DS0002,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.where(df.apply(lambda x: x.map(x.value_counts())) >= 2, ""other"")\n\nresult = g(df.copy())'}",,"def g(df):
+    return df.where(df.apply(lambda x: x.map(x.value_counts())) >= 2, ""other"")
+
+result = g(df.copy())","def g(df):
+    return df.where(df.apply(lambda x: x.map(x.value_counts())) >= 2, ""other"")
+
+result = g(df.copy())",,,,"def g(df):
+    return df.where(df.apply(lambda x: x.map(x.value_counts())) >= 2, ""other"")
+
+result = g(df.copy())
+"
+ds1000,DS0003,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    for col in df.columns:\n        vc = df[col].value_counts()\n        df.loc[df[col].map(lambda x: vc[x] < 3), col] = 'other'\n    return df\n\nresult = g(df.copy())""}",,"def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        df.loc[df[col].map(lambda x: vc[x] < 3), col] = 'other'
+    return df
+
+result = g(df.copy())","def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        df.loc[df[col].map(lambda x: vc[x] < 3), col] = 'other'
+    return df
+
+result = g(df.copy())",,,,"def g(df):
+    return df.where(df.apply(lambda x: x.map(x.value_counts())) >= 3, ""other"")
+
+result = g(df.copy())
+"
+ds1000,DS0004,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'IndentationError', 'error_message': 'expected an indented block after function definition on line 4 (<string>, line 5)', 'line_number': '1', 'test_case': '[[""      Qu1      Qu2      Qu3\\n0   apple  sausage    apple\\n1  potato   banana   potato\\n2  cheese    apple  sausage\\n3  banana    apple   cheese\\n4  cheese    apple   cheese\\n5  banana  sausage   potato\\n6  cheese   banana   cheese\\n7  potato   banana   potato\\n8     egg   banana      egg"", ""      Qu1      Qu2     Qu3\\n0   other  sausage   other\\n1  potato   banana  potato\\n2  cheese    apple   other\\n3  banana    apple  cheese\\n4  cheese    apple  cheese\\n5  banana  sausage  potato\\n6  cheese   banana  cheese\\n7  potato   banana  potato\\n8   other   banana   other"", ""<No result variable>""], [""       Qu1      Qu2     Qu3\\n0  sausage    apple   apple\\n1   banana   potato  potato\\n2    apple  sausage  cheese\\n3    apple   cheese  banana\\n4    apple   cheese  cheese\\n5  sausage   potato  banana\\n6   banana   cheese  cheese\\n7   banana   potato  potato\\n8   banana      egg     egg"", ""       Qu1     Qu2     Qu3\\n0  sausage   other   other\\n1   banana  potato  potato\\n2    apple   other  cheese\\n3    apple  cheese  banana\\n4    apple  cheese  cheese\\n5  sausage  potato  banana\\n6   banana  cheese  cheese\\n7   banana  potato  potato\\n8   banana   other   other"", ""<No result variable>""]]', 'testcase_output': '', 'generated_code': ""def g(df):\n    for col in df.columns:\n        vc = df[col].value_counts()\n        df.loc[~df[col].isin(vc.index[vc.gt(1)]), col] = 'other'\n    return df\n\n    result = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        df.loc[~df[col].isin(vc.index[vc.gt(1)]), col] = 'other'
+    return df
+
+    result = g(df.copy())","<<<< [ERROR START] (dynamic: IndentationError)
+def g(df):
+[ERROR END] (dynamic: IndentationError) >>>>
+    for col in df.columns:
+        vc = df[col].value_counts()
+        df.loc[~df[col].isin(vc.index[vc.gt(1)]), col] = 'other'
+    return df
+
+    result = g(df.copy())",dynamic,IndentationError,1-1,"    result = df.where(df.apply(lambda x: x.map(x.value_counts())) >= 2, ""other"")
+
+    return result
+"
+ds1000,DS0005,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    for col in df.columns:\n        vc = df[col].value_counts()\n        if col == 'Qu1':\n            df[col] = df[col].apply(lambda x: x if vc[x] >= 3 else 'other')\n        else:\n            df[col] = df[col].apply(lambda x: x if vc[x] >= 2 else 'other')\n    return df\n\nresult = g(df.copy())""}",,"def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        if col == 'Qu1':
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 3 else 'other')
+        else:
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 2 else 'other')
+    return df
+
+result = g(df.copy())","def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        if col == 'Qu1':
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 3 else 'other')
+        else:
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 2 else 'other')
+    return df
+
+result = g(df.copy())",,,,"def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        if col == 'Qu1':
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 3 else 'other')
+        else:
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 2 else 'other')
+    return df
+
+result = g(df.copy())
+"
+ds1000,DS0006,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""      Qu1      Qu2      Qu3\\n0   apple  sausage    apple\\n1  potato   banana   potato\\n2  cheese    apple  sausage\\n3  banana    apple   cheese\\n4  cheese    apple   cheese\\n5  banana  sausage   potato\\n6  cheese   banana   cheese\\n7  potato   banana   potato\\n8     egg   banana      egg"", ""      Qu1      Qu2     Qu3\\n0   apple  sausage   apple\\n1   other   banana  potato\\n2  cheese    apple   other\\n3   other    apple  cheese\\n4  cheese    apple  cheese\\n5   other  sausage  potato\\n6  cheese   banana  cheese\\n7   other   banana  potato\\n8   other   banana   other"", ""<Execution Error: name \'df\' is not defined>""], [""       Qu1      Qu2     Qu3\\n0  sausage    apple   apple\\n1   banana   potato  potato\\n2    apple  sausage  cheese\\n3    apple   cheese  banana\\n4    apple   cheese  cheese\\n5  sausage   potato  banana\\n6   banana   cheese  cheese\\n7   banana   potato  potato\\n8   banana      egg     egg"", ""      Qu1     Qu2     Qu3\\n0   other   apple   apple\\n1  banana  potato  potato\\n2   apple   other  cheese\\n3   apple  cheese  banana\\n4   apple  cheese  cheese\\n5   other  potato  banana\\n6  banana  cheese  cheese\\n7  banana  potato  potato\\n8  banana   other   other"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 127, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    for col in df.columns:\n        vc = df[col].value_counts()\n        if col == 'Qu1':\n            df[col] = df[col].apply(lambda x: x if vc[x] >= 3 else 'other')\n        elif col == 'Qu2':\n            df[col] = df[col].apply(lambda x: x if vc[x] >= 2 else 'other')\n        else:\n            df[col] = df[col].apply(lambda x: x if x=='apple' or vc[x] >= 3 else 'other')\n    return df\n\nresult = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        if col == 'Qu1':
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 3 else 'other')
+        elif col == 'Qu2':
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 2 else 'other')
+        else:
+            df[col] = df[col].apply(lambda x: x if x=='apple' or vc[x] >= 3 else 'other')
+    return df
+
+result = g(df.copy())","def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        if col == 'Qu1':
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 3 else 'other')
+        elif col == 'Qu2':
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 2 else 'other')
+        else:
+            df[col] = df[col].apply(lambda x: x if x=='apple' or vc[x] >= 3 else 'other')
+    return df
+
+result = g(df.copy())",,,,"def g(df):
+    for col in df.columns:
+        vc = df[col].value_counts()
+        if col == 'Qu1':
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 3 or x == 'apple' else 'other')
+        else:
+            df[col] = df[col].apply(lambda x: x if vc[x] >= 2 or x == 'apple' else 'other')
+    return df
+
+result = g(df.copy())
+"
+ds1000,DS0007,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.loc[(df['keep_if_dup'] == 'Yes') | ~df['url'].duplicated()]\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.loc[(df['keep_if_dup'] == 'Yes') | ~df['url'].duplicated()]
+
+result = g(df.copy())","def g(df):
+    return df.loc[(df['keep_if_dup'] == 'Yes') | ~df['url'].duplicated()]
+
+result = g(df.copy())",,,,"def g(df):
+    return df.loc[(df['keep_if_dup'] =='Yes') | ~df['url'].duplicated()]
+
+result = g(df.copy())
+"
+ds1000,DS0008,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.loc[(df['drop_if_dup'] == 'No') | ~df['url'].duplicated()]\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.loc[(df['drop_if_dup'] == 'No') | ~df['url'].duplicated()]
+
+result = g(df.copy())","def g(df):
+    return df.loc[(df['drop_if_dup'] == 'No') | ~df['url'].duplicated()]
+
+result = g(df.copy())",,,,"def g(df):
+    return df.loc[(df['drop_if_dup'] =='No') | ~df['url'].duplicated()]
+
+result = g(df.copy())
+"
+ds1000,DS0009,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.loc[(df['keep_if_dup'] == 'Yes') | ~df['url'].duplicated(keep='last')]\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.loc[(df['keep_if_dup'] == 'Yes') | ~df['url'].duplicated(keep='last')]
+
+result = g(df.copy())","def g(df):
+    return df.loc[(df['keep_if_dup'] == 'Yes') | ~df['url'].duplicated(keep='last')]
+
+result = g(df.copy())",,,,"def g(df):
+    return df.loc[(df['keep_if_dup'] =='Yes') | ~df['url'].duplicated(keep='last')]
+
+result = g(df.copy())
+"
+ds1000,DS0010,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'KeyError', 'error_message': ""'name'"", 'line_number': '2', 'test_case': '[[""  name  v1   v2  v3\\n0    A  A1  A11   1\\n1    A  A2  A12   2\\n2    B  B1  B12   3\\n3    C  C1  C11   4\\n4    B  B2  B21   5\\n5    A  A2  A21   6"", ""{\'A\': {\'A1\': {\'A11\': np.int64(1)}, \'A2\': {\'A12\': np.int64(2), \'A21\': np.int64(6)}}, \'B\': {\'B1\': {\'B12\': np.int64(3)}, \'B2\': {\'B21\': np.int64(5)}}, \'C\': {\'C1\': {\'C11\': np.int64(4)}}}"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df):\n    return {k: g(df[df['name'] == k].iloc[:, 1:]) if df[df['name'] == k].shape[0] > 1 else df['v1'].iloc[0] for k in df['name'].unique()}\n\nresult = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return {k: g(df[df['name'] == k].iloc[:, 1:]) if df[df['name'] == k].shape[0] > 1 else df['v1'].iloc[0] for k in df['name'].unique()}
+
+result = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: KeyError)
+    return {k: g(df[df['name'] == k].iloc[:, 1:]) if df[df['name'] == k].shape[0] > 1 else df['v1'].iloc[0] for k in df['name'].unique()}
+[ERROR END] (dynamic: KeyError) >>>>
+
+result = g(df.copy())",dynamic,KeyError,2-2,"def g(df):
+    if len(df.columns) == 1:
+        if df.values.size == 1: return df.values[0][0]
+        return df.values.squeeze()
+    grouped = df.groupby(df.columns[0])
+    d = {k: g(t.iloc[:, 1:]) for k, t in grouped}
+    return d
+
+result = g(df.copy())
+"
+ds1000,DS0011,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""                   datetime\\n0 2015-12-01 00:00:00-06:00\\n1 2015-12-02 00:01:00-06:00\\n2 2015-12-03 00:00:00-06:00"", ""             datetime\\n0 2015-12-01 00:00:00\\n1 2015-12-02 00:01:00\\n2 2015-12-03 00:00:00"", ""<Execution Error: name \'df\' is not defined>""], [""                   datetime\\n0 2016-12-02 00:01:00-06:00\\n1 2016-12-01 00:00:00-06:00\\n2 2016-12-03 00:00:00-06:00"", ""             datetime\\n0 2016-12-02 00:01:00\\n1 2016-12-01 00:00:00\\n2 2016-12-03 00:00:00"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 66, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df['datetime'].dt.tz_localize(None)\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df['datetime'].dt.tz_localize(None)
+
+df = g(df.copy())","def g(df):
+    return df['datetime'].dt.tz_localize(None)
+
+df = g(df.copy())",,,,"df['datetime'] = df['datetime'].dt.tz_localize(None)
+"
+ds1000,DS0012,hallucinated,"{'ast_parsed': False, 'ast_errors': [{'type': 'IndentationError', 'start_line': 2, 'end_line': 2, 'col_offset': 4, 'message': 'unexpected indent'}]}",,,"df['datetime'] = df['datetime'].dt.tz_localize(None)
+    return df","df['datetime'] = df['datetime'].dt.tz_localize(None)
+<<<< [ERROR START] (ast: IndentationError)
+    return df
+[ERROR END] (ast: IndentationError) >>>>",ast,IndentationError,2-2,"    df['datetime'] = df['datetime'].dt.tz_localize(None)
+    result = df
+
+    return result
+"
+ds1000,DS0013,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['datetime'] = df['datetime'].dt.tz_localize(None)\n    df['datetime'] = df['datetime'].dt.strftime('%d-%b-%Y %H:%M:%S')\n    df.sort_values(by='datetime', inplace=True)\n    return df\n\ndf = g(df.copy())""}",,"def g(df):
+    df['datetime'] = df['datetime'].dt.tz_localize(None)
+    df['datetime'] = df['datetime'].dt.strftime('%d-%b-%Y %H:%M:%S')
+    df.sort_values(by='datetime', inplace=True)
+    return df
+
+df = g(df.copy())","def g(df):
+    df['datetime'] = df['datetime'].dt.tz_localize(None)
+    df['datetime'] = df['datetime'].dt.strftime('%d-%b-%Y %H:%M:%S')
+    df.sort_values(by='datetime', inplace=True)
+    return df
+
+df = g(df.copy())",,,,"df['datetime'] = df['datetime'].dt.tz_localize(None)
+df.sort_values(by='datetime', inplace=True)
+df['datetime'] = df['datetime'].dt.strftime('%d-%b-%Y %T')"
+ds1000,DS0014,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['datetime'] = df['datetime'].dt.tz_localize(None)\n    return df.sort_values(by='datetime')\n\ndf = g(df.copy())""}",,"def g(df):
+    df['datetime'] = df['datetime'].dt.tz_localize(None)
+    return df.sort_values(by='datetime')
+
+df = g(df.copy())","def g(df):
+    df['datetime'] = df['datetime'].dt.tz_localize(None)
+    return df.sort_values(by='datetime')
+
+df = g(df.copy())",,,,"def g(df):
+    df['datetime'] = df['datetime'].dt.tz_localize(None)
+    df.sort_values(by='datetime', inplace=True)
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0015,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AttributeError', 'error_message': ""'int' object has no attribute 'split'"", 'line_number': '6', 'test_case': '[[""    name    status  number                                            message\\n0   matt    active   12345                  [job:  , money: none, wife: none]\\n1  james    active   23456             [group: band, wife: yes, money: 10000]\\n2   adam  inactive   34567  [job: none, money: none, wife:  , kids: one, g..."", ""    name    status  number   job  money  wife group  kids\\n0   matt    active   12345  none   none  none  none  none\\n1  james    active   23456  none  10000  True  band  none\\n2   adam  inactive   34567  none   none  none  jail   one"", ""<Execution Error: name \'df\' is not defined>""], [""    name    status  number                                            message\\n0   matt    active   12345  [job:  , money: 114514, wife: none, kids: one,...\\n1  james    active   23456             [group: band, wife: yes, money: 10000]\\n2   adam  inactive   34567  [job: none, money: none, wife:  , kids: one, g..."", ""    name    status  number   job   money  wife  kids group\\n0   matt    active   12345  none  114514  none   one  jail\\n1  james    active   23456  none   10000  True  none  band\\n2   adam  inactive   34567  none    none  none   one  jail"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['message'] = df['message'].str.replace('[','').str.replace(']','').str.split(', ')\n    result = pd.DataFrame()\n    for index, row in df.iterrows():\n        for col in row[2:]:\n            k,v = col.split(': ')\n            result.loc[len(result)] = row[['name', 'status', 'number']]\n            result.at[index, k] = v\n    return result\n\nresult = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    df['message'] = df['message'].str.replace('[','').str.replace(']','').str.split(', ')
+    result = pd.DataFrame()
+    for index, row in df.iterrows():
+        for col in row[2:]:
+            k,v = col.split(': ')
+            result.loc[len(result)] = row[['name', 'status', 'number']]
+            result.at[index, k] = v
+    return result
+
+result = g(df.copy())","def g(df):
+    df['message'] = df['message'].str.replace('[','').str.replace(']','').str.split(', ')
+    result = pd.DataFrame()
+    for index, row in df.iterrows():
+        for col in row[2:]:
+<<<< [ERROR START] (dynamic: AttributeError)
+            k,v = col.split(': ')
+[ERROR END] (dynamic: AttributeError) >>>>
+            result.loc[len(result)] = row[['name', 'status', 'number']]
+            result.at[index, k] = v
+    return result
+
+result = g(df.copy())",dynamic,AttributeError,6-6,"import yaml
+def g(df):
+    df.message = df.message.replace(['\[','\]'],['{','}'], regex=True).apply(yaml.safe_load)
+    df1 = pd.DataFrame(df.pop('message').values.tolist(), index=df.index)
+    result = pd.concat([df, df1], axis=1)
+    result = result.replace('', 'none')
+    result = result.replace(np.nan, 'none')
+    return result
+
+result = g(df.copy())"
+ds1000,DS0016,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df, products, c):\n    df.loc[df['product'].isin(products), 'score'] *= c\n    return df\n\ndf = g(df.copy(), products, 10)""}",,"def g(df, products, c):
+    df.loc[df['product'].isin(products), 'score'] *= c
+    return df
+
+df = g(df.copy(), products, 10)","def g(df, products, c):
+    df.loc[df['product'].isin(products), 'score'] *= c
+    return df
+
+df = g(df.copy(), products, 10)",,,,"df.loc[df['product'].isin(products), 'score'] *= 10
+"
+ds1000,DS0017,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df, products):\n    mask = df['product'].isin(products)\n    df.loc[~mask, 'score'] *= 10\n    return df\n\ndf = g(df.copy(), products)""}",,"def g(df, products):
+    mask = df['product'].isin(products)
+    df.loc[~mask, 'score'] *= 10
+    return df
+
+df = g(df.copy(), products)","def g(df, products):
+    mask = df['product'].isin(products)
+    df.loc[~mask, 'score'] *= 10
+    return df
+
+df = g(df.copy(), products)",,,,"df.loc[~df['product'].isin(products), 'score'] *= 10
+"
+ds1000,DS0018,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df, products):\n    for i in range(len(products)):\n        df.loc[(df['product'] >= products[i][0]) & (df['product'] <= products[i][1]), 'score'] *= 10\n    return df\n\ndf = g(df.copy(), products)""}",,"def g(df, products):
+    for i in range(len(products)):
+        df.loc[(df['product'] >= products[i][0]) & (df['product'] <= products[i][1]), 'score'] *= 10
+    return df
+
+df = g(df.copy(), products)","def g(df, products):
+    for i in range(len(products)):
+        df.loc[(df['product'] >= products[i][0]) & (df['product'] <= products[i][1]), 'score'] *= 10
+    return df
+
+df = g(df.copy(), products)",,,,"for product in products:
+    df.loc[(df['product'] >= product[0]) & (df['product'] <= product[1]), 'score'] *= 10
+"
+ds1000,DS0019,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df, products):\n    df.loc[df['product'].isin(products), 'score'] = (df.loc[df['product'].isin(products), 'score'] - df.loc[df['product'].isin(products), 'score'].min()) / (df.loc[df['product'].isin(products), 'score'].max() - df.loc[df['product'].isin(products), 'score'].min())\n    return df\n\ndf = g(df.copy(), products)""}",,"def g(df, products):
+    df.loc[df['product'].isin(products), 'score'] = (df.loc[df['product'].isin(products), 'score'] - df.loc[df['product'].isin(products), 'score'].min()) / (df.loc[df['product'].isin(products), 'score'].max() - df.loc[df['product'].isin(products), 'score'].min())
+    return df
+
+df = g(df.copy(), products)","def g(df, products):
+    df.loc[df['product'].isin(products), 'score'] = (df.loc[df['product'].isin(products), 'score'] - df.loc[df['product'].isin(products), 'score'].min()) / (df.loc[df['product'].isin(products), 'score'].max() - df.loc[df['product'].isin(products), 'score'].min())
+    return df
+
+df = g(df.copy(), products)",,,,"Max = df.loc[df['product'].isin(products), 'score'].max()
+Min = df.loc[df['product'].isin(products), 'score'].min()
+df.loc[df['product'].isin(products), 'score'] = (df.loc[df['product'].isin(products), 'score'] - Min) / (Max - Min)
+"
+ds1000,DS0020,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'ValueError', 'error_message': 'Other Series must have a name', 'line_number': '2', 'test_case': '[[""   A  B  C  D\\n0  1  0  0  0\\n1  0  1  0  0\\n2  0  0  1  0\\n3  0  0  0  1\\n4  1  0  0  0\\n5  0  1  0  0"", ""   A  B  C  D category\\n0  1  0  0  0        A\\n1  0  1  0  0        B\\n2  0  0  1  0        C\\n3  0  0  0  1        D\\n4  1  0  0  0        A\\n5  0  1  0  0        B"", ""<Execution Error: name \'df\' is not defined>""], [""   A  B  C  D\\n0  0  0  0  1\\n1  0  0  1  0\\n2  0  1  0  0\\n3  1  0  0  0\\n4  0  0  0  1\\n5  0  0  1  0"", ""   A  B  C  D category\\n0  0  0  0  1        D\\n1  0  0  1  0        C\\n2  0  1  0  0        B\\n3  1  0  0  0        A\\n4  0  0  0  1        D\\n5  0  0  1  0        C"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.join(df.idxmax(axis=1))\n\ndf = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.join(df.idxmax(axis=1))
+
+df = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: ValueError)
+    return df.join(df.idxmax(axis=1))
+[ERROR END] (dynamic: ValueError) >>>>
+
+df = g(df.copy())",dynamic,ValueError,2-2,"df[""category""] = df.idxmax(axis=1)
+"
+ds1000,DS0021,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'ValueError', 'error_message': 'Other Series must have a name', 'line_number': '2', 'test_case': '[[""   A  B  C  D\\n0  0  1  1  1\\n1  1  0  1  1\\n2  1  1  0  1\\n3  1  1  1  0\\n4  0  1  1  1\\n5  1  0  1  1"", ""   A  B  C  D category\\n0  0  1  1  1        A\\n1  1  0  1  1        B\\n2  1  1  0  1        C\\n3  1  1  1  0        D\\n4  0  1  1  1        A\\n5  1  0  1  1        B"", ""<Execution Error: name \'df\' is not defined>""], [""   A  B  C  D\\n0  1  1  1  0\\n1  1  1  0  1\\n2  1  0  1  1\\n3  0  1  1  1\\n4  1  1  1  0\\n5  1  1  0  1"", ""   A  B  C  D category\\n0  1  1  1  0        D\\n1  1  1  0  1        C\\n2  1  0  1  1        B\\n3  0  1  1  1        A\\n4  1  1  1  0        D\\n5  1  1  0  1        C"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.join(df.idxmin(axis=1))\n\ndf = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.join(df.idxmin(axis=1))
+
+df = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: ValueError)
+    return df.join(df.idxmin(axis=1))
+[ERROR END] (dynamic: ValueError) >>>>
+
+df = g(df.copy())",dynamic,ValueError,2-2,"df[""category""] = df.idxmin(axis=1)
+"
+ds1000,DS0022,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'ValueError', 'error_message': 'Other Series must have a name', 'line_number': '2', 'test_case': '[[""   A  B  C  D\\n0  1  0  1  0\\n1  0  1  1  0\\n2  0  0  1  0\\n3  0  0  0  1\\n4  1  1  1  1\\n5  0  1  0  0"", ""   A  B  C  D      category\\n0  1  0  1  0        [A, C]\\n1  0  1  1  0        [B, C]\\n2  0  0  1  0           [C]\\n3  0  0  0  1           [D]\\n4  1  1  1  1  [A, B, C, D]\\n5  0  1  0  0           [B]"", ""<Execution Error: name \'df\' is not defined>""], [""   A  B  C  D\\n0  0  1  0  1\\n1  1  0  0  1\\n2  1  1  0  1\\n3  1  1  1  0\\n4  0  0  1  1\\n5  0  1  0  0"", ""   A  B  C  D   category\\n0  0  1  0  1     [B, D]\\n1  1  0  0  1     [A, D]\\n2  1  1  0  1  [A, B, D]\\n3  1  1  1  0  [A, B, C]\\n4  0  0  1  1     [C, D]\\n5  0  1  0  0        [B]"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.join(df.apply(lambda x: x.index[x==1]).add_prefix('category'))\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.join(df.apply(lambda x: x.index[x==1]).add_prefix('category'))
+
+df = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: ValueError)
+    return df.join(df.apply(lambda x: x.index[x==1]).add_prefix('category'))
+[ERROR END] (dynamic: ValueError) >>>>
+
+df = g(df.copy())",dynamic,ValueError,2-2,"categories = []
+for i in range(len(df)):
+    l = []
+    for col in df.columns:
+        if df[col].iloc[i] == 1:
+            l.append(col)
+    categories.append(l)
+df[""category""] = categories
+"
+ds1000,DS0023,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""        Date\\n0 2019-01-01\\n1 2019-02-08\\n2 2019-02-08\\n3 2019-03-08"", ""       Date\\n0  Jan-2019\\n1  Feb-2019\\n2  Feb-2019\\n3  Mar-2019"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 48, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df['Date'].dt.strftime('%b-%Y')\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df['Date'].dt.strftime('%b-%Y')
+
+df = g(df.copy())","def g(df):
+    return df['Date'].dt.strftime('%b-%Y')
+
+df = g(df.copy())",,,,"df['Date'] = df['Date'].dt.strftime('%b-%Y')
+"
+ds1000,DS0024,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""        Date\\n0 2019-01-01\\n1 2019-02-08\\n2 2019-02-08\\n3 2019-03-08"", ""          Date\\n0  01-Jan-2019\\n1  08-Feb-2019\\n2  08-Feb-2019\\n3  08-Mar-2019"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 48, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df['Date'].dt.strftime('%d-%b-%Y')\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df['Date'].dt.strftime('%d-%b-%Y')
+
+df = g(df.copy())","def g(df):
+    return df['Date'].dt.strftime('%d-%b-%Y')
+
+df = g(df.copy())",,,,"df['Date'] = df['Date'].dt.strftime('%d-%b-%Y')
+"
+ds1000,DS0025,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df, List):\n    df['Date'] = pd.to_datetime(df['Date'])\n    df = df.loc[(df['Date'] >= List[0]) & (df['Date'] <= List[1])]\n    df['Date'] = df['Date'].dt.strftime('%d-%b-%Y %A')\n    return df\n\ndf = g(df.copy(), List)""}",,"def g(df, List):
+    df['Date'] = pd.to_datetime(df['Date'])
+    df = df.loc[(df['Date'] >= List[0]) & (df['Date'] <= List[1])]
+    df['Date'] = df['Date'].dt.strftime('%d-%b-%Y %A')
+    return df
+
+df = g(df.copy(), List)","def g(df, List):
+    df['Date'] = pd.to_datetime(df['Date'])
+    df = df.loc[(df['Date'] >= List[0]) & (df['Date'] <= List[1])]
+    df['Date'] = df['Date'].dt.strftime('%d-%b-%Y %A')
+    return df
+
+df = g(df.copy(), List)",,,,"df = df[df['Date'] >= List[0]]
+df = df[df['Date'] <= List[1]]
+df['Date'] = df['Date'].dt.strftime('%d-%b-%Y %A')"
+ds1000,DS0026,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AttributeError', 'error_message': ""'DataFrame' object has no attribute 'append'"", 'line_number': '2', 'test_case': '[[""                 #1     #2\\n1980-01-01  11.6985  126.0\\n1980-01-02  43.6431  134.0\\n1980-01-03  54.9089  130.0\\n1980-01-04  63.1225  126.0\\n1980-01-05  72.4399  120.0"", ""                 #1     #2\\n1980-01-01  72.4399  126.0\\n1980-01-02  11.6985  134.0\\n1980-01-03  43.6431  130.0\\n1980-01-04  54.9089  126.0\\n1980-01-05  63.1225  120.0"", ""<Execution Error: name \'df\' is not defined>""], [""            #1     #2\\n1980-01-01  45  126.0\\n1980-01-02  51  134.0\\n1980-01-03  14  130.0\\n1980-01-04  11  126.0\\n1980-01-05  14  120.0"", ""            #1     #2\\n1980-01-01  14  126.0\\n1980-01-02  45  134.0\\n1980-01-03  51  130.0\\n1980-01-04  14  126.0\\n1980-01-05  11  120.0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.append(df.head(1)).shift(-1)\n\ndf = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.append(df.head(1)).shift(-1)
+
+df = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: AttributeError)
+    return df.append(df.head(1)).shift(-1)
+[ERROR END] (dynamic: AttributeError) >>>>
+
+df = g(df.copy())",dynamic,AttributeError,2-2,"import numpy as np
+df['#1'] = np.roll(df['#1'], shift=1)"
+ds1000,DS0027,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""                 #1     #2\\n1980-01-01  11.6985  126.0\\n1980-01-02  43.6431  134.0\\n1980-01-03  54.9089  130.0\\n1980-01-04  63.1225  126.0\\n1980-01-05  72.4399  120.0"", ""                 #1     #2\\n1980-01-01  43.6431  126.0\\n1980-01-02  54.9089  134.0\\n1980-01-03  63.1225  130.0\\n1980-01-04  72.4399  126.0\\n1980-01-05  11.6985  120.0"", ""<Execution Error: name \'df\' is not defined>""], [""            #1     #2\\n1980-01-01  45  126.0\\n1980-01-02  51  134.0\\n1980-01-03  14  130.0\\n1980-01-04  11  126.0\\n1980-01-05  14  120.0"", ""            #1     #2\\n1980-01-01  51  126.0\\n1980-01-02  14  134.0\\n1980-01-03  11  130.0\\n1980-01-04  14  126.0\\n1980-01-05  45  120.0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 68, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.iloc[[1, 2, 3, 4, 0], :]\n\ndf = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.iloc[[1, 2, 3, 4, 0], :]
+
+df = g(df.copy())","def g(df):
+    return df.iloc[[1, 2, 3, 4, 0], :]
+
+df = g(df.copy())",,,,"import numpy as np
+df['#1'] = np.roll(df['#1'], shift=-1)"
+ds1000,DS0028,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""                 #1     #2\\n1980-01-01  11.6985  126.0\\n1980-01-02  43.6431  134.0\\n1980-01-03  54.9089  130.0\\n1980-01-04  63.1225  126.0\\n1980-01-05  72.4399  120.0"", ""                 #1     #2\\n1980-01-01  72.4399  134.0\\n1980-01-02  11.6985  130.0\\n1980-01-03  43.6431  126.0\\n1980-01-04  54.9089  120.0\\n1980-01-05  63.1225  126.0"", ""<Execution Error: name \'df\' is not defined>""], [""            #1     #2\\n1980-01-01  45  126.0\\n1980-01-02  51  134.0\\n1980-01-03  14  130.0\\n1980-01-04  11  126.0\\n1980-01-05  14  120.0"", ""            #1     #2\\n1980-01-01  14  134.0\\n1980-01-02  45  130.0\\n1980-01-03  51  126.0\\n1980-01-04  14  120.0\\n1980-01-05  11  126.0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 69, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.iloc[[len(df)-1]] + df.iloc[:-1]\n\ndf = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.iloc[[len(df)-1]] + df.iloc[:-1]
+
+df = g(df.copy())","def g(df):
+    return df.iloc[[len(df)-1]] + df.iloc[:-1]
+
+df = g(df.copy())",,,,"import numpy as np
+df['#1'] = np.roll(df['#1'], shift=1)
+df['#2'] = np.roll(df['#2'], shift=-1)"
+ds1000,DS0029,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""                 #1     #2\\n1980-01-01  11.6985  126.0\\n1980-01-02  43.6431  134.0\\n1980-01-03  54.9089  130.0\\n1980-01-04  63.1225  126.0\\n1980-01-05  72.4399  120.0"", ""                 #1     #2\\n1980-01-01  43.6431  126.0\\n1980-01-02  54.9089  134.0\\n1980-01-03  63.1225  130.0\\n1980-01-04  72.4399  126.0\\n1980-01-05  11.6985  120.0"", ""<Execution Error: name \'df\' is not defined>""], [""            #1     #2\\n1980-01-01  45  126.0\\n1980-01-02  51  134.0\\n1980-01-03  14  130.0\\n1980-01-04  11  126.0\\n1980-01-05  14  120.0"", ""            #1     #2\\n1980-01-01  14  126.0\\n1980-01-02  45  134.0\\n1980-01-03  51  130.0\\n1980-01-04  14  126.0\\n1980-01-05  11  120.0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 80, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    df['#1'] = np.roll(df['#1'], shift=1)\n    return df\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    df['#1'] = np.roll(df['#1'], shift=1)
+    return df
+
+df = g(df.copy())","def g(df):
+    df['#1'] = np.roll(df['#1'], shift=1)
+    return df
+
+df = g(df.copy())",,,,"import numpy as np
+def g(df):
+    sh = 0
+    min_R2 = 0
+    for i in range(len(df)):
+        min_R2 += (df['#1'].iloc[i]-df['#2'].iloc[i])**2
+    for i in range(len(df)):
+        R2 = 0
+        for j in range(len(df)):
+            R2 += (df['#1'].iloc[j] - df['#2'].iloc[j]) ** 2
+        if min_R2 > R2:
+            sh = i
+            min_R2 = R2
+        df['#1'] = np.roll(df['#1'], shift=1)
+    df['#1'] = np.roll(df['#1'], shift=sh)
+    return df
+
+df = g(df)
+"
+ds1000,DS0030,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.add_suffix('X')\n\ndf = g(df.copy())""}",,"def g(df):
+    return df.add_suffix('X')
+
+df = g(df.copy())","def g(df):
+    return df.add_suffix('X')
+
+df = g(df.copy())",,,,"def g(df):
+    return df.add_suffix('X')
+
+df = g(df.copy())
+"
+ds1000,DS0031,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.add_prefix('X')\n\ndf = g(df.copy())""}",,"def g(df):
+    return df.add_prefix('X')
+
+df = g(df.copy())","def g(df):
+    return df.add_prefix('X')
+
+df = g(df.copy())",,,,"def g(df):
+    return df.add_prefix('X')
+
+df = g(df.copy())
+"
+ds1000,DS0032,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""   HeaderA  HeaderB  HeaderC  HeaderX\\n0      476     4365      457      345"", ""   XHeaderAX  XHeaderBX  XHeaderCX  XHeaderX\\n0        476       4365        457       345"", ""<Execution Error: name \'df\' is not defined>""], [""   HeaderD  HeaderF  HeaderG  HeaderX\\n0      114     4365      514      345"", ""   XHeaderDX  XHeaderFX  XHeaderGX  XHeaderX\\n0        114       4365        514       345"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 63, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df.add_prefix('X').add_suffix('X')\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.add_prefix('X').add_suffix('X')
+
+df = g(df.copy())","def g(df):
+    return df.add_prefix('X').add_suffix('X')
+
+df = g(df.copy())",,,,"def g(df):
+    for col in df.columns:
+        if not col.endswith('X'):
+            df.rename(columns={col: col+'X'}, inplace=True)
+    return df.add_prefix('X')
+
+df = g(df.copy())
+"
+ds1000,DS0033,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.mean())\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.mean())
+
+result = g(df.copy())","def g(df):
+    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.mean())
+
+result = g(df.copy())",,,,"def g(df):
+    return df.groupby('group').agg(lambda x : x.head(1) if x.dtype=='object' else x.mean())
+
+result = g(df.copy())
+"
+ds1000,DS0034,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.sum())\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.sum())
+
+result = g(df.copy())","def g(df):
+    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.sum())
+
+result = g(df.copy())",,,,"def g(df):
+    return df.groupby('group').agg(lambda x : x.head(1) if x.dtype=='object' else x.sum())
+
+result = g(df.copy())
+"
+ds1000,DS0035,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.mean() if x.name.endswith('2') else x.sum())\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.mean() if x.name.endswith('2') else x.sum())
+
+result = g(df.copy())","def g(df):
+    return df.groupby('group').agg(lambda x: x.head(1) if x.dtype=='object' else x.mean() if x.name.endswith('2') else x.sum())
+
+result = g(df.copy())",,,,"def g(df):
+    return df.groupby('group').agg(lambda x : x.head(1) if x.dtype=='object' else x.mean() if x.name.endswith('2') else x.sum())
+
+result = g(df.copy())
+"
+ds1000,DS0036,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df, row_list, column_list):\n    return df[column_list].iloc[row_list].mean(axis=0)\n\nresult = g(df.copy(), row_list, column_list)'}",,"def g(df, row_list, column_list):
+    return df[column_list].iloc[row_list].mean(axis=0)
+
+result = g(df.copy(), row_list, column_list)","def g(df, row_list, column_list):
+    return df[column_list].iloc[row_list].mean(axis=0)
+
+result = g(df.copy(), row_list, column_list)",,,,"def g(df, row_list, column_list):
+    return df[column_list].iloc[row_list].mean(axis=0)
+
+result = g(df.copy(),row_list,column_list)
+"
+ds1000,DS0037,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df, row_list, column_list):\n    return df[column_list].iloc[row_list].sum(axis=0)\n\nresult = g(df.copy(), row_list, column_list)'}",,"def g(df, row_list, column_list):
+    return df[column_list].iloc[row_list].sum(axis=0)
+
+result = g(df.copy(), row_list, column_list)","def g(df, row_list, column_list):
+    return df[column_list].iloc[row_list].sum(axis=0)
+
+result = g(df.copy(), row_list, column_list)",,,,"def g(df, row_list, column_list):
+    return df[column_list].iloc[row_list].sum(axis=0)
+
+result = g(df.copy(), row_list, column_list)
+"
+ds1000,DS0038,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""(   a  b  c  d  q\\n0  1  2  3  0  5\\n1  1  2  3  4  5\\n2  1  1  1  6  1\\n3  1  0  0  0  0, [0, 2, 3], [\'a\', \'b\', \'d\'])"", ""a    3\\nb    3\\ndtype: int64"", ""<Execution Error: name \'df\' is not defined>""], [""(   a  b  c  d  q\\n0  1  2  3  0  5\\n1  1  2  3  4  5\\n2  1  1  1  6  1\\n3  1  0  0  0  0, [0, 1, 3], [\'a\', \'c\', \'q\'])"", ""a    3\\nc    6\\ndtype: int64"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 68, in test_execution\nAssertionError\n', 'generated_code': 'def g(df, row_list, column_list):\n    return df[column_list].iloc[row_list].sum(axis=0).sort_values(ascending=False).head(1)\n\nresult = g(df.copy(), row_list, column_list)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, row_list, column_list):
+    return df[column_list].iloc[row_list].sum(axis=0).sort_values(ascending=False).head(1)
+
+result = g(df.copy(), row_list, column_list)","def g(df, row_list, column_list):
+    return df[column_list].iloc[row_list].sum(axis=0).sort_values(ascending=False).head(1)
+
+result = g(df.copy(), row_list, column_list)",,,,"def g(df, row_list, column_list):
+    result = df[column_list].iloc[row_list].sum(axis=0)
+    return result.drop(result.index[result.argmax()])
+
+result = g(df.copy(), row_list, column_list)
+"
+ds1000,DS0039,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'TypeError', 'error_message': ""'<' not supported between instances of 'str' and 'int'"", 'line_number': '5', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.apply(lambda x: x.value_counts()).T.stack()\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.apply(lambda x: x.value_counts()).T.stack()
+
+result = g(df.copy())","def g(df):
+    return df.apply(lambda x: x.value_counts()).T.stack()
+
+result = g(df.copy())",dynamic,TypeError,5-5,"def g(df):
+    return df.apply(lambda x: x.value_counts()).T.stack()
+
+result = g(df.copy())
+"
+ds1000,DS0040,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'TypeError', 'error_message': ""'<' not supported between instances of 'str' and 'int'"", 'line_number': '5', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.apply(lambda x: x.value_counts()).T.stack()\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.apply(lambda x: x.value_counts()).T.stack()
+
+result = g(df.copy())","def g(df):
+    return df.apply(lambda x: x.value_counts()).T.stack()
+
+result = g(df.copy())",dynamic,TypeError,5-5,"def g(df):
+    return df.apply(lambda x: x.value_counts()).T.null
+
+result = g(df.copy())
+"
+ds1000,DS0041,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    result = ''\n    for col in df.columns:\n        result += '---- {} ---\\n'.format(col)\n        result += str(df[col].value_counts()) + '\\n'\n    return result\n\nresult = g(df.copy())""}",,"def g(df):
+    result = ''
+    for col in df.columns:
+        result += '---- {} ---\n'.format(col)
+        result += str(df[col].value_counts()) + '\n'
+    return result
+
+result = g(df.copy())","def g(df):
+    result = ''
+    for col in df.columns:
+        result += '---- {} ---\n'.format(col)
+        result += str(df[col].value_counts()) + '\n'
+    return result
+
+result = g(df.copy())",,,,"def g(df):
+    s = ''
+    for c in df.columns:
+        s += ""---- %s ---"" % c
+        s += ""\n""
+        s += str(df[c].value_counts())
+        s += ""\n""
+    return s
+
+result = g(df.copy())
+"
+ds1000,DS0042,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""      Nanonose     Unnamed: 1     A     B    C          D          E  \\\\\\n0  Sample type  Concentration   NaN   NaN  NaN        NaN        NaN   \\n1        Water           9200  95.5  21.0  6.0  11.942308  64.134615   \\n2        Water           9200  94.5  17.0  5.0   5.484615  63.205769   \\n3        Water           9200  92.0  16.0  3.0  11.057692  62.586538   \\n4        Water           4600  53.0   7.5  2.5   3.538462  35.163462   \\n\\n           F         G         H  \\n0        NaN       NaN       NaN...[truncated]"", ""  Sample type Concentration     A     B    C          D          E          F  \\\\\\n0       Water          9200  95.5  21.0  6.0  11.942308  64.134615  21.498560   \\n1       Water          9200  94.5  17.0  5.0   5.484615  63.205769  19.658560   \\n2       Water          9200  92.0  16.0  3.0  11.057692  62.586538  19.813120   \\n3       Water          4600  53.0   7.5  2.5   3.538462  35.163462   6.876207   \\n\\n          G         H  \\n0  5.567840  1.174135  \\n1  4.968000  1.883444  \\n2  5.192480  0.564835 ...[truncated]"", ""<Execution Error: name \'df\' is not defined>""], [""         Nanonose     Unnamed: 1     A     B    C          D          E  \\\\\\n0  type of Sample  concentration   NaN   NaN  NaN        NaN        NaN   \\n1           Water           9200  95.5  21.0  6.0  11.942308  64.134615   \\n2           Water           9200  94.5  17.0  5.0   5.484615  63.205769   \\n3           Water           9200  92.0  16.0  3.0  11.057692  62.586538   \\n4           Water           4600  53.0   7.5  2.5   3.538462  35.163462   \\n\\n           F         G         H  \\n0        NaN  ...[truncated]"", ""  type of Sample concentration     A     B    C          D          E  \\\\\\n0          Water          9200  95.5  21.0  6.0  11.942308  64.134615   \\n1          Water          9200  94.5  17.0  5.0   5.484615  63.205769   \\n2          Water          9200  92.0  16.0  3.0  11.057692  62.586538   \\n3          Water          4600  53.0   7.5  2.5   3.538462  35.163462   \\n\\n           F         G         H  \\n0  21.498560  5.567840  1.174135  \\n1  19.658560  4.968000  1.883444  \\n2  19.813120  5.192480  0.564...[truncated]"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 85, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.where(df.eq(df.shift(1)), df.mask(df.ne(df.shift(1))))\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.where(df.eq(df.shift(1)), df.mask(df.ne(df.shift(1))))
+
+result = g(df.copy())","def g(df):
+    return df.where(df.eq(df.shift(1)), df.mask(df.ne(df.shift(1))))
+
+result = g(df.copy())",,,,"def g(df):
+    df.columns = np.concatenate([df.iloc[0, :2], df.columns[2:]])
+    df = df.iloc[1:].reset_index(drop=True)
+    return df
+
+result = g(df.copy())
+"
+ds1000,DS0043,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""      Nanonose     Unnamed: 1     A     B    C          D          E  \\\\\\n0  Sample type  Concentration   NaN   NaN  NaN        NaN        NaN   \\n1        Water           9200  95.5  21.0  6.0  11.942308  64.134615   \\n2        Water           9200  94.5  17.0  5.0   5.484615  63.205769   \\n3        Water           9200  92.0  16.0  3.0  11.057692  62.586538   \\n4        Water           4600  53.0   7.5  2.5   3.538462  35.163462   \\n\\n           F         G         H  \\n0        NaN       NaN       NaN...[truncated]"", ""  Nanonose Concentration     A     B    C          D          E          F  \\\\\\n0    Water          9200  95.5  21.0  6.0  11.942308  64.134615  21.498560   \\n1    Water          9200  94.5  17.0  5.0   5.484615  63.205769  19.658560   \\n2    Water          9200  92.0  16.0  3.0  11.057692  62.586538  19.813120   \\n3    Water          4600  53.0   7.5  2.5   3.538462  35.163462   6.876207   \\n\\n          G         H  \\n0  5.567840  1.174135  \\n1  4.968000  1.883444  \\n2  5.192480  0.564835  \\n3  1.641724  ...[truncated]"", ""<Execution Error: name \'df\' is not defined>""], [""         Nanonose     Unnamed: 1     A     B    C          D          E  \\\\\\n0  type of Sample  concentration   NaN   NaN  NaN        NaN        NaN   \\n1           Water           9200  95.5  21.0  6.0  11.942308  64.134615   \\n2           Water           9200  94.5  17.0  5.0   5.484615  63.205769   \\n3           Water           9200  92.0  16.0  3.0  11.057692  62.586538   \\n4           Water           4600  53.0   7.5  2.5   3.538462  35.163462   \\n\\n           F         G         H  \\n0        NaN  ...[truncated]"", ""  Nanonose concentration     A     B    C          D          E          F  \\\\\\n0    Water          9200  95.5  21.0  6.0  11.942308  64.134615  21.498560   \\n1    Water          9200  94.5  17.0  5.0   5.484615  63.205769  19.658560   \\n2    Water          9200  92.0  16.0  3.0  11.057692  62.586538  19.813120   \\n3    Water          4600  53.0   7.5  2.5   3.538462  35.163462   6.876207   \\n\\n          G         H  \\n0  5.567840  1.174135  \\n1  4.968000  1.883444  \\n2  5.192480  0.564835  \\n3  1.641724  ...[truncated]"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 85, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.where(df.eq(df.shift(1)), df.mask(df.ne(df.shift(1))))\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.where(df.eq(df.shift(1)), df.mask(df.ne(df.shift(1))))
+
+result = g(df.copy())","def g(df):
+    return df.where(df.eq(df.shift(1)), df.mask(df.ne(df.shift(1))))
+
+result = g(df.copy())",,,,"def g(df):
+    df.columns = np.concatenate([df.columns[0:1], df.iloc[0, 1:2], df.columns[2:]])
+    df = df.iloc[1:].reset_index(drop=True)
+    return df
+
+result = g(df.copy())
+"
+ds1000,DS0044,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""     0    1  2\\n0  3.0  1.0  2\\n1  NaN  1.0  2\\n2  NaN  NaN  2"", ""     0    1    2\\n0  3.0  1.0  2.0\\n1  1.0  2.0  NaN\\n2  2.0  NaN  NaN"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 63, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.where(np.random.rand(*df.shape) > 0.5).bfill().ffill()\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.where(np.random.rand(*df.shape) > 0.5).bfill().ffill()
+
+result = g(df.copy())","def g(df):
+    return df.where(np.random.rand(*df.shape) > 0.5).bfill().ffill()
+
+result = g(df.copy())",,,,"def justify(a, invalid_val=0, axis=1, side='left'):
+    if invalid_val is np.nan:
+        mask = ~np.isnan(a)
+    else:
+        mask = a!=invalid_val
+    justified_mask = np.sort(mask,axis=axis)
+    if (side=='up') | (side=='left'):
+        justified_mask = np.flip(justified_mask,axis=axis)
+    out = np.full(a.shape, invalid_val)
+    if axis==1:
+        out[justified_mask] = a[mask]
+    else:
+        out.T[justified_mask.T] = a.T[mask.T]
+    return out
+
+def g(df):
+    return pd.DataFrame(justify(df.values, invalid_val=np.nan, axis=1, side='left'))
+
+result = g(df.copy())
+"
+ds1000,DS0045,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""   0    1    2\\n0  3  1.0  2.0\\n1  1  2.0  NaN\\n2  2  NaN  NaN"", ""     0    1    2\\n0  3.0  1.0  2.0\\n1  NaN  1.0  2.0\\n2  NaN  NaN  2.0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 65, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.mask(np.triu(np.ones(df.shape), k=1).astype(np.bool))\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.mask(np.triu(np.ones(df.shape), k=1).astype(np.bool))
+
+result = g(df.copy())","def g(df):
+    return df.mask(np.triu(np.ones(df.shape), k=1).astype(np.bool))
+
+result = g(df.copy())",,,,"def justify(a, invalid_val=0, axis=1, side='left'):
+    if invalid_val is np.nan:
+        mask = ~np.isnan(a)
+    else:
+        mask = a!=invalid_val
+    justified_mask = np.sort(mask,axis=axis)
+    if (side=='up') | (side=='left'):
+        justified_mask = np.flip(justified_mask,axis=axis)
+    out = np.full(a.shape, invalid_val)
+    if axis==1:
+        out[justified_mask] = a[mask]
+    else:
+        out.T[justified_mask.T] = a.T[mask.T]
+    return out
+
+def g(df):
+    return pd.DataFrame(justify(df.values, invalid_val=np.nan, axis=1, side='right'))
+
+result = g(df.copy())
+"
+ds1000,DS0046,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'KeyError', 'error_message': '0    0\n1    0\n2    0\ndtype: int64', 'line_number': '2', 'test_case': '[[""     0    1  2\\n0  3.0  1.0  2\\n1  NaN  1.0  2\\n2  NaN  NaN  2"", ""     0    1    2\\n0  NaN  NaN  2.0\\n1  NaN  1.0  2.0\\n2  3.0  1.0  2.0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.mask(np.isnan(df), np.inf).sort_values(by=np.isinf(df).sum(axis=1)).replace([np.inf], np.nan, regex=True)\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.mask(np.isnan(df), np.inf).sort_values(by=np.isinf(df).sum(axis=1)).replace([np.inf], np.nan, regex=True)
+
+result = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: KeyError)
+    return df.mask(np.isnan(df), np.inf).sort_values(by=np.isinf(df).sum(axis=1)).replace([np.inf], np.nan, regex=True)
+[ERROR END] (dynamic: KeyError) >>>>
+
+result = g(df.copy())",dynamic,KeyError,2-2,"def justify(a, invalid_val=0, axis=1, side='left'):
+    if invalid_val is np.nan:
+        mask = ~np.isnan(a)
+    else:
+        mask = a!=invalid_val
+    justified_mask = np.sort(mask,axis=axis)
+    if (side=='up') | (side=='left'):
+        justified_mask = np.flip(justified_mask,axis=axis)
+    out = np.full(a.shape, invalid_val)
+    if axis==1:
+        out[justified_mask] = a[mask]
+    else:
+        out.T[justified_mask.T] = a.T[mask.T]
+    return out
+
+def g(df):
+    return pd.DataFrame(justify(df.values, invalid_val=np.nan, axis=0, side='down'))
+
+result = g(df.copy())
+"
+ds1000,DS0047,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AttributeError', 'error_message': ""'DataFrame' object has no attribute 'append'"", 'line_number': '6', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df, thresh):\n    return (df[lambda x: x['value'] >= thresh]\n            .append(df[lambda x: x['value'] < thresh].sum().rename('X')))\n\nresult = g(df.copy(), thresh)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, thresh):
+    return (df[lambda x: x['value'] >= thresh]
+            .append(df[lambda x: x['value'] < thresh].sum().rename('X')))
+
+result = g(df.copy(), thresh)","def g(df, thresh):
+    return (df[lambda x: x['value'] >= thresh]
+            .append(df[lambda x: x['value'] < thresh].sum().rename('X')))
+
+result = g(df.copy(), thresh)",dynamic,AttributeError,6-6,"def g(df, thresh):
+    return (df[lambda x: x['value'] >= thresh] .append(df[lambda x: x['value'] < thresh].sum().rename('X')))
+
+result = g(df.copy(),thresh)
+"
+ds1000,DS0048,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AttributeError', 'error_message': ""'DataFrame' object has no attribute 'append'"", 'line_number': '6', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df, thresh):\n    return (df[lambda x: x['value'] <= thresh]\n            .append(df[lambda x: x['value'] > thresh].mean().rename('X')))\n\nresult = g(df.copy(), thresh)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, thresh):
+    return (df[lambda x: x['value'] <= thresh]
+            .append(df[lambda x: x['value'] > thresh].mean().rename('X')))
+
+result = g(df.copy(), thresh)","def g(df, thresh):
+    return (df[lambda x: x['value'] <= thresh]
+            .append(df[lambda x: x['value'] > thresh].mean().rename('X')))
+
+result = g(df.copy(), thresh)",dynamic,AttributeError,6-6,"def g(df, thresh):
+    return (df[lambda x: x['value'] <= thresh]
+            .append(df[lambda x: x['value'] > thresh].mean().rename('X')))
+
+result = g(df.copy(),thresh)
+"
+ds1000,DS0049,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AttributeError', 'error_message': ""'DataFrame' object has no attribute 'append'"", 'line_number': '6', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df, section_left, section_right):\n    mask = (df['value'] >= section_left) & (df['value'] <= section_right)\n    return df.where(mask).add(g(df[~mask], section_left, section_right), fill_value=0).groupby(level=0).mean().add_prefix('X')\n\nresult = g(df.copy(), section_left, section_right)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, section_left, section_right):
+    mask = (df['value'] >= section_left) & (df['value'] <= section_right)
+    return df.where(mask).add(g(df[~mask], section_left, section_right), fill_value=0).groupby(level=0).mean().add_prefix('X')
+
+result = g(df.copy(), section_left, section_right)","def g(df, section_left, section_right):
+    mask = (df['value'] >= section_left) & (df['value'] <= section_right)
+    return df.where(mask).add(g(df[~mask], section_left, section_right), fill_value=0).groupby(level=0).mean().add_prefix('X')
+
+result = g(df.copy(), section_left, section_right)",dynamic,AttributeError,6-6,"def g(df, section_left, section_right):
+    return (df[lambda x: x['value'].between(section_left, section_right)]
+            .append(df[lambda x: ~x['value'].between(section_left, section_right)].mean().rename('X')))
+
+result = g(df.copy(),section_left, section_right)
+"
+ds1000,DS0050,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.join(df.apply(lambda x: 1/x).add_prefix('inv_'))\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.join(df.apply(lambda x: 1/x).add_prefix('inv_'))
+
+result = g(df.copy())","def g(df):
+    return df.join(df.apply(lambda x: 1/x).add_prefix('inv_'))
+
+result = g(df.copy())",,,,"def g(df):
+    return df.join(df.apply(lambda x: 1/x).add_prefix('inv_'))
+
+result = g(df.copy())
+"
+ds1000,DS0051,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.join(df.apply(lambda x: np.exp(x)).add_prefix('exp_'))\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.join(df.apply(lambda x: np.exp(x)).add_prefix('exp_'))
+
+result = g(df.copy())","def g(df):
+    return df.join(df.apply(lambda x: np.exp(x)).add_prefix('exp_'))
+
+result = g(df.copy())",,,,"import math
+def g(df):
+    return df.join(df.apply(lambda x: math.e**x).add_prefix('exp_'))
+
+result = g(df.copy())
+"
+ds1000,DS0052,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.join(df.apply(lambda x: 1/x).add_prefix('inv_'))\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.join(df.apply(lambda x: 1/x).add_prefix('inv_'))
+
+result = g(df.copy())","def g(df):
+    return df.join(df.apply(lambda x: 1/x).add_prefix('inv_'))
+
+result = g(df.copy())",,,,"import math
+def g(df):
+    return df.join(df.apply(lambda x: 1/x).add_prefix('inv_')).replace(math.inf, 0)
+
+result = g(df.copy())
+"
+ds1000,DS0053,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.join(df.apply(lambda x: 1 / (1 + np.exp(-x))).add_prefix('sigmoid_'))\n\nresult = g(df.copy())""}",,"def g(df):
+    return df.join(df.apply(lambda x: 1 / (1 + np.exp(-x))).add_prefix('sigmoid_'))
+
+result = g(df.copy())","def g(df):
+    return df.join(df.apply(lambda x: 1 / (1 + np.exp(-x))).add_prefix('sigmoid_'))
+
+result = g(df.copy())",,,,"import math
+def g(df):
+    return df.join(df.apply(lambda x: 1/(1+math.e**(-x))).add_prefix('sigmoid_'))
+
+result = g(df.copy())
+"
+ds1000,DS0054,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'InvalidIndexError', 'error_message': 'a   2017-01-08\nb   2017-01-05\nc   2017-01-05\ndtype: datetime64[ns]', 'line_number': '2', 'test_case': '[[""              a    b    c\\n2017-01-01  1.0  0.9  1.0\\n2017-01-02  0.9  0.9  1.0\\n2017-01-03  0.8  1.0  0.5\\n2017-01-04  1.0  0.3  0.2\\n2017-01-05  1.0  0.2  0.1\\n2017-01-06  0.9  1.0  1.0\\n2017-01-07  1.0  0.9  1.0\\n2017-01-08  0.6  0.9  0.7\\n2017-01-09  1.0  0.9  0.8\\n2017-01-10  1.0  0.8  0.9"", ""a   2017-01-07\\nb   2017-01-03\\nc   2017-01-02\\ndtype: datetime64[ns]"", ""<Execution Error: name \'df\' is not defined>""], [""              a    b    c\\n2022-01-01  1.0  0.9  1.0\\n2022-01-02  0.9  0.9  1.0\\n2022-01-03  0.8  1.0  0.5\\n2022-01-04  1.0  0.3  0.2\\n2022-01-05  1.0  0.2  0.1\\n2022-01-06  0.9  1.0  1.0\\n2022-01-07  0.9  0.9  1.0\\n2022-01-08  0.6  0.9  0.7\\n2022-01-09  1.0  0.9  0.8\\n2022-01-10  1.0  0.8  0.9"", ""a   2022-01-05\\nb   2022-01-03\\nc   2022-01-02\\ndtype: datetime64[ns]"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.mask(df.lt(df.iloc[df.index.get_loc(df.idxmin())])).idxmax()\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.mask(df.lt(df.iloc[df.index.get_loc(df.idxmin())])).idxmax()
+
+result = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: InvalidIndexError)
+    return df.mask(df.lt(df.iloc[df.index.get_loc(df.idxmin())])).idxmax()
+[ERROR END] (dynamic: InvalidIndexError) >>>>
+
+result = g(df.copy())",dynamic,InvalidIndexError,2-2,"def g(df):
+    return df.mask((df == df.min()).cumsum().astype(bool))[::-1].idxmax()
+
+result = g(df.copy())
+"
+ds1000,DS0055,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""              a    b    c\\n2017-01-01  1.0  0.9  1.0\\n2017-01-02  0.9  0.9  1.0\\n2017-01-03  0.8  1.0  0.5\\n2017-01-04  1.0  0.3  0.2\\n2017-01-05  1.0  0.2  0.1\\n2017-01-06  0.9  1.0  1.0\\n2017-01-07  1.0  0.9  1.0\\n2017-01-08  0.6  0.9  0.7\\n2017-01-09  1.0  0.9  0.8\\n2017-01-10  1.0  0.8  0.9"", ""a   2017-01-09\\nb   2017-01-06\\nc   2017-01-06\\ndtype: datetime64[ns]"", ""<Execution Error: name \'df\' is not defined>""], [""              a    b    c\\n2022-01-01  1.0  0.9  1.0\\n2022-01-02  0.9  0.9  1.0\\n2022-01-03  0.8  1.0  0.5\\n2022-01-04  1.0  0.3  0.2\\n2022-01-05  1.0  0.2  0.1\\n2022-01-06  0.9  1.0  1.0\\n2022-01-07  0.9  0.9  1.0\\n2022-01-08  0.6  0.9  0.7\\n2022-01-09  1.0  0.9  0.8\\n2022-01-10  1.0  0.8  0.9"", ""a   2022-01-09\\nb   2022-01-06\\nc   2022-01-06\\ndtype: datetime64[ns]"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 75, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.mask(df.lt(df.min())).idxmax()\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.mask(df.lt(df.min())).idxmax()
+
+result = g(df.copy())","def g(df):
+    return df.mask(df.lt(df.min())).idxmax()
+
+result = g(df.copy())",,,,"def g(df):
+    return df.mask(~(df == df.min()).cumsum().astype(bool)).idxmax()
+
+result = g(df.copy())
+"
+ds1000,DS0056,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    df.dt = pd.to_datetime(df.dt)\n    result = df.set_index(['dt', 'user']).unstack(fill_value=0).asfreq('D', fill_value=0)\n    result = result.sort_index(axis=1)\n    result = result.stack().sort_index(level=1).reset_index()\n    result['dt'] = result['dt'].dt.tz_localize(None)\n    return result\n\nresult = g(df.copy())""}",,"def g(df):
+    df.dt = pd.to_datetime(df.dt)
+    result = df.set_index(['dt', 'user']).unstack(fill_value=0).asfreq('D', fill_value=0)
+    result = result.sort_index(axis=1)
+    result = result.stack().sort_index(level=1).reset_index()
+    result['dt'] = result['dt'].dt.tz_localize(None)
+    return result
+
+result = g(df.copy())","def g(df):
+    df.dt = pd.to_datetime(df.dt)
+    result = df.set_index(['dt', 'user']).unstack(fill_value=0).asfreq('D', fill_value=0)
+    result = result.sort_index(axis=1)
+    result = result.stack().sort_index(level=1).reset_index()
+    result['dt'] = result['dt'].dt.tz_localize(None)
+    return result
+
+result = g(df.copy())",,,,"def g(df):
+    df.dt = pd.to_datetime(df.dt)
+    return df.set_index(['dt', 'user']).unstack(fill_value=0).asfreq('D', fill_value=0).stack().sort_index(level=1).reset_index()
+
+result = g(df.copy())
+"
+ds1000,DS0057,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['dt'] = pd.to_datetime(df['dt'])\n    result = df.set_index(['dt', 'user']).unstack(fill_value=0).asfreq('D', fill_value=0)\n    result = result.sort_index(axis=1)\n    result = result.stack().sort_index(level=1).reset_index()\n    result['dt'] = result['dt'].dt.tz_localize(None)\n    return result\n\nresult = g(df.copy())""}",,"def g(df):
+    df['dt'] = pd.to_datetime(df['dt'])
+    result = df.set_index(['dt', 'user']).unstack(fill_value=0).asfreq('D', fill_value=0)
+    result = result.sort_index(axis=1)
+    result = result.stack().sort_index(level=1).reset_index()
+    result['dt'] = result['dt'].dt.tz_localize(None)
+    return result
+
+result = g(df.copy())","def g(df):
+    df['dt'] = pd.to_datetime(df['dt'])
+    result = df.set_index(['dt', 'user']).unstack(fill_value=0).asfreq('D', fill_value=0)
+    result = result.sort_index(axis=1)
+    result = result.stack().sort_index(level=1).reset_index()
+    result['dt'] = result['dt'].dt.tz_localize(None)
+    return result
+
+result = g(df.copy())",,,,"def g(df):
+    return df.set_index(['dt', 'user']).unstack(fill_value=0).asfreq('D', fill_value=0).stack().sort_index(level=1).reset_index()
+
+result = g(df.copy())
+"
+ds1000,DS0058,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['dt'] = pd.to_datetime(df['dt'])\n    result = df.set_index(['dt', 'user']).unstack(fill_value=233).asfreq('D', fill_value=233)\n    result = result.sort_index(axis=1)\n    result = result.stack().sort_index(level=1).reset_index()\n    result['dt'] = result['dt'].dt.tz_localize(None)\n    return result\n\nresult = g(df.copy())""}",,"def g(df):
+    df['dt'] = pd.to_datetime(df['dt'])
+    result = df.set_index(['dt', 'user']).unstack(fill_value=233).asfreq('D', fill_value=233)
+    result = result.sort_index(axis=1)
+    result = result.stack().sort_index(level=1).reset_index()
+    result['dt'] = result['dt'].dt.tz_localize(None)
+    return result
+
+result = g(df.copy())","def g(df):
+    df['dt'] = pd.to_datetime(df['dt'])
+    result = df.set_index(['dt', 'user']).unstack(fill_value=233).asfreq('D', fill_value=233)
+    result = result.sort_index(axis=1)
+    result = result.stack().sort_index(level=1).reset_index()
+    result['dt'] = result['dt'].dt.tz_localize(None)
+    return result
+
+result = g(df.copy())",,,,"def g(df):
+    df.dt = pd.to_datetime(df.dt)
+    return df.set_index(['dt', 'user']).unstack(fill_value=233).asfreq('D', fill_value=233).stack().sort_index(level=1).reset_index()
+
+result = g(df.copy())
+"
+ds1000,DS0059,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""  user         dt  val\\n0    a 2016-01-01    1\\n1    a 2016-01-02   33\\n2    b 2016-01-05    2\\n3    b 2016-01-06    1"", ""           dt user  val\\n0  2016-01-01    a    1\\n1  2016-01-02    a   33\\n2  2016-01-03    a   33\\n3  2016-01-04    a   33\\n4  2016-01-05    a   33\\n5  2016-01-06    a   33\\n6  2016-01-01    b    2\\n7  2016-01-02    b    2\\n8  2016-01-03    b    2\\n9  2016-01-04    b    2\\n10 2016-01-05    b    2\\n11 2016-01-06    b    1"", ""<Execution Error: name \'df\' is not defined>""], [""  user         dt  val\\n0    c 2016-02-01    1\\n1    c 2016-02-02   33\\n2    d 2016-02-05    2\\n3    d 2016-02-06    1"", ""           dt user  val\\n0  2016-02-01    c    1\\n1  2016-02-02    c   33\\n2  2016-02-03    c   33\\n3  2016-02-04    c   33\\n4  2016-02-05    c   33\\n5  2016-02-06    c   33\\n6  2016-02-01    d    2\\n7  2016-02-02    d    2\\n8  2016-02-03    d    2\\n9  2016-02-04    d    2\\n10 2016-02-05    d    2\\n11 2016-02-06    d    1"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 70, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    df['dt'] = pd.to_datetime(df['dt'])\n    result = (df.set_index(['dt', 'user'])['val']\n             .unstack(fill_value=0)\n             .asfreq('D', fill_value=0)\n             .rolling(window=len(df.user.unique()), min_periods=1).max()\n             .bfill()\n             .asfreq(None, fill_value=0)\n             .stack()\n             .reset_index(name='val'))\n    result['dt'] = result['dt'].dt.tz_localize(None)\n    return result\n\nresult = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    df['dt'] = pd.to_datetime(df['dt'])
+    result = (df.set_index(['dt', 'user'])['val']
+             .unstack(fill_value=0)
+             .asfreq('D', fill_value=0)
+             .rolling(window=len(df.user.unique()), min_periods=1).max()
+             .bfill()
+             .asfreq(None, fill_value=0)
+             .stack()
+             .reset_index(name='val'))
+    result['dt'] = result['dt'].dt.tz_localize(None)
+    return result
+
+result = g(df.copy())","def g(df):
+    df['dt'] = pd.to_datetime(df['dt'])
+    result = (df.set_index(['dt', 'user'])['val']
+             .unstack(fill_value=0)
+             .asfreq('D', fill_value=0)
+             .rolling(window=len(df.user.unique()), min_periods=1).max()
+             .bfill()
+             .asfreq(None, fill_value=0)
+             .stack()
+             .reset_index(name='val'))
+    result['dt'] = result['dt'].dt.tz_localize(None)
+    return result
+
+result = g(df.copy())",,,,"def g(df):
+    df.dt = pd.to_datetime(df.dt)
+    result = df.set_index(['dt', 'user']).unstack(fill_value=-11414).asfreq('D', fill_value=-11414)
+    for col in result.columns:
+        Max = result[col].max()
+        for idx in result.index:
+            if result.loc[idx, col] == -11414:
+                result.loc[idx, col] = Max
+    return result.stack().sort_index(level=1).reset_index()
+
+result = g(df.copy())
+"
+ds1000,DS0060,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AttributeError', 'error_message': ""'DataFrame' object has no attribute 'add_gaps'"", 'line_number': '7', 'test_case': '[[""  user         dt  val\\n0    a 2016-01-01    1\\n1    a 2016-01-02   33\\n2    b 2016-01-05    2\\n3    b 2016-01-06    1"", ""             dt user  val\\n0   01-Jan-2016    a    1\\n1   02-Jan-2016    a   33\\n2   03-Jan-2016    a   33\\n3   04-Jan-2016    a   33\\n4   05-Jan-2016    a   33\\n5   06-Jan-2016    a   33\\n6   01-Jan-2016    b    2\\n7   02-Jan-2016    b    2\\n8   03-Jan-2016    b    2\\n9   04-Jan-2016    b    2\\n10  05-Jan-2016    b    2\\n11  06-Jan-2016    b    1"", ""<Execution Error: name \'df\' is not defined>""], [""  user         dt  val\\n0    c 2016-02-01    1\\n1    c 2016-02-02   33\\n2    d 2016-02-05    2\\n3    d 2016-02-06    1"", ""             dt user  val\\n0   01-Feb-2016    c    1\\n1   02-Feb-2016    c   33\\n2   03-Feb-2016    c   33\\n3   04-Feb-2016    c   33\\n4   05-Feb-2016    c   33\\n5   06-Feb-2016    c   33\\n6   01-Feb-2016    d    2\\n7   02-Feb-2016    d    2\\n8   03-Feb-2016    d    2\\n9   04-Feb-2016    d    2\\n10  05-Feb-2016    d    2\\n11  06-Feb-2016    d    1"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['dt'] = pd.to_datetime(df['dt'])\n    result = (df.set_index(['dt', 'user'])['val']\n              .unstack(fill_value=0)\n              .asfreq('D', fill_value=0)\n              .resample('D').sum()\n              .add_gaps()\n              .sort_index(level=1)\n              .stack()\n              .reset_index(name='val'))\n    result['dt'] = result['dt'].dt.strftime('%d-%b-%Y')\n    return result\n\nresult = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    df['dt'] = pd.to_datetime(df['dt'])
+    result = (df.set_index(['dt', 'user'])['val']
+              .unstack(fill_value=0)
+              .asfreq('D', fill_value=0)
+              .resample('D').sum()
+              .add_gaps()
+              .sort_index(level=1)
+              .stack()
+              .reset_index(name='val'))
+    result['dt'] = result['dt'].dt.strftime('%d-%b-%Y')
+    return result
+
+result = g(df.copy())","def g(df):
+    df['dt'] = pd.to_datetime(df['dt'])
+    result = (df.set_index(['dt', 'user'])['val']
+              .unstack(fill_value=0)
+              .asfreq('D', fill_value=0)
+              .resample('D').sum()
+<<<< [ERROR START] (dynamic: AttributeError)
+              .add_gaps()
+[ERROR END] (dynamic: AttributeError) >>>>
+              .sort_index(level=1)
+              .stack()
+              .reset_index(name='val'))
+    result['dt'] = result['dt'].dt.strftime('%d-%b-%Y')
+    return result
+
+result = g(df.copy())",dynamic,AttributeError,7-7,"def g(df):
+    df.dt = pd.to_datetime(df.dt)
+    result = df.set_index(['dt', 'user']).unstack(fill_value=-11414).asfreq('D', fill_value=-11414)
+    for col in result.columns:
+        Max = result[col].max()
+        for idx in result.index:
+            if result.loc[idx, col] == -11414:
+                result.loc[idx, col] = Max
+    result = result.stack().sort_index(level=1).reset_index()
+    result['dt'] = result['dt'].dt.strftime('%d-%b-%Y')
+    return result
+
+result = g(df.copy())
+"
+ds1000,DS0061,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""    name  a  b   c\\n0  Aaron  3  5   7\\n1  Aaron  3  6   9\\n2  Aaron  3  6  10\\n3  Brave  4  6   0\\n4  Brave  3  6   1\\n5  David  5  1   4"", ""  name  a  b   c\\n0    1  3  5   7\\n1    1  3  6   9\\n2    1  3  6  10\\n3    2  4  6   0\\n4    2  3  6   1\\n5    3  5  1   4"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 57, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df.set_index(['name', 'a', 'b', 'c']).groupby(level=0).ngroup().reset_index()\n\nresult = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.set_index(['name', 'a', 'b', 'c']).groupby(level=0).ngroup().reset_index()
+
+result = g(df.copy())","def g(df):
+    return df.set_index(['name', 'a', 'b', 'c']).groupby(level=0).ngroup().reset_index()
+
+result = g(df.copy())",,,,"def g(df):
+    F = {}
+    cnt = 0
+    for i in range(len(df)):
+        if df['name'].iloc[i] not in F.keys():
+            cnt += 1
+            F[df['name'].iloc[i]] = cnt
+        df.loc[i,'name'] = F[df.loc[i,'name']]
+    return df
+
+result = g(df.copy())
+"
+ds1000,DS0062,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""    name  a  b   c\\n0  Aaron  3  5   7\\n1  Aaron  3  6   9\\n2  Aaron  3  6  10\\n3  Brave  4  6   0\\n4  Brave  3  6   1\\n5  David  5  1   4"", ""    name  a  b   c\\n0  Aaron  1  5   7\\n1  Aaron  1  6   9\\n2  Aaron  1  6  10\\n3  Brave  2  6   0\\n4  Brave  1  6   1\\n5  David  3  1   4"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 57, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df.replace({'a': {x: i for i, x in enumerate(df['a'].unique())}})\n\nresult = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.replace({'a': {x: i for i, x in enumerate(df['a'].unique())}})
+
+result = g(df.copy())","def g(df):
+    return df.replace({'a': {x: i for i, x in enumerate(df['a'].unique())}})
+
+result = g(df.copy())",,,,"def g(df):
+    F = {}
+    cnt = 0
+    for i in range(len(df)):
+        if df['a'].iloc[i] not in F.keys():
+            cnt += 1
+            F[df['a'].iloc[i]] = cnt
+        df.loc[i, 'a'] = F[df.loc[i, 'a']]
+    return df
+
+result = g(df.copy())
+"
+ds1000,DS0063,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'IndentationError', 'error_message': 'expected an indented block after function definition on line 4 (<string>, line 5)', 'line_number': '1', 'test_case': '[[""    name  a  b   c\\n0  Aaron  3  5   7\\n1  Aaron  3  6   9\\n2  Aaron  3  6  10\\n3  Brave  4  6   0\\n4  Brave  3  6   1\\n5  David  5  1   4"", ""  name  a  b   c\\n0    1  3  5   7\\n1    1  3  6   9\\n2    1  3  6  10\\n3    2  4  6   0\\n4    2  3  6   1\\n5    3  5  1   4"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['name'] = df['name'].map(lambda x: g.name_map[x])\n    g.name_map = {k: i+1 for i, k in enumerate(df['name'].unique())}\n    return df\n\ng.name_map = {}\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    df['name'] = df['name'].map(lambda x: g.name_map[x])
+    g.name_map = {k: i+1 for i, k in enumerate(df['name'].unique())}
+    return df
+
+g.name_map = {}
+df = g(df.copy())","<<<< [ERROR START] (dynamic: IndentationError)
+def g(df):
+[ERROR END] (dynamic: IndentationError) >>>>
+    df['name'] = df['name'].map(lambda x: g.name_map[x])
+    g.name_map = {k: i+1 for i, k in enumerate(df['name'].unique())}
+    return df
+
+g.name_map = {}
+df = g(df.copy())",dynamic,IndentationError,1-1,"    F = {}
+    cnt = 0
+    for i in range(len(df)):
+        if df['name'].iloc[i] not in F.keys():
+            cnt += 1
+            F[df['name'].iloc[i]] = cnt
+        df.loc[i,'name'] = F[df.loc[i,'name']]
+    result = df
+
+    return result
+"
+ds1000,DS0064,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['ID'] = (df['name'] + '_' + df['a'].astype(str)).factorize()[0] + 1\n    return df[['ID', 'b', 'c']]\n\nresult = g(df.copy())""}",,"def g(df):
+    df['ID'] = (df['name'] + '_' + df['a'].astype(str)).factorize()[0] + 1
+    return df[['ID', 'b', 'c']]
+
+result = g(df.copy())","def g(df):
+    df['ID'] = (df['name'] + '_' + df['a'].astype(str)).factorize()[0] + 1
+    return df[['ID', 'b', 'c']]
+
+result = g(df.copy())",,,,"def g(df):
+    df['ID'] = df[""name""].map(str) +""-""+ df[""a""].map(str)
+    cnt = 0
+    F = {}
+    for i in range(len(df)):
+        if df['ID'].iloc[i] not in F.keys():
+            cnt += 1
+            F[df['ID'].iloc[i]] = cnt
+        df.loc[i,'ID'] = F[df.loc[i,'ID']]
+    del df['name']
+    del df['a']
+    df = df[['ID', 'b', 'c']]
+    return df
+
+result = g(df.copy())
+"
+ds1000,DS0065,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""  user  01/12/15  02/12/15  someBool\\n0   u1       100       300      True\\n1   u2       200      -100     False\\n2   u3       -50       200      True"", ""  user      date  value  someBool\\n0   u1  01/12/15    100      True\\n1   u1  02/12/15    300      True\\n2   u2  01/12/15    200     False\\n3   u2  02/12/15   -100     False\\n4   u3  01/12/15    -50      True\\n5   u3  02/12/15    200      True"", ""<Execution Error: name \'df\' is not defined>""], [""  user  01/10/22  02/10/22  someBool\\n0   u1       100       300      True\\n1   u2       200      -100     False\\n2   u3       -50       200      True"", ""  user      date  value  someBool\\n0   u1  01/10/22    100      True\\n1   u1  02/10/22    300      True\\n2   u2  01/10/22    200     False\\n3   u2  02/10/22   -100     False\\n4   u3  01/10/22    -50      True\\n5   u3  02/10/22    200      True"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 66, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df.set_index(['user', 'someBool']).stack().reset_index(name='value').rename(columns={'level_2':'date'})\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.set_index(['user', 'someBool']).stack().reset_index(name='value').rename(columns={'level_2':'date'})
+
+df = g(df.copy())","def g(df):
+    return df.set_index(['user', 'someBool']).stack().reset_index(name='value').rename(columns={'level_2':'date'})
+
+df = g(df.copy())",,,,"def g(df):
+    df = df.set_index(['user','someBool']).stack().reset_index(name='value').rename(columns={'level_2':'date'})
+    return df[['user', 'date', 'value', 'someBool']]
+
+df = g(df.copy())"
+ds1000,DS0066,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.set_index(['user', '01/12/15']).stack().reset_index(name='value').rename(columns={'level_2':'others'})\n\ndf = g(df.copy())""}",,"def g(df):
+    return df.set_index(['user', '01/12/15']).stack().reset_index(name='value').rename(columns={'level_2':'others'})
+
+df = g(df.copy())","def g(df):
+    return df.set_index(['user', '01/12/15']).stack().reset_index(name='value').rename(columns={'level_2':'others'})
+
+df = g(df.copy())",,,,"def g(df):
+    return df.set_index(['user','01/12/15']).stack().reset_index(name='value').rename(columns={'level_2':'others'})
+
+df = g(df.copy())
+"
+ds1000,DS0067,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""  user  01/12/15  02/12/15  someBool\\n0   u1     100.0       NaN      True\\n1   u2     200.0    -100.0     False\\n2   u3       NaN     200.0      True"", ""  user      date  value  someBool\\n0   u1  01/12/15  100.0      True\\n1   u2  01/12/15  200.0     False\\n2   u2  02/12/15 -100.0     False\\n3   u3  02/12/15  200.0      True"", ""<Execution Error: name \'df\' is not defined>""], [""  user  01/10/22  02/10/22  someBool\\n0   u1     100.0       NaN      True\\n1   u2     200.0    -100.0     False\\n2   u3       NaN     200.0      True"", ""  user      date  value  someBool\\n0   u1  01/10/22  100.0      True\\n1   u2  01/10/22  200.0     False\\n2   u2  02/10/22 -100.0     False\\n3   u3  02/10/22  200.0      True"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 66, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df.set_index(['user', 'someBool']).stack().reset_index(name='value').rename(columns={'level_2': 'date'})\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.set_index(['user', 'someBool']).stack().reset_index(name='value').rename(columns={'level_2': 'date'})
+
+df = g(df.copy())","def g(df):
+    return df.set_index(['user', 'someBool']).stack().reset_index(name='value').rename(columns={'level_2': 'date'})
+
+df = g(df.copy())",,,,"def g(df):
+    df = df.set_index(['user','someBool']).stack().reset_index(name='value').rename(columns={'level_2':'date'})
+    return df[['user', 'date', 'value', 'someBool']]
+df = g(df.copy())
+"
+ds1000,DS0068,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""(          a         b         c         d         e\\n0  0.435995  0.025926  0.549662  0.435322  0.420368\\n1  0.330335  0.204649  0.619271  0.299655  0.266827\\n2  0.621134  0.529142  0.134580  0.513578  0.184440\\n3  0.785335  0.853975  0.494237  0.846561  0.079645, [\'b\', \'e\'])"", ""          b         e\\n0  0.025926  0.420368\\n1  0.204649  0.266827"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 46, in test_execution\nAssertionError\n', 'generated_code': ""def g(df, columns):\n    return df.loc[df['c']>0.5,columns].values\n\nresult = g(df.copy(), columns)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, columns):
+    return df.loc[df['c']>0.5,columns].values
+
+result = g(df.copy(), columns)","def g(df, columns):
+    return df.loc[df['c']>0.5,columns].values
+
+result = g(df.copy(), columns)",,,,"def g(df, columns):
+    return df.loc[df['c']>0.5,columns]
+
+result = g(df.copy(), columns)
+"
+ds1000,DS0069,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""(          a         b         c         d         e\\n0  0.435995  0.025926  0.549662  0.435322  0.420368\\n1  0.330335  0.204649  0.619271  0.299655  0.266827\\n2  0.621134  0.529142  0.134580  0.513578  0.184440\\n3  0.785335  0.853975  0.494237  0.846561  0.079645, [\'a\', \'b\', \'e\'])"", ""          a         b         e\\n0  0.435995  0.025926  0.420368\\n1  0.330335  0.204649  0.266827\\n3  0.785335  0.853975  0.079645"", ""<Execution Error: name \'df\' is not defined>""], [""(          a         b         c         d         e\\n0  0.374540  0.950714  0.731994  0.598658  0.156019\\n1  0.155995  0.058084  0.866176  0.601115  0.708073\\n2  0.020584  0.969910  0.832443  0.212339  0.181825\\n3  0.183405  0.304242  0.524756  0.431945  0.291229, [\'a\', \'b\', \'e\'])"", ""          a         b         e\\n0  0.374540  0.950714  0.156019\\n1  0.155995  0.058084  0.708073\\n2  0.020584  0.969910  0.181825\\n3  0.183405  0.304242  0.291229"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 50, in test_execution\nAssertionError\n', 'generated_code': ""def g(df, columns):\n    return df.loc[df['c']>0.45,columns].values\n\nresult = g(df.copy(), columns)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, columns):
+    return df.loc[df['c']>0.45,columns].values
+
+result = g(df.copy(), columns)","def g(df, columns):
+    return df.loc[df['c']>0.45,columns].values
+
+result = g(df.copy(), columns)",,,,"result = df.loc[df['c']>0.45,columns]
+"
+ds1000,DS0070,hallucinated,"{'ast_parsed': False, 'ast_errors': [{'type': 'IndentationError', 'start_line': 3, 'end_line': 3, 'col_offset': 4, 'message': 'unexpected indent'}]}",,,"result = df.loc[df['c']>0.5,columns].values
+
+    return result","result = df.loc[df['c']>0.5,columns].values
+
+<<<< [ERROR START] (ast: IndentationError)
+    return result
+[ERROR END] (ast: IndentationError) >>>>",ast,IndentationError,3-3,"    result = df.loc[df['c']>0.5,columns].to_numpy()
+
+    return result
+"
+ds1000,DS0071,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'IndentationError', 'error_message': 'expected an indented block after function definition on line 4 (<string>, line 5)', 'line_number': '1', 'test_case': '[[""(          a         b         c         d         e\\n0  0.374540  0.950714  0.731994  0.598658  0.156019\\n1  0.155995  0.058084  0.866176  0.601115  0.708073\\n2  0.020584  0.969910  0.832443  0.212339  0.181825\\n3  0.183405  0.304242  0.524756  0.431945  0.291229, [\'b\', \'e\'])"", ""          b         e       sum\\n0  0.950714  0.156019  1.106733\\n1  0.058084  0.708073  0.766156\\n2  0.969910  0.181825  1.151735\\n3  0.304242  0.291229  0.595471"", ""<No result variable>""]]', 'testcase_output': '', 'generated_code': ""def g(df, columns):\n    return (df.loc[df['c']>0.5,columns].join(df.loc[df['c']>0.5,columns].sum(axis=1).rename('sum')))\n\n    result = g(df.copy(), columns)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, columns):
+    return (df.loc[df['c']>0.5,columns].join(df.loc[df['c']>0.5,columns].sum(axis=1).rename('sum')))
+
+    result = g(df.copy(), columns)","<<<< [ERROR START] (dynamic: IndentationError)
+def g(df, columns):
+[ERROR END] (dynamic: IndentationError) >>>>
+    return (df.loc[df['c']>0.5,columns].join(df.loc[df['c']>0.5,columns].sum(axis=1).rename('sum')))
+
+    result = g(df.copy(), columns)",dynamic,IndentationError,1-1,"    ans = df[df.c > 0.5][columns]
+    ans['sum'] = ans.sum(axis=1)
+    result = ans
+
+    return result
+"
+ds1000,DS0072,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'IndentationError', 'error_message': 'expected an indented block after function definition on line 4 (<string>, line 5)', 'line_number': '1', 'test_case': '[[""(          a         b         c         d         e\\n0  0.374540  0.950714  0.731994  0.598658  0.156019\\n1  0.155995  0.058084  0.866176  0.601115  0.708073\\n2  0.020584  0.969910  0.832443  0.212339  0.181825\\n3  0.183405  0.304242  0.524756  0.431945  0.291229, [\'b\', \'e\'])"", ""          b         e\\n0  0.950714  0.156019\\n1  0.058084  0.708073\\n2  0.969910  0.181825\\n3  0.304242  0.291229"", ""<No result variable>""]]', 'testcase_output': '', 'generated_code': ""def g(df, columns):\n    return df.loc[df['c']>0.5,columns]\n\n    result = g(df.copy(), columns)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, columns):
+    return df.loc[df['c']>0.5,columns]
+
+    result = g(df.copy(), columns)","<<<< [ERROR START] (dynamic: IndentationError)
+def g(df, columns):
+[ERROR END] (dynamic: IndentationError) >>>>
+    return df.loc[df['c']>0.5,columns]
+
+    result = g(df.copy(), columns)",dynamic,IndentationError,1-1,"    result = df.loc[df['c']>0.5,columns]
+
+    return result
+"
+ds1000,DS0073,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'TypeError', 'error_message': ""unsupported operand type(s) for -: 'str' and 'str'"", 'line_number': '2', 'test_case': '[[""(   ID      date   close\\n0   1  09/15/07  123.45\\n1   2  06/01/08  130.13\\n2   3  10/25/08  132.01\\n3   4    1/14/9  118.34\\n4   5  05/13/09  514.14\\n5   6  11/07/09  145.99\\n6   7  11/15/09  146.73\\n7   8  07/03/11  171.10, 120)"", ""   ID      date   close\\n0   1  09/15/07  123.45\\n1   2  06/01/08  130.13\\n2   3  10/25/08  132.01\\n4   5  05/13/09  514.14\\n5   6  11/07/09  145.99\\n7   8  07/03/11  171.10"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df, X):\n    mask = (df['date'].shift(-1) - df['date']).dt.days > X\n    return df.loc[mask]\n\nresult = g(df.copy(), X)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, X):
+    mask = (df['date'].shift(-1) - df['date']).dt.days > X
+    return df.loc[mask]
+
+result = g(df.copy(), X)","def g(df, X):
+<<<< [ERROR START] (dynamic: TypeError)
+    mask = (df['date'].shift(-1) - df['date']).dt.days > X
+[ERROR END] (dynamic: TypeError) >>>>
+    return df.loc[mask]
+
+result = g(df.copy(), X)",dynamic,TypeError,2-2,"def g(df, X):
+    t = df['date']
+    df['date'] = pd.to_datetime(df['date'])
+    filter_ids = [0]
+    last_day = df.loc[0, ""date""]
+    for index, row in df[1:].iterrows():
+        if (row[""date""] - last_day).days > X:
+            filter_ids.append(index)
+            last_day = row[""date""]
+    df['date'] = t
+    return df.loc[filter_ids, :]
+
+result = g(df.copy(), X)
+"
+ds1000,DS0074,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'KeyError', 'error_message': '""None of [Index([0, 1, 2, 2, 2, 3, 3, 4], dtype=\'int64\')] are in the [columns]""', 'line_number': '4', 'test_case': '[[""(   ID      date   close\\n0   1  09/15/07  123.45\\n1   2  06/01/08  130.13\\n2   3  10/25/08  132.01\\n3   4    1/14/9  118.34\\n4   5  05/13/09  514.14\\n5   6  11/07/09  145.99\\n6   7  11/15/09  146.73\\n7   8  07/03/11  171.10, 17)"", ""   ID      date   close\\n0   1  09/15/07  123.45\\n1   2  06/01/08  130.13\\n2   3  10/25/08  132.01\\n4   5  05/13/09  514.14\\n5   6  11/07/09  145.99\\n7   8  07/03/11  171.10"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df, X):\n    df['date'] = pd.to_datetime(df['date'])\n    mask = (df['date'].diff() > np.timedelta64(X, 'W')).cumsum()\n    return df[mask]\n\nresult = g(df.copy(), X)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, X):
+    df['date'] = pd.to_datetime(df['date'])
+    mask = (df['date'].diff() > np.timedelta64(X, 'W')).cumsum()
+    return df[mask]
+
+result = g(df.copy(), X)","def g(df, X):
+    df['date'] = pd.to_datetime(df['date'])
+    mask = (df['date'].diff() > np.timedelta64(X, 'W')).cumsum()
+<<<< [ERROR START] (dynamic: KeyError)
+    return df[mask]
+[ERROR END] (dynamic: KeyError) >>>>
+
+result = g(df.copy(), X)",dynamic,KeyError,4-4,"def g(df, X):
+    t = df['date']
+    df['date'] = pd.to_datetime(df['date'])
+    X *= 7
+    filter_ids = [0]
+    last_day = df.loc[0, ""date""]
+    for index, row in df[1:].iterrows():
+        if (row[""date""] - last_day).days > X:
+            filter_ids.append(index)
+            last_day = row[""date""]
+    df['date'] = t
+    return df.loc[filter_ids, :]
+
+result = g(df.copy(), X)
+"
+ds1000,DS0075,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'TypeError', 'error_message': ""unsupported operand type(s) for -: 'str' and 'str'"", 'line_number': '9', 'test_case': '[[""(   ID      date   close\\n0   1  09/15/07  123.45\\n1   2  06/01/08  130.13\\n2   3  10/25/08  132.01\\n3   4    1/14/9  118.34\\n4   5  05/13/09  514.14\\n5   6  11/07/09  145.99\\n6   7  11/15/09  146.73\\n7   8  07/03/11  171.10, 17)"", ""   ID         date   close\\n0   1  15-Sep-2007  123.45\\n1   2  01-Jun-2008  130.13\\n2   3  25-Oct-2008  132.01\\n4   5  13-May-2009  514.14\\n5   6  07-Nov-2009  145.99\\n7   8  03-Jul-2011  171.10"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df, X):\n    df['date'] = pd.to_datetime(df['date'])\n    df.sort_values(by='date', inplace=True)\n    df['date'] = df['date'].dt.strftime('%d-%b-%Y')\n    for i in range(len(df)):\n        if i == 0:\n            df.loc[i, 'date'] = df.loc[i, 'date']\n        else:\n            if (df.loc[i, 'date'] - df.loc[i-1, 'date']).days > X:\n                df.loc[i, 'date'] = df.loc[i, 'date']\n            else:\n                df.loc[i, 'date'] = df.loc[i-1, 'date']\n    return df\n\nresult = g(df.copy(), X)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df, X):
+    df['date'] = pd.to_datetime(df['date'])
+    df.sort_values(by='date', inplace=True)
+    df['date'] = df['date'].dt.strftime('%d-%b-%Y')
+    for i in range(len(df)):
+        if i == 0:
+            df.loc[i, 'date'] = df.loc[i, 'date']
+        else:
+            if (df.loc[i, 'date'] - df.loc[i-1, 'date']).days > X:
+                df.loc[i, 'date'] = df.loc[i, 'date']
+            else:
+                df.loc[i, 'date'] = df.loc[i-1, 'date']
+    return df
+
+result = g(df.copy(), X)","def g(df, X):
+    df['date'] = pd.to_datetime(df['date'])
+    df.sort_values(by='date', inplace=True)
+    df['date'] = df['date'].dt.strftime('%d-%b-%Y')
+    for i in range(len(df)):
+        if i == 0:
+            df.loc[i, 'date'] = df.loc[i, 'date']
+        else:
+<<<< [ERROR START] (dynamic: TypeError)
+            if (df.loc[i, 'date'] - df.loc[i-1, 'date']).days > X:
+[ERROR END] (dynamic: TypeError) >>>>
+                df.loc[i, 'date'] = df.loc[i, 'date']
+            else:
+                df.loc[i, 'date'] = df.loc[i-1, 'date']
+    return df
+
+result = g(df.copy(), X)",dynamic,TypeError,9-9,"def g(df, X):
+    df['date'] = pd.to_datetime(df['date'])
+    X *= 7
+    filter_ids = [0]
+    last_day = df.loc[0, ""date""]
+    for index, row in df[1:].iterrows():
+        if (row[""date""] - last_day).days > X:
+            filter_ids.append(index)
+            last_day = row[""date""]
+    df['date'] = df['date'].dt.strftime('%d-%b-%Y')
+    return df.loc[filter_ids, :]
+
+result = g(df.copy(), X)
+"
+ds1000,DS0076,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.groupby(df.index // 3).mean()\n\nresult = g(df.copy())'}",,"def g(df):
+    return df.groupby(df.index // 3).mean()
+
+result = g(df.copy())","def g(df):
+    return df.groupby(df.index // 3).mean()
+
+result = g(df.copy())",,,,"def g(df):
+    return df.groupby(df.index // 3).mean()
+
+result = g(df.copy())
+"
+ds1000,DS0077,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.groupby(df.index // 3).mean()\n\nresult = g(df.copy())'}",,"def g(df):
+    return df.groupby(df.index // 3).mean()
+
+result = g(df.copy())","def g(df):
+    return df.groupby(df.index // 3).mean()
+
+result = g(df.copy())",,,,"def g(df):
+    return df.groupby(df.index // 3).mean()
+
+result = g(df.copy())
+"
+ds1000,DS0078,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.groupby(df.index // 4).sum()\n\nresult = g(df.copy())'}",,"def g(df):
+    return df.groupby(df.index // 4).sum()
+
+result = g(df.copy())","def g(df):
+    return df.groupby(df.index // 4).sum()
+
+result = g(df.copy())",,,,"def g(df):
+    return df.groupby(df.index // 4).sum()
+
+result = g(df.copy())
+"
+ds1000,DS0079,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.groupby((df.index + 1) // 3).mean()\n\nresult = g(df.copy())'}",,"def g(df):
+    return df.groupby((df.index + 1) // 3).mean()
+
+result = g(df.copy())","def g(df):
+    return df.groupby((df.index + 1) // 3).mean()
+
+result = g(df.copy())",,,,"def g(df):
+    return df.groupby((df.index+(-df.size % 3)) // 3).mean()
+
+result = g(df.copy())
+"
+ds1000,DS0080,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""   col1\\n0     2\\n1     1\\n2     3\\n3     1\\n4     0\\n5     2\\n6     1\\n7     3\\n8     1"", ""   col1\\n0   6.0\\n1   0.5\\n2   6.0\\n3   1.0"", ""<Execution Error: name \'df\' is not defined>""], [""   col1\\n0     1\\n1     9\\n2     2\\n3     6\\n4     0\\n5     8\\n6     1\\n7     7\\n8     1"", ""   col1\\n0  12.0\\n1   3.0\\n2  16.0\\n3   1.0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 56, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df.groupby(df.index // 5).agg(lambda x: x.sum() if x.name == 'col1' else x.mean())\n\nresult = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.groupby(df.index // 5).agg(lambda x: x.sum() if x.name == 'col1' else x.mean())
+
+result = g(df.copy())","def g(df):
+    return df.groupby(df.index // 5).agg(lambda x: x.sum() if x.name == 'col1' else x.mean())
+
+result = g(df.copy())",,,,"def g(df):
+    l = []
+    for i in range(2*(len(df) // 5) + (len(df) % 5) // 3 + 1):
+        l.append(0)
+    for i in range(len(df)):
+        idx = 2*(i // 5) + (i % 5) // 3
+        if i % 5 < 3:
+            l[idx] += df['col1'].iloc[i]
+        elif i % 5 == 3:
+            l[idx] = df['col1'].iloc[i]
+        else:
+            l[idx] = (l[idx] + df['col1'].iloc[i]) / 2
+    return pd.DataFrame({'col1': l})
+
+result = g(df.copy())
+"
+ds1000,DS0081,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'TypeError', 'error_message': 'not all arguments converted during string formatting', 'line_number': '2', 'test_case': '[[""   col1\\n0     2\\n1     1\\n2     3\\n3     1\\n4     0\\n5     2\\n6     1\\n7     3\\n8     1"", ""   col1\\n0   5.0\\n1   1.0\\n2   5.0\\n3   2.0"", ""<Execution Error: name \'df\' is not defined>""], [""   col1\\n0     1\\n1     9\\n2     2\\n3     6\\n4     0\\n5     8\\n6     1\\n7     7\\n8     1"", ""   col1\\n0   9.0\\n1   4.0\\n2  17.0\\n3   1.0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': 'def g(df):\n    return df.groupby(df.index // 5).agg(lambda x: x.iloc[-3:].sum() if x.name % 5 == 4 else x.iloc[-2:].mean() if x.name % 5 == 3 else x.sum())\n\nresult = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.groupby(df.index // 5).agg(lambda x: x.iloc[-3:].sum() if x.name % 5 == 4 else x.iloc[-2:].mean() if x.name % 5 == 3 else x.sum())
+
+result = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: TypeError)
+    return df.groupby(df.index // 5).agg(lambda x: x.iloc[-3:].sum() if x.name % 5 == 4 else x.iloc[-2:].mean() if x.name % 5 == 3 else x.sum())
+[ERROR END] (dynamic: TypeError) >>>>
+
+result = g(df.copy())",dynamic,TypeError,2-2,"def g(df):
+    l = []
+    for i in range(2*(len(df) // 5) + (len(df) % 5) // 3 + 1):
+        l.append(0)
+    for i in reversed(range(len(df))):
+        idx = 2*((len(df)-1-i) // 5) + ((len(df)-1-i) % 5) // 3
+        if (len(df)-1-i) % 5 < 3:
+            l[idx] += df['col1'].iloc[i]
+        elif (len(df)-1-i) % 5 == 3:
+            l[idx] = df['col1'].iloc[i]
+        else:
+            l[idx] = (l[idx] + df['col1'].iloc[i]) / 2
+    return pd.DataFrame({'col1': l})
+
+result = g(df.copy())
+"
+ds1000,DS0082,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""    A\\n0   1\\n1   0\\n2   0\\n3   2\\n4   0\\n5   4\\n6   6\\n7   8\\n8   0\\n9   0\\n10  0\\n11  0\\n12  2\\n13  1"", ""    A\\n0   1\\n1   1\\n2   1\\n3   2\\n4   2\\n5   4\\n6   6\\n7   8\\n8   8\\n9   8\\n10  8\\n11  8\\n12  2\\n13  1"", ""<Execution Error: name \'df\' is not defined>""], [""    A\\n0   1\\n1   0\\n2   0\\n3   9\\n4   0\\n5   2\\n6   6\\n7   8\\n8   0\\n9   0\\n10  0\\n11  0\\n12  1\\n13  7"", ""    A\\n0   1\\n1   1\\n2   1\\n3   9\\n4   9\\n5   2\\n6   6\\n7   8\\n8   8\\n9   8\\n10  8\\n11  8\\n12  1\\n13  7"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 51, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.mask(df.eq(0), df.where(df.shift().ne(0)).ffill())\n\ndf = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.mask(df.eq(0), df.where(df.shift().ne(0)).ffill())
+
+df = g(df.copy())","def g(df):
+    return df.mask(df.eq(0), df.where(df.shift().ne(0)).ffill())
+
+df = g(df.copy())",,,,"def g(df):
+    df['A'].replace(to_replace=0, method='ffill', inplace=True)
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0083,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    df['A'].replace(to_replace=0, method='bfill', inplace=True)\n    return df\n\ndf = g(df.copy())""}",,"def g(df):
+    df['A'].replace(to_replace=0, method='bfill', inplace=True)
+    return df
+
+df = g(df.copy())","def g(df):
+    df['A'].replace(to_replace=0, method='bfill', inplace=True)
+    return df
+
+df = g(df.copy())",,,,"def g(df):
+    df['A'].replace(to_replace=0, method='bfill', inplace=True)
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0084,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""    A\\n0   1\\n1   0\\n2   0\\n3   2\\n4   0\\n5   4\\n6   6\\n7   8\\n8   0\\n9   0\\n10  0\\n11  0\\n12  2\\n13  1"", ""    A\\n0   1\\n1   2\\n2   2\\n3   2\\n4   4\\n5   4\\n6   6\\n7   8\\n8   8\\n9   8\\n10  8\\n11  8\\n12  2\\n13  1"", ""<Execution Error: name \'df\' is not defined>""], [""    A\\n0   1\\n1   0\\n2   0\\n3   9\\n4   0\\n5   2\\n6   6\\n7   8\\n8   0\\n9   0\\n10  0\\n11  0\\n12  1\\n13  7"", ""    A\\n0   1\\n1   9\\n2   9\\n3   9\\n4   9\\n5   2\\n6   6\\n7   8\\n8   8\\n9   8\\n10  8\\n11  8\\n12  1\\n13  7"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 54, in test_execution\nAssertionError\n', 'generated_code': 'def g(df):\n    return df.mask(df.eq(0), df.where(df.gt(0)).ffill().bfill())\n\ndf = g(df.copy())'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.mask(df.eq(0), df.where(df.gt(0)).ffill().bfill())
+
+df = g(df.copy())","def g(df):
+    return df.mask(df.eq(0), df.where(df.gt(0)).ffill().bfill())
+
+df = g(df.copy())",,,,"def g(df):
+    l = df['A'].replace(to_replace=0, method='ffill')
+    r = df['A'].replace(to_replace=0, method='bfill')
+    for i in range(len(df)):
+        df['A'].iloc[i] = max(l[i], r[i])
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0085,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    df[['number','time']] = df.duration.str.extract(r'(\\d+)\\s*(.*)', expand=True)\n    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)\n    return df\n\ndf = g(df.copy())""}",,"def g(df):
+    df[['number','time']] = df.duration.str.extract(r'(\d+)\s*(.*)', expand=True)
+    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    return df
+
+df = g(df.copy())","def g(df):
+    df[['number','time']] = df.duration.str.extract(r'(\d+)\s*(.*)', expand=True)
+    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    return df
+
+df = g(df.copy())",,,,"def g(df):
+    df[['number','time']] = df.duration.str.extract(r'(\d+)\s*(.*)', expand=True)
+    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0086,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""  duration\\n1   year 7\\n2     day2\\n3   week 4\\n4  month 8"", ""  duration   time number  time_days\\n1   year 7   year      7        365\\n2     day2    day      2          1\\n3   week 4   week      4          7\\n4  month 8  month      8         30"", ""<Execution Error: name \'df\' is not defined>""], [""  duration\\n1   year 2\\n2     day6\\n3   week 8\\n4  month 7"", ""  duration   time number  time_days\\n1   year 2   year      2        365\\n2     day6    day      6          1\\n3   week 8   week      8          7\\n4  month 7  month      7         30"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 58, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    df[['time','number']] = df.duration.str.extract(r'(\\D+)(\\d+)', expand=True)\n    df['time_day'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)\n    return df\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    df[['time','number']] = df.duration.str.extract(r'(\D+)(\d+)', expand=True)
+    df['time_day'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    return df
+
+df = g(df.copy())","def g(df):
+    df[['time','number']] = df.duration.str.extract(r'(\D+)(\d+)', expand=True)
+    df['time_day'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    return df
+
+df = g(df.copy())",,,,"def g(df):
+    df[['time', 'number']] = df.duration.str.extract(r'\s*(.*)(\d+)', expand=True)
+    for i in df.index:
+        df.loc[i, 'time'] = df.loc[i, 'time'].strip()
+    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0087,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'IndentationError', 'error_message': 'expected an indented block after function definition on line 4 (<string>, line 5)', 'line_number': '1', 'test_case': '[[""  duration\\n1   7 year\\n2     2day\\n3   4 week\\n4  8 month"", ""  duration number   time  time_days\\n1   7 year      7   year        365\\n2     2day      2    day          1\\n3   4 week      4   week          7\\n4  8 month      8  month         30"", ""<No result variable>""], [""  duration\\n1   2 year\\n2     6day\\n3   8 week\\n4  7 month"", ""  duration number   time  time_days\\n1   2 year      2   year        365\\n2     6day      6    day          1\\n3   8 week      8   week          7\\n4  7 month      7  month         30"", ""<No result variable>""]]', 'testcase_output': '', 'generated_code': ""def g(df):\n    df[['number', 'time']] = df.duration.str.extract(r'(\\d+)\\s*(.*)', expand=True)\n    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)\n    return df\n\n    result = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    df[['number', 'time']] = df.duration.str.extract(r'(\d+)\s*(.*)', expand=True)
+    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    return df
+
+    result = g(df.copy())","<<<< [ERROR START] (dynamic: IndentationError)
+def g(df):
+[ERROR END] (dynamic: IndentationError) >>>>
+    df[['number', 'time']] = df.duration.str.extract(r'(\d+)\s*(.*)', expand=True)
+    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    return df
+
+    result = g(df.copy())",dynamic,IndentationError,1-1,"    df[['number','time']] = df.duration.str.extract(r'(\d+)\s*(.*)', expand=True)
+    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    result = df
+
+    return result
+"
+ds1000,DS0088,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""  duration\\n1   year 7\\n2     day2\\n3   week 4\\n4  month 8"", ""  duration   time number time_days\\n1   year 7   year      7      2555\\n2     day2    day      2         2\\n3   week 4   week      4        28\\n4  month 8  month      8       240"", ""<Execution Error: name \'df\' is not defined>""], [""  duration\\n1   year 2\\n2     day6\\n3   week 8\\n4  month 7"", ""  duration   time number time_days\\n1   year 2   year      2       730\\n2     day6    day      6         6\\n3   week 8   week      8        56\\n4  month 7  month      7       210"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 60, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    df[['time','number']] = df.duration.str.extract(r'(\\D+)(\\d+)', expand=True)\n    df['time_day'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True) * df['number']\n    return df\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    df[['time','number']] = df.duration.str.extract(r'(\D+)(\d+)', expand=True)
+    df['time_day'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True) * df['number']
+    return df
+
+df = g(df.copy())","def g(df):
+    df[['time','number']] = df.duration.str.extract(r'(\D+)(\d+)', expand=True)
+    df['time_day'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True) * df['number']
+    return df
+
+df = g(df.copy())",,,,"def g(df):
+    df[['time', 'number']] = df.duration.str.extract(r'\s*(.*)(\d+)', expand=True)
+    for i in df.index:
+        df.loc[i, 'time'] = df.loc[i, 'time'].strip()
+        df.loc[i, 'number'] = eval(df.loc[i,'number'])
+    df['time_days'] = df['time'].replace(['year', 'month', 'week', 'day'], [365, 30, 7, 1], regex=True)
+    df['time_days'] *= df['number']
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0089,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""(   A  B  C  D  E  F Postset\\n0  1  2  3  4  5  6     yes\\n1  1  2  3  4  5  6      no\\n2  1  2  3  4  5  6     yes,    A  B  C  D  E  F Preset\\n0  1  2  3  4  5  6    yes\\n1  1  2  3  4  5  4    yes\\n2  1  2  3  4  5  6    yes, [\'A\', \'B\', \'C\', \'D\', \'E\', \'F\'])"", ""[False  True False]"", ""<Execution Error: name \'df1\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 67, in test_execution\nAssertionError\n', 'generated_code': 'def g(df1, df2, columns_check_list):\n    return (df1[columns_check_list] == df2[columns_check_list]).all(axis=1)\n\nresult = g(df1.copy(), df2.copy(), columns_check_list)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df1, df2, columns_check_list):
+    return (df1[columns_check_list] == df2[columns_check_list]).all(axis=1)
+
+result = g(df1.copy(), df2.copy(), columns_check_list)","def g(df1, df2, columns_check_list):
+    return (df1[columns_check_list] == df2[columns_check_list]).all(axis=1)
+
+result = g(df1.copy(), df2.copy(), columns_check_list)",,,,"def g(df1, df2, columns_check_list):
+    mask= (df1[columns_check_list] != df2[columns_check_list]).any(axis=1).values
+    return mask
+
+result = g(df1, df2, columns_check_list)
+"
+ds1000,DS0090,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""(   A  B  C  D  E  F Postset\\n0  1  2  3  4  5  6     yes\\n1  1  2  3  4  5  6      no\\n2  1  2  3  4  5  6     yes,    A  B  C  D  E  F Preset\\n0  1  2  3  4  5  6    yes\\n1  1  2  3  4  5  4    yes\\n2  1  2  3  4  5  6    yes, [\'A\', \'B\', \'C\', \'D\', \'E\', \'F\'])"", ""[ True  True  True]"", ""<Execution Error: name \'df1\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 67, in test_execution\nAssertionError\n', 'generated_code': 'def g(df1, df2, columns_check_list):\n    return (df1[columns_check_list] == df2[columns_check_list]).all(axis=1).values\n\nresult = g(df1.copy(), df2.copy(), columns_check_list)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df1, df2, columns_check_list):
+    return (df1[columns_check_list] == df2[columns_check_list]).all(axis=1).values
+
+result = g(df1.copy(), df2.copy(), columns_check_list)","def g(df1, df2, columns_check_list):
+    return (df1[columns_check_list] == df2[columns_check_list]).all(axis=1).values
+
+result = g(df1.copy(), df2.copy(), columns_check_list)",,,,"def g(df1, df2, columns_check_list):
+    mask= (df1[columns_check_list] == df2[columns_check_list]).any(axis=1).values
+    return mask
+
+result = g(df1, df2, columns_check_list)
+"
+ds1000,DS0091,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])\n    return df\n\ndf = g(df.copy())'}",,"def g(df):
+    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+    return df
+
+df = g(df.copy())","def g(df):
+    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+    return df
+
+df = g(df.copy())",,,,"def g(df):
+    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0092,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def g(df):\n    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])\n    return df\n\ndf = g(df.copy())'}",,"def g(df):
+    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+    return df
+
+df = g(df.copy())","def g(df):
+    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+    return df
+
+df = g(df.copy())",,,,"def g(df):
+    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+    return df
+
+df = g(df.copy())
+"
+ds1000,DS0093,hallucinated,"{'ast_parsed': False, 'ast_errors': [{'type': 'IndentationError', 'start_line': 2, 'end_line': 2, 'col_offset': 4, 'message': 'unexpected indent'}]}",,,"df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+    result = np.array(df.values)
+    return result","df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+<<<< [ERROR START] (ast: IndentationError)
+    result = np.array(df.values)
+[ERROR END] (ast: IndentationError) >>>>
+    return result",ast,IndentationError,2-2,"    df.index = df.index.set_levels([df.index.levels[0], pd.to_datetime(df.index.levels[1])])
+    df['date'] = sorted(df.index.levels[1].to_numpy())
+    df=df[['date', 'x', 'y']]
+    df = df.to_numpy()
+
+    return df
+"
+ds1000,DS0094,hallucinated,"{'ast_parsed': False, 'ast_errors': [{'type': 'IndentationError', 'start_line': 2, 'end_line': 2, 'col_offset': 4, 'message': 'unexpected indent'}]}",,,"df.index = df.index.set_levels([df.index.levels[1], df.index.levels[0]])
+    df.index = df.index.map(lambda x: (pd.to_datetime(x[0]), x[1]))
+    df.index.names = ['id', 'date']
+    return df","df.index = df.index.set_levels([df.index.levels[1], df.index.levels[0]])
+<<<< [ERROR START] (ast: IndentationError)
+    df.index = df.index.map(lambda x: (pd.to_datetime(x[0]), x[1]))
+[ERROR END] (ast: IndentationError) >>>>
+    df.index.names = ['id', 'date']
+    return df",ast,IndentationError,2-2,"    df.index = df.index.from_tuples([(x[1], pd.to_datetime(x[0])) for x in df.index.values], names = [df.index.names[1], df.index.names[0]])
+
+    return df
+"
+ds1000,DS0095,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""     Country Variable  2000  2001  2002  2003  2004  2005\\n0  Argentina     var1    12    15    18    17    23    29\\n1  Argentina     var2     1     3     2     5     7     5\\n2     Brazil     var1    20    23    25    29    31    32\\n3     Brazil     var2     0     1     2     2     3     3"", ""Variable    Country  year  var1  var2\\n0         Argentina  2000    12     1\\n1         Argentina  2001    15     3\\n2         Argentina  2002    18     2\\n3         Argentina  2003    17     5\\n4         Argentina  2004    23     7\\n5         Argentina  2005    29     5\\n6            Brazil  2000    20     0\\n7            Brazil  2001    23     1\\n8            Brazil  2002    25     2\\n9            Brazil  2003    29     2\\n10           Brazil  2004    31     3\\n11           Brazil  2005    32     3"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_480/3661587577.py"", line 89, in execute_ds1000_test_inner\n    test_env[\'test_execution\'](generated_code)\n  File ""<string>"", line 61, in test_execution\nAssertionError\n', 'generated_code': ""def g(df):\n    return df.set_index(['Country', 'Variable']).stack().reset_index(name='value').rename(columns={'level_3':'year'})\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.set_index(['Country', 'Variable']).stack().reset_index(name='value').rename(columns={'level_3':'year'})
+
+df = g(df.copy())","def g(df):
+    return df.set_index(['Country', 'Variable']).stack().reset_index(name='value').rename(columns={'level_3':'year'})
+
+df = g(df.copy())",,,,"def g(df):
+    return df.set_index(['Country', 'Variable']).rename_axis(['year'], axis=1).stack().unstack('Variable').reset_index()
+
+df = g(df.copy())
+"
+ds1000,DS0096,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'KeyError', 'error_message': '""None of [\'year\'] are in the columns""', 'line_number': '2', 'test_case': '[[""     Country Variable  2000  2001  2002  2003  2004  2005\\n0  Argentina     var1    12    15    18    17    23    29\\n1  Argentina     var2     1     3     2     5     7     5\\n2     Brazil     var1    20    23    25    29    31    32\\n3     Brazil     var2     0     1     2     2     3     3"", ""Variable    Country  year  var1  var2\\n0         Argentina  2005    29     5\\n1         Argentina  2004    23     7\\n2         Argentina  2003    17     5\\n3         Argentina  2002    18     2\\n4         Argentina  2001    15     3\\n5         Argentina  2000    12     1\\n6            Brazil  2005    32     3\\n7            Brazil  2004    31     3\\n8            Brazil  2003    29     2\\n9            Brazil  2002    25     2\\n10           Brazil  2001    23     1\\n11           Brazil  2000    20     0"", ""<Execution Error: name \'df\' is not defined>""], [""     Country Variable  2000  2001  2002  2003  2004  2005\\n0  Argentina     var1    12    15    18    17    23    29\\n1  Argentina     var2     1     1     4     5     1     4\\n2     Brazil     var1    20    23    25    29    31    32\\n3     Brazil     var2     0     1     2     2     3     3"", ""Variable    Country  year  var1  var2\\n0         Argentina  2005    29     4\\n1         Argentina  2004    23     1\\n2         Argentina  2003    17     5\\n3         Argentina  2002    18     4\\n4         Argentina  2001    15     1\\n5         Argentina  2000    12     1\\n6            Brazil  2005    32     3\\n7            Brazil  2004    31     3\\n8            Brazil  2003    29     2\\n9            Brazil  2002    25     2\\n10           Brazil  2001    23     1\\n11           Brazil  2000    20     0"", ""<Execution Error: name \'df\' is not defined>""]]', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.set_index(['Country', 'Variable', 'year']).stack().reset_index(name='value').rename(columns={'level_3':'var'})\n\ndf = g(df.copy())""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def g(df):
+    return df.set_index(['Country', 'Variable', 'year']).stack().reset_index(name='value').rename(columns={'level_3':'var'})
+
+df = g(df.copy())","def g(df):
+<<<< [ERROR START] (dynamic: KeyError)
+    return df.set_index(['Country', 'Variable', 'year']).stack().reset_index(name='value').rename(columns={'level_3':'var'})
+[ERROR END] (dynamic: KeyError) >>>>
+
+df = g(df.copy())",dynamic,KeyError,2-2,"def g(df):
+    cols = list(df)[:2]+list(df)[-1:1:-1]
+    df = df.loc[:, cols]
+    return df.set_index(['Country', 'Variable']).rename_axis(['year'], axis=1).stack().unstack('Variable').reset_index()
+
+df = g(df.copy())
+"
+ds1000,DS0097,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df[(df.filter(like='Value').abs() < 1).all(axis=1)]\n\ndf = g(df.copy())""}",,"def g(df):
+    return df[(df.filter(like='Value').abs() < 1).all(axis=1)]
+
+df = g(df.copy())","def g(df):
+    return df[(df.filter(like='Value').abs() < 1).all(axis=1)]
+
+df = g(df.copy())",,,,"def g(df):
+    mask = (df.filter(like='Value').abs() < 1).all(axis=1)
+    return df[mask]
+
+df = g(df.copy())
+"
+ds1000,DS0098,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df[np.any(np.abs(df.filter(like='Value')) > 1, axis=1)]\n\ndf = g(df.copy())""}",,"def g(df):
+    return df[np.any(np.abs(df.filter(like='Value')) > 1, axis=1)]
+
+df = g(df.copy())","def g(df):
+    return df[np.any(np.abs(df.filter(like='Value')) > 1, axis=1)]
+
+df = g(df.copy())",,,,"def g(df):
+    mask = (df.filter(like='Value').abs() > 1).any(axis=1)
+    return df[mask]
+
+df = g(df.copy())
+"
+ds1000,DS0099,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def g(df):\n    return df.loc[(df.filter(like='Value').abs() > 1).any(axis=1)].rename(columns=lambda x: x.replace('Value_', ''))\n\ndf = g(df.copy())""}",,"def g(df):
+    return df.loc[(df.filter(like='Value').abs() > 1).any(axis=1)].rename(columns=lambda x: x.replace('Value_', ''))
+
+df = g(df.copy())","def g(df):
+    return df.loc[(df.filter(like='Value').abs() > 1).any(axis=1)].rename(columns=lambda x: x.replace('Value_', ''))
+
+df = g(df.copy())",,,,"def g(df):
+    mask = (df.filter(like='Value').abs() > 1).any(axis=1)
+    cols = {}
+    for col in list(df.filter(like='Value')):
+        cols[col]=col.replace(""Value_"","""")
+    df.rename(columns=cols, inplace=True)
+    return df[mask]
+
+df = g(df.copy())
+"
