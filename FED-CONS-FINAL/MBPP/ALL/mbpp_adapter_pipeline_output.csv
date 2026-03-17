@@ -1,0 +1,1556 @@
+dataset,task_id,status,ast_info,dynamic_info,lib_info,generated_code,patched_code,error_sources,error_types,error_lines,canonical_solution
+mbpp,602,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def first_repeated_char(str1):\n  for index, char in enumerate(str1):\n    if str1[:index+1].count(char) > 1:\n      return char'}",,"def first_repeated_char(str1):
+  for index, char in enumerate(str1):
+    if str1[:index+1].count(char) > 1:
+      return char","def first_repeated_char(str1):
+  for index, char in enumerate(str1):
+    if str1[:index+1].count(char) > 1:
+      return char",,,,"def first_repeated_char(str1):
+  for index,c in enumerate(str1):
+    if str1[:index+1].count(c) > 1:
+      return c"
+mbpp,603,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'IndexError', 'error_message': 'list index out of range', 'line_number': '', 'test_case': '[[""10"", ""[1, 2, 3, 5, 7]"", ""<Error: list index out of range>""], [""25"", ""[1, 2, 3, 5, 7, 11, 13, 17, 23, 25]"", ""[1, 2, 3, 5, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 25]""], [""45"", ""[1, 2, 3, 5, 7, 11, 13, 17, 23, 25, 29, 37, 41, 43]"", ""[1, 2, 3, 5, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 25, 26, 27, 30, 31, 32, 34, 36, 39, 40, 41, 43, 44, 45]""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\n  File ""<string>"", line 8, in get_ludic\nIndexError: list index out of range\n', 'generated_code': 'def get_ludic(n):\n    l = [i for i in range(1, n + 1)]\n    i = 1\n    while i < len(l):\n        j = i + l[i]\n        while j < len(l):\n            del l[j]\n            j += l[j]\n        i += 1\n    return l'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def get_ludic(n):
+    l = [i for i in range(1, n + 1)]
+    i = 1
+    while i < len(l):
+        j = i + l[i]
+        while j < len(l):
+            del l[j]
+            j += l[j]
+        i += 1
+    return l","def get_ludic(n):
+    l = [i for i in range(1, n + 1)]
+    i = 1
+    while i < len(l):
+        j = i + l[i]
+        while j < len(l):
+            del l[j]
+            j += l[j]
+        i += 1
+    return l",,,,"def get_ludic(n):
+	ludics = []
+	for i in range(1, n + 1):
+		ludics.append(i)
+	index = 1
+	while(index != len(ludics)):
+		first_ludic = ludics[index]
+		remove_index = index + first_ludic
+		while(remove_index < len(ludics)):
+			ludics.remove(ludics[remove_index])
+			remove_index = remove_index + first_ludic - 1
+		index += 1
+	return ludics"
+mbpp,604,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def reverse_words(s):\n    return ' '.join(reversed(s.split()))""}",,"def reverse_words(s):
+    return ' '.join(reversed(s.split()))","def reverse_words(s):
+    return ' '.join(reversed(s.split()))",,,,"def reverse_words(s):
+        return ' '.join(reversed(s.split()))"
+mbpp,605,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def prime_num(num):\n  if num > 1:\n    for i in range(2, int(num/2)+1):\n      if (num % i) == 0:\n        return False\n        break\n    else:\n      return True\n  else:\n    return False'}",,"def prime_num(num):
+  if num > 1:
+    for i in range(2, int(num/2)+1):
+      if (num % i) == 0:
+        return False
+        break
+    else:
+      return True
+  else:
+    return False","def prime_num(num):
+  if num > 1:
+    for i in range(2, int(num/2)+1):
+      if (num % i) == 0:
+        return False
+        break
+    else:
+      return True
+  else:
+    return False",,,,"def prime_num(num):
+  if num >=1:
+   for i in range(2, num//2):
+     if (num % i) == 0:
+                return False
+     else:
+                return True
+  else:
+          return False"
+mbpp,606,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import math\ndef radian_degree(degree):\n  return degree*(math.pi/180)'}",,"import math
+def radian_degree(degree):
+  return degree*(math.pi/180)","import math
+def radian_degree(degree):
+  return degree*(math.pi/180)",,,,"import math
+def radian_degree(degree):
+ radian = degree*(math.pi/180)
+ return radian"
+mbpp,607,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import re\ndef find_literals(text, pattern):\n  result = re.search(pattern, text)\n  if result:\n    return (result.re.pattern, result.start(), result.end())'}",,"import re
+def find_literals(text, pattern):
+  result = re.search(pattern, text)
+  if result:
+    return (result.re.pattern, result.start(), result.end())","import re
+def find_literals(text, pattern):
+  result = re.search(pattern, text)
+  if result:
+    return (result.re.pattern, result.start(), result.end())",,,,"import re
+
+def find_literals(text, pattern):
+  match = re.search(pattern, text)
+  s = match.start()
+  e = match.end()
+  return (match.re.pattern, s, e)"
+mbpp,608,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def bell_Number(n):\n    bell = [[0 for i in range(n+1)] for j in range(n+1)]\n    bell[0][0] = 1\n    for i in range(1, n+1):\n        bell[i][0] = bell[i-1][i-1]\n        for j in range(1, i+1):\n            bell[i][j] = bell[i-1][j-1] + bell[i][j-1]\n    return bell[n][0]'}",,"def bell_Number(n):
+    bell = [[0 for i in range(n+1)] for j in range(n+1)]
+    bell[0][0] = 1
+    for i in range(1, n+1):
+        bell[i][0] = bell[i-1][i-1]
+        for j in range(1, i+1):
+            bell[i][j] = bell[i-1][j-1] + bell[i][j-1]
+    return bell[n][0]","def bell_Number(n):
+    bell = [[0 for i in range(n+1)] for j in range(n+1)]
+    bell[0][0] = 1
+    for i in range(1, n+1):
+        bell[i][0] = bell[i-1][i-1]
+        for j in range(1, i+1):
+            bell[i][j] = bell[i-1][j-1] + bell[i][j-1]
+    return bell[n][0]",,,,"def bell_Number(n): 
+    bell = [[0 for i in range(n+1)] for j in range(n+1)] 
+    bell[0][0] = 1
+    for i in range(1, n+1):
+        bell[i][0] = bell[i-1][i-1]
+        for j in range(1, i+1): 
+            bell[i][j] = bell[i-1][j-1] + bell[i][j-1] 
+    return bell[n][0] "
+mbpp,610,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""([1, 1, 2, 3, 4, 4, 5, 1], 3)"", ""[1, 1, 3, 4, 4, 5, 1]"", ""[1, 1, 2, 4, 4, 5, 1]""], [""([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4], 4)"", ""[0, 0, 1, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]"", ""[0, 0, 1, 2, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]""], [""([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10], 5)"", ""[10, 10, 15, 19, 18, 17, 26, 26, 17, 18, 10]"", ""[10, 10, 15, 19, 18, 17, 26, 26, 17, 18, 10]""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def remove_kth_element(list1, L):\n  return [list1[i] for i in range(len(list1)) if i != L]'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def remove_kth_element(list1, L):
+  return [list1[i] for i in range(len(list1)) if i != L]","def remove_kth_element(list1, L):
+  return [list1[i] for i in range(len(list1)) if i != L]",,,,"def remove_kth_element(list1, L):
+    return  list1[:L-1] + list1[L:]"
+mbpp,611,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def max_of_nth(test_list, N):\n  res = max([sub[N] for sub in test_list])\n  return (res)'}",,"def max_of_nth(test_list, N):
+  res = max([sub[N] for sub in test_list])
+  return (res)","def max_of_nth(test_list, N):
+  res = max([sub[N] for sub in test_list])
+  return (res)",,,,"def max_of_nth(test_list, N):
+  res = max([sub[N] for sub in test_list])
+  return (res) "
+mbpp,612,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def merge(lst):\n  return [list(ele) for ele in zip(*lst)]'}",,"def merge(lst):
+  return [list(ele) for ele in zip(*lst)]","def merge(lst):
+  return [list(ele) for ele in zip(*lst)]",,,,"def merge(lst):  
+    return [list(ele) for ele in list(zip(*lst))] "
+mbpp,614,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def cummulative_sum(test_list):\n  res = sum(map(sum, test_list))\n  return (res)'}",,"def cummulative_sum(test_list):
+  res = sum(map(sum, test_list))
+  return (res)","def cummulative_sum(test_list):
+  res = sum(map(sum, test_list))
+  return (res)",,,,"def cummulative_sum(test_list):
+  res = sum(map(sum, test_list))
+  return (res)"
+mbpp,615,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def average_tuple(nums):\n  result = [sum(x) / len(x) for x in zip(*nums)]\n  return result'}",,"def average_tuple(nums):
+  result = [sum(x) / len(x) for x in zip(*nums)]
+  return result","def average_tuple(nums):
+  result = [sum(x) / len(x) for x in zip(*nums)]
+  return result",,,,"def average_tuple(nums):
+    result = [sum(x) / len(x) for x in zip(*nums)]
+    return result"
+mbpp,616,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def tuple_modulo(test_tup1, test_tup2):\n  res = tuple(ele1 % ele2 for ele1, ele2 in zip(test_tup1, test_tup2))\n  return (res)'}",,"def tuple_modulo(test_tup1, test_tup2):
+  res = tuple(ele1 % ele2 for ele1, ele2 in zip(test_tup1, test_tup2))
+  return (res)","def tuple_modulo(test_tup1, test_tup2):
+  res = tuple(ele1 % ele2 for ele1, ele2 in zip(test_tup1, test_tup2))
+  return (res)",,,,"def tuple_modulo(test_tup1, test_tup2):
+  res = tuple(ele1 % ele2 for ele1, ele2 in zip(test_tup1, test_tup2)) 
+  return (res) "
+mbpp,617,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'TypeError', 'error_message': ""unsupported operand type(s) for /: 'int' and 'tuple'"", 'line_number': '', 'test_case': '[[""((3, 4), 11)"", ""3.5"", ""<Error: unsupported operand type(s) for /: \'int\' and \'tuple\'>""], [""((3, 4), 0)"", ""0"", ""<Error: unsupported operand type(s) for /: \'int\' and \'tuple\'>""], [""((11, 14), 11)"", ""1"", ""<Error: unsupported operand type(s) for /: \'int\' and \'tuple\'>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\n  File ""<string>"", line 3, in min_Jumps\nTypeError: unsupported operand type(s) for /: \'int\' and \'tuple\'\n', 'generated_code': 'import math\ndef min_Jumps(steps, d):\n    return int(math.ceil(d / steps))'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","import math
+def min_Jumps(steps, d):
+    return int(math.ceil(d / steps))","import math
+def min_Jumps(steps, d):
+    return int(math.ceil(d / steps))",,,,"def min_Jumps(steps, d): 
+    (a, b) = steps
+    temp = a 
+    a = min(a, b) 
+    b = max(temp, b) 
+    if (d >= b): 
+        return (d + b - 1) / b 
+    if (d == 0): 
+        return 0
+    if (d == a): 
+        return 1
+    else:
+        return 2"
+mbpp,618,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def div_list(nums1,nums2):\n  result = [x / y for x, y in zip(nums1, nums2)]\n  return result'}",,"def div_list(nums1,nums2):
+  result = [x / y for x, y in zip(nums1, nums2)]
+  return result","def div_list(nums1,nums2):
+  result = [x / y for x, y in zip(nums1, nums2)]
+  return result",,,,"def div_list(nums1,nums2):
+  result = map(lambda x, y: x / y, nums1, nums2)
+  return list(result)"
+mbpp,619,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def move_num(test_str):\n  res = ''\n  dig = ''\n  for ele in test_str:\n    if ele.isdigit():\n      dig += ele\n    else:\n      res += ele\n  res += dig\n  return (res)""}",,"def move_num(test_str):
+  res = ''
+  dig = ''
+  for ele in test_str:
+    if ele.isdigit():
+      dig += ele
+    else:
+      res += ele
+  res += dig
+  return (res)","def move_num(test_str):
+  res = ''
+  dig = ''
+  for ele in test_str:
+    if ele.isdigit():
+      dig += ele
+    else:
+      res += ele
+  res += dig
+  return (res)",,,,"def move_num(test_str):
+  res = ''
+  dig = ''
+  for ele in test_str:
+    if ele.isdigit():
+      dig += ele
+    else:
+      res += ele
+  res += dig
+  return (res) "
+mbpp,620,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def largest_subset(a):\n    n = len(a)\n    dp = [1] * n\n    for i in range(1, n):\n        for j in range(i):\n            if (a[i] % a[j] == 0 or a[j] % a[i] == 0):\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)'}",,"def largest_subset(a):
+    n = len(a)
+    dp = [1] * n
+    for i in range(1, n):
+        for j in range(i):
+            if (a[i] % a[j] == 0 or a[j] % a[i] == 0):
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)","def largest_subset(a):
+    n = len(a)
+    dp = [1] * n
+    for i in range(1, n):
+        for j in range(i):
+            if (a[i] % a[j] == 0 or a[j] % a[i] == 0):
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)",,,,"def largest_subset(a):
+	n = len(a)
+	dp = [0 for i in range(n)]
+	dp[n - 1] = 1; 
+	for i in range(n - 2, -1, -1):
+		mxm = 0;
+		for j in range(i + 1, n):
+			if a[j] % a[i] == 0 or a[i] % a[j] == 0:
+				mxm = max(mxm, dp[j])
+		dp[i] = 1 + mxm
+	return max(dp)"
+mbpp,622,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def get_median(arr1, arr2, n):\n    i = 0\n    j = 0\n    m1 = -1\n    m2 = -1\n    count = 0\n    while count < n + 1:\n        count += 1\n        if i == n:\n            m1 = m2\n            m2 = arr2[0]\n            break\n        elif j == n:\n            m1 = m2\n            m2 = arr1[0]\n            break\n        if arr1[i] <= arr2[j]:\n            m1 = m2\n            m2 = arr1[i]\n            i += 1\n        else:\n            m1 = m2\n            m2 = arr2[j]\n            j += 1\n    return (m1 + m2)/2'}",,"def get_median(arr1, arr2, n):
+    i = 0
+    j = 0
+    m1 = -1
+    m2 = -1
+    count = 0
+    while count < n + 1:
+        count += 1
+        if i == n:
+            m1 = m2
+            m2 = arr2[0]
+            break
+        elif j == n:
+            m1 = m2
+            m2 = arr1[0]
+            break
+        if arr1[i] <= arr2[j]:
+            m1 = m2
+            m2 = arr1[i]
+            i += 1
+        else:
+            m1 = m2
+            m2 = arr2[j]
+            j += 1
+    return (m1 + m2)/2","def get_median(arr1, arr2, n):
+    i = 0
+    j = 0
+    m1 = -1
+    m2 = -1
+    count = 0
+    while count < n + 1:
+        count += 1
+        if i == n:
+            m1 = m2
+            m2 = arr2[0]
+            break
+        elif j == n:
+            m1 = m2
+            m2 = arr1[0]
+            break
+        if arr1[i] <= arr2[j]:
+            m1 = m2
+            m2 = arr1[i]
+            i += 1
+        else:
+            m1 = m2
+            m2 = arr2[j]
+            j += 1
+    return (m1 + m2)/2",,,,"def get_median(arr1, arr2, n):
+  i = 0
+  j = 0
+  m1 = -1
+  m2 = -1
+  count = 0
+  while count < n + 1:
+    count += 1
+    if i == n:
+      m1 = m2
+      m2 = arr2[0]
+      break
+    elif j == n:
+      m1 = m2
+      m2 = arr1[0]
+      break
+    if arr1[i] <= arr2[j]:
+      m1 = m2
+      m2 = arr1[i]
+      i += 1
+    else:
+      m1 = m2
+      m2 = arr2[j]
+      j += 1
+  return (m1 + m2)/2"
+mbpp,623,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def nth_nums(nums,n):\n  return [i**n for i in nums]'}",,"def nth_nums(nums,n):
+  return [i**n for i in nums]","def nth_nums(nums,n):
+  return [i**n for i in nums]",,,,"def nth_nums(nums,n):
+ nth_nums = list(map(lambda x: x ** n, nums))
+ return nth_nums"
+mbpp,624,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def is_upper(string):\n  return string.upper()'}",,"def is_upper(string):
+  return string.upper()","def is_upper(string):
+  return string.upper()",,,,"def is_upper(string):
+  return (string.upper())"
+mbpp,625,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def swap_List(newList):\n    size = len(newList)\n    temp = newList[0]\n    newList[0] = newList[size - 1]\n    newList[size - 1] = temp\n    return newList'}",,"def swap_List(newList):
+    size = len(newList)
+    temp = newList[0]
+    newList[0] = newList[size - 1]
+    newList[size - 1] = temp
+    return newList","def swap_List(newList):
+    size = len(newList)
+    temp = newList[0]
+    newList[0] = newList[size - 1]
+    newList[size - 1] = temp
+    return newList",,,,"def swap_List(newList): 
+    size = len(newList) 
+    temp = newList[0] 
+    newList[0] = newList[size - 1] 
+    newList[size - 1] = temp   
+    return newList "
+mbpp,626,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""-1"", ""None"", ""1""], [""0"", ""0"", ""0""], [""2"", ""4"", ""4""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'import math\ndef triangle_area(r) :\n    return (r * r)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","import math
+def triangle_area(r) :
+    return (r * r)","import math
+def triangle_area(r) :
+    return (r * r)",,,,"def triangle_area(r) :  
+    if r < 0 : 
+        return None
+    return r * r "
+mbpp,627,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def find_First_Missing(array,start=0,end=None):\n    if end is None:\n        end = len(array) - 1\n    if start > end:\n        return end + 1\n    if start != array[start]:\n        return start\n    mid = (start + end)//2\n    if array[mid] == mid:\n        return find_First_Missing(array,mid+1,end)\n    return find_First_Missing(array,start,mid)'}",,"def find_First_Missing(array,start=0,end=None):
+    if end is None:
+        end = len(array) - 1
+    if start > end:
+        return end + 1
+    if start != array[start]:
+        return start
+    mid = (start + end)//2
+    if array[mid] == mid:
+        return find_First_Missing(array,mid+1,end)
+    return find_First_Missing(array,start,mid)","def find_First_Missing(array,start=0,end=None):
+    if end is None:
+        end = len(array) - 1
+    if start > end:
+        return end + 1
+    if start != array[start]:
+        return start
+    mid = (start + end)//2
+    if array[mid] == mid:
+        return find_First_Missing(array,mid+1,end)
+    return find_First_Missing(array,start,mid)",,,,"def find_First_Missing(array,start=0,end=None):
+    if end is None:
+      end = len(array) - 1   
+    if (start > end): 
+        return end + 1
+    if (start != array[start]): 
+        return start; 
+    mid = int((start + end) / 2) 
+    if (array[mid] == mid): 
+        return find_First_Missing(array,mid+1,end) 
+    return find_First_Missing(array,start,mid) "
+mbpp,628,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def replace_spaces(string):\n  return string.replace("" "", ""%20"")'}",,"def replace_spaces(string):
+  return string.replace("" "", ""%20"")","def replace_spaces(string):
+  return string.replace("" "", ""%20"")",,,,"def replace_spaces(string):
+  return string.replace("" "", ""%20"")"
+mbpp,629,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def Split(list):\n  even_numbers = [num for num in list if num % 2 == 0]\n  return even_numbers'}",,"def Split(list):
+  even_numbers = [num for num in list if num % 2 == 0]
+  return even_numbers","def Split(list):
+  even_numbers = [num for num in list if num % 2 == 0]
+  return even_numbers",,,,"def Split(list): 
+    return [num for num in list if num % 2 == 0]"
+mbpp,630,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'NameError', 'error_message': ""name 'get_coordinates' is not defined"", 'line_number': '', 'test_case': '[[""(3, 4)"", ""[[2, 3], [2, 4], [2, 5], [3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5]]"", ""<unknown>""], [""(4, 5)"", ""[[3, 4], [3, 5], [3, 6], [4, 4], [4, 5], [4, 6], [5, 4], [5, 5], [5, 6]]"", ""<unknown>""], [""(5, 6)"", ""[[4, 5], [4, 6], [4, 7], [5, 5], [5, 6], [5, 7], [6, 5], [6, 6], [6, 7]]"", ""<unknown>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nNameError: name \'get_coordinates\' is not defined\n', 'generated_code': 'def adjac(ele, sub = []):\n    if ele == (0, 0):\n        return sub\n    else:\n        return adjac((ele[0] - 1, ele[1]), sub + [(ele[0] - 1, ele[1])]) + adjac((ele[0], ele[1] - 1), sub + [(ele[0], ele[1] - 1)]) + adjac((ele[0] + 1, ele[1]), sub + [(ele[0] + 1, ele[1])]) + adjac((ele[0], ele[1] + 1), sub + [(ele[0], ele[1] + 1)])'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def adjac(ele, sub = []):
+    if ele == (0, 0):
+        return sub
+    else:
+        return adjac((ele[0] - 1, ele[1]), sub + [(ele[0] - 1, ele[1])]) + adjac((ele[0], ele[1] - 1), sub + [(ele[0], ele[1] - 1)]) + adjac((ele[0] + 1, ele[1]), sub + [(ele[0] + 1, ele[1])]) + adjac((ele[0], ele[1] + 1), sub + [(ele[0], ele[1] + 1)])","def adjac(ele, sub = []):
+    if ele == (0, 0):
+        return sub
+    else:
+        return adjac((ele[0] - 1, ele[1]), sub + [(ele[0] - 1, ele[1])]) + adjac((ele[0], ele[1] - 1), sub + [(ele[0], ele[1] - 1)]) + adjac((ele[0] + 1, ele[1]), sub + [(ele[0] + 1, ele[1])]) + adjac((ele[0], ele[1] + 1), sub + [(ele[0], ele[1] + 1)])",,,,"def adjac(ele, sub = []): 
+  if not ele: 
+     yield sub 
+  else: 
+     yield from [idx for j in range(ele[0] - 1, ele[0] + 2) 
+                for idx in adjac(ele[1:], sub + [j])] 
+def get_coordinates(test_tup):
+  return list(adjac(test_tup))"
+mbpp,631,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""Jumanji The Jungle"", ""Jumanji_The_Jungle"", ""Jumanji_The_Jungle""], [""The_Avengers"", ""The Avengers"", ""The_Avengers""], [""Fast and Furious"", ""Fast_and_Furious"", ""Fast_and_Furious""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'import re\ndef replace_spaces(text):\n  return re.sub(r""(\\s+)"", lambda x: ""_"" if x.group(1).isspace() else "" "", text)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","import re
+def replace_spaces(text):
+  return re.sub(r""(\s+)"", lambda x: ""_"" if x.group(1).isspace() else "" "", text)","import re
+def replace_spaces(text):
+  return re.sub(r""(\s+)"", lambda x: ""_"" if x.group(1).isspace() else "" "", text)",,,,"def replace_spaces(text):
+  return """".join("" "" if c == ""_"" else (""_"" if c == "" "" else c) for c in text)"
+mbpp,632,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def move_zero(num_list):\n  return [x for x in num_list if x != 0] + [x for x in num_list if x == 0]'}",,"def move_zero(num_list):
+  return [x for x in num_list if x != 0] + [x for x in num_list if x == 0]","def move_zero(num_list):
+  return [x for x in num_list if x != 0] + [x for x in num_list if x == 0]",,,,"def move_zero(num_list):
+    a = [0 for i in range(num_list.count(0))]
+    x = [i for i in num_list if i != 0]
+    return x + a"
+mbpp,633,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def pair_xor_Sum(arr,n) :\n    res = 0\n    for i in range(0, n) :\n        for j in range(i + 1, n) :\n            res += (arr[i] ^ arr[j])\n    return res'}",,"def pair_xor_Sum(arr,n) :
+    res = 0
+    for i in range(0, n) :
+        for j in range(i + 1, n) :
+            res += (arr[i] ^ arr[j])
+    return res","def pair_xor_Sum(arr,n) :
+    res = 0
+    for i in range(0, n) :
+        for j in range(i + 1, n) :
+            res += (arr[i] ^ arr[j])
+    return res",,,,"def pair_xor_Sum(arr,n) : 
+    ans = 0 
+    for i in range(0,n) :    
+        for j in range(i + 1,n) :   
+            ans = ans + (arr[i] ^ arr[j])          
+    return ans "
+mbpp,635,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import heapq\ndef heap_sort(iterable):\n    h = []\n    for value in iterable:\n        heapq.heappush(h, value)\n    return [heapq.heappop(h) for i in range(len(h))]'}",,"import heapq
+def heap_sort(iterable):
+    h = []
+    for value in iterable:
+        heapq.heappush(h, value)
+    return [heapq.heappop(h) for i in range(len(h))]","import heapq
+def heap_sort(iterable):
+    h = []
+    for value in iterable:
+        heapq.heappush(h, value)
+    return [heapq.heappop(h) for i in range(len(h))]",,,,"import heapq as hq
+def heap_sort(iterable):
+    h = []
+    for value in iterable:
+        hq.heappush(h, value)
+    return [hq.heappop(h) for i in range(len(h))]"
+mbpp,637,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def noprofit_noloss(actual_cost,sale_amount):\n  if actual_cost == sale_amount:\n    return True\n  else:\n    return False'}",,"def noprofit_noloss(actual_cost,sale_amount):
+  if actual_cost == sale_amount:
+    return True
+  else:
+    return False","def noprofit_noloss(actual_cost,sale_amount):
+  if actual_cost == sale_amount:
+    return True
+  else:
+    return False",,,,"def noprofit_noloss(actual_cost,sale_amount): 
+  if(sale_amount == actual_cost):
+    return True
+  else:
+    return False"
+mbpp,638,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""(120, 35)"", ""40"", ""35""], [""(40, 20)"", ""19"", ""20""], [""(10, 8)"", ""6"", ""6""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'import math\ndef wind_chill(v,t):\n  if v < 4.8 or t > 10:\n    return t\n  else:\n    wci = 13.12 + 0.6215*t - 11.37*math.pow(v,0.16) + 0.3965*t*math.pow(v,0.16)\n    return round(wci)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","import math
+def wind_chill(v,t):
+  if v < 4.8 or t > 10:
+    return t
+  else:
+    wci = 13.12 + 0.6215*t - 11.37*math.pow(v,0.16) + 0.3965*t*math.pow(v,0.16)
+    return round(wci)","import math
+def wind_chill(v,t):
+  if v < 4.8 or t > 10:
+    return t
+  else:
+    wci = 13.12 + 0.6215*t - 11.37*math.pow(v,0.16) + 0.3965*t*math.pow(v,0.16)
+    return round(wci)",,,,"import math
+def wind_chill(v,t):
+ windchill = 13.12 + 0.6215*t -  11.37*math.pow(v, 0.16) + 0.3965*t*math.pow(v, 0.16)
+ return int(round(windchill, 0))"
+mbpp,639,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def sample_nam(sample_names):\n  return sum(len(name) for name in sample_names if name[0].isupper())'}",,"def sample_nam(sample_names):
+  return sum(len(name) for name in sample_names if name[0].isupper())","def sample_nam(sample_names):
+  return sum(len(name) for name in sample_names if name[0].isupper())",,,,"def sample_nam(sample_names):
+  sample_names=list(filter(lambda el:el[0].isupper() and el[1:].islower(),sample_names))
+  return len(''.join(sample_names))"
+mbpp,640,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'TypeError', 'error_message': ""expected string or bytes-like object, got 'list'"", 'line_number': '', 'test_case': '[[""[\'python (chrome)\']"", ""python"", ""<Error: expected string or bytes-like object, got \'list\'>""], [""[\'string(.abc)\']"", ""string"", ""<Error: expected string or bytes-like object, got \'list\'>""], [""[\'alpha(num)\']"", ""alpha"", ""<Error: expected string or bytes-like object, got \'list\'>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\n  File ""<string>"", line 3, in remove_parenthesis\n  File ""/opt/conda/lib/python3.11/re/__init__.py"", line 185, in sub\n    return _compile(pattern, flags).sub(repl, string, count)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: expected string or bytes-like object, got \'list\'\n', 'generated_code': ""import re\ndef remove_parenthesis(items):\n  return re.sub(r'\\([^)]*\\)', '', items)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","import re
+def remove_parenthesis(items):
+  return re.sub(r'\([^)]*\)', '', items)","import re
+def remove_parenthesis(items):
+  return re.sub(r'\([^)]*\)', '', items)",,,,"import re
+def remove_parenthesis(items):
+ for item in items:
+    return (re.sub(r"" ?\([^)]+\)"", """", item))"
+mbpp,641,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def is_nonagonal(n):\n  return n * (7 * n - 5) / 2'}",,"def is_nonagonal(n):
+  return n * (7 * n - 5) / 2","def is_nonagonal(n):
+  return n * (7 * n - 5) / 2",,,,"def is_nonagonal(n): 
+	return int(n * (7 * n - 5) / 2) "
+mbpp,643,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""import re\ndef text_match_wordz_middle(text):\n        return bool(re.search(r'\\Bz\\B',  text))""}",,"import re
+def text_match_wordz_middle(text):
+        return bool(re.search(r'\Bz\B',  text))","import re
+def text_match_wordz_middle(text):
+        return bool(re.search(r'\Bz\B',  text))",,,,"import re
+def text_match_wordz_middle(text):
+        return bool(re.search(r'\Bz\B',  text))"
+mbpp,644,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def reverse_Array_Upto_K(input, k):\n    for i in range(0, int(k/2)):\n        temp = input[i]\n        input[i] = input[k-i-1]\n        input[k-i-1] = temp\n    return input'}",,"def reverse_Array_Upto_K(input, k):
+    for i in range(0, int(k/2)):
+        temp = input[i]
+        input[i] = input[k-i-1]
+        input[k-i-1] = temp
+    return input","def reverse_Array_Upto_K(input, k):
+    for i in range(0, int(k/2)):
+        temp = input[i]
+        input[i] = input[k-i-1]
+        input[k-i-1] = temp
+    return input",,,,"def reverse_Array_Upto_K(input, k): 
+  return (input[k-1::-1] + input[k:]) "
+mbpp,720,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def add_dict_to_tuple(test_tup, test_dict):\n  res = test_tup + (test_dict,)\n  return (res)'}",,"def add_dict_to_tuple(test_tup, test_dict):
+  res = test_tup + (test_dict,)
+  return (res)","def add_dict_to_tuple(test_tup, test_dict):
+  res = test_tup + (test_dict,)
+  return (res)",,,,"def add_dict_to_tuple(test_tup, test_dict):
+  test_tup = list(test_tup)
+  test_tup.append(test_dict)
+  test_tup = tuple(test_tup)
+  return (test_tup) "
+mbpp,721,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def maxAverageOfPath(cost):\n    n = len(cost)\n    dp = [[0 for i in range(n)] for j in range(n)]\n    dp[0][0] = cost[0][0]\n    for i in range(1, n):\n        dp[i][0] = dp[i - 1][0] + cost[i][0]\n    for j in range(1, n):\n        dp[0][j] = dp[0][j - 1] + cost[0][j]\n    for i in range(1, n):\n        for j in range(1, n):\n            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + cost[i][j]\n    return dp[n - 1][n - 1] / (2 * n - 1)'}",,"def maxAverageOfPath(cost):
+    n = len(cost)
+    dp = [[0 for i in range(n)] for j in range(n)]
+    dp[0][0] = cost[0][0]
+    for i in range(1, n):
+        dp[i][0] = dp[i - 1][0] + cost[i][0]
+    for j in range(1, n):
+        dp[0][j] = dp[0][j - 1] + cost[0][j]
+    for i in range(1, n):
+        for j in range(1, n):
+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + cost[i][j]
+    return dp[n - 1][n - 1] / (2 * n - 1)","def maxAverageOfPath(cost):
+    n = len(cost)
+    dp = [[0 for i in range(n)] for j in range(n)]
+    dp[0][0] = cost[0][0]
+    for i in range(1, n):
+        dp[i][0] = dp[i - 1][0] + cost[i][0]
+    for j in range(1, n):
+        dp[0][j] = dp[0][j - 1] + cost[0][j]
+    for i in range(1, n):
+        for j in range(1, n):
+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + cost[i][j]
+    return dp[n - 1][n - 1] / (2 * n - 1)",,,,"def maxAverageOfPath(cost):
+  N = len(cost)
+  dp = [[0 for i in range(N + 1)] for j in range(N + 1)]
+  dp[0][0] = cost[0][0]
+  for i in range(1, N):
+    dp[i][0] = dp[i - 1][0] + cost[i][0]
+  for j in range(1, N):
+    dp[0][j] = dp[0][j - 1] + cost[0][j]
+  for i in range(1, N):
+    for j in range(1, N):
+      dp[i][j] = max(dp[i - 1][j],
+                     dp[i][j - 1]) + cost[i][j]
+  return dp[N - 1][N - 1] / (2 * N - 1)"
+mbpp,722,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""({\'Cierra Vega\': (6.2, 70), \'Alden Cantrell\': (5.9, 65), \'Kierra Gentry\': (6.0, 68), \'Pierre Cox\': (5.8, 66)}, 6.0, 70)"", ""{\'Cierra Vega\': (6.2, 70)}"", ""{}""], [""({\'Cierra Vega\': (6.2, 70), \'Alden Cantrell\': (5.9, 65), \'Kierra Gentry\': (6.0, 68), \'Pierre Cox\': (5.8, 66)}, 5.9, 67)"", ""{\'Cierra Vega\': (6.2, 70), \'Kierra Gentry\': (6.0, 68)}"", ""{\'Cierra Vega\': (6.2, 70), \'Kierra Gentry\': (6.0, 68)}""], [""({\'Cierra Vega\': (6.2, 70), \'Alden Cantrell\': (5.9, 65), \'Kierra Gentry\': (6.0, 68), \'Pierre Cox\': (5.8, 66)}, 5.7, 64)"", ""{\'Cierra Vega\': (6.2, 70), \'Alden Cantrell\': (5.9, 65), \'Kierra Gentry\': (6.0, 68), \'Pierre Cox\': (5.8, 66)}"", ""{\'Cierra Vega\': (6.2, 70), \'Alden Cantrell\': (5.9, 65), \'Kierra Gentry\': (6.0, 68), \'Pierre Cox\': (5.8, 66)}""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def filter_data(students,h,w):\n  return {k:v for k,v in students.items() if v[0]>h and v[1]>w}'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def filter_data(students,h,w):
+  return {k:v for k,v in students.items() if v[0]>h and v[1]>w}","def filter_data(students,h,w):
+  return {k:v for k,v in students.items() if v[0]>h and v[1]>w}",,,,"def filter_data(students,h,w):
+    result = {k: s for k, s in students.items() if s[0] >=h and s[1] >=w}
+    return result    "
+mbpp,723,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def count_same_pair(nums1, nums2):\n  return sum(a == b for a, b in zip(nums1, nums2))'}",,"def count_same_pair(nums1, nums2):
+  return sum(a == b for a, b in zip(nums1, nums2))","def count_same_pair(nums1, nums2):
+  return sum(a == b for a, b in zip(nums1, nums2))",,,,"from operator import eq
+def count_same_pair(nums1, nums2):
+    result = sum(map(eq, nums1, nums2))
+    return result"
+mbpp,724,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def power_base_sum(base, power):\n    return sum(int(i) for i in str(pow(base, power)))'}",,"def power_base_sum(base, power):
+    return sum(int(i) for i in str(pow(base, power)))","def power_base_sum(base, power):
+    return sum(int(i) for i in str(pow(base, power)))",,,,"def power_base_sum(base, power):
+    return sum([int(i) for i in str(pow(base, power))])"
+mbpp,725,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import re\ndef extract_quotation(text1):\n  return re.findall(r\'""(.*?)""\', text1)'}",,"import re
+def extract_quotation(text1):
+  return re.findall(r'""(.*?)""', text1)","import re
+def extract_quotation(text1):
+  return re.findall(r'""(.*?)""', text1)",,,,"import re
+def extract_quotation(text1):
+  return (re.findall(r'""(.*?)""', text1))"
+mbpp,726,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def multiply_elements(test_tup):\n  res = tuple(ele1 * ele2 for ele1, ele2 in zip(test_tup, test_tup[1:]))\n  return (res)'}",,"def multiply_elements(test_tup):
+  res = tuple(ele1 * ele2 for ele1, ele2 in zip(test_tup, test_tup[1:]))
+  return (res)","def multiply_elements(test_tup):
+  res = tuple(ele1 * ele2 for ele1, ele2 in zip(test_tup, test_tup[1:]))
+  return (res)",,,,"def multiply_elements(test_tup):
+  res = tuple(i * j for i, j in zip(test_tup, test_tup[1:]))
+  return (res) "
+mbpp,728,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def sum_list(lst1,lst2):\n  return [x + y for (x, y) in zip(lst1, lst2)]'}",,"def sum_list(lst1,lst2):
+  return [x + y for (x, y) in zip(lst1, lst2)]","def sum_list(lst1,lst2):
+  return [x + y for (x, y) in zip(lst1, lst2)]",,,,"def sum_list(lst1,lst2):
+  res_list = [lst1[i] + lst2[i] for i in range(len(lst1))] 
+  return res_list"
+mbpp,730,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'from itertools import groupby\ndef consecutive_duplicates(nums):\n  return [key for key,group in groupby(nums)]'}",,"from itertools import groupby
+def consecutive_duplicates(nums):
+  return [key for key,group in groupby(nums)]","from itertools import groupby
+def consecutive_duplicates(nums):
+  return [key for key,group in groupby(nums)]",,,,"from itertools import groupby
+def consecutive_duplicates(nums):
+    return [key for key, group in groupby(nums)] "
+mbpp,731,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import math\ndef lateralsurface_cone(r,h):\n  l = math.sqrt(r * r + h * h)\n  LSA = math.pi * r * l\n  return LSA'}",,"import math
+def lateralsurface_cone(r,h):
+  l = math.sqrt(r * r + h * h)
+  LSA = math.pi * r * l
+  return LSA","import math
+def lateralsurface_cone(r,h):
+  l = math.sqrt(r * r + h * h)
+  LSA = math.pi * r * l
+  return LSA",,,,"import math
+def lateralsurface_cone(r,h):
+  l = math.sqrt(r * r + h * h)
+  LSA = math.pi * r  * l
+  return LSA"
+mbpp,732,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import re\ndef replace_specialchar(text):\n  return re.sub(""[ ,.]"", "":"", text)'}",,"import re
+def replace_specialchar(text):
+  return re.sub(""[ ,.]"", "":"", text)","import re
+def replace_specialchar(text):
+  return re.sub(""[ ,.]"", "":"", text)",,,,"import re
+def replace_specialchar(text):
+ return (re.sub(""[ ,.]"", "":"", text))
+"
+mbpp,733,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def find_first_occurrence(A, x):\n    low = 0\n    high = len(A) - 1\n    result = -1\n    while (low <= high):\n        mid = (low + high) // 2\n        if A[mid] > x:\n            high = mid - 1\n        elif A[mid] < x:\n            low = mid + 1\n        else:\n            result = mid\n            high = mid - 1\n    return result'}",,"def find_first_occurrence(A, x):
+    low = 0
+    high = len(A) - 1
+    result = -1
+    while (low <= high):
+        mid = (low + high) // 2
+        if A[mid] > x:
+            high = mid - 1
+        elif A[mid] < x:
+            low = mid + 1
+        else:
+            result = mid
+            high = mid - 1
+    return result","def find_first_occurrence(A, x):
+    low = 0
+    high = len(A) - 1
+    result = -1
+    while (low <= high):
+        mid = (low + high) // 2
+        if A[mid] > x:
+            high = mid - 1
+        elif A[mid] < x:
+            low = mid + 1
+        else:
+            result = mid
+            high = mid - 1
+    return result",,,,"def find_first_occurrence(A, x):
+    (left, right) = (0, len(A) - 1)
+    result = -1
+    while left <= right:
+        mid = (left + right) // 2
+        if x == A[mid]:
+            result = mid
+            right = mid - 1
+        elif x < A[mid]:
+            right = mid - 1
+        else:
+            left = mid + 1
+    return result"
+mbpp,734,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""[1, 2, 3]"", ""20"", ""36""], [""[1, 2]"", ""5"", ""6""], [""[1, 2, 3, 4]"", ""84"", ""240""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def sum_Of_Subarray_Prod(arr):\n    n = len(arr)\n    left = [1] * n\n    right = [1] * n\n    prod = 1\n    for i in range(n):\n        prod *= arr[i]\n        left[i] = prod\n    prod = 1\n    for i in range(n - 1, -1, -1):\n        prod *= arr[i]\n        right[i] = prod\n    res = 0\n    for i in range(n):\n        res += left[i] * right[i]\n    return res'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def sum_Of_Subarray_Prod(arr):
+    n = len(arr)
+    left = [1] * n
+    right = [1] * n
+    prod = 1
+    for i in range(n):
+        prod *= arr[i]
+        left[i] = prod
+    prod = 1
+    for i in range(n - 1, -1, -1):
+        prod *= arr[i]
+        right[i] = prod
+    res = 0
+    for i in range(n):
+        res += left[i] * right[i]
+    return res","def sum_Of_Subarray_Prod(arr):
+    n = len(arr)
+    left = [1] * n
+    right = [1] * n
+    prod = 1
+    for i in range(n):
+        prod *= arr[i]
+        left[i] = prod
+    prod = 1
+    for i in range(n - 1, -1, -1):
+        prod *= arr[i]
+        right[i] = prod
+    res = 0
+    for i in range(n):
+        res += left[i] * right[i]
+    return res",,,,"def sum_Of_Subarray_Prod(arr):
+    ans = 0
+    res = 0
+    i = len(arr) - 1
+    while (i >= 0):
+        incr = arr[i]*(1 + res)
+        ans += incr
+        res = incr
+        i -= 1
+    return (ans)"
+mbpp,788,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def new_tuple(test_list, test_str):\n  res = tuple(test_list + [test_str])\n  return (res)'}",,"def new_tuple(test_list, test_str):
+  res = tuple(test_list + [test_str])
+  return (res)","def new_tuple(test_list, test_str):
+  res = tuple(test_list + [test_str])
+  return (res)",,,,"def new_tuple(test_list, test_str):
+  return tuple(test_list + [test_str])"
+mbpp,790,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def even_position(nums):\n  return all(nums[i]%2==i%2 for i in range(len(nums)))'}",,"def even_position(nums):
+  return all(nums[i]%2==i%2 for i in range(len(nums)))","def even_position(nums):
+  return all(nums[i]%2==i%2 for i in range(len(nums)))",,,,"def even_position(nums):
+	return all(nums[i]%2==i%2 for i in range(len(nums)))"
+mbpp,791,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def remove_nested(test_tup):\n  res = tuple(ele for ele in test_tup if not isinstance(ele, tuple))\n  return (res)'}",,"def remove_nested(test_tup):
+  res = tuple(ele for ele in test_tup if not isinstance(ele, tuple))
+  return (res)","def remove_nested(test_tup):
+  res = tuple(ele for ele in test_tup if not isinstance(ele, tuple))
+  return (res)",,,,"def remove_nested(test_tup):
+  res = tuple()
+  for count, ele in enumerate(test_tup):
+    if not isinstance(ele, tuple):
+      res = res + (ele, )
+  return (res) "
+mbpp,792,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def count_list(input_list):\n  return len(input_list)'}",,"def count_list(input_list):
+  return len(input_list)","def count_list(input_list):
+  return len(input_list)",,,,"def count_list(input_list): 
+    return len(input_list)"
+mbpp,793,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def last(arr,x):\n    n = len(arr)\n    low = 0\n    high = n - 1\n    res = -1\n    while (low <= high):\n        mid = (low + high) // 2\n        if arr[mid] > x:\n            high = mid - 1\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            res = mid\n            low = mid + 1\n    return res'}",,"def last(arr,x):
+    n = len(arr)
+    low = 0
+    high = n - 1
+    res = -1
+    while (low <= high):
+        mid = (low + high) // 2
+        if arr[mid] > x:
+            high = mid - 1
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            res = mid
+            low = mid + 1
+    return res","def last(arr,x):
+    n = len(arr)
+    low = 0
+    high = n - 1
+    res = -1
+    while (low <= high):
+        mid = (low + high) // 2
+        if arr[mid] > x:
+            high = mid - 1
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            res = mid
+            low = mid + 1
+    return res",,,,"def last(arr,x):
+    n = len(arr)
+    low = 0
+    high = n - 1
+    res = -1  
+    while (low <= high):
+        mid = (low + high) // 2 
+        if arr[mid] > x:
+            high = mid - 1
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            res = mid
+            low = mid + 1
+    return res"
+mbpp,794,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""import re\ndef text_starta_endb(text):\n        patterns = 'a.*?b$'\n        return re.search(patterns,  text)""}",,"import re
+def text_starta_endb(text):
+        patterns = 'a.*?b$'
+        return re.search(patterns,  text)","import re
+def text_starta_endb(text):
+        patterns = 'a.*?b$'
+        return re.search(patterns,  text)",,,,"import re
+def text_starta_endb(text):
+        patterns = 'a.*?b$'
+        return re.search(patterns,  text)"
+mbpp,796,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def return_sum(dict):\n  sum = 0\n  for i in dict.values():\n    sum = sum + i\n  return sum'}",,"def return_sum(dict):
+  sum = 0
+  for i in dict.values():
+    sum = sum + i
+  return sum","def return_sum(dict):
+  sum = 0
+  for i in dict.values():
+    sum = sum + i
+  return sum",,,,"def return_sum(dict):
+  sum = 0
+  for i in dict.values():
+    sum = sum + i
+  return sum"
+mbpp,797,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'NameError', 'error_message': ""name 'sum_in_range' is not defined"", 'line_number': '', 'test_case': '[[""(2, 5)"", ""8"", ""<unknown>""], [""(5, 7)"", ""12"", ""<unknown>""], [""(7, 13)"", ""40"", ""<unknown>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nNameError: name \'sum_in_range\' is not defined\n', 'generated_code': 'def sum_odd(n):\n    return n * n'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def sum_odd(n):
+    return n * n","def sum_odd(n):
+    return n * n",,,,"def sum_odd(n): 
+    terms = (n + 1)//2
+    sum1 = terms * terms 
+    return sum1  
+def sum_in_range(l,r): 
+    return sum_odd(r) - sum_odd(l - 1)"
+mbpp,798,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def _sum(arr):\n    sum = 0\n    for i in arr:\n        sum = sum + i\n    return(sum)'}",,"def _sum(arr):
+    sum = 0
+    for i in arr:
+        sum = sum + i
+    return(sum)","def _sum(arr):
+    sum = 0
+    for i in arr:
+        sum = sum + i
+    return(sum)",,,,"def _sum(arr):  
+    sum=0
+    for i in arr: 
+        sum = sum + i      
+    return(sum)  "
+mbpp,799,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def left_rotate(n,d):\n    return (n << d)|(n >> (32 - d))'}",,"def left_rotate(n,d):
+    return (n << d)|(n >> (32 - d))","def left_rotate(n,d):
+    return (n << d)|(n >> (32 - d))",,,,"def left_rotate(n,d):   
+    INT_BITS = 32
+    return (n << d)|(n >> (INT_BITS - d))  "
+mbpp,800,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""import re\ndef remove_all_spaces(text):\n  return (re.sub(' ', '', text))""}",,"import re
+def remove_all_spaces(text):
+  return (re.sub(' ', '', text))","import re
+def remove_all_spaces(text):
+  return (re.sub(' ', '', text))",,,,"import re
+def remove_all_spaces(text):
+ return (re.sub(r'\s+', '',text))"
+mbpp,801,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""(1, 1, 1)"", ""3"", ""True""], [""(-1, -2, -3)"", ""0"", ""False""], [""(1, 2, 2)"", ""2"", ""False""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def test_three_equal(x,y,z):\n  return x == y == z'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def test_three_equal(x,y,z):
+  return x == y == z","def test_three_equal(x,y,z):
+  return x == y == z",,,,"def test_three_equal(x,y,z):
+  result = set([x,y,z])
+  if len(result)==3:
+    return 0
+  else:
+    return 4-len(result)"
+mbpp,802,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def count_rotation(arr):\n    for i in range(1, len(arr)):\n        if arr[i] < arr[i - 1]:\n            return i\n    return 0'}",,"def count_rotation(arr):
+    for i in range(1, len(arr)):
+        if arr[i] < arr[i - 1]:
+            return i
+    return 0","def count_rotation(arr):
+    for i in range(1, len(arr)):
+        if arr[i] < arr[i - 1]:
+            return i
+    return 0",,,,"def count_rotation(arr):   
+    for i in range (1,len(arr)): 
+        if (arr[i] < arr[i - 1]): 
+            return i  
+    return 0"
+mbpp,803,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import math \ndef is_perfect_square(n) : \n    s = int(math.sqrt(n)) \n    return (s * s == n)'}",,"import math 
+def is_perfect_square(n) : 
+    s = int(math.sqrt(n)) 
+    return (s * s == n)","import math 
+def is_perfect_square(n) : 
+    s = int(math.sqrt(n)) 
+    return (s * s == n)",,,,"def is_perfect_square(n) :
+    i = 1
+    while (i * i<= n):
+        if ((n % i == 0) and (n / i == i)):
+            return True     
+        i = i + 1
+    return False"
+mbpp,804,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def is_product_even(arr):\n  for i in arr:\n    if i % 2 == 0:\n      return True\n  return False'}",,"def is_product_even(arr):
+  for i in arr:
+    if i % 2 == 0:
+      return True
+  return False","def is_product_even(arr):
+  for i in arr:
+    if i % 2 == 0:
+      return True
+  return False",,,,"def is_product_even(arr): 
+    for i in range(len(arr)): 
+        if (arr[i] & 1) == 0: 
+            return True
+    return False"
+mbpp,805,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def max_sum_list(lists):\n    return max(lists, key=sum)'}",,"def max_sum_list(lists):
+    return max(lists, key=sum)","def max_sum_list(lists):
+    return max(lists, key=sum)",,,,"def max_sum_list(lists):
+ return max(lists, key=sum)"
+mbpp,806,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AttributeError', 'error_message': ""'str' object has no attribute 'groupby'"", 'line_number': '', 'test_case': '[[""GeMKSForGERksISBESt"", ""5"", ""<Error: \'str\' object has no attribute \'groupby\'>""], [""PrECIOusMOVemENTSYT"", ""6"", ""<Error: \'str\' object has no attribute \'groupby\'>""], [""GooGLEFluTTER"", ""4"", ""<Error: \'str\' object has no attribute \'groupby\'>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\n  File ""<string>"", line 2, in max_run_uppercase\nAttributeError: \'str\' object has no attribute \'groupby\'\n', 'generated_code': 'def max_run_uppercase(test_str):\n  res = max(len(list(grp)) for grp in test_str.groupby(test_str) if grp[0].isupper())\n  return (res)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def max_run_uppercase(test_str):
+  res = max(len(list(grp)) for grp in test_str.groupby(test_str) if grp[0].isupper())
+  return (res)","def max_run_uppercase(test_str):
+  res = max(len(list(grp)) for grp in test_str.groupby(test_str) if grp[0].isupper())
+  return (res)",,,,"def max_run_uppercase(test_str):
+  cnt = 0
+  res = 0
+  for idx in range(0, len(test_str)):
+    if test_str[idx].isupper():
+      cnt += 1
+    else:
+      res = cnt
+      cnt = 0
+  if test_str[len(test_str) - 1].isupper():
+    res = cnt
+  return (res)"
+mbpp,807,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def first_odd(nums):\n  return next((num for num in nums if num % 2 != 0), None)'}",,"def first_odd(nums):
+  return next((num for num in nums if num % 2 != 0), None)","def first_odd(nums):
+  return next((num for num in nums if num % 2 != 0), None)",,,,"def first_odd(nums):
+  first_odd = next((el for el in nums if el%2!=0),-1)
+  return first_odd"
+mbpp,808,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def check_K(test_tup, K):\n  res = any(ele == K for ele in test_tup)\n  return (res)'}",,"def check_K(test_tup, K):
+  res = any(ele == K for ele in test_tup)
+  return (res)","def check_K(test_tup, K):
+  res = any(ele == K for ele in test_tup)
+  return (res)",,,,"def check_K(test_tup, K):
+  res = False
+  for ele in test_tup:
+    if ele == K:
+      res = True
+      break
+  return res "
+mbpp,809,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def check_smaller(test_tup1, test_tup2):\n  res = all(ele1 > ele2 for ele1, ele2 in zip(test_tup1, test_tup2))\n  return (res)'}",,"def check_smaller(test_tup1, test_tup2):
+  res = all(ele1 > ele2 for ele1, ele2 in zip(test_tup1, test_tup2))
+  return (res)","def check_smaller(test_tup1, test_tup2):
+  res = all(ele1 > ele2 for ele1, ele2 in zip(test_tup1, test_tup2))
+  return (res)",,,,"def check_smaller(test_tup1, test_tup2):
+  return all(x > y for x, y in zip(test_tup1, test_tup2))"
+mbpp,735,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'NameError', 'error_message': ""name 'toggle_middle_bits' is not defined"", 'line_number': '', 'test_case': '[[""9"", ""15"", ""<unknown>""], [""10"", ""12"", ""<unknown>""], [""11"", ""13"", ""<unknown>""], [""65"", ""127"", ""<unknown>""], [""77"", ""115"", ""<unknown>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nNameError: name \'toggle_middle_bits\' is not defined\n', 'generated_code': 'def set_middle_bits(n):\n    return n ^ ((n >> 1) & ((1 << (int)(log2(n)) - 1) << 1))'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def set_middle_bits(n):
+    return n ^ ((n >> 1) & ((1 << (int)(log2(n)) - 1) << 1))","def set_middle_bits(n):
+    return n ^ ((n >> 1) & ((1 << (int)(log2(n)) - 1) << 1))",,,,"def set_middle_bits(n):  
+    n |= n >> 1; 
+    n |= n >> 2; 
+    n |= n >> 4; 
+    n |= n >> 8; 
+    n |= n >> 16;  
+    return (n >> 1) ^ 1
+def toggle_middle_bits(n): 
+    if (n == 1): 
+        return 1
+    return n ^ set_middle_bits(n) "
+mbpp,736,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import bisect\ndef left_insertion(a, x):\n    i = bisect.bisect_left(a, x)\n    return i'}",,"import bisect
+def left_insertion(a, x):
+    i = bisect.bisect_left(a, x)
+    return i","import bisect
+def left_insertion(a, x):
+    i = bisect.bisect_left(a, x)
+    return i",,,,"import bisect
+def left_insertion(a, x):
+    i = bisect.bisect_left(a, x)
+    return i"
+mbpp,737,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""import re\ndef check_str(string):\n  return bool(re.search('^[aeiouAEIOU]', string))""}",,"import re
+def check_str(string):
+  return bool(re.search('^[aeiouAEIOU]', string))","import re
+def check_str(string):
+  return bool(re.search('^[aeiouAEIOU]', string))",,,,"import re 
+regex = '^[aeiouAEIOU][A-Za-z0-9_]*'
+def check_str(string): 
+	return re.search(regex, string)"
+mbpp,738,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def geometric_sum(n):\n  if n < 0:\n    return 0\n  else:\n    return 1 / (pow(2, n)) + geometric_sum(n - 1)'}",,"def geometric_sum(n):
+  if n < 0:
+    return 0
+  else:
+    return 1 / (pow(2, n)) + geometric_sum(n - 1)","def geometric_sum(n):
+  if n < 0:
+    return 0
+  else:
+    return 1 / (pow(2, n)) + geometric_sum(n - 1)",,,,"def geometric_sum(n):
+  if n < 0:
+    return 0
+  else:
+    return 1 / (pow(2, n)) + geometric_sum(n - 1)"
+mbpp,739,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import math \ndef find_Index(n): \n    return int(math.ceil((math.sqrt(8 * (10 ** (n - 1)) + 1) - 1) / 2))'}",,"import math 
+def find_Index(n): 
+    return int(math.ceil((math.sqrt(8 * (10 ** (n - 1)) + 1) - 1) / 2))","import math 
+def find_Index(n): 
+    return int(math.ceil((math.sqrt(8 * (10 ** (n - 1)) + 1) - 1) / 2))",,,,"import math 
+def find_Index(n): 
+    x = math.sqrt(2 * math.pow(10,(n - 1)))
+    return round(x)"
+mbpp,740,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def tuple_to_dict(test_tup):\n  res = dict(test_tup[i:i + 2] for i in range(0, len(test_tup), 2))\n  return (res)'}",,"def tuple_to_dict(test_tup):
+  res = dict(test_tup[i:i + 2] for i in range(0, len(test_tup), 2))
+  return (res)","def tuple_to_dict(test_tup):
+  res = dict(test_tup[i:i + 2] for i in range(0, len(test_tup), 2))
+  return (res)",,,,"def tuple_to_dict(test_tup):
+  res = dict(test_tup[idx : idx + 2] for idx in range(0, len(test_tup), 2))
+  return (res) "
+mbpp,741,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def all_Characters_Same(s) :\n    return s == s[0] * len(s)'}",,"def all_Characters_Same(s) :
+    return s == s[0] * len(s)","def all_Characters_Same(s) :
+    return s == s[0] * len(s)",,,,"def all_Characters_Same(s) :
+    n = len(s)
+    for i in range(1,n) :
+        if s[i] != s[0] :
+            return False
+    return True"
+mbpp,742,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import math\ndef area_tetrahedron(side):\n  return (math.sqrt(3) * pow(side, 2))'}",,"import math
+def area_tetrahedron(side):
+  return (math.sqrt(3) * pow(side, 2))","import math
+def area_tetrahedron(side):
+  return (math.sqrt(3) * pow(side, 2))",,,,"import math
+def area_tetrahedron(side):
+  area = math.sqrt(3)*(side*side)
+  return area"
+mbpp,743,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def rotate_right(list, m):\n    return list[-m:] + list[:-m]'}",,"def rotate_right(list, m):
+    return list[-m:] + list[:-m]","def rotate_right(list, m):
+    return list[-m:] + list[:-m]",,,,"def rotate_right(list, m):
+  result =  list[-m:] + list[:-m]
+  return result"
+mbpp,744,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def check_none(test_tup):\n  res = any(ele is None for ele in test_tup)\n  return (res)'}",,"def check_none(test_tup):
+  res = any(ele is None for ele in test_tup)
+  return (res)","def check_none(test_tup):
+  res = any(ele is None for ele in test_tup)
+  return (res)",,,,"def check_none(test_tup):
+  res = any(map(lambda ele: ele is None, test_tup))
+  return res "
+mbpp,745,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def divisible_by_digits(startnum, endnum):\n    return [n for n in range(startnum, endnum + 1) if all(int(digit) != 0 and n % int(digit) == 0 for digit in str(n))]'}",,"def divisible_by_digits(startnum, endnum):
+    return [n for n in range(startnum, endnum + 1) if all(int(digit) != 0 and n % int(digit) == 0 for digit in str(n))]","def divisible_by_digits(startnum, endnum):
+    return [n for n in range(startnum, endnum + 1) if all(int(digit) != 0 and n % int(digit) == 0 for digit in str(n))]",,,,"def divisible_by_digits(startnum, endnum):
+    return [n for n in range(startnum, endnum+1) \
+                if not any(map(lambda x: int(x) == 0 or n%int(x) != 0, str(n)))]"
+mbpp,746,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import math\ndef sector_area(r,a):\n    if a > 360:\n        return None\n    else:\n        return (math.pi * r**2) * (a/360)'}",,"import math
+def sector_area(r,a):
+    if a > 360:
+        return None
+    else:
+        return (math.pi * r**2) * (a/360)","import math
+def sector_area(r,a):
+    if a > 360:
+        return None
+    else:
+        return (math.pi * r**2) * (a/360)",,,,"import math
+def sector_area(r,a):
+    if a > 360:
+        return None
+    return (math.pi*r**2) * (a/360)"
+mbpp,747,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def lcs_of_three(X, Y, Z):\n    m = len(X)\n    n = len(Y)\n    o = len(Z)\n    L = [[[0 for i in range(o+1)] for j in range(n+1)] for k in range(m+1)]\n    for i in range(m+1):\n        for j in range(n+1):\n            for k in range(o+1):\n                if (i == 0 or j == 0 or k == 0):\n                    L[i][j][k] = 0\n                elif (X[i-1] == Y[j-1] and X[i-1] == Z[k-1]):\n                    L[i][j][k] = L[i-1][j-1][k-1] + 1\n                else:\n                    L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1])\n    return L[m][n][o]'}",,"def lcs_of_three(X, Y, Z):
+    m = len(X)
+    n = len(Y)
+    o = len(Z)
+    L = [[[0 for i in range(o+1)] for j in range(n+1)] for k in range(m+1)]
+    for i in range(m+1):
+        for j in range(n+1):
+            for k in range(o+1):
+                if (i == 0 or j == 0 or k == 0):
+                    L[i][j][k] = 0
+                elif (X[i-1] == Y[j-1] and X[i-1] == Z[k-1]):
+                    L[i][j][k] = L[i-1][j-1][k-1] + 1
+                else:
+                    L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1])
+    return L[m][n][o]","def lcs_of_three(X, Y, Z):
+    m = len(X)
+    n = len(Y)
+    o = len(Z)
+    L = [[[0 for i in range(o+1)] for j in range(n+1)] for k in range(m+1)]
+    for i in range(m+1):
+        for j in range(n+1):
+            for k in range(o+1):
+                if (i == 0 or j == 0 or k == 0):
+                    L[i][j][k] = 0
+                elif (X[i-1] == Y[j-1] and X[i-1] == Z[k-1]):
+                    L[i][j][k] = L[i-1][j-1][k-1] + 1
+                else:
+                    L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1])
+    return L[m][n][o]",,,,"def lcs_of_three(X, Y, Z): 
+  m = len(X)
+  n = len(Y)
+  o = len(Z)
+  L = [[[0 for i in range(o+1)] for j in range(n+1)] for k in range(m+1)]
+  for i in range(m+1): 
+	  for j in range(n+1): 
+		  for k in range(o+1): 
+			  if (i == 0 or j == 0 or k == 0): 
+				  L[i][j][k] = 0
+			  elif (X[i-1] == Y[j-1] and X[i-1] == Z[k-1]): 
+				  L[i][j][k] = L[i-1][j-1][k-1] + 1
+			  else: 
+				  L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1]) 
+  return L[m][n][o]"
+mbpp,748,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import re\ndef capital_words_spaces(str1):\n  return re.sub(r""(\\w)([A-Z])"", r""\\1 \\2"", str1)'}",,"import re
+def capital_words_spaces(str1):
+  return re.sub(r""(\w)([A-Z])"", r""\1 \2"", str1)","import re
+def capital_words_spaces(str1):
+  return re.sub(r""(\w)([A-Z])"", r""\1 \2"", str1)",,,,"import re
+def capital_words_spaces(str1):
+  return re.sub(r""(\w)([A-Z])"", r""\1 \2"", str1)"
+mbpp,749,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""[\'4\', \'12\', \'45\', \'7\', \'0\', \'100\', \'200\', \'-12\', \'-500\']"", ""[-500, -12, 0, 4, 7, 12, 45, 100, 200]"", ""[\'-500\', \'-12\', \'0\', \'4\', \'7\', \'12\', \'45\', \'100\', \'200\']""], [""[\'2\', \'3\', \'8\', \'4\', \'7\', \'9\', \'8\', \'2\', \'6\', \'5\', \'1\', \'6\', \'1\', \'2\', \'3\', \'4\', \'6\', \'9\', \'1\', \'2\']"", ""[1, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 5, 6, 6, 6, 7, 8, 8, 9, 9]"", ""[\'1\', \'1\', \'1\', \'2\', \'2\', \'2\', \'2\', \'3\', \'3\', \'4\', \'4\', \'5\', \'6\', \'6\', \'6\', \'7\', \'8\', \'8\', \'9\', \'9\']""], [""[\'1\', \'3\', \'5\', \'7\', \'1\', \'3\', \'13\', \'15\', \'17\', \'5\', \'7 \', \'9\', \'1\', \'11\']"", ""[1, 1, 1, 3, 3, 5, 5, 7, 7, 9, 11, 13, 15, 17]"", ""[\'1\', \'1\', \'1\', \'3\', \'3\', \'5\', \'5\', \'7\', \'7 \', \'9\', \'11\', \'13\', \'15\', \'17\']""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def sort_numeric_strings(nums_str):\n  return sorted(nums_str, key = int)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def sort_numeric_strings(nums_str):
+  return sorted(nums_str, key = int)","def sort_numeric_strings(nums_str):
+  return sorted(nums_str, key = int)",,,,"def sort_numeric_strings(nums_str):
+    result = [int(x) for x in nums_str]
+    result.sort()
+    return result"
+mbpp,750,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def add_tuple(test_list, test_tup):\n  test_list += test_tup\n  return test_list'}",,"def add_tuple(test_list, test_tup):
+  test_list += test_tup
+  return test_list","def add_tuple(test_list, test_tup):
+  test_list += test_tup
+  return test_list",,,,"def add_tuple(test_list, test_tup):
+  test_list += test_tup
+  return test_list"
+mbpp,751,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def check_min_heap_helper(arr, i):\n    left = 2 * i + 1\n    right = 2 * i + 2\n    n = len(arr)\n    if left < n and arr[i] > arr[left]:\n        return False\n    if right < n and arr[i] > arr[right]:\n        return False\n    return True\ndef check_min_heap(arr):\n    for i in range(len(arr) // 2 - 1, -1, -1):\n        if not check_min_heap_helper(arr, i):\n            return False\n    return True'}",,"def check_min_heap_helper(arr, i):
+    left = 2 * i + 1
+    right = 2 * i + 2
+    n = len(arr)
+    if left < n and arr[i] > arr[left]:
+        return False
+    if right < n and arr[i] > arr[right]:
+        return False
+    return True
+def check_min_heap(arr):
+    for i in range(len(arr) // 2 - 1, -1, -1):
+        if not check_min_heap_helper(arr, i):
+            return False
+    return True","def check_min_heap_helper(arr, i):
+    left = 2 * i + 1
+    right = 2 * i + 2
+    n = len(arr)
+    if left < n and arr[i] > arr[left]:
+        return False
+    if right < n and arr[i] > arr[right]:
+        return False
+    return True
+def check_min_heap(arr):
+    for i in range(len(arr) // 2 - 1, -1, -1):
+        if not check_min_heap_helper(arr, i):
+            return False
+    return True",,,,"def check_min_heap_helper(arr, i):
+    if 2 * i + 2 > len(arr):
+        return True
+    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)
+    right_child = (2 * i + 2 == len(arr)) or (arr[i] <= arr[2 * i + 2] 
+                                      and check_min_heap_helper(arr, 2 * i + 2))
+    return left_child and right_child
+
+def check_min_heap(arr):
+  return check_min_heap_helper(arr, 0)"
+mbpp,752,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def jacobsthal_num(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return jacobsthal_num(n - 1) + 2 * jacobsthal_num(n - 2)'}",,"def jacobsthal_num(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return jacobsthal_num(n - 1) + 2 * jacobsthal_num(n - 2)","def jacobsthal_num(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return jacobsthal_num(n - 1) + 2 * jacobsthal_num(n - 2)",,,,"def jacobsthal_num(n): 
+	dp = [0] * (n + 1) 
+	dp[0] = 0
+	dp[1] = 1
+	for i in range(2, n+1): 
+		dp[i] = dp[i - 1] + 2 * dp[i - 2] 
+	return dp[n]"
+mbpp,753,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def min_k(test_list, K):\n  res = sorted(test_list, key = lambda ele: ele[1])[:K]\n  return (res)'}",,"def min_k(test_list, K):
+  res = sorted(test_list, key = lambda ele: ele[1])[:K]
+  return (res)","def min_k(test_list, K):
+  res = sorted(test_list, key = lambda ele: ele[1])[:K]
+  return (res)",,,,"def min_k(test_list, K):
+  res = sorted(test_list, key = lambda x: x[1])[:K]
+  return (res) "
+mbpp,754,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def extract_index_list(l1, l2, l3):\n  result = []\n  for i in range(len(l1)):\n    if l1[i] == l2[i] == l3[i]:\n      result.append(l1[i])\n  return result'}",,"def extract_index_list(l1, l2, l3):
+  result = []
+  for i in range(len(l1)):
+    if l1[i] == l2[i] == l3[i]:
+      result.append(l1[i])
+  return result","def extract_index_list(l1, l2, l3):
+  result = []
+  for i in range(len(l1)):
+    if l1[i] == l2[i] == l3[i]:
+      result.append(l1[i])
+  return result",,,,"def extract_index_list(l1, l2, l3):
+    result = []
+    for m, n, o in zip(l1, l2, l3):
+        if (m == n == o):
+            result.append(m)
+    return result"
+mbpp,755,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'ValueError', 'error_message': 'min() arg is an empty sequence', 'line_number': '', 'test_case': '[[""[1, 2, -8, -2, 0, -2]"", ""-2"", ""-2""], [""[1, 1, -0.5, 0, 2, -2, -2]"", ""-0.5"", ""-0.5""], [""[2, 2]"", ""None"", ""<Error: min() arg is an empty sequence>""], [""[2, 2, 2]"", ""None"", ""<Error: min() arg is an empty sequence>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\n  File ""<string>"", line 4, in second_smallest\nValueError: min() arg is an empty sequence\n', 'generated_code': 'def second_smallest(numbers):\n  unique_numbers = set(numbers)\n  unique_numbers.remove(min(unique_numbers))\n  return min(unique_numbers)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def second_smallest(numbers):
+  unique_numbers = set(numbers)
+  unique_numbers.remove(min(unique_numbers))
+  return min(unique_numbers)","def second_smallest(numbers):
+  unique_numbers = set(numbers)
+  unique_numbers.remove(min(unique_numbers))
+  return min(unique_numbers)",,,,"def second_smallest(numbers):
+  unique_numbers = list(set(numbers))
+  unique_numbers.sort()
+  if len(unique_numbers) < 2:
+    return None
+  else:
+    return unique_numbers[1]"
+mbpp,756,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""ac"", ""False"", ""None""], [""dc"", ""False"", ""None""], [""abbbba"", ""True"", ""<re.Match object; span=(0, 2), match=\'ab\'>""], [""dsabbbba"", ""True"", ""<re.Match object; span=(2, 4), match=\'ab\'>""], [""asbbbba"", ""False"", ""None""], [""abaaa"", ""True"", ""<re.Match object; span=(0, 2), match=\'ab\'>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': ""import re\ndef text_match_zero_one(text):\n        patterns = 'ab+?'\n        return re.search(patterns,  text)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","import re
+def text_match_zero_one(text):
+        patterns = 'ab+?'
+        return re.search(patterns,  text)","import re
+def text_match_zero_one(text):
+        patterns = 'ab+?'
+        return re.search(patterns,  text)",,,,"import re
+def text_match_zero_one(text):
+        patterns = 'ab+?'
+        if re.search(patterns,  text):
+                return True
+        else:
+                return False"
+mbpp,757,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def count_reverse_pairs(test_list):\n  res = sum([1 for idx in range(len(test_list)) for ele in test_list[idx + 1:] if str(ele) == str(test_list[idx])[::-1]])\n  return (res)'}",,"def count_reverse_pairs(test_list):
+  res = sum([1 for idx in range(len(test_list)) for ele in test_list[idx + 1:] if str(ele) == str(test_list[idx])[::-1]])
+  return (res)","def count_reverse_pairs(test_list):
+  res = sum([1 for idx in range(len(test_list)) for ele in test_list[idx + 1:] if str(ele) == str(test_list[idx])[::-1]])
+  return (res)",,,,"def count_reverse_pairs(test_list):
+  res = sum([1 for idx in range(0, len(test_list)) for idxn in range(idx, len( 
+	test_list)) if test_list[idxn] == str(''.join(list(reversed(test_list[idx]))))]) 
+  return res"
+mbpp,758,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'from collections import Counter\ndef unique_sublists(list1):\n  return dict(Counter(tuple(x) for x in list1))'}",,"from collections import Counter
+def unique_sublists(list1):
+  return dict(Counter(tuple(x) for x in list1))","from collections import Counter
+def unique_sublists(list1):
+  return dict(Counter(tuple(x) for x in list1))",,,,"def unique_sublists(list1):
+    result ={}
+    for l in  list1: 
+        result.setdefault(tuple(l), list()).append(1) 
+    for a, b in result.items(): 
+        result[a] = sum(b)
+    return result"
+mbpp,759,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import re\ndef is_decimal(num):\n    return bool(re.search(r""^\\d+\\.\\d{1,2}$"", num))'}",,"import re
+def is_decimal(num):
+    return bool(re.search(r""^\d+\.\d{1,2}$"", num))","import re
+def is_decimal(num):
+    return bool(re.search(r""^\d+\.\d{1,2}$"", num))",,,,"def is_decimal(num):
+    import re
+    dnumre = re.compile(r""""""^[0-9]+(\.[0-9]{1,2})?$"""""")
+    result = dnumre.search(num)
+    return bool(result)"
+mbpp,760,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def unique_Element(arr):\n    return len(set(arr)) == 1'}",,"def unique_Element(arr):
+    return len(set(arr)) == 1","def unique_Element(arr):
+    return len(set(arr)) == 1",,,,"def unique_Element(arr):
+    s = set(arr)
+    return len(s) == 1"
+mbpp,762,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def check_monthnumber_number(monthnum3):\n    if monthnum3 in (4,6,9,11):\n        return True\n    else:\n        return False'}",,"def check_monthnumber_number(monthnum3):
+    if monthnum3 in (4,6,9,11):
+        return True
+    else:
+        return False","def check_monthnumber_number(monthnum3):
+    if monthnum3 in (4,6,9,11):
+        return True
+    else:
+        return False",,,,"def check_monthnumber_number(monthnum3):
+  return monthnum3==4 or monthnum3==6 or monthnum3==9 or monthnum3==11"
+mbpp,763,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def find_min_diff(arr,n):\n    arr = sorted(arr)\n    diff = 10**20\n    for i in range(n-1):\n        if arr[i+1] - arr[i] < diff:\n            diff = arr[i+1] - arr[i]\n    return diff'}",,"def find_min_diff(arr,n):
+    arr = sorted(arr)
+    diff = 10**20
+    for i in range(n-1):
+        if arr[i+1] - arr[i] < diff:
+            diff = arr[i+1] - arr[i]
+    return diff","def find_min_diff(arr,n):
+    arr = sorted(arr)
+    diff = 10**20
+    for i in range(n-1):
+        if arr[i+1] - arr[i] < diff:
+            diff = arr[i+1] - arr[i]
+    return diff",,,,"def find_min_diff(arr,n): 
+    arr = sorted(arr) 
+    diff = 10**20 
+    for i in range(n-1): 
+        if arr[i+1] - arr[i] < diff: 
+            diff = arr[i+1] - arr[i]  
+    return diff "
+mbpp,764,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""import re\ndef number_ctr(str):\n  return len(re.findall(r'\\d', str))""}",,"import re
+def number_ctr(str):
+  return len(re.findall(r'\d', str))","import re
+def number_ctr(str):
+  return len(re.findall(r'\d', str))",,,,"def number_ctr(str):
+      number_ctr= 0
+      for i in range(len(str)):
+          if str[i] >= '0' and str[i] <= '9': number_ctr += 1     
+      return  number_ctr"
+mbpp,765,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""7"", ""11"", ""14""], [""4"", ""7"", ""8""], [""9"", ""13"", ""18""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def is_polite(n):\n    return n + 2*(n+1) - (n+1)*(n+2)//(n+1)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def is_polite(n):
+    return n + 2*(n+1) - (n+1)*(n+2)//(n+1)","def is_polite(n):
+    return n + 2*(n+1) - (n+1)*(n+2)//(n+1)",,,,"import math 
+def is_polite(n): 
+	n = n + 1
+	return (int)(n+(math.log((n + math.log(n, 2)), 2))) "
+mbpp,766,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def pair_wise(l1):\n  return list(zip(l1,l1[1:]))'}",,"def pair_wise(l1):
+  return list(zip(l1,l1[1:]))","def pair_wise(l1):
+  return list(zip(l1,l1[1:]))",,,,"def pair_wise(l1):
+    temp = []
+    for i in range(len(l1) - 1):
+        current_element, next_element = l1[i], l1[i + 1]
+        x = (current_element, next_element)
+        temp.append(x)
+    return temp"
+mbpp,767,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def get_pairs_count(arr, sum):\n    count = 0  \n    for i in range(len(arr)):\n        for j in range(i + 1,len(arr)):\n            if arr[i] + arr[j] == sum:\n                count += 1\n    return count'}",,"def get_pairs_count(arr, sum):
+    count = 0  
+    for i in range(len(arr)):
+        for j in range(i + 1,len(arr)):
+            if arr[i] + arr[j] == sum:
+                count += 1
+    return count","def get_pairs_count(arr, sum):
+    count = 0  
+    for i in range(len(arr)):
+        for j in range(i + 1,len(arr)):
+            if arr[i] + arr[j] == sum:
+                count += 1
+    return count",,,,"def get_pairs_count(arr, sum):
+    count = 0  
+    for i in range(len(arr)):
+        for j in range(i + 1,len(arr)):
+            if arr[i] + arr[j] == sum:
+                count += 1
+    return count"
+mbpp,769,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def Diff(li1,li2):\n  return list(set(li1) - set(li2)) + list(set(li2) - set(li1))'}",,"def Diff(li1,li2):
+  return list(set(li1) - set(li2)) + list(set(li2) - set(li1))","def Diff(li1,li2):
+  return list(set(li1) - set(li2)) + list(set(li2) - set(li1))",,,,"def Diff(li1,li2):
+    return list(set(li1)-set(li2)) + list(set(li2)-set(li1))
+ "
+mbpp,770,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""2"", ""82"", ""6""], [""3"", ""707"", ""29""], [""4"", ""3108"", ""86""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def odd_num_sum(n) :\n    return (n * (2 * n - 1) * (2 * n + 1) * (2 * n + 3)) // 32'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def odd_num_sum(n) :
+    return (n * (2 * n - 1) * (2 * n + 1) * (2 * n + 3)) // 32","def odd_num_sum(n) :
+    return (n * (2 * n - 1) * (2 * n + 1) * (2 * n + 3)) // 32",,,,"def odd_num_sum(n) : 
+    j = 0
+    sm = 0
+    for i in range(1,n + 1) : 
+        j = (2*i-1) 
+        sm = sm + (j*j*j*j)   
+    return sm "
+mbpp,771,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""{()}[{}]"", ""True"", ""True""], [""{()}[{]"", ""False"", ""True""], [""{()}[{}][]({})"", ""True"", ""True""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def check_expression(exp):\n    stack = []\n    for char in exp:\n        if char == ""("":\n            stack.append(char)\n        elif char == "")"":\n            if len(stack) == 0:\n                return False\n            stack.pop()\n    if len(stack) == 0:\n        return True\n    else:\n        return False'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def check_expression(exp):
+    stack = []
+    for char in exp:
+        if char == ""("":
+            stack.append(char)
+        elif char == "")"":
+            if len(stack) == 0:
+                return False
+            stack.pop()
+    if len(stack) == 0:
+        return True
+    else:
+        return False","def check_expression(exp):
+    stack = []
+    for char in exp:
+        if char == ""("":
+            stack.append(char)
+        elif char == "")"":
+            if len(stack) == 0:
+                return False
+            stack.pop()
+    if len(stack) == 0:
+        return True
+    else:
+        return False",,,,"from collections import deque
+def check_expression(exp):
+    if len(exp) & 1:
+        return False
+    stack = deque()
+    for ch in exp:
+        if ch == '(' or ch == '{' or ch == '[':
+            stack.append(ch)
+        if ch == ')' or ch == '}' or ch == ']':
+            if not stack:
+                return False
+            top = stack.pop()
+            if (top == '(' and ch != ')') or (top == '{' and ch != '}' or (top == '[' and ch != ']')):
+                return False
+    return not stack"
+mbpp,772,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""def remove_length(test_str, K):\n  res = ' '.join([ele for ele in test_str.split() if len(ele) != K])\n  return (res)""}",,"def remove_length(test_str, K):
+  res = ' '.join([ele for ele in test_str.split() if len(ele) != K])
+  return (res)","def remove_length(test_str, K):
+  res = ' '.join([ele for ele in test_str.split() if len(ele) != K])
+  return (res)",,,,"def remove_length(test_str, K):
+  temp = test_str.split()
+  res = [ele for ele in temp if len(ele) != K]
+  res = ' '.join(res)
+  return (res) "
+mbpp,773,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""(\'python programming, python language\', \'python\')"", ""(\'python\', 0, 6)"", ""(0, 6)""], [""(\'python programming,programming language\', \'programming\')"", ""(\'programming\', 7, 18)"", ""(7, 18)""], [""(\'python programming,programming language\', \'language\')"", ""(\'language\', 31, 39)"", ""(31, 39)""], [""(\'c++ programming, c++ language\', \'python\')"", ""None"", ""None""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'import re\ndef occurance_substring(text,pattern):\n  for match in re.finditer(pattern, text):\n    s = match.start()\n    e = match.end()\n    return (s, e)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","import re
+def occurance_substring(text,pattern):
+  for match in re.finditer(pattern, text):
+    s = match.start()
+    e = match.end()
+    return (s, e)","import re
+def occurance_substring(text,pattern):
+  for match in re.finditer(pattern, text):
+    s = match.start()
+    e = match.end()
+    return (s, e)",,,,"import re
+def occurance_substring(text,pattern):
+ for match in re.finditer(pattern, text):
+    s = match.start()
+    e = match.end()
+    return (text[s:e], s, e)"
+mbpp,775,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def odd_position(nums):\n  return all(nums[i]%2 == i%2 for i in range(len(nums)))'}",,"def odd_position(nums):
+  return all(nums[i]%2 == i%2 for i in range(len(nums)))","def odd_position(nums):
+  return all(nums[i]%2 == i%2 for i in range(len(nums)))",,,,"def odd_position(nums):
+	return all(nums[i]%2==i%2 for i in range(len(nums)))"
+mbpp,776,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""bestinstareels"", ""7"", ""2""], [""partofthejourneyistheend"", ""12"", ""4""], [""amazonprime"", ""5"", ""0""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': ""def count_vowels(test_str):\n  vow_list = ['a', 'e', 'i', 'o', 'u']\n  res = sum([1 for idx in range(1, len(test_str) - 1) if test_str[idx] in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list)])\n  return (res)""}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def count_vowels(test_str):
+  vow_list = ['a', 'e', 'i', 'o', 'u']
+  res = sum([1 for idx in range(1, len(test_str) - 1) if test_str[idx] in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list)])
+  return (res)","def count_vowels(test_str):
+  vow_list = ['a', 'e', 'i', 'o', 'u']
+  res = sum([1 for idx in range(1, len(test_str) - 1) if test_str[idx] in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list)])
+  return (res)",,,,"def count_vowels(test_str):
+  res = 0
+  vow_list = ['a', 'e', 'i', 'o', 'u']
+  for idx in range(1, len(test_str) - 1):
+    if test_str[idx] not in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list):
+      res += 1
+  if test_str[0] not in vow_list and test_str[1] in vow_list:
+    res += 1
+  if test_str[-1] not in vow_list and test_str[-2] in vow_list:
+    res += 1
+  return (res) "
+mbpp,777,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""[1, 2, 3, 1, 1, 4, 5, 6]"", ""21"", ""20""], [""[1, 10, 9, 4, 2, 10, 10, 45, 4]"", ""71"", ""57""], [""[12, 10, 9, 45, 2, 10, 10, 45, 10]"", ""78"", ""23""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def find_sum(arr):\n    return sum([i for i in arr if arr.count(i) == 1])'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def find_sum(arr):
+    return sum([i for i in arr if arr.count(i) == 1])","def find_sum(arr):
+    return sum([i for i in arr if arr.count(i) == 1])",,,,"def find_sum(arr): 
+    arr.sort() 
+    sum = arr[0] 
+    for i in range(len(arr)-1): 
+        if (arr[i] != arr[i+1]): 
+            sum = sum + arr[i+1]   
+    return sum"
+mbpp,778,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'NameError', 'error_message': ""name 'itertools' is not defined"", 'line_number': '', 'test_case': '[[""[0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]"", ""[[0, 0], [1], [2], [3], [4, 4], [5], [6, 6, 6], [7], [8], [9], [4, 4]]"", ""<Error: name \'itertools\' is not defined>""], [""[10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10]"", ""[[10, 10], [15], [19], [18, 18], [17], [26, 26], [17], [18], [10]]"", ""<Error: name \'itertools\' is not defined>""], [""[\'a\', \'a\', \'b\', \'c\', \'d\', \'d\']"", ""[[\'a\', \'a\'], [\'b\'], [\'c\'], [\'d\', \'d\']]"", ""<Error: name \'itertools\' is not defined>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\n  File ""<string>"", line 3, in pack_consecutive_duplicates\nNameError: name \'itertools\' is not defined\n', 'generated_code': 'def pack_consecutive_duplicates(list1):\n    result = []\n    for key, group in itertools.groupby(list1):\n        result.append(list(group))\n    return result'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def pack_consecutive_duplicates(list1):
+    result = []
+    for key, group in itertools.groupby(list1):
+        result.append(list(group))
+    return result","def pack_consecutive_duplicates(list1):
+    result = []
+    for key, group in itertools.groupby(list1):
+        result.append(list(group))
+    return result",,,,"from itertools import groupby
+def pack_consecutive_duplicates(list1):
+    return [list(group) for key, group in groupby(list1)]"
+mbpp,779,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'from collections import Counter\ndef unique_sublists(list1):\n  return dict(Counter(tuple(x) for x in list1))'}",,"from collections import Counter
+def unique_sublists(list1):
+  return dict(Counter(tuple(x) for x in list1))","from collections import Counter
+def unique_sublists(list1):
+  return dict(Counter(tuple(x) for x in list1))",,,,"def unique_sublists(list1):
+    result ={}
+    for l in list1: 
+        result.setdefault(tuple(l), list()).append(1) 
+    for a, b in result.items(): 
+        result[a] = sum(b)
+    return result"
+mbpp,780,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'TypeError', 'error_message': ""unsupported operand type(s) for +: 'int' and 'tuple'"", 'line_number': '', 'test_case': '[[""[(2, 4), (6, 7), (5, 1), (6, 10)]"", ""[(8, 11), (7, 5), (8, 14), (11, 8), (12, 17), (11, 11)]"", ""<Error: unsupported operand type(s) for +: \'int\' and \'tuple\'>""], [""[(3, 5), (7, 8), (6, 2), (7, 11)]"", ""[(10, 13), (9, 7), (10, 16), (13, 10), (14, 19), (13, 13)]"", ""<Error: unsupported operand type(s) for +: \'int\' and \'tuple\'>""], [""[(4, 6), (8, 9), (7, 3), (8, 12)]"", ""[(12, 15), (11, 9), (12, 18), (15, 12), (16, 21), (15, 15)]"", ""<Error: unsupported operand type(s) for +: \'int\' and \'tuple\'>""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\n  File ""<string>"", line 3, in find_combinations\n  File ""<string>"", line 3, in <listcomp>\nTypeError: unsupported operand type(s) for +: \'int\' and \'tuple\'\n', 'generated_code': 'from itertools import combinations\ndef find_combinations(test_list):\n  res = [sum(idx) for idx in combinations(test_list, 2)]\n  return (res)'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","from itertools import combinations
+def find_combinations(test_list):
+  res = [sum(idx) for idx in combinations(test_list, 2)]
+  return (res)","from itertools import combinations
+def find_combinations(test_list):
+  res = [sum(idx) for idx in combinations(test_list, 2)]
+  return (res)",,,,"from itertools import combinations 
+def find_combinations(test_list):
+  res = [(b1 + a1, b2 + a2) for (a1, a2), (b1, b2) in combinations(test_list, 2)]
+  return (res) "
+mbpp,781,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import math\ndef count_divisors(n) :\n    count = 0\n    for i in range(1, (int)(math.sqrt(n)) + 2) :\n        if (n % i == 0) :\n            if( n // i == i ) :\n                count = count + 1\n            else :\n                count = count + 2\n    return count % 2 == 0'}",,"import math
+def count_divisors(n) :
+    count = 0
+    for i in range(1, (int)(math.sqrt(n)) + 2) :
+        if (n % i == 0) :
+            if( n // i == i ) :
+                count = count + 1
+            else :
+                count = count + 2
+    return count % 2 == 0","import math
+def count_divisors(n) :
+    count = 0
+    for i in range(1, (int)(math.sqrt(n)) + 2) :
+        if (n % i == 0) :
+            if( n // i == i ) :
+                count = count + 1
+            else :
+                count = count + 2
+    return count % 2 == 0",,,,"import math 
+def count_divisors(n) : 
+    count = 0
+    for i in range(1, (int)(math.sqrt(n)) + 2) : 
+        if (n % i == 0) : 
+            if( n // i == i) : 
+                count = count + 1
+            else : 
+                count = count + 2
+    return count % 2 == 0"
+mbpp,782,hallucinated,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'failed', 'error_type': 'AssertionError', 'error_message': '', 'line_number': '', 'test_case': '[[""[1, 2, 4]"", ""14"", ""15""], [""[1, 2, 1, 2]"", ""15"", ""17""], [""[1, 7]"", ""8"", ""11""]]', 'testcase_output': 'Traceback (most recent call last):\n  File ""/tmp/ipykernel_4163/3414935336.py"", line 103, in execute_mbpp_test_inner\n    exec(str(test_assertion).strip(), test_env)\n  File ""<string>"", line 1, in <module>\nAssertionError\n', 'generated_code': 'def odd_length_sum(arr):\n    n = len(arr)\n    res = 0\n    for i in range(n):\n        res += ((i + 1) * (n - i) + 1) * arr[i] // 2\n    return res'}","{'libapi_analyzed': True, 'name_error': 0, 'attribute_error': 0, 'module_not_found': 0, 'total_libapi_errors': 0, 'libapi_details': []}","def odd_length_sum(arr):
+    n = len(arr)
+    res = 0
+    for i in range(n):
+        res += ((i + 1) * (n - i) + 1) * arr[i] // 2
+    return res","def odd_length_sum(arr):
+    n = len(arr)
+    res = 0
+    for i in range(n):
+        res += ((i + 1) * (n - i) + 1) * arr[i] // 2
+    return res",,,,"def odd_length_sum(arr):
+    Sum = 0
+    l = len(arr)
+    for i in range(l):
+        Sum += ((((i + 1) *(l - i) + 1) // 2) * arr[i])
+    return Sum"
+mbpp,783,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import math\ndef rgb_to_hsv(r, g, b):\n    r, g, b = r/255.0, g/255.0, b/255.0\n    mx = max(r, g, b)\n    mn = min(r, g, b)\n    df = mx-mn\n    if mx == mn:\n        h = 0\n    elif mx == r:\n        h = (60 * ((g-b)/df) + 360) % 360\n    elif mx == g:\n        h = (60 * ((b-r)/df) + 120) % 360\n    elif mx == b:\n        h = (60 * ((r-g)/df) + 240) % 360\n    if mx == 0:\n        s = 0\n    else:\n        s = (df/mx)*100\n    v = mx*100\n    return h, s, v'}",,"import math
+def rgb_to_hsv(r, g, b):
+    r, g, b = r/255.0, g/255.0, b/255.0
+    mx = max(r, g, b)
+    mn = min(r, g, b)
+    df = mx-mn
+    if mx == mn:
+        h = 0
+    elif mx == r:
+        h = (60 * ((g-b)/df) + 360) % 360
+    elif mx == g:
+        h = (60 * ((b-r)/df) + 120) % 360
+    elif mx == b:
+        h = (60 * ((r-g)/df) + 240) % 360
+    if mx == 0:
+        s = 0
+    else:
+        s = (df/mx)*100
+    v = mx*100
+    return h, s, v","import math
+def rgb_to_hsv(r, g, b):
+    r, g, b = r/255.0, g/255.0, b/255.0
+    mx = max(r, g, b)
+    mn = min(r, g, b)
+    df = mx-mn
+    if mx == mn:
+        h = 0
+    elif mx == r:
+        h = (60 * ((g-b)/df) + 360) % 360
+    elif mx == g:
+        h = (60 * ((b-r)/df) + 120) % 360
+    elif mx == b:
+        h = (60 * ((r-g)/df) + 240) % 360
+    if mx == 0:
+        s = 0
+    else:
+        s = (df/mx)*100
+    v = mx*100
+    return h, s, v",,,,"def rgb_to_hsv(r, g, b):
+    r, g, b = r/255.0, g/255.0, b/255.0
+    mx = max(r, g, b)
+    mn = min(r, g, b)
+    df = mx-mn
+    if mx == mn:
+        h = 0
+    elif mx == r:
+        h = (60 * ((g-b)/df) + 360) % 360
+    elif mx == g:
+        h = (60 * ((b-r)/df) + 120) % 360
+    elif mx == b:
+        h = (60 * ((r-g)/df) + 240) % 360
+    if mx == 0:
+        s = 0
+    else:
+        s = (df/mx)*100
+    v = mx*100
+    return h, s, v"
+mbpp,784,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def mul_even_odd(list1):\n  even = next((x for x in list1 if x % 2 == 0), None)\n  odd = next((x for x in list1 if x % 2 != 0), None)\n  return even * odd'}",,"def mul_even_odd(list1):
+  even = next((x for x in list1 if x % 2 == 0), None)
+  odd = next((x for x in list1 if x % 2 != 0), None)
+  return even * odd","def mul_even_odd(list1):
+  even = next((x for x in list1 if x % 2 == 0), None)
+  odd = next((x for x in list1 if x % 2 != 0), None)
+  return even * odd",,,,"def mul_even_odd(list1):
+    first_even = next((el for el in list1 if el%2==0),-1)
+    first_odd = next((el for el in list1 if el%2!=0),-1)
+    return (first_even*first_odd)"
+mbpp,785,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'def tuple_str_int(test_str):\n  res = tuple(map(int, test_str.replace(""("", """").replace("")"", """").split("","")))\n  return (res)'}",,"def tuple_str_int(test_str):
+  res = tuple(map(int, test_str.replace(""("", """").replace("")"", """").split("","")))
+  return (res)","def tuple_str_int(test_str):
+  res = tuple(map(int, test_str.replace(""("", """").replace("")"", """").split("","")))
+  return (res)",,,,"def tuple_str_int(test_str):
+  res = tuple(int(num) for num in test_str.replace('(', '').replace(')', '').replace('...', '').split(', '))
+  return (res) "
+mbpp,786,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': 'import bisect\ndef right_insertion(a, x):\n    i = bisect.bisect_right(a, x)\n    return i'}",,"import bisect
+def right_insertion(a, x):
+    i = bisect.bisect_right(a, x)
+    return i","import bisect
+def right_insertion(a, x):
+    i = bisect.bisect_right(a, x)
+    return i",,,,"import bisect
+def right_insertion(a, x):
+    return bisect.bisect_right(a, x)"
+mbpp,787,passed,"{'ast_parsed': True, 'ast_errors': []}","{'status': 'passed', 'error_type': '', 'error_message': '', 'line_number': '', 'test_case': '', 'testcase_output': '', 'generated_code': ""import re\ndef text_match_three(text):\n        patterns = 'ab{3}?'\n        return re.search(patterns,  text)""}",,"import re
+def text_match_three(text):
+        patterns = 'ab{3}?'
+        return re.search(patterns,  text)","import re
+def text_match_three(text):
+        patterns = 'ab{3}?'
+        return re.search(patterns,  text)",,,,"import re
+def text_match_three(text):
+        patterns = 'ab{3}?'
+        return re.search(patterns,  text)"
