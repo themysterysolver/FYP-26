@@ -1,0 +1,8 @@
+rank_by_dominance,error_type,before_pooled_fedavg_baseline,after_fedavg,after_federror,net_reduction_fedavg,net_reduction_federror,gross_reduction_fedavg,gross_reduction_federror,gross_gap_federror_minus_fedavg,net_gap_federror_minus_fedavg
+1,AssertionError,379,348,345,31,34,31,34,3,3
+2,NameError,201,35,19,166,182,166,182,16,16
+3,TypeError,80,85,83,-5,-3,0,0,0,2
+4,AttributeError,58,42,39,16,19,16,19,3,3
+5,SyntaxError,24,7,7,17,17,17,17,0,0
+6,TimeoutError,14,0,0,14,14,14,14,0,0
+7,IndexError,6,9,8,-3,-2,0,0,0,1

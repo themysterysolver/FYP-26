@@ -1,0 +1,7 @@
+metric,fedavg,federror,federror_minus_fedavg
+total_gross_reduction,244.0,266.0,22.0
+gross_reduction_top3_dominant_types,197.0,216.0,19.0
+net_reduction_top3,192.0,213.0,21.0
+cumulative_gross_after_top3_ranks,197.0,216.0,19.0
+baseline_mass_in_top3_share_of_all_before,0.8661417322834646,0.8661417322834646,0.0
+sum_t_before_t_times_gross_gap_t_federror_minus_fedavg,,,4527.0
