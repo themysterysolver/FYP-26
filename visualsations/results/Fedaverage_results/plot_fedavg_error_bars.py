@@ -3,11 +3,12 @@ FedAvg pipeline error comparison: baseline vs adapter CSVs in FED_AVG_CHECK.
 
 - MBPP: only tasks in mbpp_adapter_pipeline_output.csv (207-task eval split).
 - HumanEval after FedAvg: humaneval_adapter_pipeline_output_o.csv (authoritative post-FedAvg run).
-- Error-type bars (error_types_before_after.png): HumanEval only — humaneval_pipeline_output.csv vs humaneval_adapter_pipeline_output_o.csv; types filtered to final_dataset_v2.csv.
-- Other PNGs: all three datasets as described below.
+- Error-type bars (error_types_before_after.png): pooled over DS-1000, HumanEval, MBPP; x-axis types
+  and order match fed_method_comparison/largest_net_fix_first_bars.png (HumanEval type set; order =
+  largest fed-error net fix first, tie-break FedAvg net).
 
-Outputs PNG bar charts into visualsations/results/Fedaverage_results/. Pooled per-type charts
-only include error types that appear on error_types_before_after.png (HumanEval FedAvg chart).
+Outputs PNG bar charts into visualsations/results/Fedaverage_results/. Pooled per-type delta charts
+use the same error types as error_types_before_after.png.
 """
 from __future__ import annotations
 
@@ -150,6 +151,33 @@ def total_pairs(counter: Counter[str]) -> int:
     return int(sum(counter.values()))
 
 
+def error_types_for_method_comparison_chart(
+    merged_humaneval: pd.DataFrame,
+    allowed: set[str],
+) -> set[str]:
+    """Types on HumanEval FedAvg before/after — same set as fed_method_comparison bar charts."""
+    hb, ha = category_counts_pre_post(merged_humaneval, allowed=allowed)
+    return set(hb.keys()) | set(ha.keys())
+
+
+def type_order_largest_net_fix_first(
+    b_avg: Counter[str],
+    a_avg: Counter[str],
+    b_err: Counter[str],
+    a_err: Counter[str],
+    he_types: set[str],
+) -> list[str]:
+    """X-order: largest fed-error net reduction first; tie-break FedAvg net; then name."""
+    return sorted(
+        he_types,
+        key=lambda t: (
+            -(b_err.get(t, 0) - a_err.get(t, 0)),
+            -(b_avg.get(t, 0) - a_avg.get(t, 0)),
+            t,
+        ),
+    )
+
+
 def _p9(a: int, b: int, tag: str) -> float:
     if not a or a != b:
         return float(b)
@@ -167,15 +195,42 @@ def main() -> None:
 
     allowed = load_allowed_error_types_from_final_dataset(fed / "final_dataset_v2.csv")
 
-    # Chart 1: HumanEval only (baseline + adapter_o merge is already in merged_all["humaneval"])
-    he_before, he_after = category_counts_pre_post(
-        merged_all["humaneval"], allowed=allowed
-    )
-    he_chart_types = set(he_before.keys()) | set(he_after.keys())
-    g_before = he_before
-    g_after = he_after
+    g_all_before = Counter()
+    g_all_after = Counter()
+    for name in ("ds1000", "humaneval", "mbpp"):
+        b, a = category_counts_pre_post(merged_all[name], allowed=allowed)
+        g_all_before.update(b)
+        g_all_after.update(a)
 
-    all_types = sorted(set(g_before.keys()) | set(g_after.keys()))
+    # Chart 1: pooled counts; x-axis types/order = method-comparison largest-net-fix-first chart
+    g_before = g_all_before
+    g_after = g_all_after
+    he_types = error_types_for_method_comparison_chart(merged_all["humaneval"], allowed)
+    fed_err_dir = root / "FED_ERRORAVG_CHECK"
+    try:
+        merged_err = load_merged_pairs(fed_err_dir)
+        allowed_err = load_allowed_error_types_from_final_dataset(
+            fed_err_dir / "final_dataset_v2.csv"
+        )
+        b_err_p = Counter()
+        a_err_p = Counter()
+        for name in ("ds1000", "humaneval", "mbpp"):
+            b, a = category_counts_pre_post(merged_err[name], allowed=allowed_err)
+            b_err_p.update(b)
+            a_err_p.update(a)
+        all_types = type_order_largest_net_fix_first(
+            g_all_before, g_all_after, b_err_p, a_err_p, he_types
+        )
+    except FileNotFoundError:
+        all_types = sorted(
+            he_types,
+            key=lambda t: (
+                -(g_all_before.get(t, 0) - g_all_after.get(t, 0)),
+                -(g_all_before.get(t, 0)),
+                t,
+            ),
+        )
+    he_chart_types = he_types
     n = len(all_types)
     x = range(n)
     w = 0.35
@@ -198,7 +253,9 @@ def main() -> None:
     ax1.set_xticks(list(x))
     ax1.set_xticklabels(all_types, rotation=40, ha="right", fontsize=8)
     ax1.set_ylabel("Task–error-type pairs")
-    ax1.set_title("HumanEval: error types before vs after FedAvg")
+    ax1.set_title(
+        "DS-1000, HumanEval & MBPP (pooled): error types before vs after FedAvg"
+    )
     ax1.legend()
     fig1.tight_layout()
     fig1.savefig(out_dir / "error_types_before_after.png", dpi=150)
@@ -242,13 +299,6 @@ def main() -> None:
     fig2.savefig(out_dir / "error_reduction_by_dataset.png", dpi=150)
     plt.close(fig2)
 
-    g_all_before = Counter()
-    g_all_after = Counter()
-    for name in ("ds1000", "humaneval", "mbpp"):
-        b, a = category_counts_pre_post(merged_all[name], allowed=allowed)
-        g_all_before.update(b)
-        g_all_after.update(a)
-
     tot_b = total_pairs(g_all_before)
     tot_a = total_pairs(g_all_after)
     fig3, ax3 = plt.subplots(figsize=(6, 5))
@@ -277,10 +327,13 @@ def main() -> None:
     print("  total_errors_before_after.png")
     print("  per_type_absolute_change_pooled.png")
     print("  per_type_fractional_reduction_pooled.png")
-    print("  (pooled per-type charts restricted to HumanEval chart types)")
+    print("  (pooled per-type delta charts match error_types_before_after types)")
     print(f"HumanEval post-FedAvg file: {HUMANEVAL_ADAPTER_POST}")
     print(
-        f"error_types_before_after.png: HumanEval only (n={len(merged_all['humaneval'])} tasks)"
+        "error_types_before_after.png: pooled over "
+        f"ds1000 n={len(merged_all['ds1000'])}, humaneval n={len(merged_all['humaneval'])}, "
+        f"mbpp n={len(merged_all['mbpp'])}; x-axis = HumanEval type set, "
+        "order = largest fed-error net fix first (see fed_method_comparison)"
     )
     print(f"Allowed error types from final_dataset_v2.csv: {len(allowed)}")
     print(f"Totals all datasets (filtered): before={tot_b}, after={tot_a}, reduced={tot_b - tot_a}")

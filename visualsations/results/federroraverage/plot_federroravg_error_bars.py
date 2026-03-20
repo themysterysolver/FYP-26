@@ -1,8 +1,8 @@
 """
 Fed error average pipeline comparison: baseline vs adapter CSVs in FED_ERRORAVG_CHECK.
 
-Six PNGs: HumanEval error-type chart, per-dataset totals, overall totals, pooled per-type absolute/fractional
-(reduced to HumanEval-chart types only), plus per_type_absolute_delta_vs_fedavg.png vs FED_AVG_CHECK.
+Six PNGs: pooled error-type chart (x-axis types/order match fed_method_comparison largest-net-fix-first chart),
+per-dataset totals, overall totals, pooled per-type absolute/fractional, plus per_type_absolute_delta_vs_fedavg.png.
 MBPP: inner join on adapter task_ids (eval split). HumanEval after: HUMANEVAL_ADAPTER_POST in FED_ERRORAVG_CHECK.
 
 Outputs PNG bar charts into visualsations/results/federroraverage/.
@@ -90,6 +90,19 @@ def _project_root() -> Path:
     return Path(__file__).resolve().parent.parent.parent.parent
 
 
+def _load_fedavg_plot_module():
+    p = (
+        Path(__file__).resolve().parent.parent
+        / "Fedaverage_results"
+        / "plot_fedavg_error_bars.py"
+    )
+    spec = importlib.util.spec_from_file_location("_fedavg_bars", p)
+    mod = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def load_merged_pairs(data_dir: Path) -> dict[str, pd.DataFrame]:
     pairs = [
         (
@@ -164,18 +177,30 @@ def main() -> None:
         fed_avg_dir / "final_dataset_v2.csv"
     )
     merged_avg_all = load_merged_pairs(fed_avg_dir)
-    hb_ref, ha_ref = category_counts_pre_post(
-        merged_avg_all["humaneval"], allowed=allowed_avg
-    )
-    he_chart_types = set(hb_ref.keys()) | set(ha_ref.keys())
 
-    he_before, he_after = category_counts_pre_post(
-        merged_all["humaneval"], allowed=allowed
-    )
-    g_before = he_before
-    g_after = he_after
+    g_all_before = Counter()
+    g_all_after = Counter()
+    for name in ("ds1000", "humaneval", "mbpp"):
+        b, a = category_counts_pre_post(merged_all[name], allowed=allowed)
+        g_all_before.update(b)
+        g_all_after.update(a)
 
-    all_types = sorted(set(g_before.keys()) | set(g_after.keys()))
+    g_avg_before = Counter()
+    g_avg_after = Counter()
+    for name in ("ds1000", "humaneval", "mbpp"):
+        b, a = category_counts_pre_post(merged_avg_all[name], allowed=allowed_avg)
+        g_avg_before.update(b)
+        g_avg_after.update(a)
+
+    _fb = _load_fedavg_plot_module()
+    he_chart_types = _fb.error_types_for_method_comparison_chart(
+        merged_avg_all["humaneval"], allowed_avg
+    )
+    all_types = _fb.type_order_largest_net_fix_first(
+        g_avg_before, g_avg_after, g_all_before, g_all_after, he_chart_types
+    )
+    g_before = g_all_before
+    g_after = g_all_after
     n = len(all_types)
     x = range(n)
     w = 0.35
@@ -198,7 +223,9 @@ def main() -> None:
     ax1.set_xticks(list(x))
     ax1.set_xticklabels(all_types, rotation=40, ha="right", fontsize=8)
     ax1.set_ylabel("Task–error-type pairs")
-    ax1.set_title("HumanEval: error types before vs after fed error average")
+    ax1.set_title(
+        "DS-1000, HumanEval & MBPP (pooled): error types before vs after fed error average"
+    )
     ax1.legend()
     fig1.tight_layout()
     fig1.savefig(out_dir / "error_types_before_after.png", dpi=150)
@@ -240,20 +267,6 @@ def main() -> None:
     fig2.tight_layout()
     fig2.savefig(out_dir / "error_reduction_by_dataset.png", dpi=150)
     plt.close(fig2)
-
-    g_all_before = Counter()
-    g_all_after = Counter()
-    for name in ("ds1000", "humaneval", "mbpp"):
-        b, a = category_counts_pre_post(merged_all[name], allowed=allowed)
-        g_all_before.update(b)
-        g_all_after.update(a)
-
-    g_avg_before = Counter()
-    g_avg_after = Counter()
-    for name in ("ds1000", "humaneval", "mbpp"):
-        b, a = category_counts_pre_post(merged_avg_all[name], allowed=allowed_avg)
-        g_avg_before.update(b)
-        g_avg_after.update(a)
 
     tot_b = total_pairs(g_all_before)
     tot_a = total_pairs(g_all_after)
@@ -298,7 +311,11 @@ def main() -> None:
     print("  per_type_fractional_reduction_pooled.png")
     print("  per_type_absolute_delta_vs_fedavg.png")
     print(f"Data: {data_dir} (HumanEval post: {HUMANEVAL_ADAPTER_POST})")
-    print(f"HumanEval n={len(merged_all['humaneval'])}, allowed types={len(allowed)}")
+    print(
+        "error_types_before_after.png: pooled over "
+        f"ds1000 n={len(merged_all['ds1000'])}, humaneval n={len(merged_all['humaneval'])}, "
+        f"mbpp n={len(merged_all['mbpp'])}, allowed types={len(allowed)}"
+    )
     print(f"Totals: before={tot_b}, after={tot_a}, reduced={tot_b - tot_a}")
 
 
