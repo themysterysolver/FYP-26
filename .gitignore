@@ -10,3 +10,7 @@ __pycache__/
 .eggs/
 dist/
 build/
+
+FED_AVG_CHECK/lora_adapters
+FED_ERRORAVG_CHECK/lora_adapters
+ASK
