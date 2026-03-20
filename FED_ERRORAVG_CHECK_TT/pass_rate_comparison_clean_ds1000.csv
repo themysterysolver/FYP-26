@@ -1,2 +1,2 @@
 num_tasks,baseline_passed,baseline_pass_rate,adapter_passed,adapter_pass_rate,difference
-250,46,0.184,76,0.304,0.12
+250,46,0.184,90,0.36,0.176
