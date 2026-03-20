@@ -519,7 +519,10 @@ def make_palindrome(string: str) -> str:
     >>> make_palindrome('cata')
     'catac'
     """"""
-","def is_palindrome(string: str) -> bool:
+","from typing import *
+from collections import *
+
+def is_palindrome(string: str) -> bool:
     """""" Test if given string is a palindrome """"""
     return string == string[::-1]
 
@@ -3380,7 +3383,8 @@ def max_fill(grid, capacity):
         * grid[i][j] -> 0 | 1
         * 1 <= capacity <= 10
     """"""
-","def max_fill(grid, capacity):
+","from typing import List  
+def max_fill(grid, capacity):
     import math
     """"""
     You are given a rectangular grid of wells. Each row represents a single well,
@@ -3682,7 +3686,8 @@ def maximum(arr, k):
         2. The elements in the array will be in the range of [-1000, 1000].
         3. 0 <= k <= len(arr)
     """"""
-","def maximum(arr, k):
+","from typing import List
+def maximum(arr, k):
     """"""
     Given an array arr of integers and a positive integer k, return a sorted list 
     of length k with the maximum k numbers in arr.
@@ -4090,7 +4095,8 @@ def intersection(interval1, interval2):
     intersection((-1, 1), (0, 4)) ==> ""NO""
     intersection((-3, -1), (-5, 5)) ==> ""YES""
     """"""
-","def intersection(interval1, interval2):
+","from math import sqrt
+def intersection(interval1, interval2):
     """"""You are given two intervals,
     where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
     The given intervals are closed which means that the interval (start, end)
@@ -4236,7 +4242,9 @@ def minPath(grid, k):
         Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
         Output: [1]
     """"""
-","def minPath(grid, k):
+","from itertools import permutations
+
+def minPath(grid, k):
     """"""
     Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
     each cell of the grid contains a value. Every integer in the range [1, N * N]
@@ -4579,7 +4587,9 @@ def check_if_last_char_is_a_letter(txt):
     check_if_last_char_is_a_letter(""apple pi e "") ➞ False
     check_if_last_char_is_a_letter("""") ➞ False 
     '''
-","def check_if_last_char_is_a_letter(txt):
+","import re
+
+def check_if_last_char_is_a_letter(txt):
     '''
     Create a function that returns True if the last character
     of a given string is an alphabetical character and is not
@@ -4940,7 +4950,9 @@ def file_name_check(file_name):
     file_name_check(""example.txt"") # => 'Yes'
     file_name_check(""1example.dll"") # => 'No' (the name should start with a latin alphapet letter)
     """"""
-","def file_name_check(file_name):
+","import re
+
+def file_name_check(file_name):
     """"""Create a function which takes a string representing a file's name, and returns
     'Yes' if the the file's name is valid, and returns 'No' otherwise.
     A file's name is considered to be valid if and only if all the following conditions 
@@ -7583,7 +7595,9 @@ def iscube(a):
     iscube(0) ==> True
     iscube(180) ==> False
     '''
-","def iscube(a):
+","import math
+
+def iscube(a):
     '''
     Write a function that takes an integer a and returns True 
     if this ingeger is a cube of some integer number.
@@ -8802,7 +8816,8 @@ def closest_integer(value):
     farthest from zero. For example closest_integer(""14.5"") should
     return 15 and closest_integer(""-14.5"") should return -15.
     '''
-","
+","import math
+
 def closest_integer(value):
     '''
     Create a function that takes a value (string) representing a number
