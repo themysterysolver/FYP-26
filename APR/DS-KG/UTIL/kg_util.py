@@ -18,9 +18,11 @@ BASE_DIR = os.path.abspath(
 # ======================================================
 
 def load_kgs():
-    kg = {"functions": {}, "classes": {}}
+    kg = {"functions": {}, "classes": {}, "libraries": set()}
 
     for file in glob.glob(os.path.join(BASE_DIR, "kg_*.json")):
+        lib_name = os.path.basename(file).replace("kg_", "").replace(".json", "")
+        kg["libraries"].add(lib_name)
         with open(file, "r", encoding="utf8") as f:
             data = json.load(f)
             kg["functions"].update(data.get("functions", {}))
@@ -46,6 +48,11 @@ def detect_name_error(msg):
 def detect_attribute_error(msg):
     m = re.search(r"'(.+?)' object has no attribute '(.+?)'", msg)
     return m.groups() if m else None
+
+
+def detect_module_not_found(msg):
+    m = re.search(r"No module named '(.+?)'", msg)
+    return m.group(1) if m else None
 
 
 def detect_type_error(msg):
