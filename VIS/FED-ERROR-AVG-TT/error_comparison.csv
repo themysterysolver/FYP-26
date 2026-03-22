@@ -1,0 +1,4 @@
+dataset,baseline_errors,federroravg_errors,errors_reduced,reduction_pct
+HumanEval,8,7,1,12.5
+MBPP,95,63,32,33.68
+DS1000,204,160,44,21.57

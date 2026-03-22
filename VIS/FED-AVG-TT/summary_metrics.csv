@@ -1,0 +1,4 @@
+dataset,baseline_pass_rate_pct,fedavg_pass_rate_pct,improvement_pct,baseline_errors,fedavg_errors,errors_reduced
+HumanEval,80.49,80.49,0.0,8,8,0
+MBPP,54.11,67.15,13.04,95,68,27
+DS1000,18.4,30.4,12.0,204,174,30

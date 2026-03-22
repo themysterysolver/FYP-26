@@ -1,0 +1,4 @@
+dataset,baseline_pass_rate_pct,fedavg_pass_rate_pct,federroravg_pass_rate_pct,improvement_fedavg_pct,improvement_federroravg_pct
+HumanEval,81.1,86.1,89.1,5.0,8.0
+MBPP,54.11,69.08,69.57,14.98,15.46
+DS1000,18.1,35.6,42.7,17.5,24.6

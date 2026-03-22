@@ -1,0 +1,4 @@
+dataset,total_tasks,passed,errors,pass_rate_pct,error_rate_pct
+HumanEval,164,133,31,81.1,18.9
+MBPP,207,112,95,54.11,45.89
+DS1000,1000,181,819,18.1,81.9
