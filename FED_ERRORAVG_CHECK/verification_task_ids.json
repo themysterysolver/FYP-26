@@ -1,0 +1,54 @@
+{
+  "verification_expect_key": "federroravg_adapter",
+  "task_ids": [
+    "DS0528",
+    "DS0569",
+    "DS0873",
+    "DS0185",
+    "DS0358",
+    "DS0261",
+    "DS0894",
+    "DS0361"
+  ],
+  "categories": {
+    "DS0528": "A_baseline_to_fedavg",
+    "DS0569": "A_baseline_to_fedavg",
+    "DS0873": "A_baseline_to_fedavg",
+    "DS0185": "A_baseline_to_fedavg",
+    "DS0358": "B_fedavg_to_federror",
+    "DS0261": "B_fedavg_to_federror",
+    "DS0894": "B_fedavg_to_federror",
+    "DS0361": "B_fedavg_to_federror"
+  },
+  "expected": {
+    "fedavg_adapter": {
+      "DS0528": "passed",
+      "DS0569": "passed",
+      "DS0873": "passed",
+      "DS0185": "passed",
+      "DS0358": "failed",
+      "DS0261": "failed",
+      "DS0894": "failed",
+      "DS0361": "failed"
+    },
+    "federroravg_adapter": {
+      "DS0528": "failed",
+      "DS0569": "passed",
+      "DS0873": "passed",
+      "DS0185": "passed",
+      "DS0358": "passed",
+      "DS0261": "passed",
+      "DS0894": "passed",
+      "DS0361": "passed"
+    }
+  },
+  "meta": {
+    "category_A_count_total": 45,
+    "category_B_count_total": 22,
+    "source_files": {
+      "baseline": "FED_AVG_CHECK_TT\\ds1000_pipeline_output.csv",
+      "fedavg_adapter": "FED_AVG_CHECK_TT\\ds1000_adapter_pipeline_output.csv",
+      "federroravg_adapter": "FED_ERRORAVG_CHECK_TT\\ds1000_adapter_pipeline_output.csv"
+    }
+  }
+}
