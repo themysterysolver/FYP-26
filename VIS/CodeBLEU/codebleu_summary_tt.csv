@@ -1,0 +1,4 @@
+dataset,baseline_codebleu,fedavg_codebleu,federroravg_codebleu,improvement_fedavg,improvement_federroravg,n_tasks
+HumanEval,0.2922,0.2995,0.2968,0.0073,0.0046,41
+MBPP,,0.284,0.2948,,,207
+DS1000,0.2406,0.2852,0.3416,0.0446,0.101,250

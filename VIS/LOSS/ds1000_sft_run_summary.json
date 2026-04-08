@@ -1,0 +1,8 @@
+{
+  "notebook": "d:\\Desktop\\MIT\\CODES\\FYP-26\\FED-CONS-FINAL - TT\\DS1000\\SFT_LoRA_Adapters_Windows_try_fix.ipynb",
+  "num_epochs": 3,
+  "steps_per_epoch": 125,
+  "max_logged_step": 375,
+  "global_step": 375,
+  "training_loss": 0.2506660506327947
+}

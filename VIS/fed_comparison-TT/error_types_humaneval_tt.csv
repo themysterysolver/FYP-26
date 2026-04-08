@@ -1,0 +1,4 @@
+error_type,baseline_count,fedavg_count,federroravg_count,reduction
+AssertionError,5,5,4,1
+NameError,2,2,2,0
+SyntaxError,1,1,1,0
