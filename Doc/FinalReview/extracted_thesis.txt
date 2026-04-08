@@ -1,0 +1,1077 @@
+MULTI-LAYER BEHAVIOR-BASED FRAMEWORK FOR CONTINUOUS MOBILE SESSION SECURITY
+A PROJECT REPORT
+Submitted by
+C. V. VENKATA RAMANA RAO (2022503545)
+NELAPATLA CHANIKYA SAI (2022503583)
+KISHORE K (2022503571)
+in partial fulfilment for the award of the degree of
+BACHELOR OF ENGINEERING IN
+COMPUTER SCIENCE ENGINEERING
+ANNA UNIVERSITY: CHENNAI 600 025
+APRIL 2026
+DEPARTMENT OF COMPUTER TECHNOLOGY ANNA UNIVERSITY, MIT CAMPUS
+CHENNAI – 600044
+BONAFIDE CERTIFICATE
+Certified that this project report “Multi-Layer Behavior-Based Framework For Continuous Mobile Session Security” is the work of C.V. Venkata Ramana Rao(2022503545),NelapatlaChanikyaSai(2022503583),KishoreK (2022503571) in the Project Work subject code CS6611 during the period January to May 2025.
+SIGNATURE
+Dr. P. PONSY R.K. SATHIA BHAMA
+HEAD OF THE DEPARTMENT
+Department of Computer Technology Anna University, MIT Campus Chromepet – 600044.
+SIGNATURE
+Dr. P. PABITHA
+SUPERVISOR
+Associate Professor
+Department of Computer Technology Anna University, MIT Campus Chromepet – 600044.
+ABSTRACT
+Continuous authentication (CA) refers to the process of verifying user identity repeatedly and passively throughout the duration of a mobile session, rather than solely at the point of login. CA plays a vital role in security-sensitive mobile applications such as banking, healthcare, and enterprise systems, where unauthorized access during an active session can result in irreversible financial or data loss. Most existing systems rely on a single behavioral modality and make isolated binary decisions at each observation, without accumulating evidence over time or adapting to natural shifts in user behavior.
+This project proposes the development of a Multi-Layer Behavior-Based Framework for Continuous Mobile Session Security that addresses these limitations through a tiered architecture. The system captures behavioral signals from six modalities and encodes them into a cryptographically signed 48-dimensional feature vector processed entirely on-device. It integrates lightweight prototype matching and three-scale temporal drift analysis to verify behavioral consistency with millisecond-range latency for the majority of session observations.
+A key feature of the framework is its conditional escalation mechanism, which routes only genuinely ambiguous observations to a Graph Attention Network that reasons over a temporal behavioral graph to produce a deep session embedding. This layered approach allows the system to preserve computational efficiency for routine observations while maintaining accuracy for edge cases.
+By enabling adaptive behavioral modeling and session-level trust accumulation, this project lays the groundwork for a scalable, privacy-preserving continuous authentication solution capable of supporting real-time identity verification in security-sensitive mobile applications across multiple deployment contexts.
+ACKNOWLEDGEMENT
+We take this humble opportunity to thank Dean, MIT Campus, Anna University, Dr. Jayashree P and Dr. Dr. Ponsy R.K. Sathia Bhama, Associate Professor & Head, Department of Computer Technology, MIT Campus, Anna University for providing all the lab facilities in pursuit of this project.
+Undertaking this project has helped us learn a lot, and we would like to express
+our sincere gratitude towards our supervisor Dr. P. Pabitha, Associate Professor, Department of Computer Technology, MIT, Anna University, whose kind guidance, and proper directions helped shape this project perfectly. The timely feedback from the supervisor was very instrumental in successful completion of the project work carried out. Constant encouragement to implement the project to the fullest of our potential led us through, during the difficult phase of the project, and assisted in the successful completion of the proposed project work.
+We acknowledge and thank the efforts and feedback of the panel members Dr. P. Pabitha, Associate Professor, Dr. S. Neelavathy Pari, Assisstant Professor and Dr. Nancy Jane Y, Assistant Professor, Department of Computer Technology, MIT, Anna University, in reviewing our work, providing constant valuable comments and encouraging us to view the different aspects of the project in successful implementation of the project.
+We thank all the teaching and non-teaching members of the Department of Computer Technology, MIT, Anna University, seniors, juniors, friends and family whose appreciable help, either directly or indirectly helped in the smooth completion of the Project Work in a limited time frame.
+C. V. Venkata Ramana Rao (2022503545) Nelapatla Chanikya Sai (2022503583)
+Kishore K (2022503571)
+TABLE OF CONTENTS
+CHAPTER NO.
+CHAPTER NO.
+TITLE
+TITLE
+PAGE NO.
+PAGE NO.
+ABSTRACT
+ABSTRACT
+iii
+iii
+LIST OF TABLES
+LIST OF TABLES
+viii
+viii
+LIST OF FIGURES
+LIST OF FIGURES
+ix
+ix
+LIST OF ABBREVIATIONS
+LIST OF ABBREVIATIONS
+x
+x
+1
+1
+INTRODUCTION
+INTRODUCTION
+1
+1
+1.1 TRADITIONAL AUTHENTICATION
+1.1 TRADITIONAL AUTHENTICATION
+2
+2
+1.2 CONTINUOUS AUTHENTICATION
+1.2 CONTINUOUS AUTHENTICATION
+4
+4
+1.3 BEHAVIORAL BIOMETRICS
+1.3 BEHAVIORAL BIOMETRICS
+5
+5
+1.4 MOTIVATION
+1.4 MOTIVATION
+7
+7
+1.5 OBJECTIVE
+1.5 OBJECTIVE
+8
+8
+1.6 ORGANIZATION OF THESIS
+1.6 ORGANIZATION OF THESIS
+10
+10
+2
+2
+LITERATURE SURVEY
+LITERATURE SURVEY
+12
+12
+2.1 SUMMARY
+2.1 SUMMARY
+14
+14
+3
+3
+PROPOSED WORK
+PROPOSED WORK
+19
+19
+3.1 SYSTEM OVERVIEW
+3.1 SYSTEM OVERVIEW
+19
+19
+3.2 METHODOLOGY WITH ARCHITECTURE       DIAGRAM
+3.2 METHODOLOGY WITH ARCHITECTURE       DIAGRAM
+21
+21
+3.3 ON-DEVICE BEHAVIOUR ACQUISITION AND ENCODING
+3.3 ON-DEVICE BEHAVIOUR ACQUISITION AND ENCODING
+25
+25
+3.4 ADAPTIVE BEHAVIOUR CONSISTENCY                                                                                     ENGINE
+3.4 ADAPTIVE BEHAVIOUR CONSISTENCY                                                                                     ENGINE
+26
+26
+3.4.1 Session Buffer and Leakage-Free Statistics
+3.4.1 Session Buffer and Leakage-Free Statistics
+26
+26
+3.4.2 Three-Scale Temporal Drift
+3.4.2 Three-Scale Temporal Drift
+26
+26
+3.4.3 Composite Similarity
+3.4.3 Composite Similarity
+27
+27
+3.4.2 Prototype Quarantine
+3.4.2 Prototype Quarantine
+27
+27
+3.4.4 Behavioral Session Fingerprint
+3.4.4 Behavioral Session Fingerprint
+27
+27
+3.5 DEEP BEHAVIOURAL ATTRIBUTION ENGINE
+3.5 DEEP BEHAVIOURAL ATTRIBUTION ENGINE
+28
+28
+3.5.1 Behavioral Graph Construction
+3.5.1 Behavioral Graph Construction
+28
+28
+3.5.2 Node Feature Engineering
+3.5.2 Node Feature Engineering
+28
+28
+3.5.3 Siamese GAT Network Architecture
+3.5.3 Siamese GAT Network Architecture
+29
+29
+3.5.4 Training
+3.5.4 Training
+29
+29
+3.6 TRUST AGGREGATION AND DECISION MODULE
+3.6 TRUST AGGREGATION AND DECISION MODULE
+30
+30
+3.6.1 Raw Trust Signal
+3.6.1 Raw Trust Signal
+30
+30
+3.6.2 Adaptive EMA
+3.6.2 Adaptive EMA
+30
+30
+3.6.3 Trust Zones and Decisions
+3.6.3 Trust Zones and Decisions
+31
+31
+3.7 SUMMARY
+3.7 SUMMARY
+31
+31
+4
+4
+IMPLEMENTATION
+IMPLEMENTATION
+32
+32
+4.1 PLATFORMS USED
+4.1 PLATFORMS USED
+32
+32
+4.2 TOOLS AND LIBRARIES
+4.2 TOOLS AND LIBRARIES
+32
+32
+4.3 DATASET DESCRIPTION
+4.3 DATASET DESCRIPTION
+33
+33
+4.4 DATA COLLECTION APPLICATION
+4.4 DATA COLLECTION APPLICATION
+34
+34
+4.5 SECURE INGESTION
+4.5 SECURE INGESTION
+37
+37
+4.6 BEHAVIORAL PREPROCESSING AND PROTOTYPE ENGINE
+4.6 BEHAVIORAL PREPROCESSING AND PROTOTYPE ENGINE
+37
+37
+4.7 GRAPH ATTENTION NETWORK
+4.7 GRAPH ATTENTION NETWORK
+38
+38
+4.8 TRUST ENGINE
+4.8 TRUST ENGINE
+38
+38
+4.9 STORAGE ARCHITECTURE
+4.9 STORAGE ARCHITECTURE
+39
+39
+4.10 SUMMARY
+4.10 SUMMARY
+39
+39
+5
+5
+RESULTS AND ANALYSIS
+RESULTS AND ANALYSIS
+40
+40
+5.1 EVALUATION METRICS
+5.1 EVALUATION METRICS
+40
+40
+5.2 EQUAL ERROR RATE (EER)
+5.2 EQUAL ERROR RATE (EER)
+40
+40
+5.3 RECEIVER OPERATING CHARACTERISTIC (ROC) CURVE
+5.3 RECEIVER OPERATING CHARACTERISTIC (ROC) CURVE
+41
+41
+5.4 DETECTION ERROR TRADE-OFF (DET) CURVE
+5.4 DETECTION ERROR TRADE-OFF (DET) CURVE
+42
+42
+5.5 COMPARISON WITH OTHER MODELS
+5.5 COMPARISON WITH OTHER MODELS
+43
+43
+5.6 SUMMARY
+5.6 SUMMARY
+45
+45
+6
+6
+CONCLUSION AND FUTURE WORKS
+CONCLUSION AND FUTURE WORKS
+46
+46
+REFERENCES
+REFERENCES
+48
+48
+LIST OF TABLES
+TABLE NO.
+TABLE NO.
+TITLE
+TITLE
+PAGE NO.
+PAGE NO.
+2.1
+2.1
+SUMMARY OF LITERATURE SURVEY
+SUMMARY OF LITERATURE SURVEY
+15
+15
+5.1
+5.1
+ITERATIONS VS TIME
+ITERATIONS VS TIME
+46
+46
+5.2
+5.2
+GRAPH METRICS
+GRAPH METRICS
+47
+47
+5.3
+5.3
+CUMULATIVE GAIN
+CUMULATIVE GAIN
+48
+48
+5.4
+5.4
+MARGINAL GAIN
+MARGINAL GAIN
+49
+49
+LIST OF FIGURES
+LIST OF FIGURES
+FIGURE NO.
+FIGURE NO.
+TITLE
+TITLE
+PAGENO.
+PAGENO.
+3.1
+3.1
+OPEN SOURCE INTELLIGENCE SYSTEM ARHITECTURE
+OPEN SOURCE INTELLIGENCE SYSTEM ARHITECTURE
+19
+19
+3.2
+3.2
+FLOW CHART
+FLOW CHART
+21
+21
+5.1
+5.1
+ITERATION 1 OUTPTUT
+ITERATION 1 OUTPTUT
+40
+40
+5.2
+5.2
+ITERATION 2 OUTPTUT
+ITERATION 2 OUTPTUT
+41
+41
+5.3
+5.3
+ITERATION 3 OUTPTUT
+ITERATION 3 OUTPTUT
+41
+41
+5.4
+5.4
+ITERATION 4 OUTPTUT
+ITERATION 4 OUTPTUT
+42
+42
+5.5
+5.5
+ITERATION 5 OUTPTUT
+ITERATION 5 OUTPTUT
+43
+43
+5.6
+5.6
+SUMMARY OUTPUT
+SUMMARY OUTPUT
+44
+44
+5.7
+5.7
+KNOWLEDGE GRAPH VISUALIZATION IN NEO4J
+KNOWLEDGE GRAPH VISUALIZATION IN NEO4J
+44
+44
+5.8
+5.8
+USER INTERFACE – INVESTIGATION LOG
+USER INTERFACE – INVESTIGATION LOG
+45
+45
+5.9
+5.9
+USER INTERFACE – DATA SOURCES
+USER INTERFACE – DATA SOURCES
+45
+45
+5.10
+5.10
+ITERATION PLOT - TIME
+ITERATION PLOT - TIME
+47
+47
+5.11
+5.11
+ITERATION PLOT - GRAPH METRICS
+ITERATION PLOT - GRAPH METRICS
+48
+48
+5.12
+5.12
+ITERATION PLOT - CUMULATIVE GAIN
+ITERATION PLOT - CUMULATIVE GAIN
+49
+49
+5.13
+5.13
+ITERATION PLOT - MARGINAL GAIN
+ITERATION PLOT - MARGINAL GAIN
+50
+50
+LIST OF ABBREVIATIONS
+OSINT
+OSINT
+Open Source Intelligence
+Open Source Intelligence
+IE
+IE
+Information Extraction
+Information Extraction
+NER
+NER
+Named Entity Recognition
+Named Entity Recognition
+AI
+AI
+Artificial Intelligence
+Artificial Intelligence
+GAN-BERT
+GAN-BERT
+Generative Adversarial Networks withBidirectional Encoder Representations from Transformers
+Generative Adversarial Networks with
+Bidirectional Encoder Representations from Transformers
+LLM
+LLM
+Large Language Model
+Large Language Model
+KG
+KG
+Knowledge Graph
+Knowledge Graph
+NLP
+NLP
+Natural Language Processing
+Natural Language Processing
+CNN
+CNN
+Convolutional Nueral Network
+Convolutional Nueral Network
+API
+API
+Application Programming Interface
+Application Programming Interface
+HTML
+HTML
+Hyper Text Markup Language
+Hyper Text Markup Language
+REBEL
+REBEL
+Relation Extraction By End-to-end Language generation.
+Relation Extraction By End-to-end Language generation.
+GDBMS
+GDBMS
+Graph DataBase Management System
+Graph DataBase Management System
+XML
+XML
+eXtensible Markup Language
+eXtensible Markup Language
+JSON
+JSON
+JavaScript Object Notation
+JavaScript Object Notation
+CHAPTER 1
+INTRODUCTION
+The increasing digitization of financial services and sensitive personal data has fundamentally transformed the threat landscape facing mobile application security. As smartphones have become the primary interface for banking, healthcare, and enterprise workflows, the consequences of unauthorized access during an active session have grown disproportionately severe. Traditional security architectures were designed around a single verification event at the point of entry, assuming that the authenticated identity remains valid for the lifetime of the session. This assumption, while operationally convenient, creates a structural vulnerability: any attacker who gains access to an authenticated device — whether through physical theft, remote access tools, or session hijacking — inherits the full trust of the verified user without any further challenge. The growing sophistication of mobile malware, shoulder-surfing techniques, and social engineering attacks has made this gap not merely a theoretical concern but an active vector of financial fraud and data compromise.
+The discipline of continuous authentication has emerged as a principled response to this structural weakness. Rather than treating authentication as a discrete event at session initiation, continuous authentication reconceives identity verification as an ongoing process that operates silently throughout the session. Every interaction a user makes with a device — the way they press the screen, the rhythm at which they type, the arc of their scroll gestures, the natural tremor in their hand movements — constitutes a behavioral fingerprint that is statistically unique to that individual. By continuously measuring whether the observed behavioral patterns match the established profile of the legitimate user, a continuous authentication system can detect the moment of an unauthorized takeover and respond in real time, without imposing any deliberate action on the user. This passive, unobtrusive nature is what distinguishes continuous authentication from conventional re-authentication mechanisms such as periodic PIN re-entry or timed session expiry, which are both disruptive to the user experience and easily bypassed by an attacker who simply waits.
+The intersection of behavioral biometrics, machine learning, and mobile computing has made continuous authentication increasingly viable as a production security layer. Advances in on-device sensor capabilities, edge computing, and lightweight neural network architectures have brought the computational cost of behavioral analysis within the constraints of battery-powered mobile hardware. At the same time, the richness and diversity of behavioral signals available on a modern smartphone — spanning touch, motion, navigation, and typing — provide a sufficiently high-dimensional identity space to distinguish individuals reliably. This project explores the design and implementation of a multi-layer continuous authentication framework that harnesses these signals to provide real-time, adaptive, and privacy-preserving session security for mobile applications. The system aims to bridge the gap between theoretical behavioral biometric research and a deployable, production-grade authentication layer capable of meeting the strict latency and accuracy requirements of security-sensitive applications such as mobile banking.
+TRADITIONAL AUTHENTICATION
+Authentication is the process by which a system verifies that an entity requesting access is who they claim to be. In mobile applications, this has historically been accomplished through knowledge-based mechanisms — most commonly passwords, PINs, and pattern locks — sometimes augmented by possession-based factors such as one-time passwords delivered via SMS or authenticator applications. These credential-based approaches are collectively referred to as traditional authentication, and they share a common structural property: they gate access at a single point in time, the moment of login, and confer unrestricted trust upon the session that follows.
+For a broad class of applications, this model is operationally adequate. A social media application, a news reader, or a navigation tool presents limited risk if an unauthorized user briefly accesses an unlocked device; the potential for harm is bounded, and the cost of a re-authentication event is acceptable relative to the sensitivity of the data. However, for security-sensitive applications — mobile banking, investment platforms, healthcare portals, enterprise resource systems — the calculus is fundamentally different. These applications expose high-value, irreversible actions: fund transfers, prescription access, corporate data exfiltration. In this context, the single-point-of-verification model creates what security practitioners describe as a session persistence vulnerability: the system has no mechanism to detect or respond to the substitution of one user for another after the initial credential check.
+Multi-factor authentication (MFA) strengthens the credential check at login by requiring a second verification factor, typically something the user possesses (a registered device or hardware token) in addition to something they know (a password). While MFA substantially raises the barrier to unauthorized initial access, it does not address the session persistence problem. Once the MFA check is satisfied and the session is established, the application again assumes continuous identity. An attacker who gains physical access to a device during an active session, or who compromises the device through a remote access tool after MFA has been completed, faces no further challenge. Additionally, MFA introduces friction at every login event, a cost that users and organizations frequently seek to minimize through longer session timeouts and persistent login tokens — which paradoxically extends the window of exposure. The limitations of traditional authentication in mobile, high-sensitivity contexts are therefore not a matter of poor implementation but of architectural design: a system that verifies identity once and trusts indefinitely cannot provide continuous security guarantees.
+CONTINUOUS AUTHENTICATION
+Continuous authentication (CA) is a security paradigm in which the identity of the active user is verified repeatedly and automatically throughout the duration of a session, rather than solely at its initiation. The fundamental insight motivating continuous authentication is that behavioral patterns — the fine-grained characteristics of how a person interacts with a device — are both highly individual and continuously observable. By maintaining an ongoing statistical comparison between the observed interaction patterns and a stored model of the legitimate user's behavior, the system acquires the ability to detect identity substitution at any point in the session and respond with graduated enforcement actions, from passive monitoring to session termination.
+The continuous authentication model introduces several design requirements that distinguish it sharply from traditional authentication. First, it must operate with negligible perceptible latency: a re-authentication check that introduces noticeable delay into every user interaction is functionally equivalent to a periodic re-authentication prompt in terms of user experience impact. Second, it must be computationally efficient: a background process that continuously saturates the device CPU or depletes the battery within hours is not a viable production system, regardless of its accuracy. Third, it must be tolerant of natural behavioral variability: a user's touch pressure changes slightly when they are tired, their typing rhythm shifts when they are distracted, their grip angle varies depending on whether they are sitting or standing. A system that treats every minor deviation as a potential intrusion will generate an unacceptably high rate of false rejections. Fourth, it must be adaptive: human behavior evolves over time, and a model trained on a fixed behavioral snapshot will degrade in accuracy as the user's patterns gradually shift.
+These requirements have driven a rich body of research over the past decade, drawing on techniques from signal processing, statistical machine learning, and deep learning. Early approaches relied on single behavioral modalities — predominantly keystroke dynamics or touch gesture analysis — and achieved modest accuracy on constrained datasets. More recent work has explored multi-modal fusion, incremental learning frameworks, and deep metric learning approaches trained on large behavioral corpora. Despite this progress, fundamental gaps remain in practical deployment: the tension between model accuracy and computational efficiency, the absence of comprehensive multimodal signal coverage, the lack of graceful degradation mechanisms that accumulate evidence before acting on anomalies, and insufficient attention to hardware-level privacy protection for biometric data. The framework proposed in this project is designed to address these gaps systematically through a four-layer architecture that separates concerns of data acquisition, lightweight consistency checking, deep behavioral analysis, and trust aggregation.
+BEHAVIORAL BIOMETRICS
+Biometrics is the science of measuring and statistically analyzing biological characteristics for identity verification. Traditional biometric systems rely on physiological traits — fingerprints, iris patterns, facial geometry, voice prints — that are relatively stable over time and can be captured at a discrete point in interaction. Behavioral biometrics, by contrast, focuses on the dynamic patterns produced by the way a person performs actions: how they walk, how they type, how they move a mouse, how they interact with a touchscreen. These behavioral traits are not single measurements but time-series signals, encoding rhythm, force, velocity, acceleration, and sequential ordering in a high-dimensional feature space.
+The behavioral signals available on a modern smartphone are particularly rich. The touchscreen captures the coordinates, pressure, contact area, and timing of every finger interaction. The accelerometer and gyroscope record the motion and orientation of the device during use, reflecting the user's characteristic grip stability, walking gait, and gesture dynamics. The keyboard captures the temporal patterns of keystroke onset, duration, and inter-key intervals, encoding individual typing rhythm. Scroll behavior captures navigation velocity, direction, and pause patterns. Taken together, these signals form a multi-dimensional portrait of the user's interaction style that is both continuously available — requiring no additional hardware or deliberate user action — and demonstrably discriminative across individuals.
+The practical application of behavioral biometrics for continuous authentication faces a core statistical challenge: distinguishing genuine behavioral variation from anomalous deviation. A user's behavioral patterns are not fixed; they form a distribution, not a point, in the feature space. The goal of a behavioral authentication model is to learn the shape and boundaries of this distribution for each individual user and to distinguish, in real time, whether an incoming behavioral observation is a plausible sample from that distribution or is more likely drawn from a different user's distribution or from a replay attack. This problem is inherently a one-class or open-set classification problem, since the system must generalize to reject any non-matching user, not merely a fixed set of known impostors. Techniques from metric learning, prototype-based classification, and graph neural networks are particularly well-suited to this formulation, and form the algorithmic foundation of the proposed framework. Critically, behavioral biometric data is sensitive personal information, and any deployment must ensure that raw sensor data is processed on-device and only derived, privacy-preserving feature representations are transmitted to backend systems, in compliance with data protection principles such as GDPR Privacy by Design.
+MOTIVATION
+Despite the theoretical maturity of continuous authentication as a concept and the growing richness of behavioral signals available on mobile devices, the deployment of production-grade continuous authentication systems in real applications remains rare. The gap between research prototypes and deployable systems is wide, and it is explained by a consistent cluster of unresolved tensions that existing literature has identified but not fully resolved. Most systems in the literature are optimized for a single objective — accuracy, or efficiency, or adaptability — at the expense of the others, and few have been evaluated under the full set of constraints that a production mobile deployment imposes.
+The most pressing of these tensions is the efficiency-accuracy trade-off. The highest-accuracy continuous authentication models in recent literature are transformer-based or GAN-based deep learning architectures that achieve impressive Equal Error Rates on benchmark datasets but impose computational budgets that are incompatible with continuous background execution on a battery-powered mobile device. Conversely, the lightest-weight approaches — nearest-neighbor matching and simple statistical distance metrics — are computationally feasible but lack the discriminative power needed for security-sensitive contexts. No existing architecture draws a principled architectural boundary between these two regimes: routing routine, high-confidence behavioral observations through the lightweight path and escalating only genuinely ambiguous cases to a deep model. A practical framework must make this distinction explicit and enforce it structurally.
+A second unresolved gap concerns signal coverage. The majority of existing systems depend on a single behavioral modality, typically either touch dynamics or motion sensor data. This creates a functional blind spot: a system that authenticates exclusively through touch patterns cannot process any authentication signal during a scroll-only interaction, leaving the session unmonitored for potentially extended periods. A robust framework must fuse multiple behavioral modalities into a unified representation so that authentication coverage is continuous regardless of which interaction type is currently active. Additionally, the treatment of behavioral drift in most systems is binary: either the model is static and degrades over time, or it is updated aggressively and becomes vulnerable to gradual impersonation. A principled adaptive mechanism that distinguishes short-term noise from genuine long-term behavioral evolution — and responds to each appropriately — is a design requirement that existing systems have not fully addressed. These motivating gaps collectively define the design space for the framework proposed in this project.
+OBJECTIVE
+The objective of this project is to design and implement a Multi-Layer Behavior-Based Framework for Continuous Mobile Session Security that addresses the identified limitations of existing systems through a principled, production-oriented architecture. The system is intended to operate passively and continuously throughout the lifetime of a mobile application session, acquiring behavioral signals from six distinct modalities, representing them as a compact and privacy-preserving feature embedding, and maintaining a continuously updated trust score that reflects the confidence of the system in the identity of the active user.
+The framework is designed to meet five specific technical objectives. The first is computational efficiency: the system must process at least 95% of behavioral observations through a lightweight vector similarity engine with a latency budget under 150 milliseconds, reserving deep neural network inference exclusively for the minority of observations that fall into an ambiguous confidence regime. The second is comprehensive signal coverage: the system must fuse touch patterns, accelerometer data, gyroscope data, scroll behavior, typing dynamics, and contextual device state into a unified 48-dimensional behavioral vector, ensuring that authentication coverage is maintained across all interaction modes. The third is graceful degradation: rather than issuing binary accept-or-reject decisions at each observation, the system must maintain a session-level trust score that accumulates evidence over time, tolerating minor behavioral drift while remaining sensitive to sustained anomalies. The fourth is privacy and hardware security: raw behavioral data must never leave the device; only cryptographically signed feature embeddings produced by hardware-attested processing may be transmitted, ensuring that the system complies with Privacy by Design principles and is resistant to replay attacks. The fifth is adaptive personalization: the backend must maintain per-user behavioral prototypes that evolve through an incremental learning mechanism, accommodating genuine long-term behavioral change while resisting adversarial prototype poisoning through a quarantine-based candidate promotion policy.
+Taken together, these objectives define a system that is not merely a research prototype demonstrating high accuracy on a controlled dataset, but a framework designed from the ground up for the constraints of real-world mobile deployment. The framework targets the specific use case of security-sensitive mobile applications — banking, healthcare, and enterprise portals — where the consequences of unauthorized session access are severe and the tolerance for false rejections is low. By meeting all five objectives simultaneously, the proposed system aims to demonstrate that the accuracy-efficiency-adaptability-privacy trade-offs that have constrained previous work can be resolved through careful architectural layering rather than optimization of any single component.
+ORGANIZATION OF THESIS
+Chapter 1 introduces the security context that motivates continuous authentication, beginning with the structural limitations of credential-based traditional authentication in mobile environments and the session persistence vulnerability it creates. It defines the continuous authentication paradigm, the role of behavioral biometrics as its signal substrate, and the specific technical gaps in existing systems that this project addresses. The chapter concludes with the five technical objectives of the proposed framework.
+Chapter 2 provides a comprehensive literature survey of ten recent works in behavioral biometric continuous authentication, spanning publications from IEEE Transactions on Mobile Computing, ACM IMWUT, IEEE Transactions on Information Forensics and Security, ACM Transactions on Sensor Networks, and IEEE Transactions on Reliability. Each work is analyzed for its proposed methodology, the behavioral signals and datasets used, the evaluation metrics reported, and the research gaps it leaves open. The chapter synthesizes these gaps into the four structural deficiencies that motivate the proposed framework's design.
+Chapter 3 presents the proposed Multi-Layer Behavior-Based Continuous Authentication Framework in full architectural detail. It describes the system's four-layer processing pipeline: the on-device behavioral acquisition and encoding module, the adaptive behaviour consistency engine with its three-scale temporal drift model and prototype quarantine system, the Graph Attention Network-based deep behavioural attribution engine, and the trust aggregation and decision module with its Exponential Moving Average trust model and zone-based decision logic. Flow diagrams and architecture diagrams are provided for both the overall system and the graph attention network component.
+Chapter 4 details the implementation of the framework, covering the Android mobile client, the Azure cloud backend infrastructure, the full six-modality behavioral dataset, the custom banking application developed for data collection, and the technical implementation of all four processing layers. Algorithms for each processing stage are described in detail, together with the training procedure and configuration of the Graph Attention Network.
+Chapter 5 presents the results and evaluation of the framework using standard biometric authentication metrics. It reports the Equal Error Rate, the Receiver Operating Characteristic curve and Area Under the Curve, and the Detection Error Trade-off curve, and compares the framework's performance against five published continuous authentication systems from the literature survey. The chapter discusses the operational implications of the DET curve for deployment in security-sensitive contexts.
+Chapter 6 concludes the thesis by summarizing the framework's contributions across its five technical objectives and discussing six directions for future work, including federated learning for on-device model updates, transformer-based session encoders, and extension to wearable and IoT device contexts.
+CHAPTER 2
+LITERATURE SURVEY
+Wang et al., 2023 [1] proposed on-device training using Deep Metric Learning and a defense mechanism against side-channel attacks via noise injection fingerprinting. The system uses accelerometer, gyrometer, magnetometer, and gravity sensor data. Research gaps include that Softmax classifiers lack discriminative power and motion sensors remain vulnerable to side-channel replay attacks.
+Chen et al., 2020 [2], proposed the 'TouchPrint' system using active acoustic sensing (sonar) to scan hand posture, making it robust against behavioral variability due to speed or pressure changes. The system relies on acoustic signal, multipath delay, Doppler shift, frequency response, and phase shift. Key gaps identified include high false-positive rates due to mood or posture changes and vulnerability of PINs and patterns to non-visual side-channel attacks.
+Lee et al., 2025 [3] proposed continuous behavioral biometrics integrated with a Trusted Platform Module for hardware security, producing a continuous trust level signal. The system is unimodal, relying only on keystroke dynamics, and does not factor in other biometric parameters. Evaluation uses Accuracy, FAR, and FRR on private ORAN-compliant network data.
+Li et al., 2018 [4] introduced an integrated sensor-based authentication using a Wasserstein Autoencoder, identifying users by measuring how closely their real-time sensor data aligns with the legitimate user's learned data distribution. Evaluated on tablets, smartwatches, and varied environments across 70 volunteers using accelerometer, gyroscope, and magnetometer data. Evaluated using FAR, FRR, EER, Accuracy, and F1 score.
+Li et al. 2024 [5] solved the cold-start problem using conditional transformer GAN and solved anomaly reconstruction in autoencoders using a memory bank. The system is incapable of dealing with changing user behavior patterns and uses binary decision making via reconstruction error. Evaluated using EER and Accuracy on custom datasets from 100 users.
+Li et al., 2022 [6] proposed a lightweight CNN architecture with deep feature fusion combining time-domain and frequency-domain features, using Factor Analysis (FA) for selecting discriminative deep features. Key gaps include that deep learning models are computationally heavy for mobile devices and efficient multi-modal deep feature fusion is difficult. Evaluated using EER and Accuracy on custom accelerometer and gyroscope datasets.
+Yang et al., 2024[7] used a Low-Rank Transformer to capture long-range temporal dependencies in multimodal sensor data and generated pseudo-negative samples by shuffling. Key identified gaps include high inference latency and battery drain due to continuous model execution. Evaluated using EER and Accuracy on the UCI HAR and WISDM HARB public datasets.
+Shen et al., 2022 [8] integrated multi-modal data into time-extended behavioral feature sets and used Deep SVDD for one-class classification without requiring impostor data. The system is sensitive to environmental variations such as screen moisture or stress, and struggles to distinguish mimicking from genuine behavior. Evaluated using FAR, FRR, EER, and Accuracy on a 100-volunteer dataset and HMOG public dataset.
+Shen et al., 2024 [9] used raw capacitive values instead of API coordinates, 3D CNN for intra-gesture spatial-temporal features, and RNN (LSTM) for capturing inter-gesture sequential patterns. API-based touch signals are coarse-grained and window-based classifiers fail to capture sequential dependencies. Evaluated using EER on a custom large-scale 100-volunteer capacitive grid dataset.
+Shen et al., 2024 [10] proposed an incremental learning framework to adapt to user behavior drift using a GBDTNN model (GBDT + Neural Network distillation) for efficient online updates with a context-aware feature set. Key gaps include that authentication accuracy degrades over time due to behavior drift and retraining from scratch is resource-intensive. Features used include touch position, touch pressure, contact area, GPS, ambient light, and battery level.
+SUMMARY
+Table 2.1 – Summary of Literature Survey
+Sl. no
+Sl.
+no
+Title
+Title
+Journal details
+Journal details
+Proposed Work
+Proposed Work
+Research Gaps / Future works
+Research Gaps / Future works
+Evaluation metrics
+Evaluation metrics
+1.
+1.
+A Framework for Behavioral Biometric Authentication Using Deep Metric Learning on Mobile Devices
+A Framework for Behavioral Biometric Authentication Using Deep Metric Learning on Mobile Devices
+C. Wang, Y. Xiao, X. Gao, L. Li, and J. WangIEEE Transactions on Mobile Computing (2023)
+C. Wang, Y. Xiao, X. Gao, L. Li, and J. Wang
+IEEE Transactions on Mobile Computing (2023)
+On-device training using Deep Metric Learning Defense mechanism against side-channel attacks using noise injection fingerprinting.
+On-device training using Deep Metric Learning
+Defense mechanism against side-channel attacks using noise injection fingerprinting.
+Softmax classifiers lack discriminative power Motion sensors are vulnerable to side-channel replay attacks.
+Softmax classifiers lack discriminative power
+Motion sensors are vulnerable to side-channel replay attacks.
+AccuracyAttack Success Rate
+Accuracy
+Attack Success Rate
+2.
+2.
+Listen to Your Fingers: User Authentication Based on Geometry Biometrics of Touch Gesture
+Listen to Your Fingers: User Authentication Based on Geometry Biometrics of Touch Gesture
+H. Chen et al.ACM IMWUT (UbiComp) (2020)
+H. Chen et al.
+ACM IMWUT (UbiComp) (2020)
+TouchPrint" system using active acoustic sensing (sonar) to scan hand posture.Robust against behavioral variability (speed/pressure).
+TouchPrint" system using active acoustic sensing (sonar) to scan hand posture.
+Robust against behavioral variability (speed/pressure).
+PINs/Patterns are vulnerable to non-visual side-channel attacks Behavioral biometrics suffer from high false-positive rates due to mood/posture changes
+PINs/Patterns are vulnerable to non-visual side-channel attacks
+Behavioral biometrics suffer from high false-positive rates due to mood/posture changes
+Authentication AccuracyAttack Success Rate (Replay/Imitate)
+Authentication Accuracy
+Attack Success Rate (Replay/Imitate)
+3.
+3.
+Unconsciously Continuous Authentication Protocol in Zero-Trust Architecture Based on Behavioral Biometrics
+Unconsciously Continuous Authentication Protocol in Zero-Trust Architecture Based on Behavioral Biometrics
+J-S. Lee, T-H. Chen, C-J. Chew, P-Y. Wang and Y-Y. Fan. IEEE Transactions on Reliability(2025)
+J-S. Lee, T-H. Chen, C-J. Chew, P-Y. Wang and Y-Y. Fan.
+IEEE Transactions on Reliability(2025)
+Behavioral biometrics to perform continuous authenticationTrusted Platform Module for Hardware SecurityContinuous trust level
+Behavioral biometrics to perform continuous authentication
+Trusted Platform Module for Hardware Security
+Continuous trust level
+Unimodal data (only keystroke)Not factoring in other biometric parameters
+Unimodal data (only keystroke)
+Not factoring in other biometric parameters
+AccuracyFalse Acceptance Rate (FAR)False Rejection Rate (FRR)
+Accuracy
+False Acceptance Rate (FAR)
+False Rejection Rate (FRR)
+4.
+4.
+RPWAEAuth: Sensor-Based Continuous Authentication Using Reconstruction Probability in Wasserstein Autoencoder
+RPWAEAuth: Sensor-Based Continuous Authentication Using Reconstruction Probability in Wasserstein Autoencoder
+Y. Li, Y. Wang, and H. Huang. ACM Transactions on Sensor Networks, Volume 21, Issue 2 (March 2025)
+Y. Li, Y. Wang, and H. Huang. ACM
+Transactions on Sensor Networks, Volume 21, Issue 2 (March 2025)
+Integrated sensor-based authentication using a Wasserstein Autoencoder.Identifies users by measuring how closely their real-time sensor data aligns with the legitimate user's learned data distribution.
+Integrated sensor-based authentication using a Wasserstein Autoencoder.
+Identifies users by measuring how closely their real-time sensor data aligns with the legitimate user's learned data distribution.
+Testing on app usage, gaming, and browsingEvaluation on tablets, smartwatches, and varied environments.
+Testing on app usage, gaming, and browsing
+Evaluation on tablets, smartwatches, and varied environments.
+False Acceptance Rate (FAR)False Rejection Rate (FRR)Equal Error Rate (EER)AccuracyF1 score
+False Acceptance Rate (FAR)
+False Rejection Rate (FRR)
+Equal Error Rate (EER)
+Accuracy
+F1 score
+5.
+5.
+Memory-Augmented Autoencoder Based Continuous Authentication on Smartphones With Conditional Transformer GANs
+Memory-Augmented Autoencoder Based Continuous Authentication on Smartphones With Conditional Transformer GANs
+Y. Li, L. Liu, S. Deng, H. Qin, M. A. El-Yacoubi and G. Zhou.IEEE Transactions on Mobile Computing(2024)
+Y. Li, L. Liu, S. Deng, H. Qin, M. A. El-Yacoubi and G. Zhou.
+IEEE Transactions on Mobile Computing(2024)
+Solves cold start problem using conditional transformer GANSolves anomaly reconstruction in auto-transformers using memory bank
+Solves cold start problem using conditional transformer GAN
+Solves anomaly reconstruction in auto-transformers using memory bank
+Incapable of dealing with changing user behavior patternsBinary decision making using reconstruction error
+Incapable of dealing with changing user behavior patterns
+Binary decision making using reconstruction error
+Equal Error Rate (EER) Accuracy
+Equal Error Rate (EER)
+Accuracy
+6.
+6.
+DeFFusion: CNN-based Continuous Authentication Using Deep Feature Fusion
+DeFFusion: CNN-based Continuous Authentication Using Deep Feature Fusion
+Y. Li, P. Tao, S. Deng, and G. ZhouACM Transactions on Sensor Networks (2022)
+Y. Li, P. Tao, S. Deng, and G. Zhou
+ACM Transactions on Sensor Networks (2022)
+Lightweight CNN architecture.Deep feature fusion combining time-domain and frequency-domain features.Factor Analysis (FA) for selecting discriminative deep features.
+Lightweight CNN architecture.
+Deep feature fusion combining time-domain and frequency-domain features.
+Factor Analysis (FA) for selecting discriminative deep features.
+Deep learning models are computationally heavy for mobile devices.Difficulty in efficiently fusing multi-modal deep features.
+Deep learning models are computationally heavy for mobile devices.
+Difficulty in efficiently fusing multi-modal deep features.
+Equal Error Rate (EER)Accuracy
+Equal Error Rate (EER)
+Accuracy
+7.
+7.
+Unsupervised Sensor-Based Continuous Authentication With Low-Rank Transformer Using Learning-to-Rank Algorithms
+Unsupervised Sensor-Based Continuous Authentication With Low-Rank Transformer Using Learning-to-Rank Algorithms
+Z. Yang, Y. Li and G. Zhou.IEEE Transactions on Mobile Computing(2024)
+Z. Yang, Y. Li and G. Zhou.
+IEEE Transactions on Mobile Computing(2024)
+Uses a Low-Rank Transformer to capture long-range temporal dependencies in multimodal sensor dataGenerates pseudo-negative samples by shuffling
+Uses a Low-Rank Transformer to capture long-range temporal dependencies in multimodal sensor data
+Generates pseudo-negative samples by shuffling
+High inference latencyBattery drain due to continuous running
+High inference latency
+Battery drain due to continuous running
+Equal Error Rate (EER) Accuracy
+Equal Error Rate (EER)
+Accuracy
+8.
+8.
+MMAuth: A Continuous Authentication Framework on Smartphones Using Multiple Modalities
+MMAuth: A Continuous Authentication Framework on Smartphones Using Multiple Modalities
+Z. Shen, S. Li, X. Zhao and J. Zou.IEEE Transactions on Information Forensics and Security (2022)
+Z. Shen, S. Li, X. Zhao and J. Zou.
+IEEE Transactions on Information Forensics and Security (2022)
+Integrates multi-modal data into time-extended behavioral feature setsUses Deep SVDD for one-class classification without impostor data
+Integrates multi-modal data into time-extended behavioral feature sets
+Uses Deep SVDD for one-class classification without impostor data
+Sensitive to environmental variations like screen moisture or stressStruggles to distinguish mimicking from genuine behavior
+Sensitive to environmental variations like screen moisture or stress
+Struggles to distinguish mimicking from genuine behavior
+False Acceptance Rate (FAR)False Rejection Rate (FRR)Equal Error Rate (EER)Accuracy
+False Acceptance Rate (FAR)
+False Rejection Rate (FRR)
+Equal Error Rate (EER)
+Accuracy
+9
+9
+CT-Auth: Capacitive Touchscreen-Based Continuous Authentication on Smartphones
+CT-Auth: Capacitive Touchscreen-Based Continuous Authentication on Smartphones
+Z. Shen, S. Li, X. Zhao, and J. ZouIEEE Transactions on Knowledge and Data Engineering (2024)
+Z. Shen, S. Li, X. Zhao, and J. Zou
+IEEE Transactions on Knowledge and Data Engineering (2024)
+Uses raw capacitive values (low-level) instead of API coordinates.3D CNN for intra-gesture spatial-temporal features.RNN (LSTM) for capturing inter-gesture sequential patterns.
+Uses raw capacitive values (low-level) instead of API coordinates.
+3D CNN for intra-gesture spatial-temporal features.
+RNN (LSTM) for capturing inter-gesture sequential patterns.
+API-based touch signals (coordinates) are coarse-grained.Window-based classifiers fail to capture sequential dependencies.
+API-based touch signals (coordinates) are coarse-grained.
+Window-based classifiers fail to capture sequential dependencies.
+Equal Error Rate (EER)
+Equal Error Rate (EER)
+10
+10
+IncreAuth: Incremental-Learning-Based Behavioral Biometric Authentication on Smartphones
+IncreAuth: Incremental-Learning-Based Behavioral Biometric Authentication on Smartphones
+Z. Shen, S. Li, X. Zhao, and J. ZouIEEE Internet of Things Journal (2024)
+Z. Shen, S. Li, X. Zhao, and J. Zou
+IEEE Internet of Things Journal (2024)
+Incremental learning framework to adapt to user behavior drift.GBDTNN model (GBDT + Neural Network distillation) for efficient online updates.Context-aware feature set
+Incremental learning framework to adapt to user behavior drift.
+GBDTNN model (GBDT + Neural Network distillation) for efficient online updates.
+Context-aware feature set
+Authentication accuracy degrades over time due to behavior drift.Retraining from scratch is resource-intensive.Difficulty distinguishing short-term preference changes from long-term pattern shifts.
+Authentication accuracy degrades over time due to behavior drift.
+Retraining from scratch is resource-intensive.
+Difficulty distinguishing short-term preference changes from long-term pattern shifts.
+Authentication AccuracyEqual Error Rate (EER)
+Authentication Accuracy
+Equal Error Rate (EER)
+Chapter 2 provides a comprehensive literature survey, reviewing recent works in behavioral biometric continuous authentication across publications in IEEE Transactions on Mobile Computing, ACM IMWUT, IEEE Transactions on Information Forensics and Security, ACM Transactions on Sensor Networks, and IEEE Transactions on Reliability. It examines the strengths and limitations of current approaches, highlighting gaps in areas such as the efficiency-accuracy trade-off in mobile deployment, unimodal signal coverage, binary decision-making without a behavioral buffer zone, and hardware-level privacy protection for biometric data. This chapter also explores related works in deep metric learning, graph neural networks, prototype-based classification, and incremental learning, setting the stage for the proposed framework's innovations. By analyzing past research, it identifies opportunities for enhancing continuous authentication through a layered architecture that separates lightweight consistency checking from deep behavioral attribution, enabling simultaneous improvements in computational efficiency, multimodal coverage, and adaptive personalization..
+CHAPTER 3 PROPOSED WORK
+SYSTEM OVERVIEW
+The Continuous Behavioral Streaming Authentication (CBSA) framework is a real-time identity verification system that authenticates users by analyzing their behavioral patterns across a continuous stream of interaction events. Unlike challenge-based authentication mechanisms such as passwords, PINs, and OTPs, CBSA operates entirely in the background: every touch gesture, scroll event, typing pattern, and navigation interaction contributes to an ongoing authentication signal that adapts to the user over time without requiring any deliberate action on their part. The system is designed specifically for security-sensitive mobile applications, where the cost of unauthorized session access is high and the tolerance for user-facing friction is low.
+The mobile client application captures behavioral signals continuously from six modalities: touch patterns, accelerometer, gyroscope, scroll behavior, typing dynamics, and contextual device state. These raw signals are processed on-device by a TensorFlow Lite feature extraction pipeline that produces a 48-dimensional normalized behavioral vector at regular intervals. The vector is cryptographically signed using the device's hardware-backed keystore — leveraging Android's Trusted Execution Environment — and transmitted to the cloud backend along with a nonce, timestamp, session identifier, and event type metadata. Raw sensor data never leaves the device; only the signed feature embedding is communicated, satisfying GDPR Privacy by Design requirements and providing resistance to replay attacks.
+Figure 3.1 Flow diagram of the Continuous Authentication Framework
+On the server side, the behavioral embedding passes through three sequential processing stages before a trust decision is issued. The Adaptive Behaviour Consistency Engine maintains a per-user prototype memory and computes a consistency score by comparing the incoming embedding against the user's stored behavioral archetypes using a composite of cosine similarity, Mahalanobis distance, and a behavioral stability modifier. If the consistency score falls within a defined uncertainty band, the observation is escalated to the Deep Behavioural Attribution Engine, which constructs a temporal behavioral graph from the recent event window and runs a Siamese Graph Attention Network to produce a deep session embedding that is compared against the user's stored profile. The Trust Aggregation and Decision Module combines the outputs of both engines into a continuously updated session trust score via an Exponential Moving Average model, and maps the trust score to one of three decision zones: ACCEPT, MONITOR, or BLOCK. The full pipeline is illustrated in Figure 3.1 and Figure 3.2.
+METHODOLOGY WITH ARCHITECTURE DIAGRAM
+The development of the CBSA framework involves integrating four processing modules that collaboratively transform raw mobile behavioral signals into real-time authentication decisions. The methodology encompasses both the conceptual design of each layer and the functional flow that governs how behavioral evidence moves through the system from acquisition to decision. The architectural overview of the system is illustrated in Figure 3.2.
+Figure 3.2 Architecture of the Continuous Authentication Framework
+The framework is structured as a client-server architecture with a strict separation between on-device processing and cloud-side inference. As depicted in Figure 3.2, the mobile client is responsible for all raw signal capture and feature extraction, while the cloud backend hosts the prototype database, the consistency engine, the GAT model, and the trust engine. This separation is a deliberate privacy and latency design choice: on-device processing ensures that sensitive raw biometric signals are never transmitted, while the cloud backend provides the storage capacity and computational resources needed for prototype maintenance, deep model inference, and long-term behavioral adaptation.
+On the device, the behavioral acquisition module synchronizes sensor streams and event streams into fixed temporal windows using a sliding window approach. Each window is processed by a feature extraction pipeline that computes both primary features — raw sensor coordinates and event parameters — and derived features such as touch velocity, scroll acceleration, typing flight time, and gyroscope energy. The resulting 48-dimensional feature vector is normalized to the unit interval, signed by the hardware keystore, and emitted to the server either on a one-second heartbeat or immediately upon a discrete event trigger. The payload structure, containing the event type, nonce, timestamp, signature, and vector, is designed to be self-contained and verifiable, enabling Layer 1 to reject any malformed, replayed, or anomalous-rate payload without modifying any session state.
+On the server, the Adaptive Behaviour Consistency Engine maintains for each user an adaptive set of behavioral prototypes, each represented as a mean vector and a per-dimension variance estimate updated via Exponential Moving Average. For each incoming embedding, the engine computes a three-scale temporal drift signal capturing behavioral deviation at the micro-behavioral, episodic, and session-baseline scales, a stability score measuring the coherence of the recent interaction window, and a prototype similarity score using a composite of cosine similarity and an exponential Mahalanobis kernel. A Markov transition surprise signal captures sequential navigation anomalies that are orthogonal to all magnitude and shape signals. These four signals are combined into a raw trust contribution that is passed to the Trust Engine. When the composite consistency score falls into the uncertainty band between the upper and lower thresholds, the observation's behavioral graph is constructed and forwarded to the Deep Behavioural Attribution Engine for GAT inference, as shown in Figure 3.1. The GAT produces a 64-dimensional session embedding that is compared against the user's stored profile via cosine similarity, and its output is incorporated into the trust aggregation with an adaptive contribution weight that scales inversely with the current trust level.
+The Trust Aggregation and Decision Module maintains the session trust score as an Exponential Moving Average of successive raw trust signals, with an adaptive smoothing coefficient that responds to both the magnitude of short-term behavioral drift and the geometric cohesion of the user's prototype set. High drift reduces the smoothing coefficient, causing trust to respond rapidly to sustained anomalies. Low drift with high prototype cohesion raises the smoothing coefficient, providing inertia against isolated noisy observations. The trust score is mapped to three decision zones: a SAFE zone above the upper threshold that issues an ACCEPT decision, a MONITOR zone between the thresholds that logs the observation passively without interrupting the session, and a RISK zone below the lower threshold that issues a BLOCK decision and terminates the session. This three-zone structure provides hysteresis that prevents unstable oscillating decisions for sessions with natural behavioral variance near a threshold boundary.
+The flow begins with a user query and progresses through several iterative cycles of collection, processing, graph update, and summarization. Each iteration refines the graph and updates the search parameters, which are used in the next round. This looped methodology allows the system to "learn" contextually and incrementally improve its data coverage.
+As part of data processing, NLP techniques are applied to transform raw text into structured information. The core of this process is relationship extraction, which populates a graph database using triplets derived from the input content. The system supports iterative refinement: each round of extraction is used to improve search queries and expand the graph further, forming a closed feedback loop. The knowledge graph acts as the central repository, providing structured, relational access to extracted information and enabling sophisticated graph analytics.
+The design borrows inspiration from adaptive reasoning systems and mimics the way human analysts refine their focus based on intermediate findings. Rather than gathering all data at once, the platform strategically expands its scope, ensuring higher quality results and better alignment with real investigative workflows.
+The layers present in the CBSA application are outlined here. The first layer is On Device Behavior Acquisition and Encoding. This module extracts behavioral events from a mobile client, validates it and sends it over WebSocket
+The second layer is the Adaptive Behavior Prototype Engine. This extracts leakage-free three-scale temporal drift, stability, prototype topology cohesion, prototype-matching signals, and a Behavioral Session Fingerprint using a geometric, statistical, and sequential model of behavioral identity. The third layer runs a Graph Attention Network (GAT) over a temporal behavioral graph to produce a deep session embedding, escalated only when Layer 2 raises uncertainty.
+The fourth and final layer is the Trust Decision and Aggregation Layer. This combines all signals into a continuous trust score through an Exponential Moving Average model with cohesion-modulated adaptive coefficient, producing zone-based authentication decisions.
+ON-DEVICE BEHAVIOUR ACQUISITION AND ENCODING
+The on-device behavior acquisition module is responsible for collecting raw behavioral signals and converting them into encrypted vector embeddings. It takes as input raw sensor streams Sraw (Touch, Motion, Timing), discrete event streams Eevents (Tap, Scroll, Type), and the Device Hardware State Hstate. It outputs a Behaviour Embedding vemb and Attested Metadata Msecure.
+The processing steps are: (1) Synchronize the raw sensor streams with event streams into Dsynced. (2) Segment the synchronized data into temporal windows W1, W2, …, Wt of size T. (3) For each window Wt, extract features and normalize them to produce fnorm. (4) Encode fnorm into the behavior embedding vemb. (5) Sign the embedding using Hardware Attestation to produce a cryptographic signature σsign, preventing replay attacks. (6) Construct secure metadata Msecure containing the timestamp, device ID, and signature. (7) Return vemb and Msecure.
+The 48-dimensional behavioral feature vector is the agreed interface between the mobile SDK and the backend. Each dimension encodes a normalized behavioral signal. The fixed dimensionality is required by all downstream components including drift computation, Mahalanobis distance calculation, and GAT node features (which are 56-dimensional = 48 + 8 event-type embedding).
+ADAPTIVE BEHAVIOUR CONSISTENCY ENGINE
+The adaptive behavior consistency engine maintains an adaptive, user-specific prototype memory to represent multiple behavioral modes and computes a Behaviour Consistency Score and Confidence Margin. It takes as input the current behavior embedding xt and a Recent History Buffer H = xt-1, …, xt-n. Parameters include a Prototype Set P = P1, …, Pk, thresholds τ_strong and τweak, learning rate η, drift sensitivity λ, and user baseline θu.
+Session Buffer and Leakage-Free Statistics
+Each user session maintains an in-memory state structure with a short window (deque, maxlen=5) for micro-behavioral scale, a medium window (deque, maxlen=20) for episodic scale, and a running mean and variance computed using Welford's online algorithm for numerical stability. The pre-update snapshot is captured before updating the buffer to prevent data leakage: the current vector xt must not appear in its own reference distribution when drift is computed.
+Three-Scale Temporal Drift
+Three drift signals are computed at distinct behavioral scales. Short drift (dshort) captures deviation of xt from the 5-event micro-behavioral window, detecting sudden impostor switches or replay attacks. Medium drift (dmedium) captures deviation from the 20-event episodic window, detecting mode transitions and gradual impersonation. Long drift (dlong) captures deviation of the short window from the Welford running mean, detecting slow session-level behavioral evolution. All three outputs are mapped to 0,1 using exponential normalization: d = 1 -exp-drawσ, where σ is a principled scale parameter.
+Composite Similarity
+The composite similarity between a window vector v and a stored prototype μk, σk2 is computed as: sim = 0.50 ×cosv, μk+ 0.40 × kMv, μk+ 0.10 × S. The cosine component captures directional agreement (behavioral shape), the exponential Mahalanobis kernel kM captures magnitude deviation scaled by user-specific variance, and the stability modifier S captures behavioral coherence. Weights 50/40/10 reflect that behavioral identity is primarily a directional property. The composite output is bounded in 0, 1 without clipping.
+Prototype Quarantine
+When composite similarity falls below the creation threshold (0.50), the behavioral vector enters a CandidatePool rather than immediately creating a new prototype. A candidate is promoted to a full prototype only when: at least 3 observations are accumulated (NMIN= 3), the observations span at least 30 seconds (TMIN= 30s), and the mean cosine consistency to the centroid is at least 0.72. This prevents single anomalous events or burst-injection attacks from creating spurious prototypes.
+Behavioral Session Fingerprint (Layer-2c)
+Layer-2c captures the sequential navigation structure of user behavior via an EMA-updated Markov transition probability matrix. For each pair of consecutive event types, the transition surprise is computed as: Iprev→curr= -logPEMAprevcurr, then ts = 1 -exp-Iσtrans. Expected transitions produce low surprise (ts ≈ 0) while never-seen transitions produce high surprise (ts ≈ 0.92). This signal is orthogonal to all magnitude and shape signals, detecting attackers who know the user's feature vectors but navigate in an unexpected order.
+DEEP BEHAVIOURAL ATTRIBUTION ENGINE (GAT)
+This module handles escalated or uncertain cases using Graph Attention Networks (GATs). It is invoked conditionally when the anomaly indicator exceeds 0.40 or when more than 3 consecutive events are flagged as uncertain, subject to a 30-second recheck cooldown.
+Behavioral Graph Construction
+Each behavioral session window is represented as a temporal graph G = V, E where nodes V represent individual behavioral events within the last 20-second sliding window and edges E represent temporal relationships. For each source node i, edges are added to subsequent nodes j. The edge fan-out stops after encountering 4 distinct new event types, but repeat event types do not count toward this limit and are always connected, preserving repetitive patterns as identity-bearing signals.
+Node Feature Engineering
+Each node (event) is represented as a 56-dimensional feature vector. Dimensions 0–47 correspond to the 48-dimensional behavioral vector from the mobile SDK. Dimensions 48–55 encode the event type using the first 8 bytes of its SHA-256 hash. Hash embeddings are preferred over one-hot encoding because they are fixed-size regardless of vocabulary size and semantically related event type names receive nearby hash codes.
+Siamese GAT Network Architecture
+The GAT model uses a Siamese architecture: the session graph and the user's reference profile are both processed through a shared-weight encoder. The encoder applies two GATConv layers (56→128 with 4 attention heads concatenated to 512-D, then 512→128 with 4 heads averaged to 128-D), followed by global mean pooling and a linear projection to 64-D. The score is cosinesimilaritysessionemb, profileemb in 0, 1. GAT is preferred over GCN because it learns per-edge attention weights, focusing on the most identity-discriminative temporal transitions.
+Training
+The model was trained with triplet loss: L =max0, danchor, positive- danchor, negative+ margin, with margin = 0.75 and cosine distance da, b= 1 - cosinesimilaritya, b. Behavioral data was collected from 17 users, building 915 individual graphs. Data was split into windows of 20 seconds with 10-second stride (50% overlap). A Siamese network with three identical GATs (anchor, positive, negative) was trained for 30 epochs on 29,160 triplets with a 4:1 train:test split.
+Parameter
+Parameter
+Value
+Value
+Window size
+Window size
+20 seconds
+20 seconds
+No. of neighbours
+No. of neighbours
+4 distinct events
+4 distinct events
+Attention mechanism
+Attention mechanism
+Masked self-attention
+Masked self-attention
+No. of layers
+No. of layers
+2
+2
+No. of attention heads
+No. of attention heads
+4
+4
+No. of epochs
+No. of epochs
+30
+30
+Input dimensions
+Input dimensions
+56
+56
+Hidden dimensions
+Hidden dimensions
+64
+64
+Output dimensions
+Output dimensions
+64
+64
+No. of triplets trained on
+No. of triplets trained on
+29,160
+29,160
+Triplet margin
+Triplet margin
+0.75
+0.75
+Train:test split
+Train:test split
+4:1
+4:1
+Loss function
+Loss function
+Triplet loss with cosine similarity
+Triplet loss with cosine similarity
+TRUST AGGREGATION AND DECISION MODULE
+The Trust Engine aggregates the complete behavioral signal into a continuous trust score via an Exponential Moving Average (EMA) model with an adaptive coefficient, and issues zone-based authentication decisions.
+Raw Trust Signal
+The raw trust signal at each timestep is: Rt= wsim× simt+ wstab× St+ wdrift× 1 - Dt+ wtrans× 1 - tst, where Dt= 0.50 × dshort+ 0.30 × dmedium+ 0.20 × dlong is the three-scale composite drift. Weights are wsim= 0.40, wstab= 0.20, wdrift= 0.30, wtrans= 0.10, summing to 1.0. The output Rt is bounded in 0, 1 without clipping.
+Adaptive EMA
+The trust score is updated via: Tt= αt× Tt-1+ 1 - αt× Rt. The EMA coefficient αt is modulated by both short-term drift and prototype topology cohesion: αeffmax= ALPHAMAX× 0.90 + 0.10 × cohesiont, then αt= clipαeffmax- γ × dshortt, αmin, αeffmax ALPHAMAX= 0.85 and ALPHAMIN= 0.30. This implements principled speed-accuracy trade-off: stable behavior produces high inertia (slow trust change), sudden anomalies produce fast response (low inertia within 1–2 events).
+Trust Zones and Decisions
+The trust score is mapped to three zones: SAFE ([θ_safe, 1.0] → ACCEPT, θ_safe = 0.80), MONITOR (θrisk, θsafe→ passive logging, θrisk= 0.40), and RISK (0, θrisk→ BLOCK). A WARMUP status is returned when insufficient data is available (fewer than 20 events). The MONITOR dead zone provides hysteresis, preventing unstable alternating decisions for sessions with natural behavioral variance.
+SUMMARY
+The proposed four-layer framework addresses all identified research gaps. Module 1 addresses privacy/hardware risks through cryptographic signing and on-device processing. Module 2 addresses the efficiency-accuracy trade-off through lightweight prototype matching and the unimodal vulnerability through six-signal multimodal capture. Module 3 addresses the trade-off further by invoking deep GAT analysis only for uncertain cases (~5%). Module 4 addresses the lack of buffer zone through a three-zone trust model with EMA inertia.
+CHAPTER 4
+IMPLEMENTATION
+PLATFORMS USED
+Android Mobile Device
+The client-side application was developed for Android devices running Android version 6.0 (API level 23) and above, compiled against SDK version 35. The Android platform provides access to all required sensor APIs (accelerometer, gyroscope, touch) and the android.security.keystore API for hardware-backed cryptographic operations.
+Cloud-Based Backend — Microsoft Azure
+The cloud backend runs on Microsoft Azure with two computation tiers: an Azure Virtual Machine Scale Set (VMSS) using Standard_DC4as_v5 instances (4 vCPUs, 16 GiB RAM) for the Layer 1 and Layer 2 processing pipeline, and an Azure Virtual Machine using Standard_NC4as_T4_v3 (4 vCPUs, 28 GiB RAM, 1 NVIDIA T4 GPU) for GAT inference. Storage is provided by Azure Cosmos DB for behavioral profiles and computation logs, and Azure Blob Storage (Data Lake Gen2) for model checkpoints. Model training was performed on Google Colab using an NVIDIA T4 GPU.
+TOOLS AND LIBRARIES
+The following tools and libraries were used in the implementation:
+Android Sensor APIs (Target SDK: API Level 34 / Android 14) — for capturing touch, motion, and timing signals
+android.security.keystore — Secure Hardware APIs for hardware-backed key generation and cryptographic signing
+Python 3.10+ with FastAPI and WebSocket — cloud backend server and WebSocket event ingestion
+PyTorch and PyTorch Geometric (torch_geometric) — for GAT model definition, training, and inference
+NumPy / SciPy — for numerical operations, drift and stability computations
+Azure Cosmos DB SDK and Azure Blob Storage SDK — for cloud storage integration
+DATASET DESCRIPTION
+The following behavioral parameters are extracted from the mobile device as time-series sensor data, converted into 48-dimensional feature vectors. Raw sensor coordinates are processed on-device using TensorFlow Lite. Only the cryptographically signed feature vectors — not the raw data — are transmitted to the server for verification, complying with GDPR 'Privacy by Design' principles.
+Signal Type
+Signal Type
+Description
+Description
+Primary Features (Raw)
+Primary Features (Raw)
+Derived Features (Computed)
+Derived Features (Computed)
+Touch Patterns
+Touch Patterns
+Screen interaction mechanics
+Screen interaction mechanics
+Touch X, Touch Y, Touch Pressure, Touch Timestamp, Touch Type, Touch Count
+Touch X, Touch Y, Touch Pressure, Touch Timestamp, Touch Type, Touch Count
+Touch Dwell Time, Touch Velocity, Touch Direction, Touch Jerk, Avg Touch Pressure, Touch Frequency, Touch Path Length, Touch Entropy
+Touch Dwell Time, Touch Velocity, Touch Direction, Touch Jerk, Avg Touch Pressure, Touch Frequency, Touch Path Length, Touch Entropy
+Accelerometer
+Accelerometer
+Linear acceleration & force
+Linear acceleration & force
+Accel X, Accel Y, Accel Z
+Accel X, Accel Y, Accel Z
+Accel Magnitude, Accel Mean, Accel Variance, Accel STD, Accel Energy, Accel Peak Count
+Accel Magnitude, Accel Mean, Accel Variance, Accel STD, Accel Energy, Accel Peak Count
+Gyroscope
+Gyroscope
+Angular velocity & rotation
+Angular velocity & rotation
+Gyro X, Gyro Y, Gyro Z
+Gyro X, Gyro Y, Gyro Z
+Gyro Magnitude, Gyro Mean, Gyro Variance, Gyro STD, Gyro Energy, Gyro Peak Count
+Gyro Magnitude, Gyro Mean, Gyro Variance, Gyro STD, Gyro Energy, Gyro Peak Count
+Scroll Behavior
+Scroll Behavior
+Navigation dynamics
+Navigation dynamics
+(Derived from Touch)
+(Derived from Touch)
+Scroll Velocity, Scroll Direction, Scroll Acceleration, Scroll Pause Time
+Scroll Velocity, Scroll Direction, Scroll Acceleration, Scroll Pause Time
+Typing Dynamics
+Typing Dynamics
+Keystroke rhythm
+Keystroke rhythm
+Key Press Time, Key Release Time
+Key Press Time, Key Release Time
+Flight Time, Hold Time, Typing Speed, Rhythm Consistency
+Flight Time, Hold Time, Typing Speed, Rhythm Consistency
+Environment
+Environment
+Device state & context
+Device state & context
+Device Orientation, Screen State, Battery Level, App State
+Device Orientation, Screen State, Battery Level, App State
+Time of Day, Session Duration
+Time of Day, Session Duration
+Global Metrics
+Global Metrics
+High-level session statistics
+High-level session statistics
+(Aggregated from all)
+(Aggregated from all)
+Inter Event Time, Behaviour Rhythm, Window Entropy, Stability Score
+Inter Event Time, Behaviour Rhythm, Window Entropy, Stability Score
+DATA COLLECTION APPLICATION
+A banking application was developed to collect user interactions and behavior in a realistic setting. The application includes all features required to facilitate mobile banking: a randomized login screen, dashboard, cards view, account details, and a services page. The interface provides multiple screens and features present in a typical banking application to record realistic user behavior across varied interaction modes.
+Figure 4.2 – DashboardFigure 4.2 – Dashboard
+Figure 4.2 – Dashboard
+Figure 4.2 – Dashboard
+Figure 4.1 – Login screenFigure 4.1 – Login screen
+Figure 4.1 – Login screen
+Figure 4.1 – Login screen
+Figure 4.4 – More servicesFigure 4.4 – More servicesFigure 4.3 – CardsFigure 4.3 – Cards
+Figure 4.4 – More services
+Figure 4.4 – More services
+Figure 4.3 – Cards
+Figure 4.3 – Cards
+Figure 4.6 – Account screenFigure 4.6 – Account screenFigure 4.5 – Pay screenFigure 4.5 – Pay screen
+Figure 4.6 – Account screen
+Figure 4.6 – Account screen
+Figure 4.5 – Pay screen
+Figure 4.5 – Pay screen
+The interface provides multiple screens and features present in a typical banking application to record realistic user behavior.
+Figure 4.7 – Vector data for touch event on balance card
+Figure 4.8 – Vector data after timeout without any events
+Device sensor data is captured at 50ms intervals and event data is captured as events occur. Data is continuously streamed to the cloud server every 1 second or when an event occurs. The payload contains: event type, nonce, timestamp, cryptographic signature, and the 48-dimensional behavior vector. If emission is triggered by an event, that event type is populated in the metadata. If a timeout triggers an emission, the event type field is empty.
+SECURE INGESTION
+Layer 1 is the sole entry point for behavioral data. Every event arriving over WebSocket passes through a strict sequence of deterministic validation checks. Rejection at this layer returns an error response immediately with no state modification.
+Check #
+Check #
+Check Type
+Check Type
+Rejection Condition
+Rejection Condition
+1
+1
+Schema validation
+Schema validation
+Missing required fields: username, session_id, timestamp, event_type, event_data, nonce, vector
+Missing required fields: username, session_id, timestamp, event_type, event_data, nonce, vector
+2
+2
+Vector dimension
+Vector dimension
+len(vector) ≠ 48
+len(vector) ≠ 48
+3
+3
+Vector range
+Vector range
+Any element outside [0, 1]
+Any element outside [0, 1]
+4
+4
+Nonce uniqueness
+Nonce uniqueness
+Nonce already seen in this session (replay prevention)
+Nonce already seen in this session (replay prevention)
+5
+5
+Monotonic timestamp
+Monotonic timestamp
+timestamp ≤ last_timestamp for this session
+timestamp ≤ last_timestamp for this session
+6
+6
+Burst-rate guard
+Burst-rate guard
+delta_t < 40ms for more than 5 consecutive events
+delta_t < 40ms for more than 5 consecutive events
+BEHAVIORAL PREPROCESSING AND PROTOTYPE ENGINE
+Layer 2 is the statistical core of CBSA. It extracts three families of behavioral signals: drift (deviation from the user's established behavioral baseline), stability (coherence of the current interaction window), and prototype similarity (proximity to the user's behavioral archetypes). These three signals, together with the Markov transition fingerprint, are combined by Layer 4 into the trust score.
+Welford's online algorithm is used for numerically stable variance estimation across sessions of up to 10,000 events. The pre-update snapshot invariant ensures that the current vector x_t does not appear in its own reference distribution when drift is computed, preventing systematic bias at session start. The composite similarity formula combines 50% cosine similarity, 40% exponential Mahalanobis kernel, and 10% stability modifier.
+The prototype quarantine system requires candidates to satisfy three simultaneous conditions before promotion: minimum 3 observations, minimum 30-second temporal spread, and minimum 0.72 mean cosine consistency. This defeats burst-injection attacks, requiring a sustained 30-second behavioral mimicry effort.
+GRAPH ATTENTION NETWORK
+Layer 3 provides deep session-level behavioral authentication through a Graph Attention Network operating on a temporal behavioral graph. It is triggered conditionally, not periodically, preventing unnecessary compute on stable sessions.
+The behavioral graph is constructed from all events within the last 20-second window. Each node's 56-dimensional feature vector combines the 48-D behavioral vector with an 8-byte hash embedding of the event type. Edges connect each node to subsequent nodes, stopping after 4 distinct new event types — but always connecting repeat event types, preserving repetitive patterns as identity signals.
+The Siamese GAT encoder processes the session graph and the stored user profile through shared weights, producing 64-D embeddings that are compared via cosine similarity. After inference, the user profile is updated via EMA. The adaptive kappa parameter adjusts GAT's contribution weight: κ = clip(0.10 + 0.30 × (1 − trust_score), 0.10, 0.40), ensuring GAT dominates only when Layer 2 is uncertain.
+TRUST ENGINE
+Layer 4 implements the full trust computation pipeline. The raw trust signal R_t is computed from four components: similarity (40%), drift-complement (30%), stability (20%), and transition fingerprint (10%). The composite drift D_t combines short (50%), medium (30%), and long (20%) drift scales.
+The EMA trust update uses an adaptive α_t that responds to both drift magnitude and prototype topology cohesion. High drift reduces α_t to ALPHA_MIN (0.30), making trust respond within 1–2 events. Low drift with high cohesion raises α_t to ALPHA_MAX (0.85), providing 4–5 events of inertia against noise. Zone-based decisions (SAFE/MONITOR/RISK) provide hysteresis against threshold oscillation.
+STORAGE ARCHITECTURE
+The system uses Azure Cosmos DB with three containers: computation-logs (per-event engine metrics and trust scores, partitioned by /userId), user-profiles (64-D GAT profile vectors, partitioned by /userId), and cbsa-behavioral (JSONL behavioral event logs, partitioned by /username). Azure Blob Storage (cbsa-models container) stores the trained GAT model checkpoint, downloaded at server startup. SQLite is used for local development with tables for users, prototypes, and behavior logs.
+SUMMARY
+The implementation covers all four processing layers with a clean separation of concerns: ingestion, statistical preprocessing, deep attribution, and trust aggregation. The technology stack (Python/FastAPI, PyTorch/PyTorch Geometric, Azure Cosmos DB, Azure Blob Storage) is production-ready and scalable. The banking application provides realistic multimodal behavioral data collection across six signal types, forming the foundation for both training and real-time evaluation.
+CHAPTER 5 RESULTS AND ANALYSIS
+EVALUATION METRICS
+The system is evaluated using three standard biometric authentication metrics. The False Acceptance Rate (FAR) denotes what proportion of imposters is allowed by the framework; it should be less than 1% for security-sensitive applications. The False Rejection Rate (FRR) denotes what proportion of legitimate users is blocked by the framework; it should be less than 5% to minimize user frustration.
+The Equal Error Rate (EER) is the threshold value at which FAR and FRR are simultaneously minimized. FAR and FRR vary inversely with the cosine similarity threshold: as the threshold increases, FRR increases and FAR decreases. The EER denotes the point of balanced trade-off. The Receiver Operating Characteristic (ROC) curve plots FAR on the x-axis and True Positive Rate (TPR) on the y-axis; the Area Under the Curve (AUC) summarizes discriminative performance, with robust models achieving AUC > 0.9.
+EQUAL ERROR RATE (EER)
+The continuous authentication framework achieved an EER of 0.0271 (2.71%) corresponding to a cosine similarity threshold of 0.0985. This represents the optimal operating point where both FAR and FRR are simultaneously minimized.
+Figure 5.1 Threshold vs Error rates
+RECEIVER OPERATING CHARACTERISTIC (ROC) CURVE
+The CA framework achieved an AUC of 0.9847, well above the 0.9 threshold required for robust biometric systems. The ROC curve shows the system achieves near-perfect separation between genuine users and impostors, with the curve hugging the top-left corner of the plot.
+Figure 5.2 ROC curve
+DETECTION ERROR TRADE-OFF (DET) CURVE
+For security-sensitive applications, low FAR is more critical than FRR. The DET curve compares FAR on the x-axis and FRR on the y-axis. The intersection with the y=x line gives the EER. The framework's DET curve demonstrates that accepting an FRR of 0.05 (5%) allows achieving an FAR of less than 0.01 (1%), satisfying the security requirement for sensitive applications.
+Figure 5.3 DET curve
+COMPARISON WITH OTHER MODELS
+The framework's EER of 2.71% is compared against existing continuous authentication models evaluated on similar behavioral datasets. As shown in Figure 5.4, the proposed BehaviorBasedCA achieves a significantly better EER than UCAP (7.8%) and CT-Auth (8.2%), and is competitive with DeFFusion (1.0%) while providing substantially better multimodal coverage and privacy guarantees.
+Figure 5.4 Comparison of EER
+Model
+Model
+EER (%)
+EER (%)
+Modalities
+Modalities
+Adaptive
+Adaptive
+Privacy
+Privacy
+RPWAEAuth
+RPWAEAuth
+0.66
+0.66
+3 sensors
+3 sensors
+No
+No
+Partial
+Partial
+DeFFusion
+DeFFusion
+1.0
+1.0
+2 sensors
+2 sensors
+No
+No
+Partial
+Partial
+BehaviorBasedCA (Proposed)
+BehaviorBasedCA (Proposed)
+2.71
+2.71
+6 modalities
+6 modalities
+Yes
+Yes
+Full (on-device)
+Full (on-device)
+CALL
+CALL
+3.86
+3.86
+2 sensors
+2 sensors
+No
+No
+Partial
+Partial
+UCAP
+UCAP
+7.8
+7.8
+Keystroke only
+Keystroke only
+No
+No
+Partial
+Partial
+CT-Auth
+CT-Auth
+8.2
+8.2
+Capacitive touch
+Capacitive touch
+No
+No
+Partial
+Partial
+SUMMARY
+The proposed framework achieves competitive EER (2.71%) and excellent AUC (0.9847) while uniquely offering six-modality coverage, on-device privacy, incremental adaptation, and a buffer zone trust model. The DET curve confirms that the system meets the FAR < 1% requirement at FRR = 5%, making it suitable for production deployment in security-sensitive mobile applications such as banking.
+CHAPTER 6
+CONCLUSION AND FUTURE WORKS
+This project presents the design and implementation of a Multi-Layer Behavior-Based Framework for Continuous Mobile Session Security. The system addresses four critical gaps in existing continuous authentication literature: the efficiency-accuracy trade-off, unimodal vulnerability, the lack of a behavioral buffer zone, and hardware-level privacy risks.
+The framework's four-layer pipeline - Secure Ingestion, Adaptive Behaviour Consistency Engine, Deep Behavioural Attribution Engine (GAT), and Trust Aggregation — works in concert to authenticate users passively and continuously throughout their mobile sessions. Behavioral data was collected from 17 users via a custom banking application capturing six signal modalities. The 48-dimensional behavioral vector, hardware-attested and cryptographically signed on-device, ensures privacy by design.
+The system achieved an EER of 2.71%, an AUC of 0.9847, and demonstrated that a 5% FRR threshold yields FAR below 1%, satisfying the security requirements for sensitive mobile applications. The three-scale temporal drift, prototype quarantine, and Markov transition fingerprint together provide a comprehensive behavioral identity model that adapts to genuine user drift while resisting impostors.
+Future enhancements can focus on the following directions:
+Expanding the behavioral dataset beyond 17 users to improve GAT generalization and evaluate cross-device performance.
+Extending the framework to wearable devices (smartwatches) and IoT contexts where behavioral signals differ from smartphone interaction.
+Investigating formal privacy guarantees such as differential privacy for the prototype storage mechanism to provide mathematical bounds on information leakage.
+Evaluating the system under adversarial conditions including trained mimicry attacks and side-channel replay attacks at scale.
+REFERENCES
+C. Wang, Y. Xiao, X. Gao, L. Li and J. Wang, "A Framework for Behavioral Biometric Authentication Using Deep Metric Learning on Mobile Devices," IEEE Transactions on Mobile Computing, vol. 22, no. 1, pp. 562–575, Jan. 2023, doi: 10.1109/TMC.2021.3073796.
+H. Chen, F. Li, W. Du, S. Yang, M. Conn and Y. Wang, "Listen to Your Fingers: User Authentication Based on Geometry Biometrics of Touch Gesture," Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (IMWUT), vol. 4, no. 3, Article 102, pp. 1–29, Sept. 2020, doi: 10.1145/3411809.
+J-S. Lee, T-H. Chen, C-J. Chew, P-Y. Wang and Y-Y. Fan, "Unconsciously Continuous Authentication Protocol in Zero-Trust Architecture Based on Behavioral Biometrics," IEEE Transactions on Reliability, vol. 74, no. 2, pp. 2591–2604, June 2025, doi: 10.1109/TR.2025.3541224.
+Y. Li, Y. Wang, and H. Huang, "RPWAEAuth: Sensor-Based Continuous Authentication Using Reconstruction Probability in Wasserstein Autoencoder," ACM Transactions on Sensor Networks, vol. 21, no. 2, Article 25, March 2025, doi: 10.1145/3717065.
+Y. Li, L. Liu, S. Deng, H. Qin, M. A. El-Yacoubi and G. Zhou, "Memory-Augmented Autoencoder Based Continuous Authentication on Smartphones With Conditional Transformer GANs," IEEE Transactions on Mobile Computing, vol. 23, no. 5, pp. 4467–4482, May 2024, doi: 10.1109/TMC.2023.3290834.
+Y. Li, P. Tao, S. Deng and G. Zhou, "DeFFusion: CNN-based Continuous Authentication Using Deep Feature Fusion," ACM Transactions on Sensor Networks, vol. 18, no. 2, Article 29, pp. 1–23, May 2022, doi: 10.1145/3485060.
+Z. Yang, Y. Li and G. Zhou, "Unsupervised Sensor-Based Continuous Authentication With Low-Rank Transformer Using Learning-to-Rank Algorithms," IEEE Transactions on Mobile Computing, vol. 23, no. 9, pp. 8839–8854, Sept. 2024, doi: 10.1109/TMC.2024.3353209.
+Z. Shen, S. Li, X. Zhao and J. Zou, "MMAuth: A Continuous Authentication Framework on Smartphones Using Multiple Modalities," IEEE Transactions on Information Forensics and Security, vol. 17, pp. 1450–1465, 2022, doi: 10.1109/TIFS.2022.3160361.
+Z. Shen, S. Li, X. Zhao and J. Zou, "CT-Auth: Capacitive Touchscreen-Based Continuous Authentication on Smartphones," IEEE Transactions on Knowledge and Data Engineering, vol. 36, no. 1, pp. 90–103, Jan. 2024, doi: 10.1109/TKDE.2023.3286950.
+Z. Shen, S. Li, X. Zhao and J. Zou, "IncreAuth: Incremental-Learning-Based Behavioral Biometric Authentication on Smartphones," IEEE Internet of Things Journal, vol. 11, no. 1, pp. 1589–1602, Jan. 2024, doi: 10.1109/JIOT.2023.3290680.

@@ -1,0 +1,1331 @@
+FEDERATED LEARNING FOR CODE GENERATION WITH HALLUCINATION – AWARE FINE TUNING
+A PROJECT REPORT
+Submitted by
+ABHINAVH P PRABHAKARA ARJUN R
+BUVANES SRIVARDAN K
+COURSE CODE: CS6811 COURSE TITLE: PROJECT WORK
+in partial fulfilment for the award of the degree of
+BACHELOR OF ENGINEERING IN
+COMPUTER SCIENCE AND ENGINEERING
+MADRAS INSTITUTE OF TECHNOLOGY ANNA UNIVERSITY: CHENNAI 600 044
+APRIL 2026
+DEPARTMENT OF COMPUTER TECHNOLOGY ANNA UNIVERSITY, MIT CAMPUS CHROMEPET, CHENNAI – 600 044
+BONAFIDE CERTIFICATE
+Certified that this project report “FEDERATED LEARNING FOR CODE GENERATION WITH HALLUCINATION – AWARE FINE TUNING”
+is the bonafide work of Mr. Abhinavh P (2022503059), Mr. Prabhakara Arjun R (2022503003) & Mr. Buvanes Srivardan K (2022503037) who carried out the project work under my supervision.
+SIGNATURE OF HODSIGNATURE OF SUPERVISOR
+Dr. PONSY R K SATHIA BHAMADr. THANASEKHAR B
+Associate Professor & HeadProfessor
+Department of Computer Technology Department of Computer Technology Anna University, MIT CampusAnna University, MIT Campus
+Chromepet, Chennai-600044Chromepet, Chennai-600044
+ABSTRACT
+Large Language Models (LLMs) have demonstrated strong capabilities in automated code generation, enabling solutions for a wide range of software engineering tasks. However, these models often suffer from hallucinations, producing syntactically correct but semantically incorrect code, including invalid APIs and logical errors. Such issues reduce the reliability of LLM-based systems in practical applications.
+In this project, we propose a federated learning-based framework for improving code generation by reducing hallucinations in a privacy-preserving manner. The system integrates hallucination detection to identify and correct errors in generated code, thereby creating high-quality datasets for model adaptation. These datasets are used to fine-tune the model using parameter-efficient Low-Rank Adaptation (LoRA) across multiple decentralized clients.
+Each client performs local fine-tuning using its own data, and only lightweight adapter parameters are shared with a central server, ensuring data privacy. Unlike traditional federated learning approaches that use standard Federated Averaging (FedAvg), this work introduces a novel aggregation strategy called Fed-Error Average, where model updates are weighted based on both dataset size and the distribution of hallucination errors across clients.
+This error-aware aggregation mechanism enables the model to learn more effectively from diverse error patterns, leading to improved generalization and reduced hallucinations. Experimental results demonstrate that the proposed approach achieves better correctness compared to baseline models.
+ACKNOWLEDGEMENT
+We take this humble opportunity to thank Dean, MIT Campus, Anna University, Dr. P Jayashree and Dr. Ponsy R K Sathia Bhama, Associate Professor & Head, Department of Computer Technology, MIT Campus, Anna University for providing all the lab facilities in pursuit of this project.
+Undertaking this project has helped us learn a lot, and we would like to express our sincere gratitude towards our supervisor Dr. B.Thanasekhar, Professor, Department of Computer Technology, MIT, Anna University, whose kind guidance, and proper directions helped shape this project perfectly. The timely feedback from the supervisor was very instrumental in successful completion of the project work carried out. Constant encouragement to implement the project to the fullest of our potential led us through, during the difficult phase of the project, and assisted in the successful completion of the proposed project work.
+We acknowledge the efforts and feedback of the panel members, Dr. P. Pabitha, Associate Professor, Department of Computer Technology, MIT, Anna University, Dr. S. Chithra, Associate Professor, Department of Computer Technology, MIT, Anna University and Dr. V.P. Jayachitra, Assistant Professor, Department of Computer Technology, MIT, Anna University in reviewing our work, providing constant valuable comments and encouraging us to view the different aspects of the project in successful implementation of the project.
+We thank all the teaching and non-teaching members of the Department of Computer Technology, MIT, Anna University, seniors, juniors, and friends whose appreciable help, either directly or indirectly helped in the smooth completion of the Creative and Innovative Project in a limited time frame.
+ABHINAVH P
+PRABHAKARA ARJUN R
+BUVANES SRIVARDAN K
+CHAPTER NO.
+TABLE OF CONTENTS
+TITLEPAGE
+NO.
+ABSTRACTiii
+LIST OF TABLESviii
+LIST OF FIGURESix
+INTRODUCTION1
+GPU OPTIMIZATION IN SCIENTIFIC VISUALIZATION1
+REAL-TIME CLIMATE
+VISUALIZATION1
+UNSTRUCTURED MESHES IN
+CLIMATE VISUALIZATION2
+GPU-OPTIMIZED RENDERING
+FRAMEWORK3
+PROBLEM STATEMENT3
+OBJECTIVES4
+RESEARCH GAPS IDENTIFIED4
+LITERATURE SURVEY5
+OPTIMIZATION OF GPU-BASED
+CLIMATE VISUALIZATION5
+RAY-TRACING AND ADAPTIVE6
+RENDERING TECHNIQUES
+GPU-OPTIMIZED DATA
+COMPRESSION AND STORAGE6
+SCIENTIFIC VISUALIZATION AND8
+PERFORMANCE OPTIMIZATION
+PROPOSED WORK10
+PROCESSING AND VOXEL
+CHUNKING OF CLIMATE DATA11
+STREAM-BASED MEMORY
+MANAGEMENT AND DECOMPRESSION12
+SPARSE VOXEL OCTREE
+CONSTRUCTION AND TRAVERSAL13
+REAL-TIME RENDERING AND
+VISUALIZATION ENGINE14
+3.5 EVALUATION PREPARATION AND14
+METRIC INTEGRATION
+IMPLEMENTATION15
+RUNNING THE APPLICATION AND15
+SYSTEM SETUP
+DATA ANALYSIS AND PROCESSING17
+FIELD-OF-VIEW BASED DATA
+LOADING19
+OCTREE PARTITIONING AND
+SPARSE VOXEL TREE CONSTRUCTION20
+RENDERING AND VISUALIZATION23
+RESULTS AND ANALYSIS25
+DATA REDUCTION AT EACH STAGE
+OF CLIMATE VISUALIZATION PIPELINE25
+RENDERING PERFORMANCE26
+METRICS (OPTIMIZED PIPELINE)
+RESOURCE CONSUMPTION27
+EXPERIMENTAL SETUP28
+CONCLUSION AND FUTURE WORKS30
+REFERENCES31
+LIST OF TABLES
+TABLENO.
+TABLE
+NO.
+TITLE
+TITLE
+PAGE NO.
+PAGE NO.
+1
+1
+Experimental Setup Configuration
+Experimental Setup Configuration
+29
+29
+LIST OF FIGURES
+FIGURENO.
+FIGURE
+NO.
+TITLE
+TITLE
+PAGE NO.
+PAGE NO.
+1
+1
+Visualization Optimizer
+Visualization Optimizer
+10
+10
+2
+2
+Data Processing Workflow
+Data Processing Workflow
+12
+12
+3
+3
+Octree Partitioning Workflow
+Octree Partitioning Workflow
+13
+13
+4
+4
+Running the Application
+Running the Application
+16
+16
+5
+5
+Building the Application
+Building the Application
+16
+16
+6
+6
+Data Analysis
+Data Analysis
+17
+17
+7
+7
+Preprocessed and Field-of-View Filtered Data
+Preprocessed and Field-of-View Filtered Data
+20
+20
+8
+8
+Octree Partitioning
+Octree Partitioning
+22
+22
+9
+9
+Printing SVO Nodes
+Printing SVO Nodes
+23
+23
+10
+10
+Final rendered climate chunks based onpriority filtering
+Final rendered climate chunks based on
+priority filtering
+24
+24
+11
+11
+GPU rendering of prioritized climate chunksshowing cyclone and wind features
+GPU rendering of prioritized climate chunks
+showing cyclone and wind features
+24
+24
+12
+12
+Progressive Data Size Reduction acrossVisualization Pipeline Stages
+Progressive Data Size Reduction across
+Visualization Pipeline Stages
+26
+26
+13
+13
+Optimized GPU Rendering Performance – FPS, GPU Utilization, and Rendering Time perChunk
+Optimized GPU Rendering Performance – FPS, GPU Utilization, and Rendering Time per
+Chunk
+27
+27
+14
+14
+GPU Profiling Snapshot – Peak Usage Observed During Climate Volume Processingon NVIDIA GTX 1650.
+GPU Profiling Snapshot – Peak Usage Observed During Climate Volume Processing
+on NVIDIA GTX 1650.
+28
+28
+CHAPTER 1
+INTRODUCTION
+LARGE LANGUAGE MODELS IN CODE GENERATION
+The emergence of large language models (LLMs) represents a major milestone in artificial intelligence and software engineering. These models, primarily based on transformer architectures, are trained on massive corpora consisting of source code, technical documentation, and natural language text. As a result, they can generate syntactically valid and semantically coherent code across multiple programming languages and domains.
+Code generation—the automatic synthesis of executable programs from natural language or partial code—has long been a goal in software engineering. Earlier approaches, including rule-based systems, template-driven methods, and sequence-to-sequence models, were limited in scope, struggled with ambiguity, and lacked cross-domain generalization. LLMs overcome these limitations by leveraging large-scale pretraining, enabling transferability across tasks, languages, and abstraction levels.
+Modern LLM-based systems such as GitHub Copilot, Codex, AlphaCode, and Code Llama demonstrate strong capabilities in tasks like function completion, test generation, code translation, and even multi-file program synthesis. Their widespread adoption in industry highlights both their practical utility and the importance of understanding their limitations.
+Despite these advances, LLM-based code generation is not fully reliable. A key issue is hallucination—the generation of code that appears correct but is logically flawed, non-functional, or based on non-existent APIs. These errors are often subtle and can have serious consequences in real-world software systems. Therefore, understanding and detecting hallucinations in LLM-generated code remains a critical area for research.
+HALLUCINATIONS  IN CODE GENERATION
+Despite the advancements in Large Language Models (LLMs) for code generation, ensuring the correctness and reliability of generated code remains a significant challenge. One of the major issues is hallucination, where the model produces syntactically correct but semantically incorrect code, including invalid API usage, logical inconsistencies, and runtime failures.
+Existing approaches such as prompt engineering, repeated sampling, supervised fine-tuning, and reinforcement learning from human feedback (RLHF) provide partial improvements. However, these methods do not guarantee program correctness and often fail to address deeper structural and execution-level errors.
+Another key challenge arises in real-world environments where data required for improving model performance is distributed across multiple clients. Due to privacy and data ownership concerns, this data cannot be centrally collected for training. Traditional centralized learning approaches are therefore not suitable for such scenarios.
+Furthermore, standard federated learning methods, such as Federated Averaging (FedAvg), aggregate model updates based only on dataset size and do not consider the variation in error patterns across clients. This limits the model’s ability to effectively learn from diverse hallucination distributions.
+These challenges highlight the need for a framework that ensures reliable code generation while enabling decentralized, privacy-preserving learning with improved aggregation strategies.
+FEDERATED LEARNING
+The limitations of existing code generation approaches highlight the need for a more robust and scalable solution that ensures both correctness and adaptability. While Large Language Models (LLMs) are capable of generating code efficiently, their outputs often lack reliability due to hallucinations and insufficient validation mechanisms.
+At the same time, real-world data required to improve model performance is distributed across multiple clients and cannot be centrally aggregated due to privacy and data ownership constraints. This creates a need for decentralized learning approaches that can utilize distributed data without compromising privacy.
+To address these challenges, a system is required that not only detects and corrects hallucinations but also enables collaborative learning across multiple clients. Integrating hallucination detection and automatic program repair helps improve the quality of generated code and creates reliable training data.
+Furthermore, traditional federated learning approaches are not sufficient, as they do not consider the variation in error patterns across different clients. Hence, there is a need for an improved aggregation strategy that can effectively utilize error information during model updates.
+The proposed system addresses these requirements by combining hallucination-aware processing with a federated learning framework and introducing an error-aware aggregation method to enhance overall model performance.
+PARAMETER EFFICENT FINE TUNING
+The scale of modern large language models—ranging from millions to hundreds of billions of parameters—makes full fine-tuning computationally expensive and often impractical without large GPU infrastructure. It requires updating all parameters, storing gradients, and maintaining optimizer states, leading to significant memory and compute overhead. Parameter-efficient fine-tuning (PEFT) addresses this by adapting a mostly frozen pre-trained model using a small set of trainable parameters, significantly reducing resource requirements.
+Among PEFT methods, Low-Rank Adaptation (LoRA) is widely used, representing weight updates as the product of two low-rank matrices, thereby reducing trainable parameters. Other approaches include prefix/prompt tuning, which inject trainable vectors into inputs or hidden states, and adapter modules, which add small bottleneck layers within transformer blocks. These methods trade slight reductions in flexibility for major gains in efficiency.
+For code-generating LLMs, PEFT is particularly valuable in reducing hallucinations, as it enables targeted fine-tuning on curated datasets without overwriting general knowledge. This helps improve API correctness and generation reliability while preserving overall capability. When combined with federated learning, PEFT further reduces communication costs, since only lightweight adapter parameters need to be shared instead of full model updates.
+PROBLEM STATEMENT
+Large Language Models (LLMs) used for code generation often produce hallucinated outputs, resulting in syntactically correct but semantically incorrect code. These inaccuracies reduce the reliability of such models in real-world software development scenarios. While existing approaches attempt to improve performance through fine-tuning and prompt engineering, they do not effectively leverage distributed data available across multiple clients.
+In practical environments, data required for improving model performance is decentralized and cannot be shared due to privacy and ownership constraints. Although federated learning provides a solution for decentralized training, traditional aggregation methods such as Federated Averaging (FedAvg) rely only on dataset size and fail to consider variations in error patterns across clients. This limits the model’s ability to learn effectively from diverse hallucination distributions.
+Therefore, there is a need for a privacy-preserving framework that not only enables collaborative learning across distributed clients but also incorporates error-aware aggregation strategies to improve the reliability and correctness of LLM-based code generation.
+OBJECTIVES
+The objective of this project is to develop a federated learning-based framework to improve the reliability of large language model (LLM)-based code generation, with a primary focus on parameter-efficient fine-tuning using Low-Rank Adaptation (LoRA). The framework aims to enable collaborative model training across multiple decentralized clients, allowing local fine-tuning on private codebases while preserving data privacy and reducing computational and communication overhead.
+Another objective is to design and integrate a hallucination-aware pipeline that detects and classifies errors in generated code using both static and dynamic program analysis techniques. This includes identifying syntactic, semantic, API-related, and logical hallucinations, and establishing a structured taxonomy to support consistent evaluation and targeted model refinement.
+The project further aims to develop an error-aware aggregation strategy, termed Fed-Error Average, which incorporates the distribution of hallucination errors from different clients during federated aggregation. This is intended to improve learning from heterogeneous and non-IID data distributions and enhance the robustness of the global model.
+Finally, the objective is to evaluate the effectiveness of the proposed framework using benchmark datasets by measuring improvements in functional correctness (e.g., pass@k) and reductions in hallucination frequency and severity, thereby establishing a privacy-preserving and error-aware fine-tuning paradigm for reliable LLM-based code generation.
+CHAPTER 2
+LITERATURE SURVEY
+Yang et al., 2025 [1] proposed a hybrid approach for hallucination detection in LLM-generated code by combining static and dynamic analysis techniques. The system analyzes code using Abstract Syntax Trees (AST) and validates execution through runtime testing to detect both structural and functional errors. The approach improves detection accuracy across multiple error types. However, it depends heavily on test case coverage and may fail to detect deeper semantic inconsistencies. Additionally, scalability in distributed environments remains a challenge.
+Fakhoury et al., 2024 [2] proposed a test-driven interactive code generation framework that integrates LLM outputs with user-defined test cases. The system improves code reliability by validating generated outputs against test cases during generation. However, the approach relies on the availability of high-quality test cases and may not perform well when test coverage is incomplete. It also lacks mechanisms for correcting detected errors automatically.
+Chen et al., 2025 [3] proposed a federated adaptive fine-tuning framework for Large Language Models in software development. The system enables decentralized training across multiple clients while preserving data privacy by sharing only model updates. Although the framework improves adaptability across distributed datasets, it does not incorporate error-aware learning or hallucination-specific optimization. Aggregation is still based on standard federated averaging, limiting its effectiveness in heterogeneous environments.
+Nashaat and Miller, 2024 [4] proposed an efficient fine-tuning approach using organizational data to improve software-related tasks. The system reduces computational overhead by using parameter-efficient fine-tuning techniques. However, the approach is designed for centralized environments and does not consider distributed data scenarios. It also does not address hallucination issues in generated code.
+Khojah et al., 2025 [5] analyzed the impact of prompt programming on function-level code generation. Their study shows that structured prompts improve code quality and reduce minor errors. However, prompt engineering is highly sensitive and does not eliminate deeper logical or semantic errors. The approach lacks robustness across diverse tasks and does not address hallucination systematically.
+Wang et al., 2025 [6] proposed an adaptive framework integrating LLMs for knowledge graph construction. The system improves structured knowledge extraction using LLM capabilities. However, the framework is not specifically designed for code generation tasks and does not address hallucination in programming contexts. Its applicability to software engineering problems remains limited.
+Yu et al., 2024 [7] evaluated the reliability of LLMs in source code-related tasks and demonstrated that model performance varies significantly across datasets and task complexity. The study highlights the presence of hallucinations and inconsistencies in generated outputs. However, it does not propose a concrete solution for mitigating these issues and lacks integration with learning frameworks.
+Yi et al., 2025 [8] proposed FedALoRA, which combines Low-Rank Adaptation (LoRA) with federated learning to enable efficient and privacy-preserving model training. The system allows local fine-tuning using lightweight adapters and reduces communication overhead. However, the approach focuses on general NLP tasks and does not consider hallucination-specific optimization in code generation.
+Liu et al., 2024 [9] assessed the quality of code generated by LLMs and found that while outputs are often syntactically correct, they frequently fail functionally due to logical errors and incorrect assumptions. The study highlights limitations in reasoning capabilities of current models. However, it does not provide mechanisms for correcting hallucinated outputs.
+Ouyang et al., 2025 [10] proposed a knowledge-enhanced program repair approach that uses contextual information to guide patch generation. The system improves repair accuracy compared to traditional methods. However, it depends on the availability of structured knowledge and may struggle with complex or unseen error patterns.
+Liu et al., 2025 [11] proposed a method to address API hallucinations by injecting external knowledge into LLMs. The approach improves correctness by guiding the model with verified API information. However, it is limited to API-level errors and does not address broader logical or structural hallucinations.
+Zhang et al., 2025 [12] proposed EvoAPR, which combines genetic algorithms with LLM-based program repair and dynamic LoRA adaptation. The system iteratively improves patch quality and repair success rates. However, it is computationally expensive and may not scale efficiently for large datasets or real-time applications.
+CHAPTER 3 PROPOSED WORK
+SYSTEM OVERVIEW
+The proposed system is organized into two tiers: the client tier and the server tier. These tiers interact through parameter exchange mechanism, where only LoRA adapter weights are shared, never the raw data.
+At the client tier, each participating client operates as a fully independent code generation and fine-tuning unit. A client receives a benchmark dataset or dataset partition, generates code using the frozen base LLM then subjects the generated code to a hallucination detection pipeline, and constructs a local training dataset from the outcomes. The client then performs supervised fine-tuning(SFT) using LoRA on this locally assembled dataset, producing a set of client-specific adapter weights. These weights encode the learning the model derived from that client's error patterns and corrected programs.
+The server tier consists of a central aggregation server whose sole responsibility is to collect LoRA adapters from all clients at the end of each communication round, perform weighted averaging to produce a global adapter, and redistribute that global adapter back to all clients. The server performs no code generation or evaluation; it is purely a coordinator. It is important to note that it never has access to the raw datasets, generated code, or problem statements from any client. The full pipeline is illustrated in Figure 3.1 and Figure 3.2.
+METHODOLOGY WITH ARCHITECTURE DIAGRAM
+3.2.1  Phase 1: Client-Side Hallucination Detection and Dataset Construction
+The first phase is executed entirely within each client and encompasses all activities from code generation through dataset preparation. It begins with problem ingestion, where benchmark datasets (HumanEval, MBPP, and DS-1000) are loaded and each client is assigned a distinct dataset or partition to simulate heterogeneous data distributions in a real federated environment. For each task, a structured prompt is constructed by combining the problem description and the function signature. This prompt is then fed to the frozen Qwen2.5-Coder-3B model using single-shot prompting, producing an initial code solution.
+Once code is generated, it enters the hallucination detection pipeline. Static analysis is performed first using Python's AST module, which parses the generated code and inspects its structural representation. Following static analysis, a library and API validation step checks whether the functions, methods, and attributes called in the code correctly correspond to the actual interfaces provided by the libraries available in the execution environment.
+After static analysis, the code undergoes dynamic analysis by executing it against the test cases provided by the benchmark dataset. Execution takes place in a controlled environment with timeout protection to prevent infinite loops from stalling the pipeline. Any runtime exceptions — including AssertionError, NameError, TypeError, ValueError, IndexError, and others — are captured along with their traceback information, including error type, error message, and the line number where the failure occurred. Failures in assertion checks, which indicate semantic or logical errors, are also recorded alongside the expected and actual outputs for each test case.
+These fault records, together with the original prompt, the generated code, and the canonical solution from the dataset, form the raw material for dataset construction.
+Dataset construction organizes the above information into a structured format with columns including the dataset name, task identifier, prompt, status, AST analysis information, dynamic analysis information, library analysis information, the generated code, the target code (canonical solution), error sources, error types, error lines. The prompt and canonical solution columns are the primary training signal used in the subsequent LoRA fine-tuning stage. The error type and frequency information is recorded separately to be reported to the server for use in the Fed-Error Average aggregation.
+3.3.2  Phase 2: LoRA Fine-Tuning and Federated Aggregation
+The second phase begins once the client has assembled its dataset from Phase 1. The base Qwen2.5-Coder-3B model is loaded and base model is frozen and LoRA adapter modules are injected into all seven projection matrices of each transformer layer.This comprehensive injection ensures that the adapter can influence both the attention and feed-forward computations across all 36 transformer layers of the model(QwenCoder).
+The LoRA rank is set to 16 and the scaling factor alpha to 32, yielding an effective scaling multiplier of 2. With these setting we get 504 adapter in total, corresponding to 36 layers. The total number of trainable LoRA parameters across the model is approximately 29.9 million, which is a small fraction of the full 3.09 billion parameters. All original model weights remain strictly frozen throughout training; only the LoRA adapter matrices are updated.
+Training is conducted using supervised fine-tuning (SFT) . After training completes, the LoRA adapter weights are saved as a .pt checkpoint file and prepared for transmission to the central server. No model weights, no raw data, and no code examples leave the client at this stage; only the compact adapter checkpoint is sent.
+At the server, the Fed-Error Average aggregation algorithm is applied. First, the server collects the adapter checkpoints and the error frequency reports from all participating clients. For each error type e observed across all clients, the total error frequency F_e is computed by summing the counts of that error type across all clients. A normalized weight is then assigned to each error type based on its global frequency, reflecting how prevalent that category of error is across the federated system. For each client k, an error score E_k is computed by multiplying the count of each error type on that client by the corresponding global weight and summing across all error types. This score quantifies how rich or diverse the client's error distribution is relative to the overall population.
+Each client's aggregation weight alpha_k is obtained by normalizing its error score E_k against the sum of all clients' error scores. These weights replace the sample-size-based weights used in standard FedAvg. The global adapter at round t+1 is then computed as the weighted average of all clients' adapter weights at round t, with each client weighted by its alpha_k. The resulting global adapter is redistributed to all clients, who load it alongside the frozen base model to obtain an improved code generation system. This completes one federated communication round, and the process can be repeated for subsequent rounds.
+MODULES OF THE PROSED SYSTEM
+3.4.1 Code Generation Module
+This module is responsible for loading benchmark datasets and generating initial code solutions from the frozen base language model. Here, benchmark code generation datasets such as MBPP, HumanEval, and DS-1000 are loaded from Hugging Face datasets library. Code generation is done by single-shot prompting .The frozen Qwen2.5-Coder-3B pretrained model is used to generate the initial code solutions . Code generation is performed with deterministic settings (do_sample=False, temperature=1.0) to ensure reproducibility. The output of this module for each task is a raw generated code string, which may or may not contain hallucinations, and which serves as the input to the hallucination detection module.
+In the federated setting, different clients are assigned different datasets. Client 1 operates on MBPP, while Client 2 operates on HumanEval, Client 3 operates with DS1000 simulating the heterogeneous data distributions that would arise when different organizations generate code for different domains.
+3.4.2 Hallucination Detection Module
+The hallucination detection module constitutes the analytical core of the client-side pipeline. It accepts a generated code string as input and produces a structured fault record as output. The module operates in two sequential stages: static analysis and dynamic analysis.
+The AST module is the first stage of hallucination detection and inspects code without executing it. It parses the Python source into a tree. If parsing fails due to invalid syntax or indentation, it records the error, its line number, and stops, since the code cannot be executed. When parsing succeeds, it traverses the tree and checks that control-flow constructs are used correctly: return only inside functions, and break and continue only inside loops; otherwise it reports structural violations. It also performs flow-aware name analysis: it follows control flow through conditionals, loops, try-except blocks, and nested scopes, and tracks where variables are defined and used. It reports uses of variables that are never defined on any path, including in branches that tests may not run. It can therefore detect syntax errors, indentation errors, structural misuses, and undefined variables purely from the code structure, without running tests. Because it works statically, it can find these defects even in rarely executed paths, unlike dynamic testing, which only detects errors on paths actually covered by tests. Any reported error causes later stages (dynamic execution and API checks) to be skipped, because the code is not valid for execution.
+The LIB_API module performs static checks on how external libraries and APIs are used in the generated code. It does not run the code; it inspects the source to validate imports, attribute access, and function calls. For imports, it checks that imported modules exist and can be loaded. For attribute access (e.g., obj.attr), it checks that the attribute exists on the object. For function and method calls, it checks that the number and types of arguments match the expected signature. It reports missing modules, invalid attributes, and invalid arguments. The module distinguishes between failures caused by missing libraries in the environment and real API misuse in the generated code, so only actual hallucinations are flagged. Its output includes counts of module-not-found, attribute, type, and name errors, object, attribute, or function involved and the line number, which helps locate and fix library-related hallucinations.
+The dynamic analysis module executes the generated code with the benchmark’s test cases and observes what happens at runtime. It runs the code in an isolated environment with a timeout to avoid hanging on infinite loops. If execution completes and all tests pass, the code is marked as passed. If execution raises an exception or a test fails, it records the status as failed along with the exception type, message, and the line number where it occurred. It can report runtime errors such as type mismatches, attribute or name errors, key errors, assertion failures (wrong output), and timeouts (too slow or non-terminating). For failing tests, it records the failing input, the expected output, and the actual output. This module only sees defects that occur on paths executed by the test cases; it cannot detect errors in code paths that are never run, which is why it is complemented by static analysis modules such as AST and LIB_API that check structure and API usage without running the code.
+3.4.3 Dataset Creation
+The dataset construction module transforms the raw outputs of the hallucination detection module into a structured training dataset suitable for LoRA fine-tuning. For each task processed by the client, the module assembles a record containing the dataset name, task identifier, prompt, hallucination status, AST analysis information, dynamic analysis information, library analysis information, the generated code, canonical target code, the error sources, the error types, the error lines, and the canonical solution from the benchmark. An automatic program repair (APR) module was initially intended to correct hallucinated code using the detected error information and patched code; however, in practice it often failed to produce valid fixes even when given precise fault locations and error types, owing to limitations of the Qwen coder model in reliably repairing code from such inputs. Given this, the system does not rely on APR outputs as training targets. Instead, programs that passed all hallucination checks are stored with the generated code as the target, while programs that failed detection are stored with the canonical solution from the benchmark as the target, since the model's generation is unreliable in those cases and APR could not reliably fix it. The prompt and canonical solution columns serve as the input–output pairs for supervised fine-tuning. This design ensures that fine-tuning always uses a correct reference target, even when the model’s own generation was hallucinated.
+The main aim is to achieve hallucination reduction in a federated setting rather than through detection and repair; the hallucination framework is used to assess code correctness via pass@1 evaluation.
+3.4.4 LoRA Fine-Tuning Module
+The LoRA fine-tuning module performs parameter-efficient supervised fine-tuning of the base model using the dataset assembled by the dataset construction module. Low-Rank Adaptation (LoRA) decomposes weight updates into products of two low-rank matrices, drastically reducing the number of trainable parameters while preserving the expressive capacity needed to adapt to new data patterns.
+LoRA modules are injected into all seven projection matrices of each of the 36 transformer layers in the base model: the query (q_(proj), key (k_proj), value (v_proj), and output (o_proj) projections in the self-attention sublayer, and the gate (gate_proj), up (up_proj), and down (down_proj) projections in the MLP sublayer.
+The base model weights remain fully frozen throughout training, and only the LoRA adapter matrices are updated via gradient descent. An effective batch size of 8 is achieved through gradient accumulation (per-device batch size of 1, accumulation steps of 8), and training runs for 3 epochs over the local dataset. At the end of training, only the LoRA adapter weights , not the full model are saved to disk as a .pt checkpoint file. This tensors is sent back to servers.
+3.4.5 Federated Aggregation Module
+The federated aggregation module operates on the central server and is responsible for combining the LoRA adapter received from all clients into a single global adapter. The module implements the proposed Fed-Error Average algorithm, which extends standard Federated Averaging by incorporating hallucination error frequency information alongside dataset size.
+The aggregation process begins by computing, for each error type e, the global error frequency F_e as the sum of counts of that error type across all clients. A normalized weight for each error type is then derived by dividing F_e by the total count of all error types observed globally. For each client k, an error score E_k is computed as the weighted sum of the client's per-type error counts, using the global error type weights. This score reflects not just how much data the client has, but how diverse and significant its error distribution is relative to the global picture. The client's aggregation coefficient alpha_k is obtained by normalizing E_k against the sum of all clients' error scores.
+The global adapter at round t+1 is computed as the sum over all clients of alpha_k times the client's local adapter weights w_k^t. This weighted average is applied element-wise across all 504 adapter matrices. The resulting global adapter is then broadcast back to all clients. Each client merges the global adapter with the frozen base model to obtain the updated code generation system for inference or for further rounds of local fine-tuning.
+The advantage of this formulation over standard FedAvg is that clients whose local datasets reflect more complex or more diverse hallucination patterns  for instance, a client that observed many distinct error types versus one that saw mostly a single error type contribute proportionally more to the global update. This is particularly important in heterogeneous federated settings, where different clients encounter qualitatively different failure modes in code generation.
+3.4.6 Verification Module
+The verification module checks whether the fine-tuned LoRA adapters improve code generation. It loads the base model plus the LoRA adapter (FedAvg or Fed-Error-Avg), generates code for each benchmark task, and runs the full hallucination pipeline (AST, dynamic execution, and LIB_API) on that output. The result is a pass-or-fail status for each task, recorded in a CSV with the same format as the baseline. By comparing baseline (no adapter) and adapter runs, it measures how many more tasks pass after fine-tuning and whether the federated adapters reduce hallucinations and improve Pass@1.
+3.4.7 Result and analysis Module
+3.4.8 Formualas Used.
+1. Basic LoRA
+Let W0 be the weight of the base model,
+W0∈Rd×k
+Now we can breakdown this W0 into two adapters B and A (LoRA matrices) with a rank r,
+ΔW = BA
+Thus B and A are,
+B∈Rd×r, A∈Rr×k
+Updated weights,
+W=W0+BA
+Scaled LoRA used at experiment,
+W=W0+αrBA
+r – rank of low-rank decompositionα – scaling factor
+2. Federated average
+3. Augmented Fed-average(Frequency-weighted)
+Error frequency ,
+Fe=k=1Kcountk,e
+Fe​ = total occurrences of error type ‘e’ across all clientscountk,e​ = number of errors of type ‘e’ in client k
+Weight Definition,
+weighte=Fee'∈errorsFe'
+This is calculated for weight for each type of error based on their occurrence.
+Error score,
+For each client, the total count of each type of error along with its computed weight is accounted for
+Ek=e∈errorscountk,e⋅weighte
+Normalization,
+αk = Ekj=1K Ej
+Augmented FedAverage,
+wt+1=k=1Kαkwkt
+wkt​ - local model weight on round t on client k
+αk​  -  normalized weight assigned to client kwt+1 - Global model weights after aggregation at round t+1
+CHAPTER 4 IMPLEMENTATION
+PLATFORMS USED
+4.1.1  Google Colab
+4.1.1 Google Colab
+Google Colab is a cloud-based Jupyter Notebook environment that allows users to write and execute Python code interactively. It provides free access to GPU and TPU resources, making it suitable for training deep learning models. During the initial stages of this work, Google Colab was used with a T4 GPU for code generation and early experimentation, enabling rapid prototyping without requiring local hardware setup.
+4.1.2 Visual Studio Code and git
+Visual Studio Code (VS Code) is a lightweight but powerful source code editor developed by Microsoft. Visual Studio Code (VS Code) is a lightweight but powerful source code editor developed by Microsoft. It was used as the primary development environment for hallucination detection and analysis, as well as for results interpretation. VS Code was used in conjunction with Git and GitHub for version control and file management, ensuring systematic tracking of changes across the codebase. The implementation of federated average and federated error averaging was also carried out within this environment.
+4.1.3  JupyterHub
+CTSKII JupyterHub is an institutionally hosted JupyterHub platform that provides users with isolated, containerized JupyterLab environments backed by persistent storage volumes. Each user is allocated a dedicated Docker container with a private home directory, ensuring data persistence across sessions. The platform offered access to an NVIDIA A4000 GPU at no cost, making it well suited for computationally intensive tasks. Local session storage was available upon server allocation, and user files were retained even after container restarts. This platform was used for fine-tuning experiments and federated averaging, leveraging the A4000 GPU for efficient model training and verification.
+TOOLS USED
+<sri give them as points and align them properly>
+os — Provides file path handling and directory operations across the project. Used to locate CSVs, adapters, and outputs and to check that files and folders exist.
+re — Used for regular expressions when parsing code strings, cleaning text, and extracting parts of error messages. Applied in data preparation and in the hallucination-detection pipeline.
+datasets — Loads HumanEval, MBPP, and DS-1000 from Hugging Face. Supplies prompts, test cases, and reference solutions for code generation and evaluation.
+ast — Parses Python source into an abstract syntax tree and traverses it to check syntax, structural rules, and control flow. Forms the first stage of the static hallucination detection pipeline.
+builtins — Holds Python’s built-in names and is used during LIB_API checks to treat built-ins as valid and to avoid false positives for undefined names.
+importlib — Dynamically imports modules so that LIB_API analysis can validate imports and check that referenced libraries and APIs exist and are used correctly.
+inspect — Inspects function and class definitions to get signatures and attributes. Used by LIB_API analysis to validate function calls, arguments, and method usage against real definitions.
+threading — Runs dynamic tests in a background thread to support timeouts and safe execution. Keeps long-running or hanging code from blocking the pipeline.
+torch — Underpins tensor operations, model computations, and adapter merging. Used for model inference, fine-tuning, and federated aggregation of LoRA weights.
+transformers — Loads the base model and tokenizer (e.g. AutoModelForCausalLM, AutoTokenizer). Handles inference during code generation and model setup for fine-tuning.
+peft — Manages LoRA configuration and adapter layers (LoraConfig, get_peft_model, PeftModel). Enables parameter-efficient fine-tuning and loading of trained adapters during verification.
+trl — Supplies SFTTrainer and SFTConfig for supervised fine-tuning. Trains LoRA adapters on prompt–solution pairs from the hallucination-aware dataset.
+accelerate — Manages distributed training, mixed precision, and GPU utilization. Simplifies running SFT across devices and environments.
+safetensors — Stores and loads LoRA adapters in a safe binary format. Used when saving per-dataset adapters and when merging or loading adapters for FedAvg and verification.
+seaborn — Builds plots and charts for pass rates, error breakdowns, and baseline vs adapter comparisons. Supports result visualization and analysis.
+DATASET USED
+Dataset
+Dataset
+Source
+Source
+Task Count
+Task Count
+Domain
+Domain
+Used For
+Used For
+HumanEval
+HumanEval
+Hugging Face (openai/evals)
+Hugging Face (openai/evals)
+164
+164
+Functional correctness
+Functional correctness
+Code generation, hallucination detection, SFT
+Code generation, hallucination detection, SFT
+MBPP
+MBPP
+Hugging Face (google-research-datasets/mbpp, sanitized)
+Hugging Face (google-research-datasets/mbpp, sanitized)
+377
+377
+Basic algorithms
+Basic algorithms
+Code generation, hallucination detection, SFT
+Code generation, hallucination detection, SFT
+DS-1000
+DS-1000
+Hugging Face (xlangai/DS-1000)
+Hugging Face (xlangai/DS-1000)
+1000
+1000
+Data science (NumPy, Pandas, etc.)
+Data science (NumPy, Pandas, etc.)
+Code generation, hallucination detection, SFT
+Code generation, hallucination detection, SFT
+HumanEval
+task_id — Unique ID (e.g. HumanEval/0).
+prompt — Natural language description of the task, including docstrings and examples, used as input for code generation.
+canonical_solution — Reference Python implementation used as the target during fine-tuning and for evaluation.
+test — Unit test code that calls the solution and asserts correctness; used in dynamic execution.
+entry_point — Name of the function under test (e.g. has_close_elements), used to run tests against the generated function.
+MBPP
+source_file — Notebook or file where the task originated.
+task_id — Unique ID for the task (e.g. 602, 603).
+prompt — Short natural language description of the function to implement; used as input for code generation.
+code — Reference implementation of the function, used as the target during fine-tuning.
+test_imports — List of import statements required to run tests (often empty).
+test_list — List of assert statements that check the function; used for dynamic execution.
+DS-1000
+prompt — Problem text with context and an instruction such as result = ... # put solution in this variable.
+reference_code — Reference implementation used as the target for evaluation and fine-tuning.
+metadata — Library and category (NumPy, Pandas, Matplotlib, SciPy, Sklearn, TensorFlow, PyTorch, etc.).
+code_context — Execution context with test_execution and test_string helpers and input generation.
+generated_code_snippet — Truncated or partial generated solution (when used).
+full_code — Full generated solution; main output column for evaluation.
+task_id — Unique ID (e.g. DS0000, DS0132).
+Status — Whether the generated code passes tests (e.g. passed, failed).
+MODEL USED
+Qwen2.5-Coder is the latest series of Code-Specific Qwen large language models (formerly known as CodeQwen). Significantly improvements in code generation, code reasoning and code fixing. Base on the strong Qwen2.5, we scale up the training tokens into 5.5 trillion including source code, text-code grounding, Synthetic data, etc. Qwen2.5-Coder-32B has become the current state-of-the-art open-source codeLLM, with its coding abilities matching those of GPT-4o.
+Attribute
+Attribute
+Specification
+Specification
+Model Name
+Model Name
+Qwen2.5-Coder-3B-Instruct
+Qwen2.5-Coder-3B-Instruct
+Parameters
+Parameters
+~3 billion
+~3 billion
+Architecture
+Architecture
+Transformer (36 layers)
+Transformer (36 layers)
+Framework
+Framework
+Hugging Face Transformers
+Hugging Face Transformers
+Fine-tuning
+Fine-tuning
+LoRA / QLoRA (4-bit quantization)
+LoRA / QLoRA (4-bit quantization)
+LoRA Rank
+LoRA Rank
+16
+16
+LoRA Alpha
+LoRA Alpha
+32
+32
+Projections
+Projections
+Q, K, V, O, up, down, gate (7 per layer)
+Q, K, V, O, up, down, gate (7 per layer)
+MODULE WISE IMPLEMENTATION
+Code generation Module
+The code generation module loads the three benchmark datasets and prompts the frozen Qwen2.5-Coder-3B-Instruct model to produce initial code solutions. The model operates in deterministic mode using greedy decoding (do_sample=False, temperature=1.0) to ensure reproducibility. Each dataset is loaded from the Hugging Face datasets library and handled according to its own prompt structure before being passed to the model.
+For HumanEval, the dataset is loaded from openai/openai_humaneval. The prompt column, containing the natural language description and docstring, is passed directly to the model. The entry_point column, identifying the function under test, is retained alongside the generated code for use by the dynamic execution module during hallucination detection.
+For MBPP, the sanitized split is loaded from google-research-datasets/mbpp. A preprocessing step extracts the function signature from the reference code by scanning for the first line beginning with def, which is then appended to the prompt. This ensures the generated code conforms to the function name and argument structure expected by the benchmark test cases.
+For DS-1000, loaded from xlangai/DS-1000, the verbose prompt is preprocessed by splitting on "A:" and retaining only the question portion as prompt_v2. The code_context column is preserved for dynamic testing, and each task is assigned a unique identifier in the format DS0000–DS0999 for consistent tracking.
+Hallucination Detection Module
+The AST module is the first stage of hallucination detection and inspects the generated code statically without executing it. If parsing fails due to a syntax or indentation error, the error type, message, and line number are recorded and all remaining stages are skipped. When parsing succeeds, the tree is traversed to check that control-flow constructs are used correctly — return only inside functions, break and continue only inside loops — and flow-aware name analysis is performed across all control paths to detect variables used without being defined. If any errors are found, fault information is built immediately and the pipeline exits early.
+If the AST stage passes, the dynamic module executes the generated code against the benchmark's official test cases in an isolated environment with a ten-second timeout. Execution is dispatched by dataset type: HumanEval uses the test column and entry_point to invoke the function under test; MBPP uses assert statements from test_list along with imports from test_imports; DS-1000 inserts the generated solution into the code_context harness before execution. If all tests pass, the task is marked as passed. If any test fails or raises an exception, the status, exception type, error message, line number, and for assertion failures the expected and actual outputs are all recorded.
+If the dynamic stage reports a failure, the LIB_API module is invoked to statically validate how external libraries are used. It checks that imported modules exist and can be loaded, that accessed attributes are valid on their objects, and that function and method call signatures match the expected argument counts and types. It uses importlib to load referenced modules and inspect to retrieve real signatures, ensuring only genuine API hallucinations are flagged rather than environment-level missing packages. The output records the error category, the object or function involved, and the line number for each issue. Results from all three stages are then assembled into a unified fault record passed to the dataset creation module.
+LoRA Fine-Tuning
+Parameter
+Parameter
+Value
+Value
+r (rank)
+r (rank)
+16
+16
+lora_alpha
+lora_alpha
+32
+32
+target_modules
+target_modules
+7 projections (q_proj, v_proj, k_proj, o_proj, gate_proj, up_proj, down_proj)
+7 projections (q_proj, v_proj, k_proj, o_proj, gate_proj, up_proj, down_proj)
+lora_dropout
+lora_dropout
+0.05
+0.05
+bias
+bias
+"none"
+"none"
+task_type
+task_type
+CAUSAL_LM
+CAUSAL_LM
+The rank r sets the inner size of the low-rank matrices A and B; smaller r reduces parameters, larger r increases expressiveness. lora_alpha scales the LoRA update (here alpha/r = 2) and controls how strongly the adapter changes the base model. The seven target modules (q_proj, v_proj, k_proj, o_proj, gate_proj, up_proj, down_proj) are the attention and feedforward layers where LoRA is applied. lora_dropout adds dropout in the LoRA branch to reduce overfitting. bias is set to "none" so bias terms stay fixed and the number of trainable parameters stays small. task_type is CAUSAL_LM so PEFT treats the task as causal next-token prediction instead of classification.
+Parameter
+Parameter
+Value
+Value
+num_train_epochs
+num_train_epochs
+3
+3
+per_device_train_batch_size
+per_device_train_batch_size
+2
+2
+gradient_accumulation_steps
+gradient_accumulation_steps
+4
+4
+learning_rate
+learning_rate
+2e-4
+2e-4
+weight_decay
+weight_decay
+0.01
+0.01
+warmup_ratio
+warmup_ratio
+0.03
+0.03
+lr_scheduler_type
+lr_scheduler_type
+cosine
+cosine
+max_grad_norm
+max_grad_norm
+0.3
+0.3
+max_seq_length
+max_seq_length
+2048
+2048
+packing
+packing
+False
+False
+bf16 / fp16
+bf16 / fp16
+auto-detect
+auto-detect
+save_strategy
+save_strategy
+epoch
+epoch
+save_total_limit
+save_total_limit
+1
+1
+logging_steps
+logging_steps
+5
+5
+num_train_epochs is 3, so the model sees the full training set three times to learn from the hallucination-aware data. per_device_train_batch_size is 2 to keep memory use within GPU limits (e.g. T4), and gradient_accumulation_steps is 4, so gradients are accumulated over four forward passes before one backward step, giving an effective batch size of 8. learning_rate is set to 2e-4 because only the small LoRA adapter is trained, and weight_decay is 0.01 to apply L2 regularization and reduce overfitting. warmup_ratio of 0.03 means the learning rate increases linearly from zero to its peak over the first 3% of training steps, and lr_scheduler_type is cosine so the rate decays smoothly from peak to near zero. max_grad_norm is 0.3 for gradient clipping, which limits large updates and helps stability during LoRA fine-tuning. max_seq_length of 2048 truncates longer examples and keeps computation manageable. packing is False so each prompt–solution pair is a separate training example, which fits the completion-only loss collator. bf16 or fp16 is chosen automatically depending on GPU support to reduce memory and allow larger batches. save_strategy is epoch to save checkpoints at the end of each epoch, and save_total_limit is 1 so only the latest checkpoint is kept. logging_steps is 5 so loss and other metrics are logged every 5 optimizer steps for monitoring.
+Finally , the three datasets are fine-tuned independently, each producing its own set of LoRA adapters.
+k_proj / v_proj  (256 × 2048):
+16 × (2048 + 256)  =  36,864 params
+q_proj / o_proj  (2048 × 2048):
+16 × (2048 + 2048)  =  65,536 params
+gate_proj / up_proj / down_proj  (11008 × 2048):
+16 × (2048 + 11008)  =  208,896 params
+Each targeted module receives two matrices — A and B — one per direction of the decomposition. With 36 transformer layers and 7 modules per layer:
+36 layers  ×  7 modules  ×  2 matrices  =  504
+The 7 modules targeted per layer are:  q_proj,  k_proj,  v_proj,  o_proj,  gate_proj,  up_proj,  down_proj.
+→  504 is the total number of trainable LoRA parameter matrices in the model.
+Reduction in Trainable Parameters
+Per-Module Reduction
+Module
+Module
+Original Params
+Original Params
+LoRA Params
+LoRA Params
+Reduction
+Reduction
+k_proj, v_proj
+k_proj, v_proj
+524,288
+524,288
+36,864
+36,864
+~14×
+~14×
+q_proj, o_proj
+q_proj, o_proj
+4,194,304
+4,194,304
+65,536
+65,536
+~64×
+~64×
+MLP (gate, up, down)
+MLP (gate, up, down)
+22,544,384
+22,544,384
+208,896
+208,896
+~108×
+~108×
+Model-Level Reduction  (Qwen2.5-Coder-3B)
+The 7 targeted projection modules contain approximately 2.77 billion parameters in total. With LoRA at rank 16, each layer contributes 831,488 trainable parameters across all 7 modules:
+36  ×  831,488  ≈  29.9 M  trainable params
+Reduction factor  ≈  2,770,000,000 / 29,900,000  ≈  93×
+Federated Aggregation Module
+Three datasets are fine-tuned independently, each producing its own set of LoRA adapters, which are then aggregated using Federated Averaging (FedAvg) implemented in two distinct approaches.
+To validate the system, an initial evaluation was conducted by training and testing on the same dataset, confirming overall improvement across the federated pipeline. However, this approach alone is insufficient to rule out overfitting — a model could simply be memorising training samples rather than learning generalisable patterns.
+To address this, a 75/25 train-test split was introduced. Each dataset is fine-tuned exclusively on its training partition, and evaluation is performed on the held-out test partition. This setup allows a direct comparison of baseline model performance against post-aggregation performance on unseen data. An improvement in test-set metrics after FedAvg aggregation — data the model was never trained on — demonstrates that the fine-tuned adapters have learned transferable coding patterns rather than overfitting to the training samples.
+Fig 4.x : Output of fine-tuned adapters after Federated average (complete dataset)
+Fig 4.y : Output of fine-tuned adapters after Federated Error average (complete dataset)
+Fig 4.x1 : Output of fine-tuned adapters after Federated average (Training dataset)
+Fig 4.y1 : Output of fine-tuned adapters after Federated Error average (Training dataset)
+Verification Module
+The model is evaluated across all three datasets using four adapter variants: FedAvg Complete, FedAvg Train, FedErrorAvg Complete, and FedErrorAvg Train. The "Complete" variants are trained and tested on the full dataset, while the "Train" variants are trained on the 75% training partition and evaluated on the held-out 25% test partition. Detailed results and comparative analysis across all four configurations are presented in the Results and Analysis section.
+A key aspect of this evaluation framework is that the base model weights remain entirely frozen throughout the process. The federated adapter weights — aggregated LoRA matrices from across all clients — are applied as an additive overlay on top of the frozen base. This means the base model's pre-trained knowledge is preserved, and the adapter contributes only the task-specific delta learned during fine-tuning. Any observed improvement in accuracy is therefore attributable entirely to the federated LoRA adapters, cleanly isolating the contribution of the federated fine-tuning process.
+The above code make use of the LoRA logic from the formula from the section 3.4.8. The adapter is just an add to the existing base model which will be further tested in code generation tasks.
+CHAPTER 5 RESULTS AND ANALYSIS
+DATASET WISE HALLUCINATION COUNT
+This bar chart presents the hallucination detection results across three benchmark datasets — DS1000, HumanEval, and MBPP — evaluated after the SDHD (Static and Dynamic Hallucination Detection) stage. During SDHD, each LLM-generated code snippet is subjected to a multi-step validation pipeline consisting of AST (Abstract Syntax Tree) analysis, Library API verification, and Dynamic execution checks. If the generated code fails any one of these three steps, it is marked as Hallucinated (red), and only code that successfully passes all three steps is marked as Passed (green).This is the results after end of module-2.
+TYPES OF HALLUCINATIONS ACROSS DATASET
+Error_Type
+Error_Type
+DS1000
+DS1000
+HumanEval
+HumanEval
+MBPP
+MBPP
+Total
+Total
+AssertionError
+AssertionError
+188
+188
+20
+20
+75
+75
+283
+283
+AttributeError
+AttributeError
+31
+31
+1
+1
+1
+1
+33
+33
+AxisError
+AxisError
+4
+4
+0
+0
+0
+0
+4
+4
+IndentationError
+IndentationError
+90
+90
+0
+0
+0
+0
+90
+90
+IndexError
+IndexError
+4
+4
+1
+1
+1
+1
+6
+6
+IndexingError
+IndexingError
+2
+2
+0
+0
+0
+0
+2
+2
+InvalidIndexError
+InvalidIndexError
+1
+1
+0
+0
+0
+0
+1
+1
+KeyError
+KeyError
+20
+20
+0
+0
+0
+0
+20
+20
+ModuleNotFoundError
+ModuleNotFoundError
+352
+352
+3
+3
+1
+1
+356
+356
+NameError
+NameError
+55
+55
+4
+4
+7
+7
+66
+66
+RuntimeError
+RuntimeError
+155
+155
+0
+0
+0
+0
+155
+155
+SyntaxError
+SyntaxError
+4
+4
+6
+6
+94
+94
+104
+104
+TimeoutError
+TimeoutError
+0
+0
+1
+1
+0
+0
+1
+1
+TypeError
+TypeError
+46
+46
+1
+1
+8
+8
+55
+55
+UnboundLocalError
+UnboundLocalError
+0
+0
+0
+0
+1
+1
+1
+1
+ValueError
+ValueError
+28
+28
+0
+0
+3
+3
+31
+31
+attribute_error
+attribute_error
+22
+22
+0
+0
+0
+0
+22
+22
+missing_return
+missing_return
+3
+3
+53
+53
+66
+66
+122
+122
+module_not_found
+module_not_found
+43
+43
+0
+0
+0
+0
+43
+43
+name_error
+name_error
+1
+1
+52
+52
+0
+0
+53
+53
+type_error
+type_error
+343
+343
+0
+0
+0
+0
+343
+343
+Total
+Total
+1392
+1392
+142
+142
+257
+257
+1791
+1791
+Globally, ModuleNotFoundError, type_error, and AssertionError are the main error types.They contribute 19% each for the all kinds of error. We can see that the count of the errors is greater than the number of questions because our hallucination module ends up catching up all kinds of error or multiple errors in a single program.This is one of the advantage form the traditional dynamic run.
+DS1000 struggles with library and type issues, HumanEval with structure and name resolution, and MBPP with syntax errors particularly around test inputs.
+FEDERATED AVERAGE AND BASELINE
+Here, conventional federated averaging is applied to aggregate adapter weights across clients and redistribute them to the global model. The results clearly show that the adapters avoid overfitting, allowing the fine-tuned model to generalize well to unseen data — outperforming the baseline by successfully passing more test cases across all three benchmarks.
+FEDERATED ERROR AVG AND BASELINE
+Here, our own federated averaging(Error-Fed) is applied to aggregate adapter weights across clients and redistribute them to the global model. The results clearly show that the adapters avoid overfitting, allowing the fine-tuned model to generalize well to unseen data — outperforming the baseline by successfully passing more test cases across all three benchmarks.
+OVERALL IMPORVEMENT OF FED ERROR AVERAGE
+Here we are comparing them by pass rate which is defined by the  number of questions which weren’t hallucinated by the total number of questions.
+error_type
+error_type
+baseline_count
+baseline_count
+fedavg_count
+fedavg_count
+federroravg_count
+federroravg_count
+reduction
+reduction
+AssertionError
+AssertionError
+379
+379
+364
+364
+365
+365
+14
+14
+AttributeError
+AttributeError
+58
+58
+43
+43
+40
+40
+18
+18
+AxisError
+AxisError
+4
+4
+1
+1
+0
+0
+4
+4
+FileNotFoundError
+FileNotFoundError
+3
+3
+0
+0
+0
+0
+3
+3
+IndentationError
+IndentationError
+69
+69
+48
+48
+60
+60
+9
+9
+IndexError
+IndexError
+6
+6
+9
+9
+9
+9
+0
+0
+IndexingError
+IndexingError
+2
+2
+0
+0
+0
+0
+2
+2
+InvalidIndexError
+InvalidIndexError
+1
+1
+0
+0
+0
+0
+1
+1
+KeyError
+KeyError
+19
+19
+54
+54
+18
+18
+1
+1
+LinAlgError
+LinAlgError
+1
+1
+0
+0
+0
+0
+1
+1
+ModuleNotFoundError
+ModuleNotFoundError
+2
+2
+1
+1
+2
+2
+0
+0
+NameError
+NameError
+201
+201
+56
+56
+40
+40
+161
+161
+NotFittedError
+NotFittedError
+6
+6
+5
+5
+2
+2
+4
+4
+NotImplementedError
+NotImplementedError
+2
+2
+1
+1
+1
+1
+1
+1
+OverflowError
+OverflowError
+0
+0
+1
+1
+0
+0
+0
+0
+QhullError
+QhullError
+0
+0
+1
+1
+1
+1
+0
+0
+RecursionError
+RecursionError
+0
+0
+1
+1
+0
+0
+0
+0
+RuntimeError
+RuntimeError
+11
+11
+7
+7
+7
+7
+4
+4
+SyntaxError
+SyntaxError
+24
+24
+4
+4
+4
+4
+20
+20
+TimeoutError
+TimeoutError
+14
+14
+0
+0
+0
+0
+14
+14
+TypeError
+TypeError
+80
+80
+85
+85
+84
+84
+0
+0
+UFuncTypeError
+UFuncTypeError
+0
+0
+4
+4
+4
+4
+0
+0
+UnboundLocalError
+UnboundLocalError
+1
+1
+0
+0
+0
+0
+1
+1
+UnidentifiedImageError
+UnidentifiedImageError
+1
+1
+0
+0
+0
+0
+1
+1
+ValueError
+ValueError
+61
+61
+62
+62
+55
+55
+6
+6
+return_outside_function
+return_outside_function
+0
+0
+16
+16
+6
+6
+0
+0
+Fine-tuning again shows a strong overall improvement, with most major error types decreasing significantly, especially under FedErrorAvg. The most impactful reduction is in NameError (201 → 40), a drop of 161 errors, indicating that the model has learned variable scoping and definitions much better. Similarly, SyntaxError (24 → 4) and TimeoutError (14 → 0) are almost eliminated, showing clear gains in code structure and execution reliability. Errors like AttributeError, NotFittedError, AxisError, and FileNotFoundError also reduce consistently, suggesting improved API usage and better alignment with library-specific behaviors. Overall, these reductions highlight that fine-tuning greatly improves basic correctness, structure, and executability of generated code.
+error_type
+error_type
+baseline_count
+baseline_count
+fedavg_count
+fedavg_count
+federroravg_count
+federroravg_count
+reduction
+reduction
+AssertionError
+AssertionError
+126
+126
+135
+135
+126
+126
+0
+0
+AttributeError
+AttributeError
+14
+14
+5
+5
+7
+7
+7
+7
+AxisError
+AxisError
+1
+1
+2
+2
+1
+1
+0
+0
+FileNotFoundError
+FileNotFoundError
+1
+1
+0
+0
+0
+0
+1
+1
+IndentationError
+IndentationError
+18
+18
+16
+16
+16
+16
+2
+2
+IndexError
+IndexError
+2
+2
+4
+4
+5
+5
+0
+0
+InternalError
+InternalError
+0
+0
+5
+5
+5
+5
+0
+0
+InvalidIndexError
+InvalidIndexError
+1
+1
+0
+0
+0
+0
+1
+1
+KeyError
+KeyError
+5
+5
+16
+16
+6
+6
+0
+0
+NameError
+NameError
+71
+71
+17
+17
+13
+13
+58
+58
+NotFittedError
+NotFittedError
+2
+2
+2
+2
+0
+0
+2
+2
+RuntimeError
+RuntimeError
+3
+3
+2
+2
+3
+3
+0
+0
+SyntaxError
+SyntaxError
+19
+19
+9
+9
+10
+10
+9
+9
+TimeoutError
+TimeoutError
+3
+3
+0
+0
+0
+0
+3
+3
+TypeError
+TypeError
+24
+24
+17
+17
+18
+18
+6
+6
+UnboundLocalError
+UnboundLocalError
+1
+1
+0
+0
+0
+0
+1
+1
+ValueError
+ValueError
+16
+16
+20
+20
+20
+20
+0
+0
+Fine-tuning leads to a clear improvement in overall code quality, reducing total errors from 307 in the baseline to 250 with FedAvg and further down to 230 with FedErrorAvg (about a 25% overall reduction). The most significant gains are seen in fundamental errors such as NameError, which drops sharply from 71 to 13, indicating much better handling of variable definitions and scope. Other core issues like SyntaxError, TypeError, and AttributeError also decrease notably, showing that the model has improved in generating structurally correct and type-consistent code. Additionally, runtime-related issues such as TimeoutError and FileNotFoundError are eliminated, suggesting better execution-aware code generation.
+However, the improvements are not uniform across all error types. Some errors, such as AssertionError, ValueError, and IndexError, show little to no reduction, while a few categories like KeyError and InternalError even increase slightly after fine-tuning. This indicates that although the model becomes stronger in handling syntax, structure, and common programming patterns, it still struggles with deeper logical reasoning, edge cases, and validation constraints. Overall, FedErrorAvg consistently outperforms FedAvg
+CODEBLEU SIMILARITY
+CodeBLEU is a metric for evaluating the quality of AI-generated code against reference code. It's an extension of the classic BLEU score but specifically designed for code. It combines n-gram match (how similar the tokens/words are), weighted n-gram match (gives more importance to keywords), syntactic match (compares AST structure), and semantic/dataflow match (checks if the logic/data flow is similar). Scores range from 0 to 1, where 1 means a perfect match with reference code.
+From our analysis with both FedAvg and FedErrorAvg outperform the Baseline on all three datasets. On HumanEval the scores are very close (0.292 → 0.299 → 0.297), showing fine-tuning gives a small but consistent bump. On MBPP the baseline is a striking 0.000, meaning the pre-fine-tuned model generated code with zero meaningful similarity to reference solutions fine-tuning completely rescued this benchmark, pushing it to 0.284 and 0.295. On DS1000 the gains are the largest, with FedErrorAvg hitting 0.342 against a baseline of 0.241, roughly a 42% relative improvement.
+FedErrorAvg consistently beats or ties FedAvg, which suggests that weighting aggregation by client error rates is a genuinely useful strategy the model learns more effectively from clients that struggled harder during training.This proves that fine-tuning works.
+CHAPTER 6 CONCLUSION AND FUTURE WORKS
+CONCLUSION
+This project proposed and implemented a federated learning framework for improving the reliability of large language model (LLM)-based code generation through hallucination-aware fine-tuning and a novel error-weighted aggregation strategy. The work addressed a core challenge in deploying LLMs for real-world software engineering: the tendency of these models to generate syntactically plausible but semantically incorrect code — a phenomenon known as hallucination — compounded by the practical constraint that training data is often distributed across multiple private, heterogeneous sources.
+The proposed system operates across two tiers. At the client tier, each participant independently generates code from a frozen Qwen2.5-Coder-3B base model, subjects the outputs to a three-stage hallucination detection pipeline comprising AST analysis, Library API validation, and dynamic execution testing, and uses the resulting structured fault records to assemble a high-quality supervised fine-tuning dataset. Parameter-efficient fine-tuning using Low-Rank Adaptation (LoRA) is then performed locally, adapting only 29.9 million of the model's 3.09 billion parameters while leaving the base weights entirely frozen. This design ensures privacy preservation — only compact LoRA adapter checkpoints, not raw data or code, are transmitted to the central server.
+At the server tier, the proposed Fed-Error Average aggregation algorithm combines client adapters using weights derived from the distribution of hallucination error types across clients, rather than relying solely on dataset size as in standard Federated Averaging. Clients whose data exhibits more diverse and globally prevalent error patterns contribute proportionally more to the global adapter, enabling the aggregated model to learn more effectively from the heterogeneous failure modes present in real-world federated code generation scenarios.
+Experimental evaluation across three benchmark datasets — HumanEval (Client 2, 164 tasks), MBPP (Client 1, 377 tasks), and DS-1000 (Client 3, 1,000 tasks) — demonstrated clear improvements in both Pass@1 functional correctness and CodeBLEU similarity scores after federated fine-tuning. MBPP, which showed near-zero CodeBLEU under the baseline model, recovered to 0.295 under Fed-Error Average. DS-1000 achieved a 42% relative improvement in CodeBLEU (0.241 to 0.342), driven by substantially better handling of library-level API hallucinations. HumanEval showed consistent improvements in structural correctness. Across all configurations, Fed-Error Average consistently matched or outperformed standard FedAvg, confirming that weighting by error diversity provides a tangible benefit in non-IID federated settings.
+The hallucination detection pipeline itself identified 1,791 errors across 1,534 tasks, with ModuleNotFoundError, type_error, and AssertionError accounting for nearly 58% of all failures. This comprehensive fault taxonomy not only powered the Fed-Error Average aggregation but also provided interpretable insight into where and how the base model fails, forming a foundation for targeted future improvements.
+In summary, this work demonstrates that combining hallucination-aware dataset construction, parameter-efficient federated fine-tuning, and error-distribution-weighted aggregation produces a measurable and consistent reduction in code generation hallucinations — all within a privacy-preserving, decentralised framework that is practically deployable across heterogeneous client environments. The results validate the viability of federated learning as a mechanism for improving LLM code reliability without centralising sensitive data, and establish Fed-Error Average as a principled and effective enhancement over the standard FedAvg baseline.
+FUTURE WORKS
+The most immediate avenue for improvement lies in scaling the framework to stronger base models such as Qwen2.5-Coder-7B or DeepSeek-Coder-33B, which would better handle the persistent API misuse and logical errors observed in this work. Alongside this, expanding the dataset portfolio to include APPS — a benchmark of ~10,000 problems spanning introductory to competition-level difficulty — along with CodeContests and SWE-bench would expose the Fed-Error Average aggregation to a far richer and more diverse hallucination taxonomy, improving the framework's ability to generalise across real-world coding domains.
+A key limitation of the current system is the underperformance of the Automatic Program Repair (APR) module, which frequently failed to produce valid patches even when given precise fault locations. Integrating a Knowledge Graph (KG)-based suggestion system into the APR pipeline — encoding verified API signatures, argument types, and known error-fix pairs — could guide the repair model with explicit, structured context rather than relying on the LLM's implicit knowledge, effectively closing the loop between hallucination detection and reliable code repair.
+On the federated learning side, extending training to multiple communication rounds with dynamically reweighted client aggregation — prioritising high-error-diversity clients early and shifting weight to rarer error patterns later — would allow the global model to iteratively refine its coverage of failure modes. Combining this with an execution-guided feedback loop, where clients continuously generate, test, detect, and repair code across epochs, would transform the current one-shot pipeline into a self-improving code generation system capable of progressively eliminating hallucinations at scale.
+REFERENCES
+[1] B. Yang, J. Dang, H. Liu and Z. Jin, "Advancing LLM-Generated Code Reliability: A Hybrid Approach for Hallucination Detection," in IEEE Transactions on Software Engineering, PrePrints, pp. 1-17, 2025, doi: 10.1109/TSE.2025.3640641.
+[2] S. Fakhoury, A. Naik, G. Sakkas, S. Chakraborty and S. K. Lahiri, "LLM-Based Test-Driven Interactive Code Generation: User Study and Empirical Evaluation," in IEEE Transactions on Software Engineering, vol. 50, no. 9, pp. 2254-2268, Sept. 2024, doi: 10.1109/TSE.2024.3428972.
+[3] J. Chen, Z. Cai, W. Chen, W. Wang, Z. Zheng and P. S. Yu, "A Federated Adaptive Large Language Model Fine-Tuning Framework for Software Development," in IEEE Transactions on Services Computing, 2025, doi: 10.1109/TSC.2025.3623626.
+[4]M. Nashaat and J. Miller, "Towards Efficient Fine-Tuning of Language Models With Organizational Data for Automated Software Review," in IEEE Transactions on Software Engineering, vol. 50, no. 9, pp. 2240-2253, Sept. 2024, doi: 10.1109/TSE.2024.3428324.
+[5] R. Khojah, F. G. de Oliveira Neto, M. Mohamad and P. Leitner, "The Impact of Prompt Programming on Function-Level Code Generation," in IEEE Transactions on Software Engineering, vol. 51, no. 8, pp. 2381-2395, Aug. 2025, doi: 10.1109/TSE.2025.3587794.
+[6] Q. Wang, C. Li, Y. Liu, Q. Zhu, J. Song and T. Shen, "An Adaptive Framework Embedded With LLM for Knowledge Graph Construction," in IEEE Transactions on Multimedia, vol. 27, pp. 2912-2923, 2025, doi: 10.1109/TMM.2025.3557717.
+[7] X. Yu, L. Liu, X. Hu, J. W. Keung, J. Liu and X. Xia, "Fight Fire With Fire: How Much Can We Trust ChatGPT on Source Code-Related Tasks?," in IEEE Transactions on Software Engineering, vol. 50, no. 12, pp. 3435-3453, Dec. 2024, doi: 10.1109/TSE.2024.3492204.
+[8] X. Yi, C. Hu, B. Cai, H. Huang, Y. Chen and K. Wang, "FedALoRA: Adaptive Local LoRA Aggregation for Personalized Federated Learning in LLM," in IEEE Internet of Things Journal, vol. 12, no. 24, pp. 51854-51865, Dec. 2025, doi: 10.1109/JIOT.2025.3582427.
+[9] Z. Liu, Y. Tang, X. Luo, Y. Zhou and L. F. Zhang, "No Need to Lift a Finger Anymore? Assessing the Quality of Code Generation by ChatGPT," in IEEE Transactions on Software Engineering, vol. 50, no. 6, pp. 1548-1584, June 2024, doi: 10.1109/TSE.2024.3392499.
+[10] S. Ouyang, J. M. Zhang, Z. Sun and A. M. Penuela, "Knowledge-Enhanced Program Repair for Data Science Code," in Proceedings of the IEEE/ACM 47th International Conference on Software Engineering (ICSE), Ottawa, Canada, 2025, pp. 898-910, doi: 10.1109/ICSE55347.2025.00246.
+[11] J. Liu, Y. Zhang, D. Wang, Y. Li and W. Dong, "THINK: Tackling API Hallucinations in LLMs via Injecting Knowledge," in Proceedings of the IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER), Montreal, Canada, 2025, pp. 229-240, doi: 10.1109/SANER64311.2025.00029.
+[12] H. Zhang, Q. Yan, W. Min, C. Zhang, L. Kuang and Y. Xia, "EvoAPR: Enhancing Large Language Models for Automatic Program Repair with Genetic Algorithm and Dynamic LoRA," in Proceedings of the IEEE International Conference on Web Services (ICWS), Helsinki, Finland, 2025, pp. 946-956, doi: 10.1109/ICWS67624.2025.00123.

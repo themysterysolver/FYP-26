@@ -1,0 +1,26 @@
+OVERVIEW OF THE PROPOSED SYSTEM
+The proposed system aims to improve the reliability and correctness of code generation using Large Language Models by leveraging a federated learning-based framework. Instead of treating hallucination detection as the primary objective, this work focuses on enabling efficient and privacy-preserving model improvement across multiple decentralized clients.
+In real-world scenarios, data required for improving code generation models is distributed across different clients and cannot be shared due to privacy and ownership constraints. To address this, the proposed system adopts a federated learning approach where each client performs local model adaptation using its own dataset. Only lightweight model updates are shared with a central server, ensuring that raw data remains private.
+The framework incorporates hallucination detection and automatic program repair as supporting components to improve the quality of locally generated datasets. These corrected datasets are used to fine-tune the model using Low-Rank Adaptation (LoRA), enabling efficient training without modifying the full model parameters.
+A key contribution of this work is the introduction of an error-aware aggregation strategy, termed Fed-Error Average, which enhances the traditional federated learning process. Unlike standard Federated Averaging (FedAvg), which aggregates model updates based on dataset size, the proposed method incorporates the distribution and frequency of hallucination errors across clients. This ensures that clients with more informative error patterns contribute more effectively to the global model update.
+Overall, the proposed system provides a scalable and privacy-preserving framework that improves code generation performance by combining federated learning, parameter-efficient fine-tuning, and error-aware optimization.
+SYSTEM ARCHITECTURE
+Fig: 1 – Client-side hallucination detection and mitigation framework
+Fig: 2 – Federated learning + LoRA based fine tuning framewo
+The proposed system is designed as a federated learning-based architecture consisting of multiple decentralized clients and a central aggregation server. Each client independently performs code generation, hallucination detection, and model fine-tuning using its local dataset.
+At the client side, a pre-trained Large Language Model is used to generate code from given problem statements. The generated code is analyzed using static and dynamic techniques to identify hallucinations. Detected errors are corrected using an automatic program repair module, and the corrected outputs are stored locally.
+Each client then performs parameter-efficient fine-tuning using Low-Rank Adaptation (LoRA), where only lightweight adapter parameters are trained while keeping the base model unchanged. This allows efficient training even with limited computational resources.
+The central server is responsible for aggregating the LoRA adapters received from all clients. Unlike traditional systems that use Federated Averaging (FedAvg), the proposed architecture uses an error-aware aggregation strategy (Fed-Error Average). This method assigns weights to each client based not only on dataset size but also on the distribution and frequency of hallucination errors.
+The aggregated global model is then redistributed to all clients, enabling iterative improvement in model performance across the entire system.
+PHASES OF THE PROPOSED WORK
+Phase 1: Local Data Preparation and Error Processing
+In this phase, each client generates code using a pre-trained LLM and processes it locally. The generated code undergoes hallucination detection using static analysis (AST-based checks) and dynamic execution using test cases.
+Detected errors are categorized and passed to the automatic program repair module, which generates corrected code using fault-guided patching. The corrected outputs, along with associated error information, are stored as a refined dataset. This ensures that each client builds a high-quality dataset tailored to its own error patterns.
+Phase 2: Federated Fine-Tuning and  Aggregation
+In the second phase, each client uses its refined dataset to perform local fine-tuning using LoRA. The base model remains frozen, and only adapter parameters are trained, ensuring computational efficiency.
+After local training, the LoRA adapters from each client are sent to the central server. Instead of using standard Federated Averaging, the proposed system applies Fed-Error Average, where aggregation weights are determined based on both dataset size and error distribution.
+This approach ensures that clients contributing more significant error patterns have a greater influence on the global model update. The aggregated model is then redistributed to clients, enabling continuous improvement.
+MODULES OF THE PROPOSED SYSTEM
+3.4.1 Code Generation Module
+This module generates code using a pre-trained LLM based on input problem statements. Deterministic generation settings are used to ensure reproducibility of outputs across clients.
+3.4.2 Hallucination Detection Module

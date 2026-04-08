@@ -1,0 +1,378 @@
+PROPOSED WORK
+PROPOSED WORK
+19
+19
+3.1 SYSTEM OVERVIEW
+3.1 SYSTEM OVERVIEW
+19
+19
+3.2 METHODOLOGY WITH ARCHITECTURE       DIAGRAM
+3.2 METHODOLOGY WITH ARCHITECTURE       DIAGRAM
+21
+21
+3.3 ON-DEVICE BEHAVIOUR ACQUISITION AND ENCODING
+3.3 ON-DEVICE BEHAVIOUR ACQUISITION AND ENCODING
+25
+25
+3.4 ADAPTIVE BEHAVIOUR CONSISTENCY                                                                                     ENGINE
+3.4 ADAPTIVE BEHAVIOUR CONSISTENCY                                                                                     ENGINE
+26
+26
+3.4.1 Session Buffer and Leakage-Free Statistics
+3.4.1 Session Buffer and Leakage-Free Statistics
+26
+26
+3.4.2 Three-Scale Temporal Drift
+3.4.2 Three-Scale Temporal Drift
+26
+26
+3.4.3 Composite Similarity
+3.4.3 Composite Similarity
+27
+27
+3.4.2 Prototype Quarantine
+3.4.2 Prototype Quarantine
+27
+27
+3.4.4 Behavioral Session Fingerprint
+3.4.4 Behavioral Session Fingerprint
+27
+27
+3.5 DEEP BEHAVIOURAL ATTRIBUTION ENGINE
+3.5 DEEP BEHAVIOURAL ATTRIBUTION ENGINE
+28
+28
+3.5.1 Behavioral Graph Construction
+3.5.1 Behavioral Graph Construction
+28
+28
+3.5.2 Node Feature Engineering
+3.5.2 Node Feature Engineering
+28
+28
+3.5.3 Siamese GAT Network Architecture
+3.5.3 Siamese GAT Network Architecture
+29
+29
+3.5.4 Training
+3.5.4 Training
+29
+29
+3.6 TRUST AGGREGATION AND DECISION MODULE
+3.6 TRUST AGGREGATION AND DECISION MODULE
+30
+30
+3.6.1 Raw Trust Signal
+3.6.1 Raw Trust Signal
+30
+30
+3.6.2 Adaptive EMA
+3.6.2 Adaptive EMA
+30
+30
+3.6.3 Trust Zones and Decisions
+3.6.3 Trust Zones and Decisions
+31
+31
+3.7 SUMMARY
+3.7 SUMMARY
+31
+31
+4
+4
+IMPLEMENTATION
+IMPLEMENTATION
+32
+32
+4.1 PLATFORMS USED
+4.1 PLATFORMS USED
+32
+32
+4.2 TOOLS AND LIBRARIES
+4.2 TOOLS AND LIBRARIES
+32
+32
+4.3 DATASET DESCRIPTION
+4.3 DATASET DESCRIPTION
+33
+33
+4.4 DATA COLLECTION APPLICATION
+4.4 DATA COLLECTION APPLICATION
+34
+34
+4.5 SECURE INGESTION
+4.5 SECURE INGESTION
+37
+37
+4.6 BEHAVIORAL PREPROCESSING AND PROTOTYPE ENGINE
+4.6 BEHAVIORAL PREPROCESSING AND PROTOTYPE ENGINE
+37
+37
+4.7 GRAPH ATTENTION NETWORK
+4.7 GRAPH ATTENTION NETWORK
+38
+38
+4.8 TRUST ENGINE
+4.8 TRUST ENGINE
+38
+38
+4.9 STORAGE ARCHITECTURE
+4.9 STORAGE ARCHITECTURE
+39
+39
+4.10 SUMMARY
+4.10 SUMMARY
+39
+39
+5
+5
+RESULTS AND ANALYSIS
+RESULTS AND ANALYSIS
+40
+40
+5.1 EVALUATION METRICS
+5.1 EVALUATION METRICS
+40
+40
+5.2 EQUAL ERROR RATE (EER)
+5.2 EQUAL ERROR RATE (EER)
+40
+40
+5.3 RECEIVER OPERATING CHARACTERISTIC (ROC) CURVE
+5.3 RECEIVER OPERATING CHARACTERISTIC (ROC) CURVE
+41
+41
+5.4 DETECTION ERROR TRADE-OFF (DET) CURVE
+5.4 DETECTION ERROR TRADE-OFF (DET) CURVE
+42
+42
+5.5 COMPARISON WITH OTHER MODELS
+5.5 COMPARISON WITH OTHER MODELS
+43
+43
+5.6 SUMMARY
+5.6 SUMMARY
+45
+45
+6
+6
+CONCLUSION AND FUTURE WORKS
+CONCLUSION AND FUTURE WORKS
+46
+46
+REFERENCES
+REFERENCES
+48
+48
+LIST OF TABLES
+TABLE NO.
+TABLE NO.
+TITLE
+TITLE
+PAGE NO.
+PAGE NO.
+2.1
+2.1
+SUMMARY OF LITERATURE SURVEY
+SUMMARY OF LITERATURE SURVEY
+15
+15
+5.1
+5.1
+ITERATIONS VS TIME
+ITERATIONS VS TIME
+46
+46
+5.2
+5.2
+GRAPH METRICS
+GRAPH METRICS
+47
+47
+5.3
+5.3
+CUMULATIVE GAIN
+CUMULATIVE GAIN
+48
+48
+5.4
+5.4
+MARGINAL GAIN
+MARGINAL GAIN
+49
+49
+LIST OF FIGURES
+LIST OF FIGURES
+FIGURE NO.
+FIGURE NO.
+TITLE
+TITLE
+PAGENO.
+PAGENO.
+3.1
+3.1
+OPEN SOURCE INTELLIGENCE SYSTEM ARHITECTURE
+OPEN SOURCE INTELLIGENCE SYSTEM ARHITECTURE
+19
+19
+3.2
+3.2
+FLOW CHART
+FLOW CHART
+21
+21
+5.1
+5.1
+ITERATION 1 OUTPTUT
+ITERATION 1 OUTPTUT
+40
+40
+5.2
+5.2
+ITERATION 2 OUTPTUT
+ITERATION 2 OUTPTUT
+41
+41
+5.3
+5.3
+ITERATION 3 OUTPTUT
+ITERATION 3 OUTPTUT
+41
+41
+5.4
+5.4
+ITERATION 4 OUTPTUT
+ITERATION 4 OUTPTUT
+42
+42
+5.5
+5.5
+ITERATION 5 OUTPTUT
+ITERATION 5 OUTPTUT
+43
+43
+5.6
+5.6
+SUMMARY OUTPUT
+SUMMARY OUTPUT
+44
+44
+5.7
+5.7
+KNOWLEDGE GRAPH VISUALIZATION IN NEO4J
+KNOWLEDGE GRAPH VISUALIZATION IN NEO4J
+44
+44
+5.8
+5.8
+USER INTERFACE – INVESTIGATION LOG
+USER INTERFACE – INVESTIGATION LOG
+45
+45
+5.9
+5.9
+USER INTERFACE – DATA SOURCES
+USER INTERFACE – DATA SOURCES
+45
+45
+5.10
+5.10
+ITERATION PLOT - TIME
+ITERATION PLOT - TIME
+47
+47
+5.11
+5.11
+ITERATION PLOT - GRAPH METRICS
+ITERATION PLOT - GRAPH METRICS
+48
+48
+5.12
+5.12
+ITERATION PLOT - CUMULATIVE GAIN
+ITERATION PLOT - CUMULATIVE GAIN
+49
+49
+5.13
+5.13
+ITERATION PLOT - MARGINAL GAIN
+ITERATION PLOT - MARGINAL GAIN
+50
+50
+LIST OF ABBREVIATIONS
+OSINT
+OSINT
+Open Source Intelligence
+Open Source Intelligence
+IE
+IE
+Information Extraction
+Information Extraction
+NER
+NER
+Named Entity Recognition
+Named Entity Recognition
+AI
+AI
+Artificial Intelligence
+Artificial Intelligence
+GAN-BERT
+GAN-BERT
+Generative Adversarial Networks withBidirectional Encoder Representations from Transformers
+Generative Adversarial Networks with
+Bidirectional Encoder Representations from Transformers
+LLM
+LLM
+Large Language Model
+Large Language Model
+KG
+KG
+Knowledge Graph
+Knowledge Graph
+NLP
+NLP
+Natural Language Processing
+Natural Language Processing
+CNN
+CNN
+Convolutional Nueral Network
+Convolutional Nueral Network
+API
+API
+Application Programming Interface
+Application Programming Interface
+HTML
+HTML
+Hyper Text Markup Language
+Hyper Text Markup Language
+REBEL
+REBEL
+Relation Extraction By End-to-end Language generation.
+Relation Extraction By End-to-end Language generation.
+GDBMS
+GDBMS
+Graph DataBase Management System
+Graph DataBase Management System
+XML
+XML
+eXtensible Markup Language
+eXtensible Markup Language
+JSON
+JSON
+JavaScript Object Notation
+JavaScript Object Notation
+CHAPTER 1
+INTRODUCTION
+The increasing digitization of financial services and sensitive personal data has fundamentally transformed the threat landscape facing mobile application security. As smartphones have become the primary interface for banking, healthcare, and enterprise workflows, the consequences of unauthorized access during an active session have grown disproportionately severe. Traditional security architectures were designed around a single verification event at the point of entry, assuming that the authenticated identity remains valid for the lifetime of the session. This assumption, while operationally convenient, creates a structural vulnerability: any attacker who gains access to an authenticated device — whether through physical theft, remote access tools, or session hijacking — inherits the full trust of the verified user without any further challenge. The growing sophistication of mobile malware, shoulder-surfing techniques, and social engineering attacks has made this gap not merely a theoretical concern but an active vector of financial fraud and data compromise.
+The discipline of continuous authentication has emerged as a principled response to this structural weakness. Rather than treating authentication as a discrete event at session initiation, continuous authentication reconceives identity verification as an ongoing process that operates silently throughout the session. Every interaction a user makes with a device — the way they press the screen, the rhythm at which they type, the arc of their scroll gestures, the natural tremor in their hand movements — constitutes a behavioral fingerprint that is statistically unique to that individual. By continuously measuring whether the observed behavioral patterns match the established profile of the legitimate user, a continuous authentication system can detect the moment of an unauthorized takeover and respond in real time, without imposing any deliberate action on the user. This passive, unobtrusive nature is what distinguishes continuous authentication from conventional re-authentication mechanisms such as periodic PIN re-entry or timed session expiry, which are both disruptive to the user experience and easily bypassed by an attacker who simply waits.
+The intersection of behavioral biometrics, machine learning, and mobile computing has made continuous authentication increasingly viable as a production security layer. Advances in on-device sensor capabilities, edge computing, and lightweight neural network architectures have brought the computational cost of behavioral analysis within the constraints of battery-powered mobile hardware. At the same time, the richness and diversity of behavioral signals available on a modern smartphone — spanning touch, motion, navigation, and typing — provide a sufficiently high-dimensional identity space to distinguish individuals reliably. This project explores the design and implementation of a multi-layer continuous authentication framework that harnesses these signals to provide real-time, adaptive, and privacy-preserving session security for mobile applications. The system aims to bridge the gap between theoretical behavioral biometric research and a deployable, production-grade authentication layer capable of meeting the strict latency and accuracy requirements of security-sensitive applications such as mobile banking.
+TRADITIONAL AUTHENTICATION
+Authentication is the process by which a system verifies that an entity requesting access is who they claim to be. In mobile applications, this has historically been accomplished through knowledge-based mechanisms — most commonly passwords, PINs, and pattern locks — sometimes augmented by possession-based factors such as one-time passwords delivered via SMS or authenticator applications. These credential-based approaches are collectively referred to as traditional authentication, and they share a common structural property: they gate access at a single point in time, the moment of login, and confer unrestricted trust upon the session that follows.
+For a broad class of applications, this model is operationally adequate. A social media application, a news reader, or a navigation tool presents limited risk if an unauthorized user briefly accesses an unlocked device; the potential for harm is bounded, and the cost of a re-authentication event is acceptable relative to the sensitivity of the data. However, for security-sensitive applications — mobile banking, investment platforms, healthcare portals, enterprise resource systems — the calculus is fundamentally different. These applications expose high-value, irreversible actions: fund transfers, prescription access, corporate data exfiltration. In this context, the single-point-of-verification model creates what security practitioners describe as a session persistence vulnerability: the system has no mechanism to detect or respond to the substitution of one user for another after the initial credential check.
+Multi-factor authentication (MFA) strengthens the credential check at login by requiring a second verification factor, typically something the user possesses (a registered device or hardware token) in addition to something they know (a password). While MFA substantially raises the barrier to unauthorized initial access, it does not address the session persistence problem. Once the MFA check is satisfied and the session is established, the application again assumes continuous identity. An attacker who gains physical access to a device during an active session, or who compromises the device through a remote access tool after MFA has been completed, faces no further challenge. Additionally, MFA introduces friction at every login event, a cost that users and organizations frequently seek to minimize through longer session timeouts and persistent login tokens — which paradoxically extends the window of exposure. The limitations of traditional authentication in mobile, high-sensitivity contexts are therefore not a matter of poor implementation but of architectural design: a system that verifies identity once and trusts indefinitely cannot provide continuous security guarantees.
+CONTINUOUS AUTHENTICATION
+Continuous authentication (CA) is a security paradigm in which the identity of the active user is verified repeatedly and automatically throughout the duration of a session, rather than solely at its initiation. The fundamental insight motivating continuous authentication is that behavioral patterns — the fine-grained characteristics of how a person interacts with a device — are both highly individual and continuously observable. By maintaining an ongoing statistical comparison between the observed interaction patterns and a stored model of the legitimate user's behavior, the system acquires the ability to detect identity substitution at any point in the session and respond with graduated enforcement actions, from passive monitoring to session termination.
+The continuous authentication model introduces several design requirements that distinguish it sharply from traditional authentication. First, it must operate with negligible perceptible latency: a re-authentication check that introduces noticeable delay into every user interaction is functionally equivalent to a periodic re-authentication prompt in terms of user experience impact. Second, it must be computationally efficient: a background process that continuously saturates the device CPU or depletes the battery within hours is not a viable production system, regardless of its accuracy. Third, it must be tolerant of natural behavioral variability: a user's touch pressure changes slightly when they are tired, their typing rhythm shifts when they are distracted, their grip angle varies depending on whether they are sitting or standing. A system that treats every minor deviation as a potential intrusion will generate an unacceptably high rate of false rejections. Fourth, it must be adaptive: human behavior evolves over time, and a model trained on a fixed behavioral snapshot will degrade in accuracy as the user's patterns gradually shift.
+These requirements have driven a rich body of research over the past decade, drawing on techniques from signal processing, statistical machine learning, and deep learning. Early approaches relied on single behavioral modalities — predominantly keystroke dynamics or touch gesture analysis — and achieved modest accuracy on constrained datasets. More recent work has explored multi-modal fusion, incremental learning frameworks, and deep metric learning approaches trained on large behavioral corpora. Despite this progress, fundamental gaps remain in practical deployment: the tension between model accuracy and computational efficiency, the absence of comprehensive multimodal signal coverage, the lack of graceful degradation mechanisms that accumulate evidence before acting on anomalies, and insufficient attention to hardware-level privacy protection for biometric data. The framework proposed in this project is designed to address these gaps systematically through a four-layer architecture that separates concerns of data acquisition, lightweight consistency checking, deep behavioral analysis, and trust aggregation.
+BEHAVIORAL BIOMETRICS
+Biometrics is the science of measuring and statistically analyzing biological characteristics for identity verification. Traditional biometric systems rely on physiological traits — fingerprints, iris patterns, facial geometry, voice prints — that are relatively stable over time and can be captured at a discrete point in interaction. Behavioral biometrics, by contrast, focuses on the dynamic patterns produced by the way a person performs actions: how they w
